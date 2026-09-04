@@ -336,3 +336,5 @@ def test_v2_analysis_preserves_factorial_pairing(tmp_path) -> None:
     assert all(row["owner_effect_estimate"] == 1 for row in result.owner_effects)
     assert (tmp_path / "paper" / "figure_owner_effect.pdf").exists()
     assert (tmp_path / "paper" / "figure_policy_cost.png").exists()
+    assert (tmp_path / "paper" / "table_owner_effects.md").exists()
+    assert (tmp_path / "paper" / "table_policy_comparison.tex").exists()

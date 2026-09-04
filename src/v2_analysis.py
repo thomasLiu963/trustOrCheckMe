@@ -103,6 +103,71 @@ def _write_json(path: Path, rows: Any) -> None:
     )
 
 
+def _display_value(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, float):
+        if math.isnan(value):
+            return "NA"
+        return f"{value:.4f}"
+    return str(value)
+
+
+def _write_markdown_table(
+    path: Path,
+    rows: Sequence[Mapping[str, Any]],
+    columns: Sequence[str],
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    header = "| " + " | ".join(columns) + " |"
+    separator = "| " + " | ".join("---" for _ in columns) + " |"
+    body = [
+        "| "
+        + " | ".join(
+            _display_value(row.get(column)).replace("|", "\\|")
+            for column in columns
+        )
+        + " |"
+        for row in rows
+    ]
+    path.write_text("\n".join([header, separator, *body]) + "\n", encoding="utf-8")
+
+
+def _latex_escape(value: Any) -> str:
+    text = _display_value(value)
+    replacements = {
+        "\\": r"\textbackslash{}",
+        "&": r"\&",
+        "%": r"\%",
+        "$": r"\$",
+        "#": r"\#",
+        "_": r"\_",
+        "{": r"\{",
+        "}": r"\}",
+    }
+    return "".join(replacements.get(character, character) for character in text)
+
+
+def _write_latex_table(
+    path: Path,
+    rows: Sequence[Mapping[str, Any]],
+    columns: Sequence[str],
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    lines = [
+        r"\begin{tabular}{" + "l" * len(columns) + "}",
+        r"\toprule",
+        " & ".join(_latex_escape(column) for column in columns) + r" \\",
+        r"\midrule",
+    ]
+    lines.extend(
+        " & ".join(_latex_escape(row.get(column)) for column in columns) + r" \\"
+        for row in rows
+    )
+    lines.extend([r"\bottomrule", r"\end{tabular}"])
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def _paired_values(
     rows: Iterable[Mapping[str, Any]],
     *,
@@ -629,6 +694,91 @@ def analyze_v2(
     for name, rows in artifacts.items():
         _write_csv(output / f"{name}.csv", rows)
         _write_json(output / f"{name}.json", rows)
+    table_specs = {
+        "model_summary": (
+            model_summary,
+            ("model_id", "n_answers", "wrong_n", "accuracy", "brier_score"),
+        ),
+        "factorial_metrics": (
+            factorial,
+            (
+                "model_id",
+                "decision_owner",
+                "confidence_visibility",
+                "error_cost",
+                "n",
+                "verify_rate",
+                "unsafe_unverified_rate",
+                "mean_realized_cost",
+                "mean_regret",
+            ),
+        ),
+        "owner_effects": (
+            owners,
+            (
+                "model_id",
+                "confidence_visibility",
+                "error_cost",
+                "owner_effect_estimate",
+                "owner_effect_ci_lower",
+                "owner_effect_ci_upper",
+                "paired_disagreement",
+                "unsafe_owner_gap",
+                "wrong_pair_n",
+            ),
+        ),
+        "confidence_visibility_effects": (
+            confidence,
+            (
+                "model_id",
+                "decision_owner",
+                "error_cost",
+                "estimate",
+                "ci_lower",
+                "ci_upper",
+                "n_questions",
+            ),
+        ),
+        "owner_confidence_interactions": (
+            interactions,
+            (
+                "model_id",
+                "error_cost",
+                "estimate",
+                "ci_lower",
+                "ci_upper",
+                "n_questions",
+            ),
+        ),
+        "policy_comparison": (
+            policy_comparison,
+            (
+                "model_id",
+                "decision_owner",
+                "confidence_visibility",
+                "error_cost",
+                "policy",
+                "n",
+                "mean_cost",
+            ),
+        ),
+        "prompt_robustness": (
+            prompt_robustness,
+            (
+                "model_id",
+                "decision_owner",
+                "confidence_visibility",
+                "error_cost",
+                "n",
+                "action_agreement",
+                "primary_verify_rate",
+                "paraphrase_verify_rate",
+            ),
+        ),
+    }
+    for name, (rows, columns) in table_specs.items():
+        _write_markdown_table(output / f"table_{name}.md", rows, columns)
+        _write_latex_table(output / f"table_{name}.tex", rows, columns)
     for name, rows in diagnostics.items():
         _write_csv(output / "diagnostics" / f"{name}.csv", rows)
     persist_calibration_artifacts(

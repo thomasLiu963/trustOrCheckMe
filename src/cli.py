@@ -485,6 +485,11 @@ async def _run_v2_stage(args: argparse.Namespace) -> None:
                 show_prompts=args.show_prompts,
             )
         _print_summary(summary)
+        if summary.failed:
+            raise RuntimeError(
+                f"{summary.failed} V2 {summary.stage} request(s) failed; "
+                "inspect the checkpoint and retry with --retry-failed."
+            )
         return
 
     with V2VerificationRunner(
@@ -515,6 +520,11 @@ async def _run_v2_stage(args: argparse.Namespace) -> None:
         )
         summary_data["sample_payloads_path"] = str(payload_path)
     print(json.dumps(summary_data, indent=2, default=str))
+    if summary.failed:
+        raise RuntimeError(
+            f"{summary.failed} V2 verification request(s) failed; "
+            "inspect the checkpoint and retry with --retry-failed."
+        )
 
 
 async def _run_v2_robustness(args: argparse.Namespace) -> None:
@@ -556,6 +566,11 @@ async def _run_v2_robustness(args: argparse.Namespace) -> None:
         )
         summary_data["sample_payloads_path"] = str(payload_path)
     print(json.dumps(summary_data, indent=2, default=str))
+    if summary.failed:
+        raise RuntimeError(
+            f"{summary.failed} V2 robustness request(s) failed; "
+            "inspect the checkpoint and retry with --retry-failed."
+        )
 
 
 def _analyze_v2(args: argparse.Namespace) -> None:

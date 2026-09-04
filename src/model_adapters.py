@@ -217,9 +217,13 @@ class ModelAdapter(abc.ABC):
     ) -> None:
         self.model_alias = model_alias
         self.api_model = api_model
-        if int(max_output_tokens) != 64:
-            raise ValueError("Frozen pilot max_output_tokens must be 64")
-        self.max_output_tokens = 64
+        expected_max_tokens = 512 if self.provider == "google" else 64
+        if int(max_output_tokens) != expected_max_tokens:
+            raise ValueError(
+                f"Frozen {self.provider} max_output_tokens must be "
+                f"{expected_max_tokens}"
+            )
+        self.max_output_tokens = expected_max_tokens
         self.max_transient_retries = max(0, int(max_transient_retries))
         self.backoff_base_seconds = max(0.0, float(backoff_base_seconds))
         self.backoff_max_seconds = max(
@@ -533,7 +537,13 @@ class GoogleAdapter(ModelAdapter):
         raw_text = str(getattr(response, "text", None) or "")
         usage = getattr(response, "usage_metadata", None)
         input_tokens = _value(usage, "prompt_token_count")
-        output_tokens = _value(usage, "candidates_token_count")
+        candidate_tokens = _value(usage, "candidates_token_count")
+        thought_tokens = _value(usage, "thoughts_token_count")
+        output_tokens = (
+            (candidate_tokens or 0) + (thought_tokens or 0)
+            if candidate_tokens is not None or thought_tokens is not None
+            else None
+        )
         total_tokens = _value(usage, "total_token_count")
         candidates = getattr(response, "candidates", None) or []
         finish_reason = None

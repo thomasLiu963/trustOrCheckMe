@@ -77,6 +77,7 @@ def test_google_v2_payload_disables_optional_tools(adapters) -> None:
         stage="verification", prompt="test"
     ).payload
     assert payload["model"] == "gemini-3.8-flash"
+    assert payload["config"]["max_output_tokens"] == 512
     assert payload["config"]["thinking_config"] == {"thinking_level": "LOW"}
     assert payload["config"]["response_json_schema"]["required"] == ["action"]
     assert "tools" not in payload

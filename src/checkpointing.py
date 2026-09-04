@@ -505,6 +505,35 @@ class CheckpointStore:
         counts.update({str(row["status"]): int(row["count"]) for row in rows})
         return counts
 
+    def attempt_usage(self, *, run_id: str | None = None) -> list[dict[str, Any]]:
+        """Return sanitized per-attempt accounting without raw prompts or outputs."""
+        query = """
+            SELECT
+                r.run_id,
+                r.stage,
+                r.model_alias,
+                a.provider,
+                a.requested_model_id,
+                a.returned_model_id,
+                a.success,
+                a.input_tokens,
+                a.output_tokens,
+                a.total_tokens,
+                a.latency_seconds,
+                a.finish_reason,
+                a.refusal
+            FROM attempts AS a
+            JOIN requests AS r ON r.request_key = a.request_key
+        """
+        parameters: Sequence[Any] = ()
+        if run_id is not None:
+            query += " WHERE r.run_id = ?"
+            parameters = (run_id,)
+        query += " ORDER BY a.id"
+        with self._lock:
+            rows = self._connection.execute(query, parameters).fetchall()
+        return [dict(row) for row in rows]
+
     def close(self) -> None:
         with self._lock:
             self._connection.close()

@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import asyncio
 import dataclasses
+import hashlib
 import math
+import subprocess
 import time
 import uuid
-from collections import Counter
+from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from datetime import UTC, datetime
 from pathlib import Path
@@ -81,6 +83,28 @@ def _response_value(response: Any, *names: str, default: Any = None) -> Any:
     return default
 
 
+def _git_commit() -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=2,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return result.stdout.strip() or None
+
+
+def _sample_sha256(examples: Sequence[BenchmarkExample]) -> str:
+    content = "\n".join(
+        example.model_dump_json()
+        for example in sorted(examples, key=lambda row: row.example_id)
+    )
+    return hashlib.sha256((content + "\n").encode("utf-8")).hexdigest()
+
+
 def _answer_key(example: BenchmarkExample, alias: str, api_model: str) -> str:
     return deterministic_request_key(
         stage="answer",
@@ -132,6 +156,10 @@ class V2Plan:
     estimated_input_tokens: int
     maximum_output_tokens: int
     cost_by_stage: dict[str, float]
+    remaining_requests_by_model: dict[str, int]
+    estimated_runtime_seconds: float | None
+    runtime_basis_successful_attempts: int
+    runtime_assumed_concurrency: int
     unknown_pricing_models: tuple[str, ...]
     factor_counts: dict[str, int]
 
@@ -523,6 +551,79 @@ class V2VerificationRunner:
             ) / 1_000_000
         return total
 
+    def _usage_manifest(
+        self, selected_aliases: Sequence[str]
+    ) -> tuple[dict[str, Any], float]:
+        attempts = self.checkpoint.attempt_usage(run_id=self.run_id)
+        aliases = sorted(
+            set(selected_aliases)
+            | {
+                str(row["model_alias"])
+                for row in attempts
+                if row.get("model_alias") in self.models_config.models
+            }
+        )
+        by_model: dict[str, dict[str, Any]] = {}
+        observed_cost = 0.0
+        for alias in aliases:
+            spec = self.models_config.models[alias]
+            model_attempts = [
+                row for row in attempts if row.get("model_alias") == alias
+            ]
+            input_tokens = sum(
+                int(row["input_tokens"] or 0) for row in model_attempts
+            )
+            output_tokens = sum(
+                int(row["output_tokens"] or 0) for row in model_attempts
+            )
+            total_tokens = sum(
+                int(row["total_tokens"] or 0) for row in model_attempts
+            )
+            model_cost = (
+                input_tokens * spec.pricing_per_million_tokens.input
+                + output_tokens * spec.pricing_per_million_tokens.output
+            ) / 1_000_000
+            observed_cost += model_cost
+            latencies = [
+                float(row["latency_seconds"])
+                for row in model_attempts
+                if row.get("latency_seconds") is not None
+            ]
+            by_model[alias] = {
+                "provider": spec.provider,
+                "requested_model_id": spec.api_model,
+                "returned_model_ids": sorted(
+                    {
+                        str(row["returned_model_id"])
+                        for row in model_attempts
+                        if row.get("returned_model_id")
+                    }
+                ),
+                "attempts": len(model_attempts),
+                "successful_attempts": sum(
+                    bool(row["success"]) for row in model_attempts
+                ),
+                "failed_attempts": sum(
+                    not bool(row["success"]) for row in model_attempts
+                ),
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+                "total_tokens": total_tokens,
+                "mean_latency_seconds": (
+                    sum(latencies) / len(latencies) if latencies else None
+                ),
+                "observed_cost_usd": model_cost,
+            }
+        return {
+            "attempt_count": len(attempts),
+            "input_tokens": sum(int(row["input_tokens"] or 0) for row in attempts),
+            "output_tokens": sum(
+                int(row["output_tokens"] or 0) for row in attempts
+            ),
+            "total_tokens": sum(int(row["total_tokens"] or 0) for row in attempts),
+            "by_model": by_model,
+        }, observed_cost
+
     async def run(
         self,
         *,
@@ -535,6 +636,7 @@ class V2VerificationRunner:
     ) -> V2RunSummary:
         if not dry_run and not allow_paid:
             raise PermissionError("Paid V2 execution requires explicit authorization")
+        started_at = datetime.now(UTC).isoformat()
         tasks = self.tasks(
             model_aliases=model_aliases,
             dry_run=dry_run,
@@ -610,28 +712,95 @@ class V2VerificationRunner:
         for ok in await asyncio.gather(*(execute(task) for task in runnable)):
             completed += int(ok)
             failed += int(not ok)
-        self.checkpoint.upsert_manifest(
-            self.run_id,
+        selected_aliases = [alias for alias, _ in _selected_models(
+            self.models_config, model_aliases
+        )]
+        usage, observed_cost = self._usage_manifest(selected_aliases)
+        manifest = self.checkpoint.get_manifest(self.run_id) or {}
+        manifest.update(
             {
+                "experiment_id": self.config.experiment_id,
                 "experiment_version": "v2",
                 "run_id": self.run_id,
+                "git_commit": _git_commit(),
+                "start_time": manifest.get("start_time", started_at),
+                "end_time": datetime.now(UTC).isoformat(),
+                "dataset": self.config.dataset.name,
+                "dataset_revision": self.config.dataset.revision,
+                "sample_sha256": _sample_sha256(self.examples),
+                "sample_ids": [example.example_id for example in self.examples],
+                "model_configs": {
+                    alias: self.models_config.models[alias].model_dump(mode="json")
+                    for alias in usage["by_model"]
+                },
                 "prompt_family": prompt_family
                 or self.config.prompt_families.primary,
-                "sample_ids": [example.example_id for example in self.examples],
-                "request_counts": {
-                    "planned": len(tasks),
-                    "called": len(runnable),
-                    "success": completed,
-                    "failed": failed,
+                "prompt_version": prompt_family
+                or self.config.prompt_families.primary,
+                "decision_owners": list(self.config.factors.decision_owners),
+                "confidence_visibility": [
+                    state.value for state in (
+                        [
+                            ConfidenceVisibility(value)
+                            for value in confidence_states
+                        ]
+                        if confidence_states is not None
+                        else [
+                            ConfidenceVisibility(value)
+                            for value in self.config.factors.confidence_visibility
+                        ]
+                    )
+                ],
+                "verification_cost": self.config.costs.verification_cost,
+                "error_costs": list(self.config.costs.error_costs),
+                "cache_hits": sum(
+                    status == "success" for status in statuses.values()
+                ),
+                "v1_reuse_counts": {
+                    "answer": len(
+                        {
+                            task.answer_record["request_key"]
+                            for task in tasks
+                            if task.answer_record.get("reused_from_v1")
+                        }
+                    ),
+                    "confidence": len(
+                        {
+                            task.confidence_record["request_key"]
+                            for task in tasks
+                            if task.confidence_record.get("reused_from_v1")
+                        }
+                    ),
                 },
+                "estimated_new_request_cost_usd": estimate,
+                "observed_attempt_cost_usd": observed_cost,
+                "usage": usage,
                 "factor_counts": dict(
                     Counter(
                         f"{task.owner.value}/{task.visibility.value}/L={task.error_cost:g}"
                         for task in tasks
                     )
                 ),
-                "completed_at": datetime.now(UTC).isoformat(),
+            }
+        )
+        manifest.setdefault("stages", {})["verification"] = {
+            "start_time": started_at,
+            "end_time": manifest["end_time"],
+            "request_counts": {
+                "planned": len(tasks),
+                "called": len(runnable),
+                "cache_hits": sum(
+                    status == "success" for status in statuses.values()
+                ),
+                "success": completed,
+                "failed": failed,
             },
+            "prompt_family": manifest["prompt_family"],
+            "factor_counts": manifest["factor_counts"],
+        }
+        self.checkpoint.upsert_manifest(
+            self.run_id,
+            manifest,
             status="completed" if not failed else "failed",
         )
         return V2RunSummary(
@@ -656,7 +825,11 @@ class V2VerificationRunner:
             self.config.model_inference.max_parse_repairs + 1
         ):
             started = time.perf_counter()
-            raw = ""
+            attempt_kind = (
+                "generation"
+                if parse_attempt == 0
+                else f"parse_repair_{parse_attempt}"
+            )
             try:
                 response = await adapter.generate(
                     stage="verification",
@@ -664,21 +837,48 @@ class V2VerificationRunner:
                     request_key=task.request_key,
                     allow_paid=allow_paid,
                 )
-                raw = str(_response_value(response, "raw_response", default=""))
-                payload = parse_verification_response(raw)
-            except Exception as error:  # provider/request containment boundary
+            except Exception as error:  # provider transport containment boundary
                 self.checkpoint.record_attempt(
                     request_key=task.request_key,
-                    attempt_kind=(
-                        "generation"
-                        if parse_attempt == 0
-                        else f"parse_repair_{parse_attempt}"
-                    ),
+                    attempt_kind=attempt_kind,
                     success=False,
                     provider=adapter.provider,
                     requested_model_id=adapter.api_model,
                     latency_seconds=time.perf_counter() - started,
                     error=error,
+                    sanitized_payload=adapter.prepare_request(
+                        stage="verification", prompt=prompt
+                    ).sanitized_payload(),
+                )
+                self.checkpoint.mark_failed(task.request_key, error)
+                return False
+
+            raw = str(_response_value(response, "raw_response", default=""))
+            refusal = bool(
+                _response_value(response, "refused", "refusal", default=False)
+            )
+            try:
+                if refusal:
+                    raise ValueError("Provider returned a refusal")
+                payload = parse_verification_response(raw)
+            except (TypeError, ValueError) as error:
+                self.checkpoint.record_attempt(
+                    request_key=task.request_key,
+                    attempt_kind=attempt_kind,
+                    success=False,
+                    provider=adapter.provider,
+                    requested_model_id=adapter.api_model,
+                    returned_model_id=_response_value(
+                        response, "provider_model_id", "returned_model_id"
+                    ),
+                    latency_seconds=_response_value(response, "latency_seconds"),
+                    raw_output=raw,
+                    parse_error=str(error),
+                    input_tokens=_response_value(response, "input_tokens"),
+                    output_tokens=_response_value(response, "output_tokens"),
+                    total_tokens=_response_value(response, "total_tokens"),
+                    finish_reason=_response_value(response, "finish_reason"),
+                    refusal=refusal,
                     sanitized_payload=adapter.prepare_request(
                         stage="verification", prompt=prompt
                     ).sanitized_payload(),
@@ -691,11 +891,7 @@ class V2VerificationRunner:
 
             self.checkpoint.record_attempt(
                 request_key=task.request_key,
-                attempt_kind=(
-                    "generation"
-                    if parse_attempt == 0
-                    else f"parse_repair_{parse_attempt}"
-                ),
+                attempt_kind=attempt_kind,
                 success=True,
                 provider=adapter.provider,
                 requested_model_id=adapter.api_model,
@@ -777,6 +973,7 @@ def plan_v2(
     stage12_output_tokens = 0
     answer_cost = 0.0
     confidence_cost = 0.0
+    remaining_by_model: Counter[str] = Counter()
     with (
         CheckpointStore(v1_checkpoint) as source,
         CheckpointStore(v2_checkpoint) as target,
@@ -823,6 +1020,7 @@ def plan_v2(
                         planned_answer_reuse += 1
                     else:
                         new_answers += 1
+                        remaining_by_model[alias] += 1
                         prompt = build_answer_prompt(
                             question=example.question, choices=example.choices
                         )
@@ -841,6 +1039,7 @@ def plan_v2(
                         planned_confidence_reuse += 1
                     else:
                         new_confidence += 1
+                        remaining_by_model[alias] += 1
                         answer_label = (
                             source_answer.get("answer_label")
                             if source_answer is not None
@@ -886,12 +1085,54 @@ def plan_v2(
                 for task in verification_tasks
                 if target.request_status(task.request_key) != "success"
             ]
+            remaining_by_model.update(
+                task.model_alias for task in verification_pending
+            )
             verification_input_tokens = sum(
                 math.ceil(len(task.prompt) / 4) for task in verification_pending
             )
             verification_output_tokens = sum(
                 task.model_config.max_output_tokens
                 for task in verification_pending
+            )
+            successful_latency_rows = [
+                row
+                for row in target.attempt_usage()
+                if bool(row.get("success"))
+                and row.get("latency_seconds") is not None
+            ]
+            latencies_by_model: dict[str, list[float]] = defaultdict(list)
+            for row in successful_latency_rows:
+                latencies_by_model[str(row["model_alias"])].append(
+                    float(row["latency_seconds"])
+                )
+            all_latencies = [
+                latency
+                for values in latencies_by_model.values()
+                for latency in values
+            ]
+            global_mean_latency = (
+                sum(all_latencies) / len(all_latencies)
+                if all_latencies
+                else None
+            )
+            runtime_work_seconds = 0.0
+            runtime_estimable = global_mean_latency is not None
+            for alias, count in remaining_by_model.items():
+                model_latencies = latencies_by_model.get(alias)
+                mean_latency = (
+                    sum(model_latencies) / len(model_latencies)
+                    if model_latencies
+                    else global_mean_latency
+                )
+                if mean_latency is None:
+                    runtime_estimable = False
+                    break
+                runtime_work_seconds += count * mean_latency
+            estimated_runtime_seconds = (
+                runtime_work_seconds / config.model_inference.concurrency
+                if runtime_estimable
+                else None
             )
 
     answer_requests = total_pairs
@@ -933,6 +1174,10 @@ def plan_v2(
             "confidence": confidence_cost,
             "verification": verification_cost,
         },
+        remaining_requests_by_model=dict(sorted(remaining_by_model.items())),
+        estimated_runtime_seconds=estimated_runtime_seconds,
+        runtime_basis_successful_attempts=len(successful_latency_rows),
+        runtime_assumed_concurrency=config.model_inference.concurrency,
         unknown_pricing_models=unknown,
         factor_counts=factor_counts,
     )

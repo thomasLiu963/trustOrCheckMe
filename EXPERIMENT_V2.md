@@ -56,6 +56,14 @@ Google requests use the official Gen AI SDK with Vertex AI, a configured Google
 Cloud project/location, and Application Default Credentials. They do not use a
 Google AI Studio API key.
 
+Provider-validation amendment, recorded before V2-A: Google uses
+`max_output_tokens=512`, while the other providers use `64`. The one-question
+smoke test showed that Gemini's mandatory low-thinking tokens share the output
+ceiling and frequently exhausted a 64-token cap before emitting the constrained
+JSON action. This operational change does not alter prompts, factors, or action
+semantics. Actual thinking plus response tokens are recorded as billed output
+usage.
+
 ## Frozen stages
 
 Stage 1 elicits one multiple-choice answer. Stage 2 receives that answer and
