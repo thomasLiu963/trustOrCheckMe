@@ -204,7 +204,7 @@ class ThinkingConfig(StrictConfigModel):
 class ModelSpec(StrictConfigModel):
     provider: Literal["openai", "anthropic", "google", "xai"]
     api_model: str = Field(min_length=1)
-    api_style: Literal["responses", "messages", "google_genai"]
+    api_style: Literal["responses", "messages", "google_genai", "google_genai_vertex"]
     max_output_tokens: int = Field(gt=0)
     pricing_per_million_tokens: PricingConfig
     reasoning_effort: Literal["none"] | None = None
@@ -232,7 +232,10 @@ class ModelSpec(StrictConfigModel):
             if self.thinking_level is not None:
                 raise ValueError("Anthropic models must not define thinking_level")
         elif self.provider == "google":
-            if self.api_style != "google_genai" or self.thinking_level != "low":
+            if (
+                self.api_style not in {"google_genai", "google_genai_vertex"}
+                or self.thinking_level != "low"
+            ):
                 raise ValueError(
                     "Google V2 models must use Google GenAI with thinking level low"
                 )

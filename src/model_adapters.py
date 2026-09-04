@@ -485,7 +485,7 @@ class AnthropicAdapter(ModelAdapter):
 
 class GoogleAdapter(ModelAdapter):
     provider = "google"
-    api_style = "google_genai"
+    api_style = "google_genai_vertex"
 
     def prepare_request(self, *, stage: str, prompt: str) -> PreparedRequest:
         payload = {
@@ -507,14 +507,23 @@ class GoogleAdapter(ModelAdapter):
 
     async def _send(self, payload: Mapping[str, Any]) -> Any:
         if self._client is None:
-            key = os.getenv("GEMINI_API_KEY")
-            if not key:
-                raise RuntimeError("GEMINI_API_KEY is required for paid Google calls")
+            project = os.getenv("GOOGLE_CLOUD_PROJECT")
+            location = os.getenv("GOOGLE_CLOUD_LOCATION", "global")
+            if not project:
+                raise RuntimeError(
+                    "GOOGLE_CLOUD_PROJECT is required for Vertex AI calls"
+                )
             try:
                 from google import genai
             except ImportError as error:
-                raise RuntimeError("Install the official 'google-genai' package") from error
-            self._client = genai.Client(api_key=key)
+                raise RuntimeError(
+                    "Install the official 'google-genai' package"
+                ) from error
+            self._client = genai.Client(
+                vertexai=True,
+                project=project,
+                location=location,
+            )
         return await self._client.aio.models.generate_content(**dict(payload))
 
     def _decode(

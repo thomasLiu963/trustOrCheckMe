@@ -44,13 +44,17 @@ Four independent provider families are targeted:
 
 - OpenAI `gpt-5.6-sol`, reasoning effort `none`.
 - Anthropic `claude-sonnet-5`, thinking disabled.
-- Google `gemini-3.8-flash`, thinking level `low`.
+- Google Vertex AI `gemini-3.8-flash`, thinking level `low`.
 - xAI `grok-4.20-0309-non-reasoning`.
 
 Exact returned model IDs and provider settings are recorded in manifests. Tools,
 search, browsing, retrieval, code execution, and external context are disabled.
 Cross-model results are generalization evidence, not controlled comparisons of
 internal reasoning budgets.
+
+Google requests use the official Gen AI SDK with Vertex AI, a configured Google
+Cloud project/location, and Application Default Credentials. They do not use a
+Google AI Studio API key.
 
 ## Frozen stages
 

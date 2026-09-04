@@ -22,3 +22,24 @@ budget have been reviewed.
 
 V2 data is stored under `results/v2/`; paper-oriented outputs are generated
 under `paper_outputs/v2/`. Neither location may overwrite V1 artifacts.
+
+## Vertex AI authentication
+
+Google runs through Vertex AI rather than Google AI Studio. Configure:
+
+```text
+GOOGLE_CLOUD_PROJECT=your-project-id
+GOOGLE_CLOUD_LOCATION=global
+```
+
+Then enable the Vertex AI API for that billing-enabled project and establish
+local Application Default Credentials:
+
+```bash
+gcloud services enable aiplatform.googleapis.com --project YOUR_PROJECT_ID
+gcloud auth application-default login
+gcloud auth application-default set-quota-project YOUR_PROJECT_ID
+```
+
+These setup commands are user-controlled external account changes. The
+experiment CLI never prints or stores Google credentials.

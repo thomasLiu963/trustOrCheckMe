@@ -72,6 +72,7 @@ def test_paid_calls_are_hard_gated(adapters) -> None:
 
 
 def test_google_v2_payload_disables_optional_tools(adapters) -> None:
+    assert adapters["google_gemini38_flash"].api_style == "google_genai_vertex"
     payload = adapters["google_gemini38_flash"].prepare_request(
         stage="verification", prompt="test"
     ).payload
