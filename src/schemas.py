@@ -44,6 +44,21 @@ class Recommendation(str, Enum):
     VERIFY = "VERIFY"
 
 
+class VerificationAction(str, Enum):
+    USE_UNVERIFIED = "USE_UNVERIFIED"
+    VERIFY_FIRST = "VERIFY_FIRST"
+
+
+class DecisionOwner(str, Enum):
+    HUMAN = "human"
+    AI_SYSTEM = "ai_system"
+
+
+class ConfidenceVisibility(str, Enum):
+    HIDDEN = "hidden"
+    VISIBLE = "visible"
+
+
 class AnswerPayload(StrictModel):
     answer: AnswerLabel
 
@@ -56,7 +71,11 @@ class TrustPayload(StrictModel):
     recommendation: Recommendation
 
 
-OutputPayload = AnswerPayload | ConfidencePayload | TrustPayload
+class VerificationPayload(StrictModel):
+    action: VerificationAction
+
+
+OutputPayload = AnswerPayload | ConfidencePayload | TrustPayload | VerificationPayload
 
 
 class BenchmarkExample(StrictModel):
@@ -88,6 +107,8 @@ class BenchmarkExample(StrictModel):
 
 
 class AnswerRecord(StrictModel):
+    experiment_version: str = "v1"
+    reused_from_v1: bool = False
     run_id: str = Field(min_length=1)
     request_key: str = Field(min_length=1)
     example_id: str = Field(min_length=1)
@@ -112,6 +133,8 @@ class AnswerRecord(StrictModel):
 
 
 class ConfidenceRecord(StrictModel):
+    experiment_version: str = "v1"
+    reused_from_v1: bool = False
     run_id: str = Field(min_length=1)
     request_key: str = Field(min_length=1)
     example_id: str = Field(min_length=1)
@@ -137,6 +160,43 @@ class TrustDecisionRecord(StrictModel):
     prompt_version: str = Field(min_length=1)
     timestamp: AwareDatetime = Field(default_factory=utc_now)
     provider_metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class VerificationDecisionRecord(StrictModel):
+    experiment_version: Literal["v2"]
+    run_id: str = Field(min_length=1)
+    request_key: str = Field(min_length=1)
+    example_id: str = Field(min_length=1)
+    model_id: str = Field(min_length=1)
+    provider: Literal["openai", "anthropic", "google", "xai"]
+    requested_model_id: str = Field(min_length=1)
+    returned_model_id: str | None = None
+    frozen_answer_label: AnswerLabel
+    probability_correct: Probability
+    decision_owner: DecisionOwner
+    confidence_visibility: ConfidenceVisibility
+    prompt_family: str = Field(min_length=1)
+    verification_cost: NonNegativeFloat
+    error_cost: NonNegativeFloat
+    action: VerificationAction
+    raw_response: str
+    prompt_version: str = Field(min_length=1)
+    timestamp: AwareDatetime = Field(default_factory=utc_now)
+    input_tokens: int | None = Field(default=None, ge=0)
+    output_tokens: int | None = Field(default=None, ge=0)
+    total_tokens: int | None = Field(default=None, ge=0)
+    latency_seconds: NonNegativeFloat | None = None
+    finish_reason: str | None = None
+    refused: bool = False
+    provider_metadata: dict[str, Any] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def validate_visible_confidence(self) -> VerificationDecisionRecord:
+        if self.verification_cost != 1.0:
+            raise ValueError("V2 verification cost must be 1")
+        if self.error_cost not in {2.0, 5.0, 10.0, 20.0}:
+            raise ValueError("V2 error cost is outside the frozen grid")
+        return self
 
 
 class ScoredDecisionRecord(StrictModel):
@@ -184,12 +244,55 @@ class ScoredDecisionRecord(StrictModel):
         return self
 
 
+class ScoredVerificationDecisionRecord(StrictModel):
+    experiment_version: Literal["v2"]
+    run_id: str = Field(min_length=1)
+    example_id: str = Field(min_length=1)
+    model_id: str = Field(min_length=1)
+    decision_owner: DecisionOwner
+    confidence_visibility: ConfidenceVisibility
+    prompt_family: str = Field(min_length=1)
+    verification_cost: NonNegativeFloat
+    error_cost: NonNegativeFloat
+    action: VerificationAction
+    probability_correct: Probability
+    is_correct: bool
+    used_unverified: bool
+    verified_first: bool
+    unsafe_unverified_use: bool
+    unnecessary_verification: bool
+    realized_cost: NonNegativeFloat
+    oracle_cost: NonNegativeFloat
+    regret: NonNegativeFloat
+    raw_confidence_baseline_action: VerificationAction
+    calibrated_confidence_baseline_action: VerificationAction
+    direct_vs_raw_confidence_disagreement: bool
+    direct_vs_calibrated_confidence_disagreement: bool
+
+    @model_validator(mode="after")
+    def validate_indicators(self) -> ScoredVerificationDecisionRecord:
+        expected_verified = self.action == VerificationAction.VERIFY_FIRST
+        if self.verified_first != expected_verified:
+            raise ValueError("verified_first is inconsistent with action")
+        if self.used_unverified == expected_verified:
+            raise ValueError("used_unverified is inconsistent with action")
+        if self.unsafe_unverified_use != (
+            self.used_unverified and not self.is_correct
+        ):
+            raise ValueError("unsafe_unverified_use is inconsistent")
+        if self.unnecessary_verification != (
+            self.verified_first and self.is_correct
+        ):
+            raise ValueError("unnecessary_verification is inconsistent")
+        return self
+
+
 class ModelResponse(StrictModel):
     model_alias: str = Field(min_length=1)
-    provider: Literal["openai", "anthropic"]
+    provider: Literal["openai", "anthropic", "google", "xai"]
     requested_model_id: str = Field(min_length=1)
     provider_model_id: str | None = None
-    stage: Literal["answer", "confidence", "trust"]
+    stage: Literal["answer", "confidence", "trust", "verification"]
     request_key: str = Field(min_length=1)
     status: Literal["received", "success", "failed"] = "received"
     raw_response: str

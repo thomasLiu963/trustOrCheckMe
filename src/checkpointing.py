@@ -54,6 +54,10 @@ def deterministic_request_key(
     prompt_version: str,
     stake: Any = None,
     dependency: Any = None,
+    experiment_version: str | None = None,
+    prompt_family: str | None = None,
+    decision_owner: str | None = None,
+    confidence_visibility: str | None = None,
 ) -> str:
     """Return a stable, unambiguous key for one scientific request."""
     identity = {
@@ -65,6 +69,15 @@ def deterministic_request_key(
         "stake": stake,
         "dependency": dependency,
     }
+    v2_identity = {
+        "experiment_version": experiment_version,
+        "prompt_family": prompt_family,
+        "decision_owner": decision_owner,
+        "confidence_visibility": confidence_visibility,
+    }
+    identity.update(
+        {name: value for name, value in v2_identity.items() if value is not None}
+    )
     digest = hashlib.sha256(canonical_json(identity).encode("utf-8")).hexdigest()
     return f"{stage}:{digest}"
 

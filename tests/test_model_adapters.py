@@ -47,11 +47,14 @@ def test_anthropic_frozen_payload(adapters) -> None:
 def test_confidence_schema_uses_cross_provider_supported_subset(adapters) -> None:
     for adapter in adapters.values():
         payload = adapter.prepare_request(stage="confidence", prompt="test").payload
-        schema = (
-            payload["text"]["format"]["schema"]
-            if adapter.provider == "openai"
-            else payload["output_config"]["format"]["schema"]
-        )
+        if adapter.provider == "openai":
+            schema = payload["text"]["format"]["schema"]
+        elif adapter.provider == "anthropic":
+            schema = payload["output_config"]["format"]["schema"]
+        elif adapter.provider == "xai":
+            schema = payload["text"]["format"]["schema"]
+        else:
+            schema = payload["config"]["response_json_schema"]
         probability = schema["properties"]["probability_correct"]
         assert probability == {"type": "number"}
 
@@ -66,3 +69,23 @@ def test_paid_calls_are_hard_gated(adapters) -> None:
                 allow_paid=False,
             )
         )
+
+
+def test_google_v2_payload_disables_optional_tools(adapters) -> None:
+    payload = adapters["google_gemini38_flash"].prepare_request(
+        stage="verification", prompt="test"
+    ).payload
+    assert payload["model"] == "gemini-3.8-flash"
+    assert payload["config"]["thinking_config"] == {"thinking_level": "LOW"}
+    assert payload["config"]["response_json_schema"]["required"] == ["action"]
+    assert "tools" not in payload
+
+
+def test_xai_v2_payload_has_no_reasoning_or_tools(adapters) -> None:
+    payload = adapters["xai_grok420_nonreasoning"].prepare_request(
+        stage="verification", prompt="test"
+    ).payload
+    assert payload["model"] == "grok-4.20-0309-non-reasoning"
+    assert payload["text"]["format"]["schema"]["required"] == ["action"]
+    assert payload["store"] is False
+    assert not {"reasoning", "tools", "temperature", "top_p"} & payload.keys()

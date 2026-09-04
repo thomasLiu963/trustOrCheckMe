@@ -583,6 +583,9 @@ class ExperimentRunner:
                             if upstream is not None
                             else None
                         ),
+                        experiment_version=_value(
+                            self.experiment_config, "experiment_version", None
+                        ),
                     )
                     tasks.append(
                         _Task(
@@ -983,6 +986,10 @@ class ExperimentRunner:
         values = _example_values(task.example)
         timestamp = datetime.now(UTC)
         common = {
+            "experiment_version": _value(
+                self.experiment_config, "experiment_version", "v1"
+            ),
+            "reused_from_v1": False,
             "run_id": self.run_id,
             "request_key": task.request_key,
             "example_id": values["example_id"],

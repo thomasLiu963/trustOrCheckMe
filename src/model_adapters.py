@@ -64,6 +64,14 @@ def output_schema(stage: str) -> dict[str, Any]:
             }
         }
         required = ["recommendation"]
+    elif stage == "verification":
+        properties = {
+            "action": {
+                "type": "string",
+                "enum": ["USE_UNVERIFIED", "VERIFY_FIRST"],
+            }
+        }
+        required = ["action"]
     else:
         raise ValueError(f"Unknown experiment stage: {stage!r}")
     return {
@@ -82,7 +90,12 @@ def _value(source: Any, name: str, default: Any = None) -> Any:
 
 def _safe_error_message(error: BaseException) -> str:
     message = str(error)
-    for variable in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY"):
+    for variable in (
+        "OPENAI_API_KEY",
+        "ANTHROPIC_API_KEY",
+        "GEMINI_API_KEY",
+        "XAI_API_KEY",
+    ):
         secret = os.getenv(variable)
         if secret:
             message = message.replace(secret, "<redacted>")
@@ -470,6 +483,110 @@ class AnthropicAdapter(ModelAdapter):
         )
 
 
+class GoogleAdapter(ModelAdapter):
+    provider = "google"
+    api_style = "google_genai"
+
+    def prepare_request(self, *, stage: str, prompt: str) -> PreparedRequest:
+        payload = {
+            "model": self.api_model,
+            "contents": prompt,
+            "config": {
+                "max_output_tokens": self.max_output_tokens,
+                "response_mime_type": "application/json",
+                "response_json_schema": output_schema(stage),
+                "thinking_config": {"thinking_level": "LOW"},
+            },
+        }
+        return PreparedRequest(
+            provider=self.provider,
+            api_style=self.api_style,
+            requested_model_id=self.api_model,
+            payload=payload,
+        )
+
+    async def _send(self, payload: Mapping[str, Any]) -> Any:
+        if self._client is None:
+            key = os.getenv("GEMINI_API_KEY")
+            if not key:
+                raise RuntimeError("GEMINI_API_KEY is required for paid Google calls")
+            try:
+                from google import genai
+            except ImportError as error:
+                raise RuntimeError("Install the official 'google-genai' package") from error
+            self._client = genai.Client(api_key=key)
+        return await self._client.aio.models.generate_content(**dict(payload))
+
+    def _decode(
+        self,
+        response: Any,
+    ) -> tuple[str, str | None, int | None, int | None, int | None, str | None, bool]:
+        raw_text = str(getattr(response, "text", None) or "")
+        usage = getattr(response, "usage_metadata", None)
+        input_tokens = _value(usage, "prompt_token_count")
+        output_tokens = _value(usage, "candidates_token_count")
+        total_tokens = _value(usage, "total_token_count")
+        candidates = getattr(response, "candidates", None) or []
+        finish_reason = None
+        refusal = False
+        if candidates:
+            finish_reason = str(_value(candidates[0], "finish_reason", "") or "")
+            refusal = finish_reason.upper() in {
+                "SAFETY",
+                "BLOCKLIST",
+                "PROHIBITED_CONTENT",
+                "SPII",
+            }
+        return (
+            raw_text,
+            getattr(response, "model_version", None),
+            input_tokens,
+            output_tokens,
+            total_tokens,
+            finish_reason,
+            refusal,
+        )
+
+
+class XAIAdapter(OpenAIAdapter):
+    provider = "xai"
+    api_style = "responses"
+
+    def prepare_request(self, *, stage: str, prompt: str) -> PreparedRequest:
+        payload = {
+            "model": self.api_model,
+            "input": prompt,
+            "max_output_tokens": self.max_output_tokens,
+            "store": False,
+            "text": {
+                "format": {
+                    "type": "json_schema",
+                    "name": f"{stage}_output",
+                    "strict": True,
+                    "schema": output_schema(stage),
+                },
+            },
+        }
+        return PreparedRequest(
+            provider=self.provider,
+            api_style=self.api_style,
+            requested_model_id=self.api_model,
+            payload=payload,
+        )
+
+    async def _send(self, payload: Mapping[str, Any]) -> Any:
+        if self._client is None:
+            key = os.getenv("XAI_API_KEY")
+            if not key:
+                raise RuntimeError("XAI_API_KEY is required for paid xAI calls")
+            try:
+                from openai import AsyncOpenAI
+            except ImportError as error:
+                raise RuntimeError("Install the official 'openai' package") from error
+            self._client = AsyncOpenAI(api_key=key, base_url="https://api.x.ai/v1")
+        return await self._client.responses.create(**dict(payload))
+
+
 def create_adapter(
     model_alias: str,
     model_config: Any,
@@ -501,4 +618,14 @@ def create_adapter(
         if api_model != "claude-sonnet-5":
             raise ValueError("Frozen Anthropic pilot model must be 'claude-sonnet-5'")
         return AnthropicAdapter(**common)
+    if provider == "google":
+        if api_model != "gemini-3.8-flash":
+            raise ValueError("Frozen Google V2 model must be 'gemini-3.8-flash'")
+        return GoogleAdapter(**common)
+    if provider == "xai":
+        if api_model != "grok-4.20-0309-non-reasoning":
+            raise ValueError(
+                "Frozen xAI V2 model must be 'grok-4.20-0309-non-reasoning'"
+            )
+        return XAIAdapter(**common)
     raise ValueError(f"Unsupported provider for model {model_alias!r}: {provider!r}")
