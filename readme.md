@@ -1,4 +1,4 @@
-# CURSOR MASTER PROMPT — “TRUST ME OR CHECK ME?”
+# TRUST ME OR CHECK ME? — FINAL README + CURSOR MASTER SPEC
 
 ## Purpose of this file
 
@@ -20,6 +20,136 @@ The intended outcome is a reproducible research pipeline that can:
 10. support a fast pilot first, followed by a larger run only if the pilot reveals an interesting signal.
 
 The first submission target is a **4-page work-in-progress / short paper**, not a giant final-paper codebase. The implementation should therefore be scientifically careful but operationally lean.
+
+---
+
+# 0. CURRENT STATUS + FROZEN PILOT CONFIGURATION
+
+This README is now the **final build specification for the initial pilot**. Cursor should treat the scientific design below as frozen unless the user explicitly changes it after reviewing pilot results.
+
+The immediate goal is **not** to build the final paper, train a model, or run a giant benchmark. The immediate goal is:
+
+```text
+build reproducible pipeline
+        ↓
+prepare deterministic 200-question MMLU-Pro pilot
+        ↓
+dry-run and inspect requests/cost
+        ↓
+user adds API keys locally
+        ↓
+run 2-model / 2,400-request pilot
+        ↓
+analyze GO / MODIFY / KILL signals
+        ↓
+only then decide whether to scale
+```
+
+## Frozen pilot models
+
+The pilot must compare **two distinct frontier model families from two different providers**:
+
+### Model A — OpenAI GPT-5.6 Sol
+
+- Provider: `openai`
+- Exact API model ID: `gpt-5.6-sol`
+- Preferred API: OpenAI Responses API
+- Reasoning configuration: `none`
+- Do not enable extra reasoning for the primary pilot.
+- Do not use tools, web search, retrieval, or external context.
+- Keep outputs short and structured.
+
+The intent is to evaluate the model's **direct response behavior** rather than give one provider an additional hidden reasoning budget.
+
+### Model B — Anthropic Claude Sonnet 5
+
+- Provider: `anthropic`
+- Exact API model ID: `claude-sonnet-5`
+- Preferred API: Claude Messages API
+- Thinking configuration: `{"type":"disabled"}`
+- Do not use tools, web search, retrieval, or external context.
+- **Do not set non-default `temperature`, `top_p`, or `top_k`.** Claude Sonnet 5 rejects non-default sampling parameters.
+- Keep outputs short and structured.
+
+Claude Sonnet 5 enables adaptive thinking by default if the `thinking` field is omitted, so the adapter must explicitly disable it for this pilot.
+
+## Why these two models
+
+The scientific point of the pilot is not to compare two nearby versions of one vendor's model. We want to know whether any observed failure mode generalizes across **independent model families with different training/alignment stacks**.
+
+Therefore the pilot is intentionally:
+
+```text
+OpenAI GPT-5.6 Sol
+        versus
+Anthropic Claude Sonnet 5
+```
+
+If the pilot is promising, the later main run should add a **third independent model family** rather than another OpenAI or Anthropic variant.
+
+## Provider-specific reproducibility rule
+
+Do **not** force a fake universal "temperature = 0" abstraction across providers.
+
+For this project, "same experimental setting" means:
+
+- no optional/extra reasoning;
+- no tools;
+- same task content;
+- same prompt version within each stage;
+- one normal direct response per request;
+- provider-native defaults where a provider does not permit sampling control.
+
+API inference can remain nondeterministic even under low-variance settings. That is acceptable for the pilot. If repeated-sampling robustness later becomes scientifically necessary, add it as a separate experiment rather than silently changing the primary protocol.
+
+## Required local environment variables
+
+Create `.env.example` with:
+
+```text
+OPENAI_API_KEY=
+ANTHROPIC_API_KEY=
+```
+
+The real `.env` must be in `.gitignore`.
+
+Never print, log, commit, or persist secrets in result files.
+
+The user will create the real `.env` locally after the repository and dry-run workflow are ready.
+
+## Current reference pricing for cost estimation
+
+Use these values only as **configurable reference metadata**, never as immutable scientific constants:
+
+```text
+OpenAI GPT-5.6 Sol:
+  input:  $4 / 1M tokens
+  output: $20 / 1M tokens
+
+Anthropic Claude Sonnet 5:
+  input:  $2 / 1M tokens
+  output: $10 / 1M tokens
+```
+
+Pricing can change. Put it in config and print that the estimate is approximate.
+
+After real calls, record provider-reported input/output token usage and compute observed cost from the pricing configuration.
+
+## Immediate execution boundary
+
+Cursor may:
+
+1. build the repository;
+2. implement both provider adapters;
+3. download/sample MMLU-Pro;
+4. create all prompts;
+5. implement checkpointing;
+6. implement the analysis pipeline;
+7. run unit tests;
+8. run **zero-cost dry runs**;
+9. display the exact 2,400-request pilot plan and estimated cost.
+
+Cursor must **not** launch the paid pilot until the user explicitly authorizes it.
 
 ---
 
@@ -387,9 +517,9 @@ If GPQA is used, do not automatically dump question text into public-facing repo
 
 ---
 
-# 9. MODELS
+# 9. MODELS — FROZEN FOR THE PILOT
 
-The codebase should be provider-agnostic.
+The scientific codebase must remain provider-agnostic, but the **initial pilot provider/model choices are now fixed**.
 
 We ultimately want at least:
 
@@ -397,33 +527,195 @@ We ultimately want at least:
 3 distinct model families
 ```
 
-for the main run, but the pilot should start with 2.
+for the main run. The 200-question pilot starts with exactly 2:
 
-Do not hard-code model IDs into scientific logic.
+1. OpenAI GPT-5.6 Sol — `gpt-5.6-sol`
+2. Anthropic Claude Sonnet 5 — `claude-sonnet-5`
 
-Use a configuration file such as:
+The provider abstraction should make a third family easy to add later without changing any experiment logic, schemas, metrics, or prompts.
 
-```text
-config/models.yaml
-```
+## 9.1 Required `config/models.yaml`
 
-Each model entry should include fields such as:
+Create a configuration approximately like:
 
 ```yaml
-id: some_model_alias
-provider: openai_or_other
-api_model: provider_specific_name
-temperature: 0
-max_tokens: 100
+models:
+  openai_gpt56_sol:
+    provider: openai
+    api_model: gpt-5.6-sol
+    api_style: responses
+    reasoning_effort: none
+    max_output_tokens: 64
+    pricing_per_million_tokens:
+      input: 4.0
+      output: 20.0
+
+  anthropic_sonnet5:
+    provider: anthropic
+    api_model: claude-sonnet-5
+    api_style: messages
+    thinking:
+      type: disabled
+    max_output_tokens: 64
+    pricing_per_million_tokens:
+      input: 2.0
+      output: 10.0
 ```
 
-Use the lowest deterministic temperature supported by the provider.
+If provider SDK naming differs slightly, preserve the same scientific settings.
 
-Do not collect or expose chain-of-thought.
+The pricing block exists only so the CLI can estimate cost. It must be easy to update and must never influence experiment outputs.
 
-Keep outputs short and structured.
+## 9.2 OpenAI adapter requirements
 
-The code should support adding additional providers later through a common adapter interface.
+For `gpt-5.6-sol`:
+
+- use the official OpenAI Python SDK;
+- prefer the Responses API;
+- explicitly set reasoning effort to `none`;
+- do not enable web, tools, retrieval, or browsing;
+- request a short structured response;
+- preserve raw response text plus parsed value;
+- record provider-reported token usage and latency;
+- record the exact API model ID returned by the provider when available.
+
+The adapter should conceptually issue requests equivalent to:
+
+```python
+client.responses.create(
+    model="gpt-5.6-sol",
+    reasoning={"effort": "none"},
+    input=...
+)
+```
+
+Do not make the project depend on hidden chain-of-thought or reasoning summaries.
+
+If provider-native JSON-schema output is straightforward and stable in the installed SDK, it may be used. Otherwise use the versioned prompt's strict JSON requirement and the common parser/repair path. Scientific behavior should not depend on a fragile provider-specific formatting feature.
+
+## 9.3 Anthropic adapter requirements
+
+For `claude-sonnet-5`:
+
+- use the official Anthropic Python SDK;
+- use the Messages API;
+- explicitly pass `thinking={"type":"disabled"}`;
+- do not use web/tools/retrieval;
+- omit non-default `temperature`, `top_p`, and `top_k`;
+- request a short structured response;
+- preserve raw response text plus parsed value;
+- record provider-reported token usage and latency;
+- record the exact API model ID returned by the provider when available.
+
+The adapter should conceptually issue requests equivalent to:
+
+```python
+client.messages.create(
+    model="claude-sonnet-5",
+    thinking={"type": "disabled"},
+    max_tokens=64,
+    messages=[...]
+)
+```
+
+Do **not** omit the `thinking` field for this model. Sonnet 5 otherwise enables adaptive thinking by default, which would make the pilot configuration different from the intended direct-response condition.
+
+Do **not** set `temperature=0`. Sonnet 5 rejects non-default sampling settings.
+
+## 9.4 Common model interface
+
+All provider adapters must expose one common internal interface, for example:
+
+```python
+async def generate(
+    *,
+    model_alias: str,
+    stage: str,
+    prompt: str,
+    request_key: str
+) -> ModelResponse:
+    ...
+```
+
+`ModelResponse` should contain at least:
+
+- internal model alias;
+- provider;
+- requested API model ID;
+- provider-returned model ID if available;
+- stage;
+- raw response;
+- parsed response;
+- input token usage;
+- output token usage;
+- total token usage if available;
+- latency;
+- stop/finish reason;
+- refusal indicator if provider exposes one;
+- timestamp;
+- request key.
+
+This keeps the science independent of provider response shapes.
+
+## 9.5 No chain-of-thought collection
+
+Do not request, preserve, infer, or analyze private chain-of-thought.
+
+The study only needs:
+
+- answer label;
+- scalar confidence;
+- RELY / VERIFY recommendation.
+
+Any ordinary provider metadata needed for auditing is fine.
+
+## 9.6 Structured output strategy
+
+Prefer a single common scientific output contract:
+
+Stage 1:
+
+```json
+{"answer":"C"}
+```
+
+Stage 2:
+
+```json
+{"probability_correct":0.72}
+```
+
+Stage 3:
+
+```json
+{"recommendation":"VERIFY"}
+```
+
+Use provider-native structured outputs only when doing so does not alter the substantive task or make one provider's prompt materially different.
+
+Regardless of provider, validate through the same schema layer and use the same bounded repair/retry policy.
+
+## 9.7 Provider failures and refusals
+
+A provider refusal, safety stop, timeout, malformed output, or exhausted retry must **not** be silently converted into an answer.
+
+Persist it as a failed/missing request with explicit status.
+
+Analysis should report request completion/failure rates by provider and stage.
+
+## 9.8 Main-run model expansion
+
+Do not select the third provider yet.
+
+If the pilot gets a GO decision, add a third independent family for the main run. The code must already support this, but the choice should be made after:
+
+- pilot signal quality;
+- API availability;
+- cost;
+- reproducibility;
+- and workshop timeline
+
+are reviewed.
 
 ---
 
@@ -541,8 +833,11 @@ confidence:
   min: 0.0
   max: 1.0
 
-sampling:
-  temperature: 0
+model_inference:
+  # Provider-specific inference settings live in config/models.yaml.
+  # Do not impose a universal temperature setting across providers.
+  no_tools: true
+  no_external_retrieval: true
 
 bootstrap:
   n_resamples: 5000
@@ -1677,9 +1972,14 @@ Write the exact selected IDs to disk.
 
 Before API calls, make sure records can be stored and resumed safely.
 
-## Step 5 — Implement model adapter interface
+## Step 5 — Implement both frozen pilot provider adapters
 
-Start with the provider(s) for which environment variables/API keys are available, but keep the interface generic.
+Implement the common adapter interface plus:
+
+1. OpenAI `gpt-5.6-sol` through the official OpenAI SDK / Responses API with reasoning effort `none`.
+2. Anthropic `claude-sonnet-5` through the official Anthropic SDK / Messages API with thinking explicitly disabled and no non-default sampling parameters.
+
+The adapters must work even when keys are absent by supporting dry-run request construction. Keep the interface generic so a third model family can be added after the pilot.
 
 ## Step 6 — Implement Stage 1
 
@@ -1733,6 +2033,8 @@ First respond with a concise but substantive plan showing that you understand:
 - the answer must not be regenerated under each stake condition;
 - `L` is the manipulated variable in the primary experiment;
 - MMLU-Pro pilot size is 200;
+- the two frozen pilot models are OpenAI `gpt-5.6-sol` and Anthropic `claude-sonnet-5`;
+- both run without optional/extra reasoning (`reasoning_effort: none` for OpenAI; `thinking: disabled` for Anthropic);
 - the main baselines include raw and calibrated confidence policies;
 - the first goal is a reproducible pilot, not the final full-scale run.
 
@@ -1740,7 +2042,99 @@ Then begin implementation.
 
 ---
 
-# 45. FINAL OPERATING PRINCIPLE
+# 45. STARTUP CHECKLIST — WHAT SHOULD HAPPEN NEXT
+
+When Cursor finishes the build, the user should be able to do the following in order.
+
+## A. Repository validation
+
+```text
+install dependencies
+↓
+run tests
+↓
+prepare deterministic MMLU-Pro pilot sample
+↓
+inspect selected IDs/domain counts
+```
+
+No paid requests yet.
+
+## B. Local API setup
+
+The user creates a private `.env` locally:
+
+```text
+OPENAI_API_KEY=...
+ANTHROPIC_API_KEY=...
+```
+
+`.env` must already be ignored by git.
+
+API credentials are never required for dataset preparation, tests, analysis-unit tests, or prompt dry runs.
+
+## C. Dry-run both providers
+
+The dry run must confirm:
+
+- requested models are exactly `gpt-5.6-sol` and `claude-sonnet-5`;
+- OpenAI reasoning effort is `none`;
+- Anthropic thinking is `disabled`;
+- Anthropic requests contain no non-default temperature/top-p/top-k;
+- no tools or retrieval are attached;
+- the sample contains exactly 200 examples;
+- Stage 1 expected requests = 400;
+- Stage 2 expected requests = 400;
+- Stage 3 expected requests = 1,600;
+- total expected paid requests ≈ 2,400;
+- checkpoint paths exist;
+- approximate token/cost estimate is displayed.
+
+## D. Explicit user authorization
+
+Only after the dry run is reviewed should the user explicitly launch paid calls.
+
+## E. Run stages in order
+
+```text
+Stage 1 answers
+↓
+verify completion / parse rate
+↓
+Stage 2 confidence
+↓
+verify completion / confidence distribution
+↓
+Stage 3 trust decisions at L={2,5,10,20}
+↓
+analysis
+```
+
+Do not run Stage 3 for an example/model pair unless its frozen Stage-1 answer exists.
+
+Do not run confidence-derived baselines unless its Stage-2 confidence exists.
+
+## F. Generate the pilot decision package
+
+The pilot analysis should end with one compact report containing:
+
+1. model answer accuracy;
+2. confidence calibration summary;
+3. VERIFY rate at each stake;
+4. unsafe reliance at each stake;
+5. unnecessary verification at each stake;
+6. monotonicity violations;
+7. direct-vs-confidence disagreement;
+8. direct-policy cost/regret vs baselines;
+9. request failures/refusals;
+10. a small list of diagnostic examples;
+11. a short GO / MODIFY / KILL evidence summary.
+
+The analysis code should **not automatically decide the research conclusion**. It should surface the evidence needed for the user/researcher to make that decision.
+
+---
+
+# 46. FINAL OPERATING PRINCIPLE
 
 The most important principle for this project is:
 
