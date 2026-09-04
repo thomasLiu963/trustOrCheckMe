@@ -23,6 +23,54 @@ The first submission target is a **4-page work-in-progress / short paper**, not 
 
 ---
 
+# IMPLEMENTED PILOT QUICKSTART
+
+The repository uses Python 3.11+ and [`uv`](https://docs.astral.sh/uv/).
+
+```bash
+# Install the locked environment and run all tests.
+uv sync --extra dev
+uv run pytest
+
+# Prepare and inspect the pinned, deterministic 200-question sample.
+uv run python -m src.cli prepare-sample
+uv run python -m src.cli inspect-sample
+
+# Validate all 2,400 request payloads and estimate cost without API keys/calls.
+uv run python -m src.cli plan
+```
+
+Only after reviewing the plan, create a private `.env` from `.env.example`.
+Never paste credentials into chat or commit `.env`.
+
+Run a one-question, 12-request paid smoke test:
+
+```bash
+uv run python -m src.cli run-answers --limit 1 --yes
+uv run python -m src.cli run-confidence --limit 1 --yes
+uv run python -m src.cli run-trust --limit 1 --yes
+uv run python -m src.cli status
+```
+
+Then run the remaining pilot requests (the completed smoke-test requests are
+checkpointed and skipped):
+
+```bash
+uv run python -m src.cli run-answers --yes
+uv run python -m src.cli run-confidence --yes
+uv run python -m src.cli run-trust --yes
+uv run python -m src.cli analyze
+```
+
+Interrupted commands are safe to rerun. Successful request keys are skipped.
+Use `--retry-failed` only after inspecting and resolving permanent failures.
+Paid commands require the explicit `--yes` flag; no provider call is made by
+tests, sample preparation, `plan`, or any `--dry-run` command.
+
+The concise preregistered protocol is in `EXPERIMENT.md`.
+
+---
+
 # 0. CURRENT STATUS + FROZEN PILOT CONFIGURATION
 
 This README is now the **final build specification for the initial pilot**. Cursor should treat the scientific design below as frozen unless the user explicitly changes it after reviewing pilot results.

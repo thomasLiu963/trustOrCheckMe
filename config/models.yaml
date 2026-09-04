@@ -1,0 +1,21 @@
+models:
+  openai_gpt56_sol:
+    provider: openai
+    api_model: gpt-5.6-sol
+    api_style: responses
+    reasoning_effort: none
+    max_output_tokens: 64
+    pricing_per_million_tokens:
+      input: 4.0
+      output: 20.0
+
+  anthropic_sonnet5:
+    provider: anthropic
+    api_model: claude-sonnet-5
+    api_style: messages
+    thinking:
+      type: disabled
+    max_output_tokens: 64
+    pricing_per_million_tokens:
+      input: 2.0
+      output: 10.0

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trust-or-check-me"
+version = "0.1.0"
+description = "Foundation for the frozen Trust Me or Check Me? pilot"
+requires-python = ">=3.11"
+dependencies = [
+  "anthropic>=0.66,<1",
+  "datasets>=3.0,<5",
+  "matplotlib>=3.9,<4",
+  "numpy>=2.0,<3",
+  "openai>=1.107,<3",
+  "pandas>=2.2,<4",
+  "pydantic>=2.9,<3",
+  "python-dotenv>=1.0,<2",
+  "PyYAML>=6.0.2,<7",
+  "scikit-learn>=1.5,<2",
+]
+
+[project.scripts]
+trust-or-check-me = "src.cli:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<10",
+]
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

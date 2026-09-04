@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+.venv/
+venv/
+
+# Local secrets and editor state
+.env
+.DS_Store
+.idea/
+.vscode/
+
+# Downloaded caches and generated experiment outputs
+.cache/
+data/raw/
+data/calibration_splits/
+results/
+figures/
+
+# Keep deterministic samples and manifests versioned.
+!data/samples/
+!data/samples/**
+!data/manifests/
+!data/manifests/**
+.env
+.env.*
+!.env.example
+
