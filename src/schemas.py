@@ -89,6 +89,7 @@ class BenchmarkExample(StrictModel):
 
 class AnswerRecord(StrictModel):
     run_id: str = Field(min_length=1)
+    request_key: str = Field(min_length=1)
     example_id: str = Field(min_length=1)
     model_id: str = Field(min_length=1)
     answer_label: AnswerLabel
@@ -112,6 +113,7 @@ class AnswerRecord(StrictModel):
 
 class ConfidenceRecord(StrictModel):
     run_id: str = Field(min_length=1)
+    request_key: str = Field(min_length=1)
     example_id: str = Field(min_length=1)
     model_id: str = Field(min_length=1)
     frozen_answer_label: AnswerLabel
@@ -124,6 +126,7 @@ class ConfidenceRecord(StrictModel):
 
 class TrustDecisionRecord(StrictModel):
     run_id: str = Field(min_length=1)
+    request_key: str = Field(min_length=1)
     example_id: str = Field(min_length=1)
     model_id: str = Field(min_length=1)
     frozen_answer_label: AnswerLabel

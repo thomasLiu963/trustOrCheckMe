@@ -1,0 +1,3 @@
+model_id,n_answers,answer_accuracy,n_confidence,brier_score,ece_10_bin,n_monotonicity_sequences,n_complete_monotonicity_sequences,monotonicity_violation_rate,adjacent_verify_to_rely_count
+anthropic_sonnet5,200,0.735,200,0.16807249999999999,0.04785000000000004,200,200,0.02,4
+openai_gpt56_sol,200,0.845,200,0.147702175,0.130535,200,200,0.095,19

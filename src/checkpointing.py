@@ -53,6 +53,7 @@ def deterministic_request_key(
     model_id: str,
     prompt_version: str,
     stake: Any = None,
+    dependency: Any = None,
 ) -> str:
     """Return a stable, unambiguous key for one scientific request."""
     identity = {
@@ -62,6 +63,7 @@ def deterministic_request_key(
         "prompt_version": str(prompt_version),
         "stage": str(stage),
         "stake": stake,
+        "dependency": dependency,
     }
     digest = hashlib.sha256(canonical_json(identity).encode("utf-8")).hexdigest()
     return f"{stage}:{digest}"

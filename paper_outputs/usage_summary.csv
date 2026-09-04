@@ -1,0 +1,7 @@
+stage,model_id,provider,attempts,input_tokens,output_tokens,total_tokens,observed_cost_usd
+answer,anthropic_sonnet5,anthropic,458,211670,8798,220468,0.51132
+answer,openai_gpt56_sol,openai,400,98882,4400,103282,0.483528
+confidence,anthropic_sonnet5,anthropic,201,115732,2614,118346,0.257604
+confidence,openai_gpt56_sol,openai,202,56923,3430,60353,0.296292
+trust,anthropic_sonnet5,anthropic,820,578119,14008,592127,1.296318
+trust,openai_gpt56_sol,openai,804,276700,11912,288612,1.34504

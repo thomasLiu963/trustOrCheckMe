@@ -1,0 +1,162 @@
+[
+  {
+    "ci_lower": -0.065,
+    "ci_upper": 0.1,
+    "comparison": "direct_minus_raw_confidence",
+    "error_cost": 2.0,
+    "mean_cost_difference": 0.02,
+    "model_id": "anthropic_sonnet5",
+    "n_questions": 200,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.09375,
+    "ci_upper": 0.09375,
+    "comparison": "direct_minus_calibrated_confidence",
+    "error_cost": 2.0,
+    "mean_cost_difference": 0.0,
+    "model_id": "anthropic_sonnet5",
+    "n_questions": 160,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.41,
+    "ci_upper": -0.11987500000000181,
+    "comparison": "direct_minus_raw_confidence",
+    "error_cost": 5.0,
+    "mean_cost_difference": -0.26,
+    "model_id": "anthropic_sonnet5",
+    "n_questions": 200,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.4625,
+    "ci_upper": -0.1125,
+    "comparison": "direct_minus_calibrated_confidence",
+    "error_cost": 5.0,
+    "mean_cost_difference": -0.28125,
+    "model_id": "anthropic_sonnet5",
+    "n_questions": 160,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.345,
+    "ci_upper": 0.165,
+    "comparison": "direct_minus_raw_confidence",
+    "error_cost": 10.0,
+    "mean_cost_difference": -0.1,
+    "model_id": "anthropic_sonnet5",
+    "n_questions": 200,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.9,
+    "ci_upper": -0.1625,
+    "comparison": "direct_minus_calibrated_confidence",
+    "error_cost": 10.0,
+    "mean_cost_difference": -0.51875,
+    "model_id": "anthropic_sonnet5",
+    "n_questions": 160,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.31,
+    "ci_upper": 0.55,
+    "comparison": "direct_minus_raw_confidence",
+    "error_cost": 20.0,
+    "mean_cost_difference": 0.075,
+    "model_id": "anthropic_sonnet5",
+    "n_questions": 200,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.18765624999999933,
+    "ci_upper": 0.8625,
+    "comparison": "direct_minus_calibrated_confidence",
+    "error_cost": 20.0,
+    "mean_cost_difference": 0.275,
+    "model_id": "anthropic_sonnet5",
+    "n_questions": 160,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.01,
+    "ci_upper": 0.075,
+    "comparison": "direct_minus_raw_confidence",
+    "error_cost": 2.0,
+    "mean_cost_difference": 0.03,
+    "model_id": "openai_gpt56_sol",
+    "n_questions": 200,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.04375,
+    "ci_upper": 0.06875,
+    "comparison": "direct_minus_calibrated_confidence",
+    "error_cost": 2.0,
+    "mean_cost_difference": 0.0125,
+    "model_id": "openai_gpt56_sol",
+    "n_questions": 160,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.195,
+    "ci_upper": 0.035,
+    "comparison": "direct_minus_raw_confidence",
+    "error_cost": 5.0,
+    "mean_cost_difference": -0.075,
+    "model_id": "openai_gpt56_sol",
+    "n_questions": 200,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.375,
+    "ci_upper": -0.0375,
+    "comparison": "direct_minus_calibrated_confidence",
+    "error_cost": 5.0,
+    "mean_cost_difference": -0.2,
+    "model_id": "openai_gpt56_sol",
+    "n_questions": 160,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.2,
+    "ci_upper": 0.24012499999999817,
+    "comparison": "direct_minus_raw_confidence",
+    "error_cost": 10.0,
+    "mean_cost_difference": 0.025,
+    "model_id": "openai_gpt56_sol",
+    "n_questions": 200,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.23140624999999931,
+    "ci_upper": 0.68125,
+    "comparison": "direct_minus_calibrated_confidence",
+    "error_cost": 10.0,
+    "mean_cost_difference": 0.20625,
+    "model_id": "openai_gpt56_sol",
+    "n_questions": 160,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": -0.35,
+    "ci_upper": 0.71,
+    "comparison": "direct_minus_raw_confidence",
+    "error_cost": 20.0,
+    "mean_cost_difference": 0.16,
+    "model_id": "openai_gpt56_sol",
+    "n_questions": 200,
+    "n_resamples": 5000
+  },
+  {
+    "ci_lower": 0.11875,
+    "ci_upper": 1.8564062499999976,
+    "comparison": "direct_minus_calibrated_confidence",
+    "error_cost": 20.0,
+    "mean_cost_difference": 0.9625,
+    "model_id": "openai_gpt56_sol",
+    "n_questions": 160,
+    "n_resamples": 5000
+  }
+]

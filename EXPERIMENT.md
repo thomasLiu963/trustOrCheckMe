@@ -82,15 +82,24 @@ Equality is assigned to `RELY`. The corresponding thresholds are 0.50, 0.80,
 
 ## Prompt versions
 
-- Stage 1: `stage_1_answer_v1`
-- Stage 2: `stage_2_confidence_v1`
-- Stage 3: `stage_3_direct_trust_v1`
+- Stage 1: `stage_1_answer_v2_structured`
+- Stage 2: `stage_2_confidence_v3_structured_compat`
+- Stage 3: `stage_3_direct_trust_v2_structured`
 
 Exact templates live in `src/prompts.py`. Prompts are short, neutral, and use
-strict JSON contracts. Stage 3 does not expose the decision formula or Stage-2
-confidence. A bounded formatting-repair request may be made after malformed
-output; it repeats the original task and directs the model not to reconsider
-its substantive response.
+strict JSON contracts plus equivalent provider-native JSON schemas. Stage 3
+does not expose the decision formula or Stage-2 confidence. A bounded
+formatting-repair request may be made after malformed output; it repeats the
+original task and directs the model not to reconsider its substantive response.
+
+Version 2 was fixed before the complete pilot: a Stage-1 preflight found that
+Claude sometimes emitted visible calculations until reaching the 64-token cap
+despite the JSON-only instruction. Both providers now receive equivalent
+provider-native schemas. Earlier version-1 attempts remain in the checkpoint
+for auditability and are excluded in favor of the latest protocol records.
+Stage-2 version 3 removes JSON Schema `minimum`/`maximum` keywords because
+Claude's supported schema subset rejects them; the shared Pydantic parser still
+enforces the preregistered `[0,1]` range identically for both providers.
 
 ## Hypotheses
 

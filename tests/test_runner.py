@@ -12,7 +12,7 @@ class FakeAdapter:
     provider = "openai"
     api_model = "gpt-5.6-sol"
 
-    def prepare_request(self, *, prompt: str) -> PreparedRequest:
+    def prepare_request(self, *, stage: str, prompt: str) -> PreparedRequest:
         return PreparedRequest(
             provider="openai",
             api_style="responses",
@@ -111,18 +111,21 @@ def test_three_stages_and_resume(monkeypatch, tmp_path) -> None:
     assert analysis.request_coverage == [
         {
             "stage": "answer",
+            "prompt_version": "stage_1_answer_v2_structured",
             "model_id": "openai_gpt56_sol",
             "status": "success",
             "count": 1,
         },
         {
             "stage": "confidence",
+            "prompt_version": "stage_2_confidence_v3_structured_compat",
             "model_id": "openai_gpt56_sol",
             "status": "success",
             "count": 1,
         },
         {
             "stage": "trust",
+            "prompt_version": "stage_3_direct_trust_v2_structured",
             "model_id": "openai_gpt56_sol",
             "status": "success",
             "count": 4,

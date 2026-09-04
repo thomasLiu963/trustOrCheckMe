@@ -1,0 +1,107 @@
+[
+  {
+    "count": 18,
+    "model_id": "anthropic_sonnet5",
+    "prompt_version": "stage_1_answer_v1",
+    "stage": "answer",
+    "status": "failed"
+  },
+  {
+    "count": 182,
+    "model_id": "anthropic_sonnet5",
+    "prompt_version": "stage_1_answer_v1",
+    "stage": "answer",
+    "status": "success"
+  },
+  {
+    "count": 200,
+    "model_id": "openai_gpt56_sol",
+    "prompt_version": "stage_1_answer_v1",
+    "stage": "answer",
+    "status": "success"
+  },
+  {
+    "count": 200,
+    "model_id": "anthropic_sonnet5",
+    "prompt_version": "stage_1_answer_v2_structured",
+    "stage": "answer",
+    "status": "success"
+  },
+  {
+    "count": 200,
+    "model_id": "openai_gpt56_sol",
+    "prompt_version": "stage_1_answer_v2_structured",
+    "stage": "answer",
+    "status": "success"
+  },
+  {
+    "count": 1,
+    "model_id": "anthropic_sonnet5",
+    "prompt_version": "stage_2_confidence_v1",
+    "stage": "confidence",
+    "status": "success"
+  },
+  {
+    "count": 1,
+    "model_id": "openai_gpt56_sol",
+    "prompt_version": "stage_2_confidence_v1",
+    "stage": "confidence",
+    "status": "success"
+  },
+  {
+    "count": 1,
+    "model_id": "anthropic_sonnet5",
+    "prompt_version": "stage_2_confidence_v2_structured",
+    "stage": "confidence",
+    "status": "failed"
+  },
+  {
+    "count": 1,
+    "model_id": "openai_gpt56_sol",
+    "prompt_version": "stage_2_confidence_v2_structured",
+    "stage": "confidence",
+    "status": "success"
+  },
+  {
+    "count": 200,
+    "model_id": "anthropic_sonnet5",
+    "prompt_version": "stage_2_confidence_v3_structured_compat",
+    "stage": "confidence",
+    "status": "success"
+  },
+  {
+    "count": 200,
+    "model_id": "openai_gpt56_sol",
+    "prompt_version": "stage_2_confidence_v3_structured_compat",
+    "stage": "confidence",
+    "status": "success"
+  },
+  {
+    "count": 4,
+    "model_id": "anthropic_sonnet5",
+    "prompt_version": "stage_3_direct_trust_v1",
+    "stage": "trust",
+    "status": "success"
+  },
+  {
+    "count": 4,
+    "model_id": "openai_gpt56_sol",
+    "prompt_version": "stage_3_direct_trust_v1",
+    "stage": "trust",
+    "status": "success"
+  },
+  {
+    "count": 800,
+    "model_id": "anthropic_sonnet5",
+    "prompt_version": "stage_3_direct_trust_v2_structured",
+    "stage": "trust",
+    "status": "success"
+  },
+  {
+    "count": 800,
+    "model_id": "openai_gpt56_sol",
+    "prompt_version": "stage_3_direct_trust_v2_structured",
+    "stage": "trust",
+    "status": "success"
+  }
+]

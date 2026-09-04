@@ -1,0 +1,26 @@
+[
+  {
+    "adjacent_verify_to_rely_count": 4,
+    "answer_accuracy": 0.735,
+    "brier_score": 0.16807249999999999,
+    "ece_10_bin": 0.04785000000000004,
+    "model_id": "anthropic_sonnet5",
+    "monotonicity_violation_rate": 0.02,
+    "n_answers": 200,
+    "n_complete_monotonicity_sequences": 200,
+    "n_confidence": 200,
+    "n_monotonicity_sequences": 200
+  },
+  {
+    "adjacent_verify_to_rely_count": 19,
+    "answer_accuracy": 0.845,
+    "brier_score": 0.147702175,
+    "ece_10_bin": 0.130535,
+    "model_id": "openai_gpt56_sol",
+    "monotonicity_violation_rate": 0.095,
+    "n_answers": 200,
+    "n_complete_monotonicity_sequences": 200,
+    "n_confidence": 200,
+    "n_monotonicity_sequences": 200
+  }
+]

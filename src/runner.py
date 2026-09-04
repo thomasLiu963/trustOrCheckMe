@@ -510,6 +510,7 @@ class ExperimentRunner:
                 first_label = next(iter(choices))
                 return {
                     "answer_label": str(first_label),
+                    "request_key": "dry-run-placeholder",
                     "_dry_run_placeholder": True,
                 }
             raise RuntimeError(
@@ -577,6 +578,11 @@ class ExperimentRunner:
                         model_id=api_model,
                         prompt_version=version,
                         stake=stake,
+                        dependency=(
+                            upstream.get("request_key")
+                            if upstream is not None
+                            else None
+                        ),
                     )
                     tasks.append(
                         _Task(
@@ -744,7 +750,7 @@ class ExperimentRunner:
 
         payloads = tuple(
             self._adapter(task.model_alias, task.model_config)
-            .prepare_request(prompt=task.prompt)
+            .prepare_request(stage=task.stage, prompt=task.prompt)
             .sanitized_payload()
             for task in runnable
         )
@@ -952,7 +958,7 @@ class ExperimentRunner:
                 finish_reason=_response_value(response, "finish_reason", "stop_reason"),
                 refusal=refusal,
                 sanitized_payload=adapter.prepare_request(
-                    prompt=prompt
+                    stage=task.stage, prompt=prompt
                 ).sanitized_payload(),
             )
             if parse_error is None:

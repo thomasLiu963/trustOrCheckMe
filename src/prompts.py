@@ -12,9 +12,9 @@ from .schemas import AnswerPayload, ConfidencePayload, TrustPayload
 
 Stage = Literal["stage_1", "stage_2", "stage_3"]
 
-STAGE_1_PROMPT_VERSION = "stage_1_answer_v1"
-STAGE_2_PROMPT_VERSION = "stage_2_confidence_v1"
-STAGE_3_PROMPT_VERSION = "stage_3_direct_trust_v1"
+STAGE_1_PROMPT_VERSION = "stage_1_answer_v2_structured"
+STAGE_2_PROMPT_VERSION = "stage_2_confidence_v3_structured_compat"
+STAGE_3_PROMPT_VERSION = "stage_3_direct_trust_v2_structured"
 
 PROMPT_VERSIONS: dict[Stage, str] = {
     "stage_1": STAGE_1_PROMPT_VERSION,

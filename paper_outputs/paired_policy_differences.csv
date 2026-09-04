@@ -1,0 +1,17 @@
+model_id,error_cost,comparison,mean_cost_difference,ci_lower,ci_upper,n_questions,n_resamples
+anthropic_sonnet5,2.0,direct_minus_raw_confidence,0.02,-0.065,0.1,200,5000
+anthropic_sonnet5,2.0,direct_minus_calibrated_confidence,0.0,-0.09375,0.09375,160,5000
+anthropic_sonnet5,5.0,direct_minus_raw_confidence,-0.26,-0.41,-0.11987500000000181,200,5000
+anthropic_sonnet5,5.0,direct_minus_calibrated_confidence,-0.28125,-0.4625,-0.1125,160,5000
+anthropic_sonnet5,10.0,direct_minus_raw_confidence,-0.1,-0.345,0.165,200,5000
+anthropic_sonnet5,10.0,direct_minus_calibrated_confidence,-0.51875,-0.9,-0.1625,160,5000
+anthropic_sonnet5,20.0,direct_minus_raw_confidence,0.075,-0.31,0.55,200,5000
+anthropic_sonnet5,20.0,direct_minus_calibrated_confidence,0.275,-0.18765624999999933,0.8625,160,5000
+openai_gpt56_sol,2.0,direct_minus_raw_confidence,0.03,-0.01,0.075,200,5000
+openai_gpt56_sol,2.0,direct_minus_calibrated_confidence,0.0125,-0.04375,0.06875,160,5000
+openai_gpt56_sol,5.0,direct_minus_raw_confidence,-0.075,-0.195,0.035,200,5000
+openai_gpt56_sol,5.0,direct_minus_calibrated_confidence,-0.2,-0.375,-0.0375,160,5000
+openai_gpt56_sol,10.0,direct_minus_raw_confidence,0.025,-0.2,0.24012499999999817,200,5000
+openai_gpt56_sol,10.0,direct_minus_calibrated_confidence,0.20625,-0.23140624999999931,0.68125,160,5000
+openai_gpt56_sol,20.0,direct_minus_raw_confidence,0.16,-0.35,0.71,200,5000
+openai_gpt56_sol,20.0,direct_minus_calibrated_confidence,0.9625,0.11875,1.8564062499999976,160,5000

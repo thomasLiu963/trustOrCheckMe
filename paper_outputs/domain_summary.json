@@ -1,0 +1,1122 @@
+[
+  {
+    "answer_accuracy": 1.0,
+    "category": "biology",
+    "error_cost": 2.0,
+    "mean_regret": 0.13333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": null,
+    "verify_rate": 0.13333333333333333
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "biology",
+    "error_cost": 5.0,
+    "mean_regret": 0.13333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": null,
+    "verify_rate": 0.13333333333333333
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "biology",
+    "error_cost": 10.0,
+    "mean_regret": 0.13333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": null,
+    "verify_rate": 0.13333333333333333
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "biology",
+    "error_cost": 20.0,
+    "mean_regret": 0.13333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": null,
+    "verify_rate": 0.13333333333333333
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "business",
+    "error_cost": 2.0,
+    "mean_regret": 0.21428571428571427,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.35714285714285715
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "business",
+    "error_cost": 5.0,
+    "mean_regret": 0.42857142857142855,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.35714285714285715
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "business",
+    "error_cost": 10.0,
+    "mean_regret": 0.9285714285714286,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.5
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "business",
+    "error_cost": 20.0,
+    "mean_regret": 0.35714285714285715,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.6428571428571429
+  },
+  {
+    "answer_accuracy": 0.4666666666666667,
+    "category": "chemistry",
+    "error_cost": 2.0,
+    "mean_regret": 0.3333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.6
+  },
+  {
+    "answer_accuracy": 0.4666666666666667,
+    "category": "chemistry",
+    "error_cost": 5.0,
+    "mean_regret": 0.5333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.125,
+    "verify_rate": 0.7333333333333333
+  },
+  {
+    "answer_accuracy": 0.4666666666666667,
+    "category": "chemistry",
+    "error_cost": 10.0,
+    "mean_regret": 0.8666666666666667,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.125,
+    "verify_rate": 0.7333333333333333
+  },
+  {
+    "answer_accuracy": 0.4666666666666667,
+    "category": "chemistry",
+    "error_cost": 20.0,
+    "mean_regret": 0.26666666666666666,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.8
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "computer science",
+    "error_cost": 2.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.2857142857142857
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "computer science",
+    "error_cost": 5.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.2857142857142857
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "computer science",
+    "error_cost": 10.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.2857142857142857
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "computer science",
+    "error_cost": 20.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.2857142857142857
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "economics",
+    "error_cost": 2.0,
+    "mean_regret": 0.2857142857142857,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.35714285714285715
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "economics",
+    "error_cost": 5.0,
+    "mean_regret": 0.35714285714285715,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.42857142857142855
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "economics",
+    "error_cost": 10.0,
+    "mean_regret": 0.35714285714285715,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.42857142857142855
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "economics",
+    "error_cost": 20.0,
+    "mean_regret": 0.35714285714285715,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.42857142857142855
+  },
+  {
+    "answer_accuracy": 0.3333333333333333,
+    "category": "engineering",
+    "error_cost": 2.0,
+    "mean_regret": 0.3333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 1.0
+  },
+  {
+    "answer_accuracy": 0.3333333333333333,
+    "category": "engineering",
+    "error_cost": 5.0,
+    "mean_regret": 0.3333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 1.0
+  },
+  {
+    "answer_accuracy": 0.3333333333333333,
+    "category": "engineering",
+    "error_cost": 10.0,
+    "mean_regret": 0.3333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 1.0
+  },
+  {
+    "answer_accuracy": 0.3333333333333333,
+    "category": "engineering",
+    "error_cost": 20.0,
+    "mean_regret": 0.3333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 1.0
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "health",
+    "error_cost": 2.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.2857142857142857
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "health",
+    "error_cost": 5.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.2857142857142857
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "health",
+    "error_cost": 10.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.2857142857142857
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "health",
+    "error_cost": 20.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.2857142857142857
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "history",
+    "error_cost": 2.0,
+    "mean_regret": 0.2857142857142857,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.2857142857142857
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "history",
+    "error_cost": 5.0,
+    "mean_regret": 0.7857142857142857,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.35714285714285715
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "history",
+    "error_cost": 10.0,
+    "mean_regret": 0.9285714285714286,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.5
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "history",
+    "error_cost": 20.0,
+    "mean_regret": 1.7857142857142858,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.6428571428571429
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "law",
+    "error_cost": 2.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.35714285714285715
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "law",
+    "error_cost": 5.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.35714285714285715
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "law",
+    "error_cost": 10.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.35714285714285715
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "law",
+    "error_cost": 20.0,
+    "mean_regret": 0.21428571428571427,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.42857142857142855
+  },
+  {
+    "answer_accuracy": 0.42857142857142855,
+    "category": "math",
+    "error_cost": 2.0,
+    "mean_regret": 0.2857142857142857,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.125,
+    "verify_rate": 0.7142857142857143
+  },
+  {
+    "answer_accuracy": 0.42857142857142855,
+    "category": "math",
+    "error_cost": 5.0,
+    "mean_regret": 0.5,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.125,
+    "verify_rate": 0.7142857142857143
+  },
+  {
+    "answer_accuracy": 0.42857142857142855,
+    "category": "math",
+    "error_cost": 10.0,
+    "mean_regret": 0.8571428571428571,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.125,
+    "verify_rate": 0.7142857142857143
+  },
+  {
+    "answer_accuracy": 0.42857142857142855,
+    "category": "math",
+    "error_cost": 20.0,
+    "mean_regret": 1.6428571428571428,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.125,
+    "verify_rate": 0.7857142857142857
+  },
+  {
+    "answer_accuracy": 0.7333333333333333,
+    "category": "other",
+    "error_cost": 2.0,
+    "mean_regret": 0.26666666666666666,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.4
+  },
+  {
+    "answer_accuracy": 0.7333333333333333,
+    "category": "other",
+    "error_cost": 5.0,
+    "mean_regret": 0.5333333333333333,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.4666666666666667
+  },
+  {
+    "answer_accuracy": 0.7333333333333333,
+    "category": "other",
+    "error_cost": 10.0,
+    "mean_regret": 0.8666666666666667,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.4666666666666667
+  },
+  {
+    "answer_accuracy": 0.7333333333333333,
+    "category": "other",
+    "error_cost": 20.0,
+    "mean_regret": 1.6666666666666667,
+    "model_id": "anthropic_sonnet5",
+    "n": 15,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.6
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "philosophy",
+    "error_cost": 2.0,
+    "mean_regret": 0.5,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.5
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "philosophy",
+    "error_cost": 5.0,
+    "mean_regret": 0.7142857142857143,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.5
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "philosophy",
+    "error_cost": 10.0,
+    "mean_regret": 1.0714285714285714,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.5
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "philosophy",
+    "error_cost": 20.0,
+    "mean_regret": 1.8571428571428572,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.5714285714285714
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "physics",
+    "error_cost": 2.0,
+    "mean_regret": 0.35714285714285715,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.5
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "physics",
+    "error_cost": 5.0,
+    "mean_regret": 0.5714285714285714,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.5
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "physics",
+    "error_cost": 10.0,
+    "mean_regret": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.5714285714285714
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "physics",
+    "error_cost": 20.0,
+    "mean_regret": 1.7857142857142858,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.25,
+    "verify_rate": 0.6428571428571429
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "psychology",
+    "error_cost": 2.0,
+    "mean_regret": 0.07142857142857142,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "psychology",
+    "error_cost": 5.0,
+    "mean_regret": 0.07142857142857142,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "psychology",
+    "error_cost": 10.0,
+    "mean_regret": 0.07142857142857142,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "psychology",
+    "error_cost": 20.0,
+    "mean_regret": 0.07142857142857142,
+    "model_id": "anthropic_sonnet5",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "biology",
+    "error_cost": 2.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": null,
+    "verify_rate": 0.0
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "biology",
+    "error_cost": 5.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": null,
+    "verify_rate": 0.0
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "biology",
+    "error_cost": 10.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": null,
+    "verify_rate": 0.0
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "biology",
+    "error_cost": 20.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": null,
+    "verify_rate": 0.0
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "business",
+    "error_cost": 2.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.07142857142857142
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "business",
+    "error_cost": 5.0,
+    "mean_regret": 0.5,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.21428571428571427
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "business",
+    "error_cost": 10.0,
+    "mean_regret": 0.7857142857142857,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.9285714285714286,
+    "category": "business",
+    "error_cost": 20.0,
+    "mean_regret": 1.5,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "chemistry",
+    "error_cost": 2.0,
+    "mean_regret": 0.26666666666666666,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.06666666666666667
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "chemistry",
+    "error_cost": 5.0,
+    "mean_regret": 0.6,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 0.6666666666666666,
+    "verify_rate": 0.13333333333333333
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "chemistry",
+    "error_cost": 10.0,
+    "mean_regret": 1.9333333333333333,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.13333333333333333
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "chemistry",
+    "error_cost": 20.0,
+    "mean_regret": 3.8666666666666667,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.06666666666666667
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "computer science",
+    "error_cost": 2.0,
+    "mean_regret": 0.21428571428571427,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": null,
+    "verify_rate": 0.21428571428571427
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "computer science",
+    "error_cost": 5.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": null,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "computer science",
+    "error_cost": 10.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": null,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "computer science",
+    "error_cost": 20.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": null,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "economics",
+    "error_cost": 2.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "economics",
+    "error_cost": 5.0,
+    "mean_regret": 0.07142857142857142,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.21428571428571427
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "economics",
+    "error_cost": 10.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "economics",
+    "error_cost": 20.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "engineering",
+    "error_cost": 2.0,
+    "mean_regret": 0.5333333333333333,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 0.3333333333333333,
+    "verify_rate": 0.6
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "engineering",
+    "error_cost": 5.0,
+    "mean_regret": 0.6666666666666666,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 0.3333333333333333,
+    "verify_rate": 0.5333333333333333
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "engineering",
+    "error_cost": 10.0,
+    "mean_regret": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 0.3333333333333333,
+    "verify_rate": 0.5333333333333333
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "engineering",
+    "error_cost": 20.0,
+    "mean_regret": 0.4,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.6
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "health",
+    "error_cost": 2.0,
+    "mean_regret": 0.2857142857142857,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.07142857142857142
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "health",
+    "error_cost": 5.0,
+    "mean_regret": 0.6428571428571429,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.6666666666666666,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "health",
+    "error_cost": 10.0,
+    "mean_regret": 1.4285714285714286,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.6666666666666666,
+    "verify_rate": 0.21428571428571427
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "health",
+    "error_cost": 20.0,
+    "mean_regret": 2.7857142857142856,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.6666666666666666,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "history",
+    "error_cost": 2.0,
+    "mean_regret": 0.2857142857142857,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.07142857142857142
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "history",
+    "error_cost": 5.0,
+    "mean_regret": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "history",
+    "error_cost": 10.0,
+    "mean_regret": 2.0714285714285716,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "history",
+    "error_cost": 20.0,
+    "mean_regret": 4.214285714285714,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "law",
+    "error_cost": 2.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "law",
+    "error_cost": 5.0,
+    "mean_regret": 0.8571428571428571,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.75,
+    "verify_rate": 0.07142857142857142
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "law",
+    "error_cost": 10.0,
+    "mean_regret": 1.2857142857142858,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "law",
+    "error_cost": 20.0,
+    "mean_regret": 2.7142857142857144,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "math",
+    "error_cost": 2.0,
+    "mean_regret": 0.2857142857142857,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.0
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "math",
+    "error_cost": 5.0,
+    "mean_regret": 0.9285714285714286,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.75,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "math",
+    "error_cost": 10.0,
+    "mean_regret": 2.7142857142857144,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.7142857142857143,
+    "category": "math",
+    "error_cost": 20.0,
+    "mean_regret": 5.571428571428571,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "other",
+    "error_cost": 2.0,
+    "mean_regret": 0.13333333333333333,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 0.3333333333333333,
+    "verify_rate": 0.2
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "other",
+    "error_cost": 5.0,
+    "mean_regret": 0.4,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 0.3333333333333333,
+    "verify_rate": 0.26666666666666666
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "other",
+    "error_cost": 10.0,
+    "mean_regret": 0.06666666666666667,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.26666666666666666
+  },
+  {
+    "answer_accuracy": 0.8,
+    "category": "other",
+    "error_cost": 20.0,
+    "mean_regret": 0.13333333333333333,
+    "model_id": "openai_gpt56_sol",
+    "n": 15,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.3333333333333333
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "philosophy",
+    "error_cost": 2.0,
+    "mean_regret": 0.2857142857142857,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.6666666666666666,
+    "verify_rate": 0.21428571428571427
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "philosophy",
+    "error_cost": 5.0,
+    "mean_regret": 0.7142857142857143,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.6666666666666666,
+    "verify_rate": 0.21428571428571427
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "philosophy",
+    "error_cost": 10.0,
+    "mean_regret": 2.142857142857143,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 1.0,
+    "verify_rate": 0.21428571428571427
+  },
+  {
+    "answer_accuracy": 0.7857142857142857,
+    "category": "philosophy",
+    "error_cost": 20.0,
+    "mean_regret": 2.857142857142857,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.6666666666666666,
+    "verify_rate": 0.21428571428571427
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "physics",
+    "error_cost": 2.0,
+    "mean_regret": 0.14285714285714285,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "physics",
+    "error_cost": 5.0,
+    "mean_regret": 0.07142857142857142,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.0,
+    "verify_rate": 0.21428571428571427
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "physics",
+    "error_cost": 10.0,
+    "mean_regret": 0.7142857142857143,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 0.8571428571428571,
+    "category": "physics",
+    "error_cost": 20.0,
+    "mean_regret": 1.4285714285714286,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": 0.5,
+    "verify_rate": 0.14285714285714285
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "psychology",
+    "error_cost": 2.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": null,
+    "verify_rate": 0.0
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "psychology",
+    "error_cost": 5.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": null,
+    "verify_rate": 0.0
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "psychology",
+    "error_cost": 10.0,
+    "mean_regret": 0.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": null,
+    "verify_rate": 0.0
+  },
+  {
+    "answer_accuracy": 1.0,
+    "category": "psychology",
+    "error_cost": 20.0,
+    "mean_regret": 0.07142857142857142,
+    "model_id": "openai_gpt56_sol",
+    "n": 14,
+    "unsafe_reliance": null,
+    "verify_rate": 0.07142857142857142
+  }
+]

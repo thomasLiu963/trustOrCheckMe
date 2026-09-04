@@ -1,0 +1,16 @@
+stage,prompt_version,model_id,status,count
+answer,stage_1_answer_v1,anthropic_sonnet5,failed,18
+answer,stage_1_answer_v1,anthropic_sonnet5,success,182
+answer,stage_1_answer_v1,openai_gpt56_sol,success,200
+answer,stage_1_answer_v2_structured,anthropic_sonnet5,success,200
+answer,stage_1_answer_v2_structured,openai_gpt56_sol,success,200
+confidence,stage_2_confidence_v1,anthropic_sonnet5,success,1
+confidence,stage_2_confidence_v1,openai_gpt56_sol,success,1
+confidence,stage_2_confidence_v2_structured,anthropic_sonnet5,failed,1
+confidence,stage_2_confidence_v2_structured,openai_gpt56_sol,success,1
+confidence,stage_2_confidence_v3_structured_compat,anthropic_sonnet5,success,200
+confidence,stage_2_confidence_v3_structured_compat,openai_gpt56_sol,success,200
+trust,stage_3_direct_trust_v1,anthropic_sonnet5,success,4
+trust,stage_3_direct_trust_v1,openai_gpt56_sol,success,4
+trust,stage_3_direct_trust_v2_structured,anthropic_sonnet5,success,800
+trust,stage_3_direct_trust_v2_structured,openai_gpt56_sol,success,800

@@ -1,0 +1,62 @@
+[
+  {
+    "attempts": 458,
+    "input_tokens": 211670,
+    "model_id": "anthropic_sonnet5",
+    "observed_cost_usd": 0.51132,
+    "output_tokens": 8798,
+    "provider": "anthropic",
+    "stage": "answer",
+    "total_tokens": 220468
+  },
+  {
+    "attempts": 400,
+    "input_tokens": 98882,
+    "model_id": "openai_gpt56_sol",
+    "observed_cost_usd": 0.483528,
+    "output_tokens": 4400,
+    "provider": "openai",
+    "stage": "answer",
+    "total_tokens": 103282
+  },
+  {
+    "attempts": 201,
+    "input_tokens": 115732,
+    "model_id": "anthropic_sonnet5",
+    "observed_cost_usd": 0.257604,
+    "output_tokens": 2614,
+    "provider": "anthropic",
+    "stage": "confidence",
+    "total_tokens": 118346
+  },
+  {
+    "attempts": 202,
+    "input_tokens": 56923,
+    "model_id": "openai_gpt56_sol",
+    "observed_cost_usd": 0.296292,
+    "output_tokens": 3430,
+    "provider": "openai",
+    "stage": "confidence",
+    "total_tokens": 60353
+  },
+  {
+    "attempts": 820,
+    "input_tokens": 578119,
+    "model_id": "anthropic_sonnet5",
+    "observed_cost_usd": 1.296318,
+    "output_tokens": 14008,
+    "provider": "anthropic",
+    "stage": "trust",
+    "total_tokens": 592127
+  },
+  {
+    "attempts": 804,
+    "input_tokens": 276700,
+    "model_id": "openai_gpt56_sol",
+    "observed_cost_usd": 1.34504,
+    "output_tokens": 11912,
+    "provider": "openai",
+    "stage": "trust",
+    "total_tokens": 288612
+  }
+]

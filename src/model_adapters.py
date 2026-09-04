@@ -37,6 +37,43 @@ class AdapterError(RuntimeError):
         self.transient = transient
 
 
+def output_schema(stage: str) -> dict[str, Any]:
+    """Return the common provider-neutral JSON schema for one stage."""
+    properties: dict[str, Any]
+    required: list[str]
+    if stage == "answer":
+        properties = {
+            "answer": {
+                "type": "string",
+                "enum": [chr(ord("A") + index) for index in range(10)],
+            }
+        }
+        required = ["answer"]
+    elif stage == "confidence":
+        properties = {
+            "probability_correct": {
+                "type": "number",
+            }
+        }
+        required = ["probability_correct"]
+    elif stage == "trust":
+        properties = {
+            "recommendation": {
+                "type": "string",
+                "enum": ["RELY", "VERIFY"],
+            }
+        }
+        required = ["recommendation"]
+    else:
+        raise ValueError(f"Unknown experiment stage: {stage!r}")
+    return {
+        "type": "object",
+        "properties": properties,
+        "required": required,
+        "additionalProperties": False,
+    }
+
+
 def _value(source: Any, name: str, default: Any = None) -> Any:
     if isinstance(source, Mapping):
         return source.get(name, default)
@@ -178,7 +215,7 @@ class ModelAdapter(abc.ABC):
         self._client = client
 
     @abc.abstractmethod
-    def prepare_request(self, *, prompt: str) -> PreparedRequest:
+    def prepare_request(self, *, stage: str, prompt: str) -> PreparedRequest:
         """Construct a key-free request that is safe to inspect in dry runs."""
 
     @abc.abstractmethod
@@ -207,7 +244,7 @@ class ModelAdapter(abc.ABC):
                 "Paid model calls require explicit allow_paid=True; use "
                 "prepare_request() for zero-cost construction."
             )
-        prepared = self.prepare_request(prompt=prompt)
+        prepared = self.prepare_request(stage=stage, prompt=prompt)
         payload = prepared.payload
         safe_payload = prepared.sanitized_payload()
 
@@ -276,12 +313,20 @@ class OpenAIAdapter(ModelAdapter):
     provider = "openai"
     api_style = "responses"
 
-    def prepare_request(self, *, prompt: str) -> PreparedRequest:
+    def prepare_request(self, *, stage: str, prompt: str) -> PreparedRequest:
         payload = {
             "model": self.api_model,
             "reasoning": {"effort": "none"},
             "input": prompt,
             "max_output_tokens": self.max_output_tokens,
+            "text": {
+                "format": {
+                    "type": "json_schema",
+                    "name": f"{stage}_output",
+                    "strict": True,
+                    "schema": output_schema(stage),
+                }
+            },
         }
         return PreparedRequest(
             provider=self.provider,
@@ -352,12 +397,18 @@ class AnthropicAdapter(ModelAdapter):
     provider = "anthropic"
     api_style = "messages"
 
-    def prepare_request(self, *, prompt: str) -> PreparedRequest:
+    def prepare_request(self, *, stage: str, prompt: str) -> PreparedRequest:
         payload = {
             "model": self.api_model,
             "thinking": {"type": "disabled"},
             "max_tokens": self.max_output_tokens,
             "messages": [{"role": "user", "content": prompt}],
+            "output_config": {
+                "format": {
+                    "type": "json_schema",
+                    "schema": output_schema(stage),
+                }
+            },
         }
         return PreparedRequest(
             provider=self.provider,

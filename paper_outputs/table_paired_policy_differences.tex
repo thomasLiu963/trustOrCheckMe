@@ -1,0 +1,22 @@
+\begin{tabular}{lllllll}
+\toprule
+model id & error cost & comparison & mean cost difference & ci lower & ci upper & n questions \\
+\midrule
+anthropic\_sonnet5 & 2.000 & direct\_minus\_raw\_confidence & 0.020 & -0.065 & 0.100 & 200 \\
+anthropic\_sonnet5 & 2.000 & direct\_minus\_calibrated\_confidence & 0.000 & -0.094 & 0.094 & 160 \\
+anthropic\_sonnet5 & 5.000 & direct\_minus\_raw\_confidence & -0.260 & -0.410 & -0.120 & 200 \\
+anthropic\_sonnet5 & 5.000 & direct\_minus\_calibrated\_confidence & -0.281 & -0.463 & -0.113 & 160 \\
+anthropic\_sonnet5 & 10.000 & direct\_minus\_raw\_confidence & -0.100 & -0.345 & 0.165 & 200 \\
+anthropic\_sonnet5 & 10.000 & direct\_minus\_calibrated\_confidence & -0.519 & -0.900 & -0.163 & 160 \\
+anthropic\_sonnet5 & 20.000 & direct\_minus\_raw\_confidence & 0.075 & -0.310 & 0.550 & 200 \\
+anthropic\_sonnet5 & 20.000 & direct\_minus\_calibrated\_confidence & 0.275 & -0.188 & 0.863 & 160 \\
+openai\_gpt56\_sol & 2.000 & direct\_minus\_raw\_confidence & 0.030 & -0.010 & 0.075 & 200 \\
+openai\_gpt56\_sol & 2.000 & direct\_minus\_calibrated\_confidence & 0.013 & -0.044 & 0.069 & 160 \\
+openai\_gpt56\_sol & 5.000 & direct\_minus\_raw\_confidence & -0.075 & -0.195 & 0.035 & 200 \\
+openai\_gpt56\_sol & 5.000 & direct\_minus\_calibrated\_confidence & -0.200 & -0.375 & -0.037 & 160 \\
+openai\_gpt56\_sol & 10.000 & direct\_minus\_raw\_confidence & 0.025 & -0.200 & 0.240 & 200 \\
+openai\_gpt56\_sol & 10.000 & direct\_minus\_calibrated\_confidence & 0.206 & -0.231 & 0.681 & 160 \\
+openai\_gpt56\_sol & 20.000 & direct\_minus\_raw\_confidence & 0.160 & -0.350 & 0.710 & 200 \\
+openai\_gpt56\_sol & 20.000 & direct\_minus\_calibrated\_confidence & 0.963 & 0.119 & 1.856 & 160 \\
+\bottomrule
+\end{tabular}

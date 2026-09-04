@@ -279,10 +279,11 @@ def load_request_coverage(path: str | Path) -> list[dict[str, Any]]:
             return []
         rows = connection.execute(
             """
-            SELECT stage, model_alias AS model_id, status, COUNT(*) AS count
+            SELECT stage, prompt_version, model_alias AS model_id,
+                   status, COUNT(*) AS count
             FROM requests
-            GROUP BY stage, model_alias, status
-            ORDER BY stage, model_alias, status
+            GROUP BY stage, prompt_version, model_alias, status
+            ORDER BY stage, prompt_version, model_alias, status
             """
         ).fetchall()
         return [dict(row) for row in rows]
@@ -365,14 +366,20 @@ def _latest_map(
     dict[tuple[str | None, str, str], Mapping[str, Any]],
     dict[tuple[str, str], Mapping[str, Any]],
 ]:
-    exact: dict[tuple[str | None, str, str], Mapping[str, Any]] = {}
+    exact_candidates: dict[tuple[str | None, str, str], list[Mapping[str, Any]]] = (
+        defaultdict(list)
+    )
     fallback_candidates: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(
         list
     )
     for record in records:
         key = _identity(record)
-        exact[key] = record
+        exact_candidates[key].append(record)
         fallback_candidates[(key[1], key[2])].append(record)
+    exact = {
+        key: max(values, key=lambda row: str(row.get("timestamp", "")))
+        for key, values in exact_candidates.items()
+    }
     fallback = {
         key: max(values, key=lambda row: str(row.get("timestamp", "")))
         for key, values in fallback_candidates.items()
@@ -411,14 +418,26 @@ def join_stages(
     rows = list(records)
     answers = [row for row in rows if row.get("stage") == "answer"]
     confidences = [row for row in rows if row.get("stage") == "confidence"]
-    decisions = [row for row in rows if row.get("stage") == "trust"]
+    decision_candidates: dict[
+        tuple[str | None, str, str, float | None], list[Mapping[str, Any]]
+    ] = defaultdict(list)
+    for row in rows:
+        if row.get("stage") != "trust":
+            continue
+        decision_candidates[(*_identity(row), _number(row.get("error_cost")))].append(
+            row
+        )
+    decisions = [
+        max(candidates, key=lambda row: str(row.get("timestamp", "")))
+        for candidates in decision_candidates.values()
+    ]
     answer_exact, answer_fallback = _latest_map(answers)
     confidence_exact, confidence_fallback = _latest_map(confidences)
     warnings: list[str] = []
 
     calibration_rows: list[dict[str, Any]] = []
     seen_calibration: set[tuple[str, str]] = set()
-    for confidence in confidences:
+    for confidence in confidence_exact.values():
         answer = _lookup(confidence, answer_exact, answer_fallback)
         probability = _number(confidence.get("probability_correct"))
         is_correct = answer.get("is_correct") if answer else None
@@ -833,13 +852,19 @@ def summarize_models(
 ) -> list[dict[str, Any]]:
     records_list = list(records)
     direct_list = list(direct_rows)
-    answers_by_model: dict[str, dict[str, bool]] = defaultdict(dict)
+    answer_candidates: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(
+        list
+    )
     confidence_by_model: dict[str, dict[str, tuple[float, bool]]] = defaultdict(dict)
     for row in records_list:
-        model = str(row.get("model_id"))
-        example = str(row.get("example_id"))
         if row.get("stage") == "answer" and row.get("is_correct") is not None:
-            answers_by_model[model][example] = bool(row["is_correct"])
+            answer_candidates[
+                (str(row.get("model_id")), str(row.get("example_id")))
+            ].append(row)
+    answers_by_model: dict[str, dict[str, bool]] = defaultdict(dict)
+    for (model, example), candidates in answer_candidates.items():
+        latest = max(candidates, key=lambda row: str(row.get("timestamp", "")))
+        answers_by_model[model][example] = bool(latest["is_correct"])
     for row in direct_list:
         probability = _number(row.get("probability_correct"))
         if probability is not None:
@@ -1176,8 +1201,8 @@ def _write_pilot_summary(
         )
     for row in request_coverage:
         lines.append(
-            f"- Requests: {row['stage']} / {row['model_id']} / "
-            f"{row['status']} = {row['count']}."
+            f"- Requests: {row['stage']} / {row['prompt_version']} / "
+            f"{row['model_id']} / {row['status']} = {row['count']}."
         )
     if usage_summary:
         lines.append(

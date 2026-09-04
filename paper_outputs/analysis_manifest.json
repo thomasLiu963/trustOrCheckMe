@@ -1,0 +1,68 @@
+{
+  "calibration_fraction": 0.2,
+  "confidence_level": 0.95,
+  "error_costs": [
+    2.0,
+    5.0,
+    10.0,
+    20.0
+  ],
+  "files": {
+    "calibration_splits": "/Users/thomas/Desktop/trustOrCheckMe/results/calibration_splits/split_ids.json",
+    "calibrator_metadata": "/Users/thomas/Desktop/trustOrCheckMe/results/calibration_splits/calibrator_metadata.json",
+    "diagnostics": {
+      "confidence_extremes": "/Users/thomas/Desktop/trustOrCheckMe/results/diagnostics/confidence_extremes.csv",
+      "correct_verified_at_all_stakes": "/Users/thomas/Desktop/trustOrCheckMe/results/diagnostics/correct_verified_at_all_stakes.csv",
+      "direct_vs_confidence_disagreements": "/Users/thomas/Desktop/trustOrCheckMe/results/diagnostics/direct_vs_confidence_disagreements.csv",
+      "high_stakes_unsafe_reliance": "/Users/thomas/Desktop/trustOrCheckMe/results/diagnostics/high_stakes_unsafe_reliance.csv",
+      "monotonicity_violations": "/Users/thomas/Desktop/trustOrCheckMe/results/diagnostics/monotonicity_violations.csv"
+    },
+    "figures": {
+      "policy_cost": {
+        "pdf": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/figure_policy_cost.pdf",
+        "png": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/figure_policy_cost.png"
+      },
+      "unsafe_reliance": {
+        "pdf": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/figure_unsafe_reliance.pdf",
+        "png": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/figure_unsafe_reliance.png"
+      },
+      "verify_rate": {
+        "pdf": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/figure_verify_rate.pdf",
+        "png": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/figure_verify_rate.png"
+      }
+    },
+    "paper_outputs": {
+      "domain_summary.csv": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/domain_summary.csv",
+      "domain_summary.json": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/domain_summary.json",
+      "metrics_summary.csv": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/metrics_summary.csv",
+      "metrics_summary.json": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/metrics_summary.json",
+      "model_summary.csv": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/model_summary.csv",
+      "model_summary.json": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/model_summary.json",
+      "paired_policy_differences.csv": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/paired_policy_differences.csv",
+      "paired_policy_differences.json": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/paired_policy_differences.json",
+      "pilot_summary.md": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/pilot_summary.md",
+      "policy_comparison.csv": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/policy_comparison.csv",
+      "policy_comparison.json": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/policy_comparison.json",
+      "request_coverage.csv": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/request_coverage.csv",
+      "request_coverage.json": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/request_coverage.json",
+      "scored_decisions.csv": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/scored_decisions.csv",
+      "scored_decisions.json": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/scored_decisions.json",
+      "table_model_summary.md": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/table_model_summary.md",
+      "table_model_summary.tex": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/table_model_summary.tex",
+      "table_paired_policy_differences.md": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/table_paired_policy_differences.md",
+      "table_paired_policy_differences.tex": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/table_paired_policy_differences.tex",
+      "table_policy_comparison.md": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/table_policy_comparison.md",
+      "table_policy_comparison.tex": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/table_policy_comparison.tex",
+      "table_stake_results.md": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/table_stake_results.md",
+      "table_stake_results.tex": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/table_stake_results.tex",
+      "usage_summary.csv": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/usage_summary.csv",
+      "usage_summary.json": "/Users/thomas/Desktop/trustOrCheckMe/paper_outputs/usage_summary.json"
+    }
+  },
+  "n_input_records": 2793,
+  "n_joined_decisions": 1600,
+  "n_resamples": 5000,
+  "seed": 20260904,
+  "verification_cost": 1.0,
+  "warnings": []
+}
