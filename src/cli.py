@@ -455,6 +455,10 @@ async def _run_v2_stage(args: argparse.Namespace) -> None:
         raise PermissionError("Paid execution requires the explicit --yes flag.")
     if not dry_run:
         load_dotenv(PROJECT_ROOT / ".env")
+    if not dry_run and args.command in {
+        "run-v2-answers",
+        "run-v2-confidence",
+    }:
         materialize_v1_reuse(
             examples=examples,
             v1_checkpoint=config.resolve_path(config.results.v1_checkpoint_path),
