@@ -712,6 +712,15 @@ class V2VerificationRunner:
         for ok in await asyncio.gather(*(execute(task) for task in runnable)):
             completed += int(ok)
             failed += int(not ok)
+        final_statuses = {
+            task.request_key: self.checkpoint.request_status(task.request_key)
+            for task in tasks
+        }
+        final_counts = dict(
+            Counter(
+                status or "unregistered" for status in final_statuses.values()
+            )
+        )
         selected_aliases = [alias for alias, _ in _selected_models(
             self.models_config, model_aliases
         )]
@@ -781,6 +790,20 @@ class V2VerificationRunner:
                         for task in tasks
                     )
                 ),
+                "final_request_status_counts": final_counts,
+            }
+        )
+        manifest.setdefault("invocations", []).append(
+            {
+                "start_time": started_at,
+                "end_time": manifest["end_time"],
+                "retry_failed": retry_failed,
+                "initial_cache_hits": sum(
+                    status == "success" for status in statuses.values()
+                ),
+                "called": len(runnable),
+                "success": completed,
+                "failed": failed,
             }
         )
         manifest.setdefault("stages", {})["verification"] = {
@@ -788,20 +811,21 @@ class V2VerificationRunner:
             "end_time": manifest["end_time"],
             "request_counts": {
                 "planned": len(tasks),
-                "called": len(runnable),
-                "cache_hits": sum(
-                    status == "success" for status in statuses.values()
-                ),
-                "success": completed,
-                "failed": failed,
+                "final_success": final_counts.get("success", 0),
+                "final_failed": final_counts.get("failed", 0),
+                "final_pending": final_counts.get("pending", 0),
+                "latest_invocation_called": len(runnable),
+                "latest_invocation_success": completed,
+                "latest_invocation_failed": failed,
             },
             "prompt_family": manifest["prompt_family"],
             "factor_counts": manifest["factor_counts"],
         }
+        final_failed = final_counts.get("failed", 0)
         self.checkpoint.upsert_manifest(
             self.run_id,
             manifest,
-            status="completed" if not failed else "failed",
+            status="completed" if not final_failed else "failed",
         )
         return V2RunSummary(
             run_id=self.run_id,
