@@ -1,8 +1,8 @@
 # V2 results
 
-- Completed verification decisions: 12799
+- Completed verification decisions: 32000
 - Models represented: 4
-- Primary factor-completeness issues: 1
+- Primary factor-completeness issues: 0
 - Bootstrap resamples: 5000
 - Confidence level: 95%
 

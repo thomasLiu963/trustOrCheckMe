@@ -1,12 +1,16 @@
-# Trust Me or Check Me? Current Research Results and Paper-Writing Brief
+# Trust Me or Check Me? V2-B Research Results and Paper-Writing Brief
 
 ## How to use this document
 
-This document is a paper-writing brief based on the completed V1 pilot and the
-current V2-A experiment. It is intentionally explicit about what has and has
-not been run. A paper-writing model should use the numerical results below,
-preserve the stated claim limits, and not describe V2-A as the planned
-500-question final V2-B study.
+This document is a paper-writing brief based on the completed V1 pilot, the
+200-question V2-A validation, and the completed 500-question V2-B paper run.
+A paper-writing model should use the V2-B numbers below as the primary
+results, treat V2-A as design validation, and not claim that prompt-paraphrase
+robustness or a secondary dataset has been run.
+
+Canonical machine-readable tables and figures live in `paper_outputs/v2/`.
+The frozen V2-A snapshot is in `paper_outputs/v2a/` and must not be mixed
+into V2-B numerics.
 
 ## One-paragraph summary
 
@@ -14,26 +18,27 @@ This project studies whether a language model can decide when an already
 generated answer should be used without checking and when it should first be
 independently verified. The central V2 contribution is a matched manipulation
 of who controls that verification decision: the human or the AI system. On a
-deterministic 200-question MMLU-Pro sample, four model families first produced
-a frozen answer and a frozen probability that the answer was correct. Each
-answer was then evaluated under 16 Stage-3 conditions crossing decision owner
-(human versus AI), confidence visibility (hidden versus visible), and
-synthetic error cost (`L = 2, 5, 10, 20`) while verification cost remained
-fixed at 1. Of 12,800 planned Stage-3 decisions, 12,799 were obtained. The
-clearest directional owner effect was specific to Anthropic Claude Sonnet 5:
-when frozen confidence was visible, it chose verification 3.5 to 7.5
-percentage points more often when the AI system, rather than the human,
-controlled the decision, with nominal paired 95% bootstrap intervals excluding
-zero at all four error costs. The other three models had signed owner effects
-near zero, although some still changed individual answers between owner
-framings in opposing directions. Showing frozen confidence had much larger and
-strongly model-dependent effects: it increased verification for Anthropic,
-decreased it for OpenAI and xAI, and increased it mainly at high stakes for
-Google. Explicit confidence did not reliably shrink the owner effect. These
-results show heterogeneous verification policies that cannot be inferred from
-answer accuracy alone, but they do not establish a universal owner asymmetry.
-The preregistered 500-question V2-B run and prompt-paraphrase robustness run
-remain necessary before presenting this as the final study.
+deterministic 500-question MMLU-Pro sample that includes the 200 V2-A items
+plus 300 new items chosen without reference to V2-A results, four model
+families first produced a frozen answer and a frozen probability that the
+answer was correct. Each answer was then evaluated under 16 Stage-3 conditions
+crossing decision owner (human versus AI), confidence visibility (hidden
+versus visible), and synthetic error cost (`L = 2, 5, 10, 20`) while
+verification cost remained fixed at 1. All 32,000 planned Stage-3 decisions
+were obtained. The only consistent directional owner effect was again
+specific to Anthropic Claude Sonnet 5: with frozen confidence visible, it
+chose verification 3.8 to 5.0 percentage points more often when the AI
+system, rather than the human, controlled the decision, with nominal paired
+95% bootstrap intervals excluding zero at all four error costs. The other
+three models had signed owner effects near zero in most cells, although
+OpenAI and xAI still changed many individual decisions between owner
+framings in opposing directions. Showing frozen confidence had much larger
+and strongly model-dependent effects: it increased verification for
+Anthropic, decreased it for OpenAI and xAI, and increased it mainly at high
+stakes for Google. Explicit confidence did not reliably shrink the owner
+effect. These results confirm V2-A's heterogeneous-policy conclusion on the
+preregistered 500-question sample. The independent 100-question
+prompt-paraphrase robustness run has not been collected.
 
 ## Research motivation and contribution
 
@@ -53,7 +58,7 @@ The mechanism question is whether explicitly showing the model its own
 previously reported confidence reduces or eliminates any human-versus-AI
 policy difference.
 
-The novelty claim should be narrow. The project does not claim to invent
+The novelty claim should remain narrow. The project does not claim to invent
 confidence calibration, abstention, selective prediction, or human-AI
 reliance. The intended contribution is a controlled, paired test of
 verification-decision ownership after the answer and uncertainty have already
@@ -61,55 +66,49 @@ been frozen, crossed with explicit access to that uncertainty.
 
 ## Current experimental status
 
-The project has two distinct phases:
+1. **V1 pilot — complete.** 200 MMLU-Pro questions, OpenAI and Anthropic only,
+   human-facing `RELY`/`VERIFY` recommendations. Motivating evidence only.
+2. **V2-A matched-design validation — complete.** Same 200 questions, four
+   families, 12,799 of 12,800 Stage-3 decisions. Archived in
+   `paper_outputs/v2a/`.
+3. **V2-B paper run — collection and primary analysis complete.** 500
+   questions, four families, 32,000 of 32,000 Stage-3 decisions, 0
+   factor-completeness issues.
 
-1. **V1 pilot — complete.** This used 200 MMLU-Pro questions and two models,
-   OpenAI GPT-5.6 Sol and Anthropic Claude Sonnet 5. It tested only
-   human-facing `RELY` versus `VERIFY` recommendations at four error costs.
-2. **V2-A matched-design validation — substantially complete.** This used the
-   same deterministic 200-question sample and four independent provider
-   families. It collected 12,799 of 12,800 primary Stage-3 factorial
-   decisions.
+Not complete:
 
-The following planned components are **not complete**:
-
-- V2-B, the preregistered 500-question paper run;
 - the 100-question independent prompt-paraphrase robustness run;
 - GPQA or another secondary dataset.
 
-Therefore, a paper written now must call the V2 findings a 200-question V2-A
-study, validation study, or preliminary matched experiment. It must not claim
-that the preregistered final 500-question experiment or prompt robustness check
-has been completed.
+A paper written now may present V2-B as the completed primary MMLU-Pro
+experiment. It must not claim prompt robustness.
 
-## V1 pilot: motivation for V2
+## V1 and V2-A in one paragraph
 
-V1 established that answer accuracy and verification advice could diverge.
-OpenAI GPT-5.6 Sol answered 84.5% of the 200 questions correctly, compared with
-73.5% for Anthropic Claude Sonnet 5. Despite its higher answer accuracy,
-OpenAI's verification rate changed only from 14.0% at `L=2` to 17.5% at
-`L=20`. Anthropic's verification rate increased from 42.5% to 53.0%.
+V1 showed that answer accuracy and verification advice can diverge: OpenAI
+was more accurate than Anthropic but verified much less, including on wrong
+answers. V2-A then introduced the matched owner × confidence-visibility ×
+stake factorial on 200 questions. Its directional owner effect was
+Anthropic-specific (about +3.5 to +7.5 points when confidence was visible).
+The other models had near-zero signed owner gaps, sometimes with substantial
+question-level cancellation. Confidence visibility produced larger, oppositely
+signed policy shifts. V2-B asks whether those patterns hold on the
+preregistered 500-question sample with larger wrong-answer denominators.
 
-Among wrong answers at `L=20`, V1 unsafe reliance was 58.1% for OpenAI and
-9.4% for Anthropic. OpenAI also had a higher rate of non-monotonic
-stake-response trajectories: 9.5% versus 2.0% for Anthropic. On the held-out
-calibration evaluation split at `L=20`, OpenAI's direct recommendation policy
-incurred 0.963 more synthetic cost per decision than its
-calibrated-confidence policy, with a paired 95% bootstrap interval from 0.119
-to 1.856.
+Do not pool V1 Stage-3 records with V2. Do not silently average V2-A and
+V2-B as if they were independent samples: V2-B contains all V2-A questions.
 
-These V1 findings motivated a stronger design, but V1 should not be presented
-as the paper's novelty. It used different Stage-3 wording and action labels and
-did not manipulate decision ownership. V1 Stage-3 records were not reused in
-V2.
-
-## V2-A design and methods
+## V2-B design and methods
 
 ### Dataset and models
 
-V2-A used a deterministic 200-question sample from the MMLU-Pro test split,
+V2-B used a deterministic 500-question sample from the MMLU-Pro test split,
 pinned to repository revision
-`b189ec765aa7ed75c8acfea42df31fdae71f97be`. The four model families were:
+`b189ec765aa7ed75c8acfea42df31fdae71f97be`. The sample includes every V2-A
+ID plus 300 category-stratified additions selected without using observed
+results. Category counts range from 35 to 37.
+
+The four model families were unchanged:
 
 - OpenAI `gpt-5.6-sol`, reasoning effort `none`;
 - Anthropic `claude-sonnet-5`, thinking disabled;
@@ -117,367 +116,312 @@ pinned to repository revision
 - xAI `grok-4.20-0309-non-reasoning`.
 
 Tools, browsing, search, retrieval, code execution, and external context were
-disabled. Provider reasoning settings are not internally equivalent, so
-cross-model comparisons are descriptive generalization evidence. The
-controlled comparisons are within-model matched comparisons.
+disabled. Google used a 512-token output ceiling; the others used 64. That
+amendment was recorded before V2-A and was not changed for V2-B.
 
-Google used a 512-token output ceiling because its mandatory low-thinking
-tokens consumed a 64-token smoke-test ceiling before valid structured output.
-The other providers used a 64-token ceiling. This amendment was recorded
-before V2-A.
+### Protocol
 
-### Three-stage protocol
+Stage 1 elicited a frozen multiple-choice answer. Stage 2 elicited a frozen
+probability that the answer was correct. Stage 3 requested
+`USE_UNVERIFIED` or `VERIFY_FIRST` under the `2 × 2 × 4` factorial:
+decision owner (human, AI system), confidence visibility (hidden, visible),
+and error cost `L = 2, 5, 10, 20`, with verification cost `C = 1`.
 
-Stage 1 presented a multiple-choice question and elicited only an answer
-label. That answer was frozen.
+Human and AI prompts used the same action labels, costs, frozen answer,
+verifier guarantee, and numerical language. The owner wording was the
+intended difference. Visible conditions added one sentence containing the
+frozen Stage-2 probability.
 
-Stage 2 presented the same question and frozen answer and elicited a
-probability that the answer was correct. That probability was also frozen.
-There was no stake or verification language in Stages 1 or 2.
+Primary prompt family: `v2_owner_match_v1`.
 
-Stage 3 presented the question and frozen answer and requested one of two
-actions:
+V2-A Stage-1/Stage-2/Stage-3 records for the overlapping 200 questions were
+reused from the shared checkpoint. New paid calls covered the 300 added
+questions plus a late Anthropic retry after a temporary credit-balance
+outage. After retry, coverage was complete.
 
-- `USE_UNVERIFIED`: use or deliver the frozen answer without checking it;
-- `VERIFY_FIRST`: pay for an independent verifier before the answer is used or
-  delivered.
+### Cost model, outcomes, and statistics
 
-For OpenAI and Anthropic, compatible V1 Stage-1 and Stage-2 records were reused
-only when the example, requested model, model configuration, prompt version,
-and frozen-answer dependency matched exactly. Google and xAI Stage-1 and
-Stage-2 outputs were generated for V2. All V2 Stage-3 decisions were new.
+Verification costs 1 and is assumed to return the correct answer. Unverified
+use costs 0 if the frozen answer is correct and `L` if it is wrong. The
+raw-confidence rule verifies when `(1-q)L > 1`.
 
-### Factorial manipulation
-
-For each question-model pair, Stage 3 crossed:
-
-- decision owner: human or AI system;
-- confidence visibility: hidden or visible;
-- error cost: 2, 5, 10, or 20.
-
-This yielded 16 decisions per question-model pair. Human and AI prompts used
-the same action labels, costs, answer, verifier guarantee, and neutral
-numerical language. The owner wording was the intended difference. In visible
-conditions, one sentence supplied the frozen Stage-2 probability; hidden
-conditions did not expose it.
-
-### Cost model
-
-Verification cost was fixed at `C=1`. Verification was assumed to return the
-correct answer. Unverified use cost zero when the frozen answer was correct and
-`L` when it was wrong. For confidence `q`, the confidence-derived rule verifies
-when:
-
-`(1-q)L > 1`.
-
-The corresponding confidence thresholds are `q<0.50` at `L=2`, `q<0.80` at
-`L=5`, `q<0.90` at `L=10`, and `q<0.95` at `L=20`.
-
-### Outcomes and statistics
-
-Primary outcomes included verification rate, unsafe unverified use among wrong
-answers, unnecessary verification among correct answers, realized synthetic
-cost, regret relative to an answer-aware oracle, and monotonicity violations.
-
-The signed owner effect was:
+Primary owner effect:
 
 `P(VERIFY_FIRST | AI owner) - P(VERIFY_FIRST | human owner)`.
 
-The analysis also measured paired owner disagreement, because equal marginal
-rates can hide question-level action changes in opposite directions.
+Also report paired owner disagreement, because equal marginal rates can hide
+opposing question-level switches.
 
-The confidence-visibility effect was:
+Confidence-visibility effect:
 
-`P(VERIFY_FIRST | confidence visible) - P(VERIFY_FIRST | confidence hidden)`.
+`P(VERIFY_FIRST | visible) - P(VERIFY_FIRST | hidden)`.
 
-The owner-by-confidence interaction was the visible owner gap minus the hidden
-owner gap.
+Interaction: visible owner gap minus hidden owner gap.
 
-Confidence calibration used deterministic 20% calibration and 80% evaluation
-splits with isotonic regression and no label leakage. The main paired
-statistics used 5,000 question-level bootstrap resamples and nominal 95%
-intervals, keeping each question's factor cells together.
+Question-level bootstrap: 5,000 resamples, nominal 95% intervals, keeping
+each question's factor cells together. Calibration used deterministic 20%
+calibration / 80% evaluation splits (100 / 400 questions per model) with
+isotonic regression and no label leakage.
 
-## V2-A data quality and coverage
+## V2-B data quality
 
-The run obtained 12,799 of 12,800 planned decisions, or 99.992% coverage.
-There was one unresolved Anthropic response for
-`mmlu_pro:test:4132`, human owner, confidence hidden, `L=2`. It repeatedly
-exhausted the frozen 64-token output ceiling and was not imputed. That one
-stratum therefore has 199 rather than 200 decisions. The omitted item was a
-wrong Anthropic answer, so the wrong-answer denominator in that paired owner
-comparison is 52 rather than 53. Every other primary factorial stratum has
-complete coverage.
+All 2,000 Stage-1 answers, 2,000 Stage-2 confidences, and 32,000 Stage-3
+decisions succeeded. Every primary factorial stratum has `n = 500`.
 
-## V2-A result 1: answer accuracy and confidence quality
+During the first Stage-3 pass, 323 Anthropic cells failed: 320 from an
+Anthropic credit-balance error near the end of the run, and 3 from truncated
+JSON on the 64-token ceiling. After credits were restored, all 323 were
+retried and succeeded. OpenAI, Google, and xAI completed on the first pass.
+No cells were imputed.
 
-Frozen-answer performance differed substantially:
+Run ID: `v2b-core-20260905`. Checkpoint: `results/v2/raw/v2.sqlite3`.
 
-- Google Gemini 3.8 Flash: 89.5% accuracy, 21 wrong answers, Brier score 0.0657;
-- OpenAI GPT-5.6 Sol: 84.5% accuracy, 31 wrong answers, Brier score 0.1477;
-- Anthropic Claude Sonnet 5: 73.5% accuracy, 53 wrong answers, Brier score
-  0.1681;
-- xAI Grok 4.20 non-reasoning: 65.0% accuracy, 70 wrong answers, Brier score
-  0.1916.
+## V2-B result 1: answer accuracy and confidence quality
 
-Lower Brier score indicates more accurate probability forecasts. These
-differences matter because wrong-answer safety rates for Google and OpenAI are
-estimated from only 21 and 31 errors, respectively, making those percentages
-less precise than the corresponding Anthropic and xAI estimates.
+Frozen-answer performance on 500 questions:
 
-Accuracy did not determine verification behavior. Google was most accurate but
-often used wrong answers without verification. xAI was least accurate but
-verified almost everything in the hidden-confidence condition. These patterns
-support the preregistered distinction between answer capability and
-verification-policy quality, but four models cannot establish a scaling law.
+- Google Gemini 3.8 Flash: 88.0% accuracy, 60 wrong, Brier 0.0834;
+- OpenAI GPT-5.6 Sol: 82.6% accuracy, 87 wrong, Brier 0.1579;
+- Anthropic Claude Sonnet 5: 74.2% accuracy, 129 wrong, Brier 0.1633;
+- xAI Grok 4.20 non-reasoning: 64.4% accuracy, 178 wrong, Brier 0.1912.
 
-## V2-A result 2: the owner effect was concentrated in Anthropic
+Wrong-answer denominators are substantially larger than in V2-A (21, 31, 53,
+and 70). They are still modest for Google and OpenAI. Accuracy rank and
+Brier rank match V2-A. Accuracy still does not determine verification
+policy: Google remains most accurate and often leaves wrong answers
+unchecked; xAI remains least accurate and verifies almost everything when
+confidence is hidden.
 
-Anthropic showed the clearest systematic owner effect. With confidence hidden,
-the signed AI-minus-human verification effects were:
+## V2-B result 2: the owner effect remains concentrated in Anthropic
 
-- `L=2`: +0.5 percentage points, 95% CI [-3.52, 4.52];
-- `L=5`: +4.0 points, CI [0.0, 8.0];
-- `L=10`: +3.5 points, CI [0.0, 7.0];
-- `L=20`: +4.0 points, CI [1.5, 7.0].
+Anthropic again showed the only consistent directional owner effect. With
+confidence hidden:
 
-With confidence visible, Anthropic's effects were:
+- `L=2`: +1.2 percentage points, 95% CI [-0.8, 3.2];
+- `L=5`: +1.4 points, CI [-0.6, 3.4];
+- `L=10`: +4.0 points, CI [1.8, 6.2];
+- `L=20`: +4.8 points, CI [2.8, 7.0].
 
-- `L=2`: +3.5 points, CI [1.0, 6.5];
-- `L=5`: +4.0 points, CI [1.5, 7.0];
-- `L=10`: +7.5 points, CI [4.0, 11.5];
-- `L=20`: +4.0 points, CI [1.0, 7.0].
+With confidence visible:
 
-Thus, under the visible-confidence prompt, Anthropic consistently verified
-more when the AI system controlled the decision. The average of the four
-stake-specific point estimates was +4.75 points with confidence visible and
-approximately +3.0 points with confidence hidden. These averages are
-descriptive summaries, not separately bootstrapped pooled estimates.
+- `L=2`: +3.8 points, CI [2.0, 5.6];
+- `L=5`: +3.8 points, CI [2.0, 5.8];
+- `L=10`: +4.4 points, CI [2.6, 6.4];
+- `L=20`: +5.0 points, CI [3.0, 7.0].
 
-The other model families did not show a consistent directional owner effect:
+The four visible point estimates average +4.25 points; the four hidden
+estimates average +2.85 points. Those averages are descriptive, not
+separately bootstrapped. Compared with V2-A, the visible Anthropic effect
+is slightly smaller and tighter, and the hidden effect is clearer at high
+stakes.
 
-- Google's estimates ranged from -1.5 to +2.0 points when confidence was
-  hidden and from -1.0 to +2.5 points when visible.
-- OpenAI's estimates ranged from -3.0 to +3.0 points when hidden and from
-  -0.5 to +1.0 points when visible.
-- xAI's estimates ranged from -2.0 to 0.0 points when hidden and from -3.5 to
-  +3.5 points when visible.
+The other families remain near zero in most cells:
 
-No OpenAI, Google, or xAI nominal owner-effect interval strictly excluded zero.
-The defensible conclusion is therefore heterogeneity, not a universal owner
-asymmetry.
+- Google ranged from -0.4 to +3.2 points hidden and from -0.8 to +1.4
+  visible. Two isolated intervals excluded zero: hidden `L=5` (+3.2, CI
+  [1.0, 5.4]) and visible `L=5` (-0.8, CI [-1.6, -0.2]). These are not a
+  consistent directional pattern.
+- OpenAI ranged from -0.2 to +1.4 points hidden and from -0.2 to +1.0
+  visible. No OpenAI owner-effect interval excluded zero.
+- xAI ranged from -3.0 to -0.8 points hidden and from +1.0 to +2.6 visible.
+  The hidden `L=2` interval excluded zero (-3.0, CI [-5.2, -0.8]), meaning
+  slightly *less* AI-owned verification at the lowest stake. The other xAI
+  owner intervals included zero.
 
-## V2-A result 3: near-zero signed effects did not imply action invariance
+The defensible conclusion remains heterogeneity, not a universal owner
+asymmetry. Isolated non-Anthropic intervals should not be promoted to a
+second main effect; many cells were examined without multiplicity
+adjustment.
 
-The signed owner effect can be near zero even when the owner framing changes
-many individual decisions, because switches in opposite directions cancel.
+## V2-B result 3: near-zero signed effects still hide action changes
 
-For example, OpenAI at hidden confidence and `L=10` had a signed owner effect
-of -3.0 points, CI [-8.0, 2.0], but the paired human-versus-AI actions differed
-on 14.0% of questions. OpenAI's hidden-confidence disagreement was between
-6.0% and 14.0% across stakes, despite small net owner gaps.
+OpenAI's hidden-confidence signed owner effects were between -0.2 and +1.4
+points, but paired human-versus-AI actions differed on 11.6% to 15.4% of
+questions. With confidence visible, OpenAI disagreement collapsed to 0.2%
+to 2.2%.
 
-xAI had a particularly clear cancellation pattern when confidence was visible.
-Its signed effects remained between -3.5 and +3.5 points, while paired owner
-disagreement ranged from 14.0% to 18.0%. By contrast, xAI's hidden-confidence
-owner disagreement was only 3.5% to 6.0%.
+xAI showed the opposite visibility pattern. Hidden-confidence disagreement
+was only 2.8% to 6.2%. Visible-confidence disagreement was 13.4% to 18.2%,
+while signed effects stayed between +1.0 and +2.6 points.
 
-This distinction should appear in the paper: three models were approximately
-invariant in marginal verification rates, but some were not invariant at the
-question level.
+Anthropic disagreement was moderate and stable, 4.6% to 6.0%. Google
+disagreement was 3.0% to 6.4% when confidence was hidden and usually below
+1% when visible, except 3.8% at visible `L=20`.
 
-## V2-A result 4: confidence visibility had large, opposite effects by model
+The paper should keep this distinction: three models are approximately
+invariant in marginal verification rates, but OpenAI (hidden) and xAI
+(visible) are not invariant at the question level.
 
-Showing the frozen probability produced larger changes than the owner
-manipulation, but the direction depended on model family.
+## V2-B result 4: confidence visibility still dominates, with opposite signs
 
-For Anthropic, visible confidence increased verification in every
-owner-by-stake cell. Under AI ownership, the increase was +16.5 points at
-`L=2`, +22.0 at `L=5`, +25.0 at `L=10`, and +25.0 at `L=20`. Under human
-ownership, the increases were +13.57, +22.0, +21.0, and +25.0 points. Every
-corresponding nominal paired interval excluded zero.
+Showing the frozen probability again moved verification more than owner
+framing, and the direction remained model-specific. Every Anthropic,
+OpenAI, and xAI visibility interval excluded zero.
 
-For OpenAI, visible confidence decreased verification in all eight
-owner-by-stake cells, by 13.5 to 21.0 points. Every corresponding interval was
-wholly non-positive. Moreover, in visible-confidence conditions OpenAI's
-direct action disagreed with the mechanical raw-confidence threshold on only
-0% to 2% of questions. This suggests that OpenAI nearly implemented the
-displayed probability threshold under this prompt. It does not show that the
-underlying probability was calibrated well enough to minimize cost.
+Anthropic: visible confidence increased verification in all eight
+owner-by-stake cells, by +12.8 to +22.4 points. The largest increases were
+at `L=10` and `L=20` under AI ownership (+20.6 and +22.4).
 
-For xAI, visible confidence also decreased verification in all eight cells, by
-7 to 14 points, with all nominal intervals excluding zero. Unlike OpenAI, xAI
-still disagreed substantially with the raw-confidence policy, especially at
-lower stakes.
+OpenAI: visible confidence decreased verification in all eight cells, by
+16.2 to 20.8 points.
 
-For Google, confidence visibility had little or inconsistent effect at low
-stakes but increased verification at high stakes. At `L=10`, verification rose
-by +10.0 points, CI [5.5, 15.0], under AI ownership and +8.0 points, CI [4.5,
-12.0], under human ownership. At `L=20`, the increases were +15.0 points, CI
-[10.0, 20.0], and +13.5 points, CI [9.0, 18.5], respectively.
+xAI: visible confidence decreased verification in all eight cells, by 8.6
+to 16.4 points.
 
-The strongest mechanism conclusion is therefore not that confidence always
-makes models safer or more cautious. Explicit confidence caused each family to
-adopt a different policy response.
+Google: little or slightly negative effect at `L=2` and mixed at `L=5`;
+clear increases at high stakes. At `L=10`, +13.0 points under AI ownership
+(CI [10.0, 16.2]) and +12.4 under human ownership (CI [9.6, 15.4]). At
+`L=20`, +16.4 (CI [13.0, 19.8]) and +16.6 (CI [13.4, 20.0]).
 
-## V2-A result 5: explicit confidence did not close the owner gap
+Explicit confidence does not have a universal safety direction.
 
-The preregistered interaction asked whether confidence visibility moved the
-signed owner gap toward zero. The data do not support a general closing effect.
-All 16 model-by-stake owner-gap-change intervals included zero. Point estimates
-ranged from -3.5 to +4.0 percentage points.
+## V2-B result 5: explicit confidence still does not close the owner gap
 
-For Anthropic, the model with the clearest owner asymmetry, the descriptive
-average signed gap was larger with confidence visible (+4.75 points) than
-hidden (approximately +3.0 points). This is the opposite of the proposed
-gap-closing mechanism, although the interaction intervals do not support a
-confident claim that visibility enlarged the gap.
+The preregistered interaction asked whether visibility moved the signed
+owner gap toward zero. Fourteen of 16 model-by-stake intervals included
+zero. Point estimates ranged from -4.0 to +4.0 percentage points.
 
-The correct conclusion is that confidence visibility changed overall
-verification behavior but did not reliably moderate the signed owner effect.
+The two intervals that excluded zero were isolated: Google at `L=5`
+(-4.0, CI [-6.6, -1.4]) and xAI at `L=20` (+4.0, CI [0.2, 7.8]). They do
+not support a general gap-closing mechanism.
 
-## V2-A result 6: stake sensitivity was present but heterogeneous
+For Anthropic, the model with the real owner asymmetry, the descriptive
+average signed gap was larger with confidence visible (+4.25) than hidden
+(+2.85). Interaction intervals for Anthropic all included zero.
 
-Averaging across the two owners, the verification-rate change from `L=2` to
+## V2-B result 6: stake sensitivity remains heterogeneous
+
+Averaging the two owners, the verification-rate change from `L=2` to
 `L=20` was:
 
-- Anthropic: +11.4 points with confidence hidden and +21.3 points visible;
-- Google: +2.75 points hidden and +18.75 points visible;
-- OpenAI: +14.75 points in both visibility conditions;
-- xAI: +0.75 points hidden and +5.5 points visible.
+- Anthropic: +11.2 points hidden and +19.4 visible;
+- Google: +3.7 points hidden and +22.3 visible;
+- OpenAI: +16.1 points hidden and +18.0 visible;
+- xAI: +1.6 points hidden and +5.4 visible.
 
-These are descriptive endpoint contrasts without separately reported
-confidence intervals. They show that all models had at least some aggregate
-stake response, but Google hidden and xAI were nearly flat. xAI's hidden rate
-was already near a ceiling: approximately 95% verification at `L=2` and 95.75%
-at `L=20`.
+These are descriptive endpoint contrasts. Hidden Google and xAI remain
+nearly flat. xAI's hidden rate is already near a ceiling: 94.9% at `L=2`
+and 96.5% at `L=20`.
 
-Question-level monotonicity tells a less reassuring story. Among complete
-four-stake trajectories:
+Among complete four-stake trajectories (`n = 2000` per model):
 
-- Anthropic had violations in 14 of 799 trajectories (1.75%);
-- Google had violations in 16 of 800 (2.0%);
-- OpenAI had violations in 35 of 800 (4.38%);
-- xAI had violations in 115 of 800 (14.38%).
+- Anthropic: 32 violations (1.60%);
+- Google: 61 (3.05%);
+- OpenAI: 96 (4.80%);
+- xAI: 277 (13.85%).
 
-For Anthropic, Google, and OpenAI, visible confidence generally reduced
-monotonicity violations. xAI was the exception: 47 of 200 human-visible and 43
-of 200 AI-visible trajectories violated monotonicity, compared with 12 and 13
-in the hidden conditions.
+Visible confidence reduced violations for Anthropic (24 hidden vs 8
+visible per 1000), Google (59 vs 2), and OpenAI (95 vs 1). xAI was again
+the exception: 57 hidden vs 220 visible per 1000, or 20.8% and 23.2% of
+AI-visible and human-visible trajectories.
 
-The paper should distinguish monotonic aggregate curves from monotonic
-question-level policies.
+## V2-B result 7: wrong-answer failure modes are stable
 
-## V2-A result 7: wrong-answer behavior exposed different failure modes
+At `L=20`, unsafe unverified use among actually wrong answers was:
 
-At the highest error cost, `L=20`, unsafe unverified use among actually wrong
-answers was:
+- Anthropic hidden: 10.85% human, 6.98% AI;
+- Anthropic visible: 1.55% human, 0.78% AI;
+- Google hidden: 55.00% human, 58.33% AI;
+- Google visible: 25.00% human, 23.33% AI;
+- OpenAI hidden: 32.18% human, 33.33% AI;
+- OpenAI visible: 56.32% human, 54.02% AI;
+- xAI hidden: 0.00% human, 1.12% AI;
+- xAI visible: 4.49% human, 3.93% AI.
 
-- Anthropic hidden: 11.32% under human ownership and 9.43% under AI ownership;
-- Anthropic visible: 1.89% under both owners;
-- Google hidden: 57.14% human and 61.90% AI;
-- Google visible: 33.33% human and 28.57% AI;
-- OpenAI hidden: 32.26% human and 25.81% AI;
-- OpenAI visible: 58.06% human and 51.61% AI;
-- xAI hidden: 0% human and 1.43% AI;
-- xAI visible: 4.29% human and 5.71% AI.
+Denominators are 129, 60, 87, and 178. Visibility again reduced high-stakes
+unsafe use for Anthropic and Google and increased it for OpenAI and, more
+modestly, xAI. Wrong-answer owner-gap intervals were generally consistent
+with no robust owner difference; the Anthropic hidden `L=20` unsafe gap
+interval did exclude zero ([0.8, 7.8] percentage points), but this should
+not be over-read given multiplicity.
 
-These results illustrate why confidence visibility cannot be labeled
-universally beneficial. It sharply reduced high-stakes unsafe unverified use
-for Anthropic and Google but increased it for OpenAI and modestly increased it
-for xAI. For OpenAI, displaying an apparently high frozen confidence often
-caused the model to stop verifying wrong answers.
+## V2-B result 8: verification burden and cost
 
-Wrong-answer owner-gap estimates were not robust: their intervals included or
-touched zero. This is especially important for Google and OpenAI, which had
-only 21 and 31 wrong answers. The paper should emphasize denominators and avoid
-strong owner-specific wrong-answer claims.
+At `L=20`, unnecessary verification among correct answers was approximately:
 
-## V2-A result 8: verification burden and cost reveal different policy errors
+- Anthropic hidden: 49.6% human, 54.7% AI;
+- Anthropic visible: 76.3% human, 82.7% AI;
+- Google hidden: 4.1% human, 6.4% AI;
+- Google visible: 18.9% human, 20.2% AI;
+- OpenAI hidden: 31.2% human, 33.2% AI;
+- OpenAI visible: 16.7% human, 17.4% AI;
+- xAI hidden: 95.7% human, 94.1% AI;
+- xAI visible: 78.6% human, 82.3% AI.
 
-xAI's hidden-confidence policy verified approximately 94% to 97.5% of all
-answers. This nearly eliminated unsafe unverified wrong answers but imposed
-very high verification burden on correct answers. At `L=20`, unnecessary
-verification among correct answers was around 95% in hidden conditions and
-83% to 85% with confidence visible.
+xAI's hidden policy nearly eliminates unsafe wrong-answer use by verifying
+almost everything. Anthropic's visible policy is safer on wrong answers and
+expensive on correct ones. Google's visible high-stakes policy is cheaper
+but still leaves about a quarter of wrong answers unchecked. OpenAI's
+visible policy tracks its displayed confidence and inherits that
+forecast's errors.
 
-Anthropic's visible-confidence policy also verified heavily, reaching 85% to
-89% overall at `L=20`; unnecessary verification among correct answers was
-80.3% for the human owner and 85.7% for the AI owner. This reduced unsafe use
-but incurred verification cost on many correct answers.
+At `L=20`, descriptive mean synthetic costs for direct visible policies
+were 0.900 to 0.910 for Anthropic, 0.830 to 0.856 for Google, 2.104 to
+2.174 for OpenAI, and 1.152 to 1.166 for xAI. Corresponding raw-confidence
+costs were 0.946, 0.552, 2.076, and 0.998. Calibrated-confidence means use
+the 400-question evaluation partition and must not be compared with
+full-sample direct means as if they were paired unless recomputed on the
+same 400 questions.
 
-Google's visible high-stakes policy was less burdensome but left a larger share
-of wrong answers unchecked. OpenAI's visible policy closely followed its raw
-confidence threshold and therefore inherited the consequences of its
-confidence estimates.
+No result supports a universal ranking of direct, raw-confidence, or
+calibrated-confidence policies.
 
-At `L=20`, descriptive mean synthetic costs for the direct visible-confidence
-policies were 0.950 to 0.990 for Anthropic, 0.845 to 0.920 for Google, 1.805 to
-1.995 for OpenAI, and 1.175 to 1.285 for xAI. The corresponding raw-confidence
-policy costs were 0.955, 0.550, 1.815, and 1.000. These comparisons are
-descriptive; the current V2 policy table does not provide paired confidence
-intervals for every contrast.
+## Comparison with V2-A
 
-Calibrated-confidence means use the 160-question evaluation partition, whereas
-most direct and raw means use all 200 questions. They must not be compared as
-if they were evaluated on identical samples unless a paired evaluation-only
-contrast is recomputed.
+The V2-B patterns replicate the V2-A qualitative conclusions:
 
-No current result supports a universal claim that direct decisions,
-raw-confidence thresholds, or calibrated-confidence thresholds are always
-best.
+- owner effect is Anthropic-specific and positive (AI verifies more);
+- other models have small signed owner gaps with occasional cancellation;
+- confidence visibility is large and opposite across families;
+- visibility does not close the owner gap;
+- capability and verification policy remain separate.
+
+Quantitative shifts from V2-A to V2-B are modest. Anthropic's visible owner
+effect is a bit smaller and more stable (3.8–5.0 vs 3.5–7.5 points).
+OpenAI's hidden paired disagreement remains high. xAI's visible
+cancellation pattern remains the clearest example of a near-zero signed
+effect with large question-level churn. Wrong-answer rates are more
+precisely estimated but tell the same safety story.
+
+V2-A had one missing Anthropic cell. V2-B does not.
 
 ## Interpretation by preregistered hypothesis
 
 **H1, stake sensitivity:** Partially supported. Verification generally rose
-with error cost, but the strength varied substantially, hidden Google and xAI
-were nearly flat, and individual monotonicity violations remained.
+with error cost. Hidden Google and xAI were nearly flat. Question-level
+monotonicity violations remained, especially for visible xAI.
 
 **H2, verification-owner effect:** Supported only as a heterogeneous,
 model-dependent phenomenon. Anthropic showed a consistent positive signed
-effect, especially with confidence visible. Other models had no clear
-directional effect, though OpenAI and xAI sometimes had meaningful paired
-action disagreement with cancellation.
+effect, especially with confidence visible. Other models had no consistent
+directional effect. OpenAI hidden and xAI visible had meaningful paired
+disagreement with cancellation.
 
-**H3, confidence visibility changes behavior:** Strongly supported. The effect
-was large and replicated across stakes for several models, but its direction
-was not universal.
+**H3, confidence visibility changes behavior:** Strongly supported. Large
+and replicated, but not universal in direction.
 
-**H4, confidence visibility reduces the owner gap:** Not supported. Interaction
-intervals included zero, and Anthropic's point estimates did not shrink.
+**H4, confidence visibility reduces the owner gap:** Not supported.
 
-**H5, cross-model heterogeneity:** Strongly supported descriptively. Models
-differed in accuracy, confidence quality, baseline verification tendency,
-stake sensitivity, owner response, confidence response, unsafe use, burden,
-and monotonicity.
+**H5, cross-model heterogeneity:** Strongly supported.
 
 **H6, capability and verification quality are separate:** Supported
-descriptively. The most accurate model did not have the lowest wrong-answer
-unsafe-use rate, and the least accurate model was often the most conservative.
-This does not establish a general capability-safety relationship.
+descriptively. The most accurate model did not have the lowest unsafe-use
+rate.
 
 ## Strongest defensible paper claim
 
-A defensible central result is:
-
-> In a paired 200-question verification experiment with frozen answers and
+> In a paired 500-question verification experiment with frozen answers and
 > uncertainty, decision-owner framing did not produce a universal directional
-> effect across four model families. Claude Sonnet 5 selected verification 3.5
-> to 7.5 percentage points more often when the AI system rather than the human
-> controlled the decision under visible-confidence prompts, whereas signed
-> owner effects for the other models were near zero. However, near-zero
-> marginal effects sometimes concealed substantial question-level owner
-> disagreement. Showing frozen confidence produced larger, oppositely directed
-> policy shifts across families and did not reliably close the owner gap.
+> effect across four model families. Claude Sonnet 5 selected verification
+> 3.8–5.0 percentage points more often when the AI system rather than the
+> human controlled the decision under visible-confidence prompts, with
+> nominal paired 95% bootstrap intervals excluding zero at all four error
+> costs. Signed owner effects for the other models were near zero, although
+> question-level owner disagreement reached 12–18% in some OpenAI hidden and
+> xAI visible conditions. Showing frozen confidence produced larger,
+> oppositely directed policy shifts and did not reliably close the owner gap.
 
-An appropriate broader interpretation is:
-
-> Verification recommendations are not determined by answer accuracy, stated
-> confidence, and numerical stakes in a uniform way across model families.
-> Models differ both in whether owner framing changes their decisions and in
-> how they use explicitly supplied uncertainty.
-
-## Claims that the evidence does not support
+## Claims the evidence does not support
 
 Do not claim:
 
@@ -490,103 +434,70 @@ Do not claim:
 - that one vendor or model is broadly safer;
 - that four models establish a capability or scaling law;
 - that prompt robustness has been demonstrated;
-- that the preregistered 500-question V2-B study is complete;
 - that nominal cellwise intervals are multiplicity-adjusted;
-- that near-zero marginal owner effects imply identical paired decisions.
+- that near-zero marginal owner effects imply identical paired decisions;
+- that V2-A and V2-B are independent replications on disjoint samples.
 
 ## Statistical cautions
 
-The reported 95% intervals are nominal question-bootstrap intervals. Many
-cellwise effects were examined—32 owner effects, 32 confidence-visibility
-effects, and 16 interactions—without multiplicity adjustment. The paper should
-emphasize repeated within-model patterns and effect sizes rather than isolated
-intervals.
+Reported 95% intervals are nominal question-bootstrap intervals. Many
+cellwise effects were examined without multiplicity adjustment. Emphasize
+repeated within-model patterns, especially Anthropic's visible owner effect
+across all four stakes, rather than isolated intervals.
 
-The intervals capture variation over sampled questions, not API-generation
-stochasticity, provider drift, repeated runs, or uncertainty over which models
-were selected.
+Intervals capture variation over sampled questions, not API-generation
+stochasticity, provider drift, or model-selection uncertainty.
 
-Wrong-answer rates have small denominators for Google and OpenAI. Bootstrap
-intervals with endpoints at zero may simply reflect no observed discordant
-cases in a small sample.
+The 323 Anthropic retries after a billing outage are valid completed
+records. They are not a second independent draw of those items.
 
-The isotonic calibrators were fitted on only 40 questions per model and
-evaluated on 160. Calibration comparisons should be treated cautiously.
+Isotonic calibrators were fitted on 100 questions per model and evaluated
+on 400. Treat calibration comparisons cautiously.
 
 ## General limitations
 
-The experiment uses synthetic numerical costs, not real consequences. There
-are no human participants. MMLU-Pro is a multiple-choice benchmark and may be
-contaminated in closed-model training data. Self-reported confidence is not
-guaranteed to equal an internal probability. Verification is modeled as
-perfect and costs exactly one unit. The owner framing is binary even though
-real responsibility is often shared. Closed-model APIs and serving behavior
-may change. Provider reasoning settings are not comparable. Binary structured
-actions do not measure explanation quality or actual delegation. One primary
-cell is missing, and prompt-paraphrase robustness has not yet been run.
+Synthetic numerical costs; no human participants; multiple-choice MMLU-Pro
+may be contaminated in closed-model training data; self-reported confidence
+is not an internal probability; verification is modeled as perfect and
+costs exactly one; owner framing is binary; provider reasoning settings are
+not comparable; binary structured actions do not measure explanation
+quality; prompt-paraphrase robustness has not been run.
 
-## What must happen before the intended final paper
+## What remains before the intended final paper package
 
-1. Run the deterministic 500-question V2-B experiment, which includes these
-   200 questions plus 300 questions chosen without reference to V2-A results.
-2. Run the preregistered 100-question independent prompt-paraphrase robustness
-   subset.
-3. Regenerate all tables and figures using the V2-B data.
-4. Recompute paired policy comparisons on matched evaluation samples and add
-   paired intervals where policy superiority is discussed.
-5. Treat V2-A as design validation or exploratory evidence and clearly
-   distinguish confirmatory V2-B results.
-6. Consider GPQA only after the primary MMLU-Pro and prompt-robustness analyses
-   are complete.
+1. Run the preregistered 100-question independent prompt-paraphrase
+   robustness subset (`v2_owner_match_paraphrase_v1`, confidence hidden).
+2. Recompute robustness tables and, if desired, paired policy contrasts on
+   matched evaluation samples.
+3. Consider GPQA only after prompt robustness.
+4. Keep V2-A labeled as validation. Use V2-B as the confirmatory
+   MMLU-Pro result.
 
-## Suggested abstract for a paper describing the current V2-A evidence
+## Suggested abstract for a paper describing V2-B
 
 Language models increasingly provide answers that users may accept without
 independent checking. We study whether models recommend verification
 consistently when an answer is frozen and only the owner of the verification
-decision changes. On 200 MMLU-Pro questions, four model families first
-generated an answer and a probability of correctness. We then elicited 12,799
-binary verification decisions in a matched `2 × 2 × 4` design crossing
-decision owner (human or AI system), visibility of the frozen confidence, and
-error cost. Claude Sonnet 5 verified 3.5–7.5 percentage points more often under
-AI ownership when confidence was visible, with nominal paired 95% bootstrap
-intervals excluding zero at all four costs. The other models showed signed
-owner effects near zero, although question-level owner disagreement reached
-14–18% in some conditions. Confidence visibility produced larger but opposing
-policy shifts: it increased verification for Claude, decreased it for GPT-5.6
-Sol and Grok, and increased it mainly at high stakes for Gemini. Confidence
-visibility did not reliably reduce the owner gap. These results suggest that
-verification policy is model-specific and sensitive to how uncertainty and
-decision ownership are presented, while providing no evidence for a universal
-owner asymmetry. The present study is a 200-question validation; the
-preregistered 500-question and prompt-paraphrase replications remain future
-work.
-
-## Suggested four-page paper structure
-
-**Page 1: Motivation and contribution.** Explain why post-answer verification
-guidance matters, distinguish the work from calibration and abstention, state
-the matched owner manipulation, and briefly cite V1 as motivating evidence.
-
-**Page 2: Method.** Describe the deterministic MMLU-Pro sample, four models,
-frozen answer and confidence stages, `2 × 2 × 4` Stage-3 factorial, cost model,
-matched prompt constraints, metrics, and paired bootstrap.
-
-**Page 3: Results.** Lead with the Anthropic-specific owner effect and the lack
-of a universal directional effect. Then show paired disagreement, the
-model-dependent confidence-visibility response, wrong-answer unsafe use,
-stake sensitivity, and monotonicity. Report exact denominators.
-
-**Page 4: Discussion.** Emphasize heterogeneity and the distinction between
-accuracy and verification policy. Explain that explicit confidence changed
-policy without reliably closing the owner gap. Discuss synthetic stakes, no
-human participants, small wrong-answer denominators, provider differences,
-multiplicity, and unfinished V2-B/prompt robustness.
+decision changes. On 500 MMLU-Pro questions, four model families first
+generated an answer and a probability of correctness. We then elicited
+32,000 binary verification decisions in a matched `2 × 2 × 4` design
+crossing decision owner (human or AI system), visibility of the frozen
+confidence, and error cost. Claude Sonnet 5 verified 3.8–5.0 percentage
+points more often under AI ownership when confidence was visible, with
+nominal paired 95% bootstrap intervals excluding zero at all four costs.
+The other models showed signed owner effects near zero, although
+question-level owner disagreement reached 12–18% in some conditions.
+Confidence visibility produced larger but opposing policy shifts: it
+increased verification for Claude, decreased it for GPT-5.6 Sol and Grok,
+and increased it mainly at high stakes for Gemini. Confidence visibility
+did not reliably reduce the owner gap. Verification policy is
+model-specific and sensitive to how uncertainty and decision ownership are
+presented. These results provide no evidence for a universal owner
+asymmetry. Prompt-paraphrase robustness remains future work.
 
 ## Canonical result files
 
-The canonical V2 analysis outputs are in `paper_outputs/v2/`. The most relevant
-files for paper writing are:
+Current V2-B outputs are in `paper_outputs/v2/`:
 
 - `model_summary.csv`;
 - `factorial_metrics.csv`;
@@ -595,9 +506,8 @@ files for paper writing are:
 - `owner_confidence_interactions.csv`;
 - `policy_comparison.csv`;
 - `monotonicity.csv`;
-- `factor_completeness_issues.json`;
-- the generated PDF and PNG figures.
+- `factor_completeness_issues.json` (empty);
+- generated PDF and PNG figures.
 
-The frozen protocol is `EXPERIMENT_V2.md`. The broader implementation and
-interpretation specification is `readme2.md`. V1 is preserved separately as
-pilot evidence and must not be silently pooled with V2.
+The V2-A archive is `paper_outputs/v2a/`. The frozen protocol is
+`EXPERIMENT_V2.md`. V1 is pilot evidence only.

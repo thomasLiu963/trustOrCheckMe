@@ -1,0 +1,3842 @@
+[
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 2.65,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.4125,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.88,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.925,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.53,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.525,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.58,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.495,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 5.3,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.8625,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.14,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.955,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.325,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.94375,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.715,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.91,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 2.65,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.4125,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.88,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.925,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.53,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.525,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.715,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.495,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 5.3,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.8625,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.99,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.955,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.325,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.94375,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.835,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.91,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 2.65,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.4125,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.895,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.925,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.5226130653266332,
+    "model_id": "anthropic_sonnet5",
+    "n": 199,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 199,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.5157232704402516,
+    "model_id": "anthropic_sonnet5",
+    "n": 159,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.5628140703517588,
+    "model_id": "anthropic_sonnet5",
+    "n": 199,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.2613065326633166,
+    "model_id": "anthropic_sonnet5",
+    "n": 199,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.48743718592964824,
+    "model_id": "anthropic_sonnet5",
+    "n": 199,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 5.3,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.8625,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.2,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.955,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.325,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.94375,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.725,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.91,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 2.65,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.4125,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.905,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.925,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.53,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.525,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.68,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.495,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 5.3,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.8625,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.95,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.955,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.325,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.94375,
+    "model_id": "anthropic_sonnet5",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.82,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.265,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.91,
+    "model_id": "anthropic_sonnet5",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.05,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.525,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.685,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.57,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.21,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.18125,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.195,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.18,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 2.1,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.5875,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.395,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.55,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.525,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.40625,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.37,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.395,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.05,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.525,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.585,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.57,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.21,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.18125,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.18,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.18,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 2.1,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.5875,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.845,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.55,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.525,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.40625,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.4,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.395,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.05,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.525,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.595,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.57,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.21,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.18125,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.21,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.18,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 2.1,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.5875,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.285,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.55,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.525,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.40625,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.4,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.395,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.05,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.525,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.575,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.57,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.21,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.18125,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.19,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.18,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 2.1,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.5875,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.92,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.55,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.525,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.40625,
+    "model_id": "google_gemini38_flash",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.41,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.105,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.395,
+    "model_id": "google_gemini38_flash",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.55,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.96875,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.925,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.145,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.31,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.3375,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.37,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.32,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 3.1,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.96875,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.15,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.815,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.775,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.84375,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.51,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.7,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.55,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.96875,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.1,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.145,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.31,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.3375,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.32,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.32,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 3.1,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.96875,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.805,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.815,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.775,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.84375,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.7,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.7,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.55,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.96875,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.905,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.145,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.31,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.3375,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.35,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.32,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 3.1,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.96875,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.355,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.815,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.775,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.84375,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.6,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.7,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.55,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.96875,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.145,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.145,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.31,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.3375,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.325,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.32,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 3.1,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.96875,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.995,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.815,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.775,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.84375,
+    "model_id": "openai_gpt56_sol",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.7,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.155,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.7,
+    "model_id": "openai_gpt56_sol",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 3.5,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.01,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.965,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.7,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.675,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.96,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.64,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 7.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.055,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.75,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.8125,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.99,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.89,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 3.5,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 1.185,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 10.0,
+    "mean_cost": 0.965,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.7,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.675,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.94,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 2.0,
+    "mean_cost": 0.64,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 7.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.285,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.75,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.8125,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 1.035,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "ai_system",
+    "error_cost": 5.0,
+    "mean_cost": 0.89,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 3.5,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.975,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.965,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.7,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.675,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.96,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.64,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 7.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.96,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.75,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.8125,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.965,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "hidden",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.89,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 3.5,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 1.07,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 10.0,
+    "mean_cost": 0.965,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.7,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.675,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.93,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 2.0,
+    "mean_cost": 0.64,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 7.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.175,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 20.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.75,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_use_unverified",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "always_verify",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.8125,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 160,
+    "policy": "calibrated_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 1.0,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "direct",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.35,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "oracle",
+    "prompt_family": "v2_owner_match_v1"
+  },
+  {
+    "confidence_visibility": "visible",
+    "decision_owner": "human",
+    "error_cost": 5.0,
+    "mean_cost": 0.89,
+    "model_id": "xai_grok420_nonreasoning",
+    "n": 200,
+    "policy": "raw_confidence",
+    "prompt_family": "v2_owner_match_v1"
+  }
+]

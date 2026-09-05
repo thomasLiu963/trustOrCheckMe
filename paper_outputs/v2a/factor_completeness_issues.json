@@ -1,0 +1,16 @@
+[
+  {
+    "duplicate_count": 0,
+    "example_id": "mmlu_pro:test:4132",
+    "missing_cells": [
+      [
+        "human",
+        "hidden",
+        2.0
+      ]
+    ],
+    "model_id": "anthropic_sonnet5",
+    "observed_count": 15,
+    "prompt_family": "v2_owner_match_v1"
+  }
+]

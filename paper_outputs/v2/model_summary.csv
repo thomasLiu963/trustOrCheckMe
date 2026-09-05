@@ -1,5 +1,5 @@
 accuracy,brier_score,model_id,n_answers,wrong_n
-0.735,0.16807249999999999,anthropic_sonnet5,200,53
-0.895,0.065733005,google_gemini38_flash,200,21
-0.845,0.147702175,openai_gpt56_sol,200,31
-0.65,0.1915765,xai_grok420_nonreasoning,200,70
+0.742,0.1632818,anthropic_sonnet5,500,129
+0.88,0.083429604,google_gemini38_flash,500,60
+0.826,0.15789709802,openai_gpt56_sol,500,87
+0.644,0.1911628,xai_grok420_nonreasoning,500,178

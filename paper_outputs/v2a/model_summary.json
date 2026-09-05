@@ -1,0 +1,30 @@
+[
+  {
+    "accuracy": 0.735,
+    "brier_score": 0.16807249999999999,
+    "model_id": "anthropic_sonnet5",
+    "n_answers": 200,
+    "wrong_n": 53
+  },
+  {
+    "accuracy": 0.895,
+    "brier_score": 0.065733005,
+    "model_id": "google_gemini38_flash",
+    "n_answers": 200,
+    "wrong_n": 21
+  },
+  {
+    "accuracy": 0.845,
+    "brier_score": 0.147702175,
+    "model_id": "openai_gpt56_sol",
+    "n_answers": 200,
+    "wrong_n": 31
+  },
+  {
+    "accuracy": 0.65,
+    "brier_score": 0.1915765,
+    "model_id": "xai_grok420_nonreasoning",
+    "n_answers": 200,
+    "wrong_n": 70
+  }
+]
