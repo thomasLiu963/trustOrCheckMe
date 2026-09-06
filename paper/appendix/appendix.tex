@@ -38,11 +38,31 @@ post-primary extension throughout the paper.
 The dataset was the MMLU-Pro test split from
 \texttt{TIGER-Lab/MMLU-Pro}, pinned to revision
 \texttt{b189ec765aa7ed75c8acfea42df31fdae71f97be}. The experiment seed was
-\texttt{20260904}. The 500-question primary sample contains the original
-200-question sample plus 300 category-stratified additions selected without
-reference to observed results. The fixed 100-question robustness subset was
-selected category-stratified from the 500-question sample, also without
-reference to outcomes. The primary-sample SHA-256 recorded in the manifest is\\
+\texttt{20260904}. No other split, category filter, or quality filter was
+applied. Each source row $i$ in 0-based enumeration order of that pinned
+split receives a stable identifier \texttt{mmlu\_pro:test:}$s$, where $s$ is
+the row's \texttt{example\_id}, else \texttt{question\_id}, else \texttt{id},
+else the zero-padded source index; the unused \texttt{cot\_content} field is
+dropped.
+
+The original 200-question sample was generated from this full pinned split by
+a deterministic category-stratified rule with seed \texttt{20260904}.
+Category quotas of size 200 are allocated as evenly as category capacities
+permit: nonempty categories are sorted lexicographically, shuffled with
+Python's \texttt{random.Random(20260904)}, and then incremented in that
+cyclic order until 200 assignments are made. Within each category, rows are
+sorted by stable identifier and that category's quota is drawn with
+Python's \texttt{random.Random($k$).sample}, where $k$ is the first eight
+bytes of
+$\mathrm{SHA256}(\texttt{20260904}\Vert \mathtt{NUL}\Vert \textit{category})$
+interpreted as a big-endian unsigned 64-bit integer. The 200 selected rows
+are then ordered by source index. The 300 V2-B additions apply the same rule
+to the complement of those 200 identifiers with seed $20260904+1$, and the
+union is ordered by source index. Neither step used observed model results.
+The fixed 100-question robustness subset was selected from the resulting
+500-question sample by the same category-stratified rule with seed
+$20260904+2$, also without reference to outcomes. The primary-sample SHA-256
+recorded in the manifest is\\
 \texttt{385d6f90235758b0c26f4d32c6ac46fb}\\
 \texttt{827ae3956e851aedfed43d7c06a96e75}. The robustness-sample SHA-256 is\\
 \texttt{b59310a76df933a189d16e7a6a5ccc6}\\
@@ -228,6 +248,10 @@ applied to the many descriptive cellwise intervals; the paper therefore
 emphasizes effect sizes and repeated directional patterns rather than isolated
 threshold crossings. The canonical analysis manifest records 32,000 primary
 decisions and zero factor-completeness issues.
+Each model-condition cell was queried once. The question-level bootstrap
+therefore quantifies variability across sampled questions, not
+repeated-generation variability; paired disagreement may include ordinary
+generation instability in addition to sensitivity to the authority framing.
 
 \section{Full confidence-visibility effects}
 \label{app:visibility}
