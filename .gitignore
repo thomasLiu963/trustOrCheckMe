@@ -25,6 +25,10 @@ data/calibration_splits/
 results/
 figures/
 
+# Keep NeurIPS paper figure assets versioned.
+!paper/figures/
+!paper/figures/**
+
 # Keep deterministic samples and manifests versioned.
 !data/samples/
 !data/samples/**
