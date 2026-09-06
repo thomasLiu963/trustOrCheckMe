@@ -1,0 +1,41 @@
+models:
+  openai_gpt56_sol:
+    provider: openai
+    api_model: gpt-5.6-sol
+    api_style: responses
+    reasoning_effort: none
+    max_output_tokens: 64
+    pricing_per_million_tokens:
+      input: 4.0
+      output: 20.0
+
+  anthropic_sonnet5:
+    provider: anthropic
+    api_model: claude-sonnet-5
+    api_style: messages
+    thinking:
+      type: disabled
+    max_output_tokens: 64
+    pricing_per_million_tokens:
+      input: 2.0
+      output: 10.0
+
+  google_gemini38_flash:
+    provider: google
+    api_model: gemini-3.8-flash
+    api_style: google_genai_vertex
+    thinking_level: low
+    # Gemini's mandatory low-thinking tokens share this ceiling.
+    max_output_tokens: 512
+    pricing_per_million_tokens:
+      input: 0.75
+      output: 3.75
+
+  xai_grok420_nonreasoning:
+    provider: xai
+    api_model: grok-4.20-0309-non-reasoning
+    api_style: responses
+    max_output_tokens: 64
+    pricing_per_million_tokens:
+      input: 1.25
+      output: 2.5

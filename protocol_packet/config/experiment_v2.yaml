@@ -1,0 +1,64 @@
+experiment_id: trust_check_v2
+experiment_version: v2
+seed: 20260904
+
+dataset:
+  name: mmlu_pro
+  hf_repo: TIGER-Lab/MMLU-Pro
+  revision: b189ec765aa7ed75c8acfea42df31fdae71f97be
+  split: test
+  v2a_size: 200
+  v2b_size: 500
+  robustness_size: 100
+  include_v1_sample: true
+  stratify_by: category
+  v1_sample_path: data/samples/mmlu_pro_pilot.jsonl
+  v2a_sample_path: data/samples/mmlu_pro_v2a.jsonl
+  v2b_sample_path: data/samples/mmlu_pro_v2b.jsonl
+  robustness_sample_path: data/samples/mmlu_pro_v2_robustness.jsonl
+  manifest_directory: data/manifests
+  cache_dir: data/raw/huggingface
+
+costs:
+  verification_cost: 1.0
+  error_costs: [2.0, 5.0, 10.0, 20.0]
+
+factors:
+  decision_owners: [human, ai_system]
+  confidence_visibility: [hidden, visible]
+
+prompt_families:
+  primary: v2_owner_match_v1
+  robustness: v2_owner_match_paraphrase_v1
+
+robustness:
+  enabled_by_default: false
+  subset_size: 100
+  confidence_visibility: [hidden]
+
+model_inference:
+  no_tools: true
+  no_external_retrieval: true
+  concurrency: 4
+  max_transient_retries: 3
+  max_parse_repairs: 1
+
+results:
+  checkpoint_path: results/v2/raw/v2.sqlite3
+  analysis_directory: results/v2
+  paper_output_directory: paper_outputs/v2
+  v1_checkpoint_path: results/raw/pilot.sqlite3
+
+bootstrap:
+  n_resamples: 5000
+  confidence_level: 0.95
+
+calibration:
+  method: isotonic
+  calibration_fraction: 0.20
+
+reuse:
+  allow_v1_stage1: true
+  allow_v1_stage2: true
+  require_exact_model_config_match: true
+  require_exact_prompt_version_match: true
