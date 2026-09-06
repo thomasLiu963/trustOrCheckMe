@@ -559,12 +559,14 @@ for V2 are estimates from the configured provider list prices, not invoices.
 
 The V2 checkpoint contains 41,600 successful attempts totaling 24.95 million
 tokens and 17.8 hours of summed request latency, or about \$55 at those list
-prices. Of this, the V2-B core run accounts for 21,600 attempts, 12.84 million
-tokens, and 9.2 hours; the earlier V2-A validation run on the overlapping
-200-question subset accounts for 13,532 attempts, 8.15 million tokens, and
-5.7 hours; and the 6,400 paraphrase cells account for 6,400 attempts,
-3.93 million tokens, and 2.9 hours. A one-question smoke test is included
-and is negligible (68 attempts).
+prices. Of this, the V2-B core run accounts for 21,600 new API attempts,
+12.84 million tokens, and 9.2 hours; these are the additional calls for the
+V2-B expansion, because Stage~1/2/3 records from the overlapping V2-A subset
+were reused according to the frozen protocol. The earlier V2-A validation
+run on that overlapping 200-question subset accounts for 13,532 attempts,
+8.15 million tokens, and 5.7 hours; and the 6,400 paraphrase cells account
+for 6,400 attempts, 3.93 million tokens, and 2.9 hours. A one-question smoke
+test is included and is negligible (68 attempts).
 
 The V1 pilot is additional and is not in the V2 checkpoint: 2,885 attempts,
 1.38 million tokens, and \$4.19 in observed provider cost. The full project

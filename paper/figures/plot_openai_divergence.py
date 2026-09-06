@@ -183,7 +183,7 @@ def main() -> None:
         )
     axis_a.set_xticks(list(COSTS))
     axis_a.set_xlabel(r"Error cost $L$")
-    axis_a.set_ylabel("Disagreement with confidence-implied policy (%)")
+    axis_a.set_ylabel("Policy disagreement (%)")
     axis_a.set_ylim(-1, 32)
     axis_a.set_xlim(0.4, 21.6)
     axis_a.grid(axis="y", color="0.85", linewidth=0.5)
