@@ -248,6 +248,52 @@ def plot_policy_cost(
     return paths
 
 
+def plot_prompt_visibility_robustness(
+    rows: Sequence[Mapping[str, Any]], output_base: Path
+) -> dict[str, str]:
+    """Four-panel primary vs paraphrase confidence-visibility effects."""
+    plt = _pyplot()
+    models = sorted({str(row["model_id"]) for row in rows})
+    fig, axes = _axes(plt, models)
+    labels = {
+        "v2_owner_match_v1": ("primary", "o", "-"),
+        "v2_owner_match_paraphrase_v1": ("paraphrase", "s", "--"),
+    }
+    for axis, model in zip(axes, models):
+        model_rows = [row for row in rows if str(row["model_id"]) == model]
+        for family, (label, marker, line) in labels.items():
+            by_cost: dict[float, list[float]] = defaultdict(list)
+            for row in model_rows:
+                if str(row.get("prompt_family")) != family:
+                    continue
+                value = _number(row.get("estimate"))
+                cost = _number(row.get("error_cost"))
+                if value is None or cost is None:
+                    continue
+                by_cost[cost].append(value)
+            if not by_cost:
+                continue
+            costs = sorted(by_cost)
+            axis.plot(
+                costs,
+                [sum(by_cost[cost]) / len(by_cost[cost]) for cost in costs],
+                marker=marker,
+                linestyle=line,
+                label=label,
+            )
+        axis.axhline(0, color="0.6", linewidth=0.8)
+        axis.set_title(model)
+        axis.set_xticks([2, 5, 10, 20])
+        axis.set_xlabel("Error cost, L")
+        axis.set_ylabel("Visibility effect")
+        axis.grid(axis="y", alpha=0.25)
+        if axis.get_legend_handles_labels()[0]:
+            axis.legend(frameon=False)
+    paths = _save(fig, output_base)
+    plt.close(fig)
+    return paths
+
+
 def generate_v2_figures(
     *,
     factorial_metrics: Sequence[Mapping[str, Any]],

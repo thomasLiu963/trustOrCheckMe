@@ -3,10 +3,11 @@
 ## How to use this document
 
 This document is a paper-writing brief based on the completed V1 pilot, the
-200-question V2-A validation, and the completed 500-question V2-B paper run.
-A paper-writing model should use the V2-B numbers below as the primary
-results, treat V2-A as design validation, and not claim that prompt-paraphrase
-robustness or a secondary dataset has been run.
+200-question V2-A validation, the completed 500-question V2-B paper run, and
+the completed 100-question prompt-paraphrase robustness experiment. A
+paper-writing model should use the V2-B numbers below as the primary
+results, treat V2-A as design validation, and treat robustness as a wording
+check on the same 100 questions rather than an independent replication.
 
 Canonical machine-readable tables and figures live in `paper_outputs/v2/`.
 The frozen V2-A snapshot is in `paper_outputs/v2a/` and must not be mixed
@@ -37,8 +38,15 @@ and strongly model-dependent effects: it increased verification for
 Anthropic, decreased it for OpenAI and xAI, and increased it mainly at high
 stakes for Google. Explicit confidence did not reliably shrink the owner
 effect. These results confirm V2-A's heterogeneous-policy conclusion on the
-preregistered 500-question sample. The independent 100-question
-prompt-paraphrase robustness run has not been collected.
+preregistered 500-question sample. A 100-question prompt-paraphrase
+robustness experiment then reused the same frozen answers and probabilities.
+The preregistered hidden-confidence owner test was collected exactly as
+planned (3,200 cells). A post-primary visible-confidence extension added
+another 3,200 cells to test the paper's confidence-centered finding. All
+6,400 paraphrase decisions succeeded. The four headline visibility patterns
+survived the wording change. The hidden owner effects on 100 questions were
+small and only partly stable, which is consistent with V2-B's conclusion
+that owner framing is not a universal, high-powered effect.
 
 ## Research motivation and contribution
 
@@ -73,15 +81,24 @@ been frozen, crossed with explicit access to that uncertainty.
    `paper_outputs/v2a/`.
 3. **V2-B paper run — collection and primary analysis complete.** 500
    questions, four families, 32,000 of 32,000 Stage-3 decisions, 0
-   factor-completeness issues.
+   factor-completeness issues. Those primary tables were not rewritten after
+   robustness.
+4. **Prompt-paraphrase robustness — complete.** Same four models, existing
+   100-question subset, frozen Stage-1/Stage-2 outputs, prompt family
+   `v2_owner_match_paraphrase_v1`. Hidden confidence: 3,200 / 3,200
+   (preregistered). Visible confidence: 3,200 / 3,200 (post-primary
+   extension). Frozen answer and `q` matched V2-B on every paired cell.
 
 Not complete:
 
-- the 100-question independent prompt-paraphrase robustness run;
 - GPQA or another secondary dataset.
 
 A paper written now may present V2-B as the completed primary MMLU-Pro
-experiment. It must not claim prompt robustness.
+experiment and may report that the confidence-visibility patterns survived
+a semantically equivalent Stage-3 paraphrase. It must not describe the
+visible-confidence paraphrase cells as part of the original preregistered
+hidden-only robustness test. It must not call robustness an independent
+replication of V2-B.
 
 ## V1 and V2-A in one paragraph
 
@@ -461,17 +478,89 @@ may be contaminated in closed-model training data; self-reported confidence
 is not an internal probability; verification is modeled as perfect and
 costs exactly one; owner framing is binary; provider reasoning settings are
 not comparable; binary structured actions do not measure explanation
-quality; prompt-paraphrase robustness has not been run.
+quality. Prompt-paraphrase robustness has now been run on 100 questions
+and does not replace the 500-question V2-B estimates.
+
+## Prompt-paraphrase robustness
+
+Collection used the existing 100-question subset and reused V2-B frozen
+answers and Stage-2 probabilities. No Stage-1 or Stage-2 calls were made.
+Primary-prompt cells on these 100 questions were not rerun.
+
+- Hidden confidence, `v2_owner_match_paraphrase_v1`: 3,200 / 3,200. This is
+  the **preregistered** robustness test. Run ID
+  `v2b-robustness-hidden-20260905`. Thirteen OpenAI cells failed once on a
+  credit-balance error and succeeded on retry.
+- Visible confidence, same prompt family: 3,200 / 3,200. This is a
+  **post-primary extension** added to test the confidence-centered paper
+  finding. Run ID `v2b-robustness-visible-20260905`. 112 xAI cells failed
+  once on a credit-balance error and succeeded on retry.
+- Completeness issues: 0. Frozen answer/`q` mismatches: 0. V2-B primary
+  tables were not overwritten.
+
+Comparisons are paired on the same 100 questions, with the same
+question-level 5,000-resample 95% bootstrap used in V2-B.
+
+### Confidence-visibility robustness (post-primary extension)
+
+This is the important robustness check for the current paper headline.
+Qualitative success means the sign of the visibility effect survived, not
+that percentages matched.
+
+- **Anthropic:** visible confidence increased verification in all eight
+  owner-by-stake cells under both prompts. Primary estimates +10 to +25
+  points; paraphrase +12 to +21. All eight paraphrase intervals excluded
+  zero. Sign match: 8/8.
+- **OpenAI:** visible confidence decreased verification in all eight cells
+  under both prompts. Primary -13 to -24 points; paraphrase -30 to -32.
+  All eight paraphrase intervals excluded zero. The decrease was
+  *larger* under the paraphrase (several difference intervals excluded
+  zero). Sign match: 8/8.
+- **xAI:** visible confidence decreased verification in all eight cells
+  under both prompts. Primary -9 to -20 points; paraphrase -9 to -14. All
+  eight paraphrase intervals excluded zero. Sign match: 8/8.
+- **Google:** low stakes remained small or slightly negative; `L=10` and
+  `L=20` remained clearly positive under both prompts. The only sign
+  mismatch was human `L=5` (primary +5.0 points, CI includes zero;
+  paraphrase -1.0, CI includes zero). That cell is not part of the
+  high-stakes Google headline.
+
+The four headline visibility patterns therefore survive a semantically
+equivalent wording change. Do not claim that the OpenAI paraphrase
+magnification is a new primary finding; it is a robustness-sample
+observation on 100 questions.
+
+### Preregistered hidden-owner robustness
+
+On these 100 questions, hidden-confidence owner effects were small, as in
+V2-B. Anthropic's high-stake hidden direction was preserved (`L=10` and
+`L=20` both positive under both prompts; paraphrase `L=20` +7.0 points,
+CI [1.0, 13.0]). Anthropic `L=2` flipped sign, and both intervals included
+zero. Google hidden `L=20` did not survive (primary +7.0, paraphrase
+-2.0; difference CI excluded zero). Most other owner difference intervals
+included zero.
+
+This does not overturn V2-B. The powered, repeated owner result in V2-B
+was Anthropic under *visible* confidence on 500 questions. The
+preregistered robustness test was hidden-only and is underpowered for
+small owner gaps.
+
+### Action agreement
+
+Primary-versus-paraphrase action agreement on the same cell was generally
+high: Anthropic 88–99%, Google 92–100%, OpenAI visible 96–100%, xAI hidden
+92–98%. Agreement was lower for OpenAI hidden (75–89%) and xAI visible
+(77–90%), which matches V2-B's observation that those conditions already
+have more question-level churn.
 
 ## What remains before the intended final paper package
 
-1. Run the preregistered 100-question independent prompt-paraphrase
-   robustness subset (`v2_owner_match_paraphrase_v1`, confidence hidden).
-2. Recompute robustness tables and, if desired, paired policy contrasts on
-   matched evaluation samples.
-3. Consider GPQA only after prompt robustness.
-4. Keep V2-A labeled as validation. Use V2-B as the confirmatory
-   MMLU-Pro result.
+1. Keep V2-A labeled as validation and V2-B as the confirmatory MMLU-Pro
+   result.
+2. In the paper, label hidden paraphrase as preregistered robustness and
+   visible paraphrase as a post-primary extension.
+3. Consider GPQA only if a second benchmark is still wanted. It is not
+   required to report the current V2-B plus robustness package.
 
 ## Suggested abstract for a paper describing V2-B
 
@@ -493,7 +582,9 @@ and increased it mainly at high stakes for Gemini. Confidence visibility
 did not reliably reduce the owner gap. Verification policy is
 model-specific and sensitive to how uncertainty and decision ownership are
 presented. These results provide no evidence for a universal owner
-asymmetry. Prompt-paraphrase robustness remains future work.
+asymmetry. On a 100-question prompt paraphrase, the four
+confidence-visibility patterns survived; the hidden-confidence owner test
+was small and only partly stable, as expected from V2-B.
 
 ## Canonical result files
 
@@ -508,6 +599,15 @@ Current V2-B outputs are in `paper_outputs/v2/`:
 - `monotonicity.csv`;
 - `factor_completeness_issues.json` (empty);
 - generated PDF and PNG figures.
+
+Robustness-only outputs, written without rewriting the V2-B tables:
+
+- `prompt_robustness.csv` / `table_prompt_robustness.md`;
+- `prompt_owner_robustness.csv` / `table_prompt_owner_robustness.md`;
+- `prompt_confidence_visibility_robustness.csv` /
+  `table_prompt_confidence_visibility_robustness.md`;
+- `figure_prompt_confidence_visibility_robustness.png`;
+- `robustness_analysis_manifest.json`.
 
 The V2-A archive is `paper_outputs/v2a/`. The frozen protocol is
 `EXPERIMENT_V2.md`. V1 is pilot evidence only.

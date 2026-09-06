@@ -1,0 +1,352 @@
+We are finishing the robustness experiment for NeurIPS Project 1, “Trust Me or Check Me?”
+
+IMPORTANT: before changing anything, read the frozen V2 protocol and the existing V2-B outputs:
+- EXPERIMENT_V2.md
+- paper_outputs/v2/PAPER_RESEARCH_BRIEF.md
+- paper_outputs/v2/README_RESULTS.md
+- paper_outputs/v2/analysis_manifest.json
+- the prompt-building code for:
+  - v2_owner_match_v1
+  - v2_owner_match_paraphrase_v1
+- the code/config that defines the preregistered 100-question paraphrase subset
+- results/v2/raw/v2.sqlite3
+
+DO NOT modify, overwrite, rerun, or reinterpret the completed V2-B primary experiment.
+The primary V2-B run is frozen:
+- run ID: v2b-core-20260905
+- 500 MMLU-Pro questions
+- 4 models
+- 32,000 / 32,000 Stage-3 decisions
+- prompt family: v2_owner_match_v1
+
+SCIENTIFIC GOAL
+
+The paper’s empirical headline has evolved.
+
+The strongest result is now:
+Explicitly showing a model its own previously reported confidence strongly changes verification policy, but the direction and realized error-handling consequences are model-dependent.
+
+The original planned robustness test was narrower:
+- 100-question preregistered subset
+- prompt family v2_owner_match_paraphrase_v1
+- confidence HIDDEN
+- tests robustness of the owner manipulation.
+
+DO NOT silently replace or redefine that preregistered test.
+
+Instead:
+
+A. RUN THE ORIGINAL PREREGISTERED ROBUSTNESS TEST EXACTLY AS PLANNED.
+B. EXTEND THE SAME PARAPHRASED PROMPT FAMILY TO VISIBLE-CONFIDENCE CONDITIONS so we can additionally robustness-test the paper’s confidence-visibility result.
+
+The visible-confidence extension must be recorded as a post-primary/full-factorial robustness extension, NOT falsely described as part of the original preregistered hidden-only robustness test.
+
+==================================================
+1. SAMPLE
+==================================================
+
+Use the EXISTING preregistered 100-question paraphrase subset.
+
+Do not choose a new subset.
+Do not optimize the subset based on V2-B results.
+Do not resample questions.
+
+If the exact frozen 100-question ID list cannot be found in the repo/config/checkpoint, STOP and report that instead of creating a replacement sample.
+
+==================================================
+2. REUSE FROZEN STAGE-1 AND STAGE-2 OUTPUTS
+==================================================
+
+For these 100 questions, reuse the existing V2-B:
+
+- frozen Stage-1 answer
+- frozen Stage-2 self-reported probability q
+
+Do NOT ask any model to answer the MMLU-Pro question again.
+Do NOT elicit confidence again.
+
+The point is to change ONLY the Stage-3 prompt wording.
+
+Verify programmatically that every paraphrase Stage-3 record uses exactly the same:
+- example_id
+- model
+- frozen_answer_label
+- probability_correct
+
+as the corresponding V2-B primary record.
+
+==================================================
+3. MODELS AND SETTINGS
+==================================================
+
+Use exactly the same models/settings as V2-B:
+
+- OpenAI gpt-5.6-sol, reasoning effort none
+- Anthropic claude-sonnet-5, thinking disabled
+- Google gemini-3.8-flash, thinking low
+- xAI grok-4.20-0309-non-reasoning
+
+Preserve the same provider-specific generation settings and token ceilings used in V2-B.
+No tools, browsing, search, retrieval, code execution, or external context.
+
+==================================================
+4. PARAPHRASED STAGE-3 PROMPT
+==================================================
+
+First inspect the existing frozen v2_owner_match_paraphrase_v1 implementation.
+
+If the preregistered hidden-confidence paraphrase wording already exists, DO NOT EDIT ITS WORDING.
+
+Use that wording exactly for the preregistered hidden-confidence cells.
+
+Then create the visible-confidence counterpart by making the minimum necessary addition that exposes the SAME frozen Stage-2 probability q.
+
+The paraphrased prompt must preserve all experimental semantics:
+
+- same frozen question
+- same frozen answer
+- same perfect-verifier assumption
+- verification cost C = 1
+- wrong-unverified-answer cost L ∈ {2, 5, 10, 20}
+- same two action labels:
+  - USE_UNVERIFIED
+  - VERIFY_FIRST
+- same structured output schema
+- same numeric information
+- same distinction between HUMAN owner and AI SYSTEM owner
+
+The owner manipulation must still differ ONLY in who controls whether verification occurs.
+
+The visibility manipulation must differ ONLY in whether the previously elicited q is shown.
+
+Do NOT introduce new loaded/normative language such as:
+- safe / unsafe
+- responsible / irresponsible
+- trustworthy
+- recommended
+- cautious
+- dangerous
+- protect the user
+- accountability
+
+unless such wording already exists in the frozen preregistered paraphrase.
+
+We are trying to alter surface wording, not alter the construct.
+
+==================================================
+5. CONDITIONS TO COLLECT
+==================================================
+
+For the 100 questions, collect the full paraphrased Stage-3 factorial:
+
+100 questions
+× 4 models
+× 2 owners
+× 2 confidence-visibility conditions
+× 4 error costs
+= 6,400 paraphrased Stage-3 decisions
+
+The hidden-confidence half corresponds to the original preregistered robustness test:
+3,200 decisions.
+
+The visible-confidence half is the additional extension:
+3,200 decisions.
+
+Do not rerun the original v2_owner_match_v1 Stage-3 cells; those already exist.
+
+Use a distinct run ID/checkpoint identity for the paraphrase run and preserve prompt-family/version metadata so primary and paraphrase records can never be confused.
+
+==================================================
+6. COMPLETENESS / VALIDATION
+==================================================
+
+Before analysis, verify:
+
+- exactly 100 unique question IDs
+- all 4 models
+- both owners
+- both confidence visibility states
+- all four L values
+- 6,400 / 6,400 expected paraphrase Stage-3 cells
+- no duplicate factor cells
+- no missing factor cells
+- no imputation
+- frozen answer and q exactly match primary V2-B
+- no primary V2-B records were overwritten
+
+If API failures occur, retry the SAME missing cells only and preserve failure/retry logs.
+
+==================================================
+7. PRIMARY ROBUSTNESS ANALYSES
+==================================================
+
+Compare the paraphrased decisions with v2_owner_match_v1 on the SAME 100 questions.
+
+A. Original preregistered owner robustness
+For HIDDEN confidence:
+- model × L owner effect:
+  P(VERIFY | AI owner) - P(VERIFY | human owner)
+- primary-prompt estimate
+- paraphrase estimate
+- difference between estimates
+- nominal paired question-level 95% bootstrap CI
+- action agreement between primary and paraphrase
+
+This preserves the originally planned owner robustness test.
+
+B. Confidence-visibility robustness — IMPORTANT NEW EXTENSION
+For each model × owner × L:
+
+visibility effect =
+P(VERIFY | visible) - P(VERIFY | hidden)
+
+Report:
+- primary-prompt visibility effect on the same 100 questions
+- paraphrase-prompt visibility effect
+- difference between those effects
+- paired question-level 95% bootstrap CI
+- whether the qualitative sign/pattern is preserved
+
+The four headline patterns we specifically care about are:
+
+1. Anthropic:
+   visible confidence increases verification.
+
+2. OpenAI:
+   visible confidence decreases verification.
+
+3. xAI:
+   visible confidence decreases verification.
+
+4. Google:
+   visibility is small/mixed at lower stakes but increases verification strongly at L=10 and L=20.
+
+DO NOT define “success” as reproducing identical percentages.
+The robustness question is whether the major qualitative effects survive a semantically equivalent wording change.
+
+C. Prompt-level action agreement
+For every:
+model × owner × visibility × L
+
+report:
+- n
+- primary verify rate
+- paraphrase verify rate
+- action agreement
+- paired rate difference
+- bootstrap CI
+
+D. Secondary analyses
+Recompute, if straightforward:
+- owner × confidence interaction
+- stake sensitivity
+- monotonicity
+
+These are secondary. Do not delay the main robustness output for elaborate analyses.
+
+Do NOT make wrong-answer filtering on only 100 questions a headline robustness test because the wrong-answer denominators will be small. It can be included descriptively if useful.
+
+==================================================
+8. BOOTSTRAP
+==================================================
+
+Use the same statistical convention as V2-B:
+
+- question-level paired bootstrap
+- 5,000 resamples
+- nominal 95% intervals
+- keep all matched factor cells for a question together
+
+Do not pretend individual Stage-3 decisions are independent samples.
+
+==================================================
+9. OUTPUT FILES
+==================================================
+
+Do not overwrite the current V2-B tables.
+
+Fill/update the currently empty robustness outputs where appropriate and create additional files if needed.
+
+At minimum produce machine-readable:
+
+paper_outputs/v2/prompt_robustness.csv
+paper_outputs/v2/prompt_robustness.json
+
+and add a confidence-centered output such as:
+
+paper_outputs/v2/prompt_confidence_visibility_robustness.csv
+paper_outputs/v2/prompt_confidence_visibility_robustness.json
+
+Also produce paper-ready:
+
+table_prompt_robustness.md
+table_prompt_robustness.tex
+
+table_prompt_confidence_visibility_robustness.md
+table_prompt_confidence_visibility_robustness.tex
+
+Create ONE clean robustness figure if useful:
+- four model panels
+- compare primary vs paraphrase confidence-visibility effects
+- emphasize effect direction rather than raw volume of cells
+
+Do not generate a pile of redundant PNGs.
+
+==================================================
+10. UPDATE THE RESEARCH BRIEF
+==================================================
+
+After analysis, update PAPER_RESEARCH_BRIEF.md with:
+
+- exact run status
+- 6,400 planned / actual decisions
+- any retries/failures
+- exact robustness results
+- whether each headline confidence pattern survived
+- original preregistered hidden-owner robustness result
+- clear labeling that the visible-confidence extension was added to test the confidence-centered paper finding
+
+Do not claim:
+- a second benchmark
+- additional models
+- independent replication of V2-B
+- universal behavior across LLMs
+
+==================================================
+11. DO NOT DO THESE THINGS
+==================================================
+
+Do NOT:
+- run GPQA
+- add more model families
+- regenerate Stage 1
+- regenerate Stage 2
+- rerun the 500-question primary Stage 3
+- change V2-B results
+- cherry-pick models
+- change the 100-question subset
+- quietly redefine the preregistered robustness experiment
+- modify the primary prompt family
+- reinterpret V2-A as an independent replication
+
+==================================================
+12. EXECUTION ORDER
+==================================================
+
+1. Inspect code/config and identify the exact frozen 100-question subset.
+2. Show/record the existing paraphrase prompt and verify semantic matching.
+3. Confirm expected API-call count = 6,400 Stage-3 calls.
+4. Run the paraphrase experiment.
+5. Retry only failed cells.
+6. Validate 6,400/6,400 completeness.
+7. Run paired robustness analysis.
+8. Generate tables and at most one main robustness figure.
+9. Update PAPER_RESEARCH_BRIEF.md.
+10. Give me a concise final summary containing:
+   - completeness
+   - confidence-effect comparison primary vs paraphrase for all four models
+   - owner robustness result
+   - any qualitative result that failed to survive
+   - exact paths of new output files.
+
+If you discover that the frozen preregistered design differs from anything in these instructions, DO NOT silently change it. Preserve the frozen preregistered component and explain the conflict before proceeding.

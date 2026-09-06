@@ -1,0 +1,14 @@
+{
+  "checkpoint": "/Users/thomas/Desktop/trustOrCheckMe/results/v2/raw/v2.sqlite3",
+  "completeness_issue_count": 0,
+  "confidence_level": 0.95,
+  "frozen_mismatch_count": 0,
+  "hidden_label": "preregistered_hidden_owner",
+  "n_questions": 100,
+  "n_resamples": 5000,
+  "overwrote_frozen_v2b_tables": false,
+  "paraphrase_decisions": 6400,
+  "primary_subset_decisions": 6400,
+  "seed": 20260904,
+  "visible_label": "post_primary_visible_extension"
+}

@@ -28,7 +28,10 @@ from .v2_scoring import (
     v2_monotonicity,
     validate_factor_completeness,
 )
-from .v2_plotting import generate_v2_figures
+from .v2_datasets import load_v2_sample
+from .v2_plotting import generate_v2_figures, plot_prompt_visibility_robustness
+from .config import load_v2_experiment_config
+from .v2_prompts import PRIMARY_PROMPT_FAMILY, ROBUSTNESS_PROMPT_FAMILY
 
 
 @dataclass(frozen=True)
@@ -827,4 +830,459 @@ def analyze_v2(
         prompt_robustness=prompt_robustness,
         completeness_issues=completeness,
         output_directory=output,
+    )
+
+
+_FROZEN_V2B_OUTPUT_NAMES = frozenset(
+    {
+        "scored_decisions.csv",
+        "scored_decisions.json",
+        "model_summary.csv",
+        "model_summary.json",
+        "factorial_metrics.csv",
+        "factorial_metrics.json",
+        "owner_effects.csv",
+        "owner_effects.json",
+        "confidence_visibility_effects.csv",
+        "confidence_visibility_effects.json",
+        "owner_confidence_interactions.csv",
+        "owner_confidence_interactions.json",
+        "policy_comparison.csv",
+        "policy_comparison.json",
+        "monotonicity.csv",
+        "monotonicity.json",
+        "factor_completeness_issues.csv",
+        "factor_completeness_issues.json",
+        "analysis_manifest.json",
+        "README_RESULTS.md",
+        "table_model_summary.md",
+        "table_model_summary.tex",
+        "table_factorial_metrics.md",
+        "table_factorial_metrics.tex",
+        "table_owner_effects.md",
+        "table_owner_effects.tex",
+        "table_confidence_visibility_effects.md",
+        "table_confidence_visibility_effects.tex",
+        "table_owner_confidence_interactions.md",
+        "table_owner_confidence_interactions.tex",
+        "table_policy_comparison.md",
+        "table_policy_comparison.tex",
+        "figure_owner_verify_rate.png",
+        "figure_owner_verify_rate.pdf",
+        "figure_owner_unsafe_unverified.png",
+        "figure_owner_unsafe_unverified.pdf",
+        "figure_owner_effect.png",
+        "figure_owner_effect.pdf",
+        "figure_confidence_interaction.png",
+        "figure_confidence_interaction.pdf",
+        "figure_policy_cost.png",
+        "figure_policy_cost.pdf",
+    }
+)
+
+
+@dataclass(frozen=True)
+class V2RobustnessAnalysisResult:
+    n_questions: int
+    paraphrase_decisions: int
+    frozen_mismatches: list[dict[str, Any]]
+    completeness_issues: list[dict[str, Any]]
+    owner_robustness: list[dict[str, Any]]
+    visibility_robustness: list[dict[str, Any]]
+    action_agreement: list[dict[str, Any]]
+    output_directory: Path
+    written_files: tuple[str, ...]
+
+
+def _score_joined_decisions(
+    answers: Sequence[Mapping[str, Any]],
+    decisions: Sequence[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    answer_by_key = {
+        (str(row["example_id"]), str(row["model_id"])): row for row in answers
+    }
+    scored: list[dict[str, Any]] = []
+    for decision in decisions:
+        answer = answer_by_key.get(
+            (str(decision["example_id"]), str(decision["model_id"]))
+        )
+        if answer is None:
+            raise ValueError(
+                "Verification record has no matching frozen answer: "
+                f"{decision['example_id']} / {decision['model_id']}"
+            )
+        scores = score_verification_decision(
+            is_correct=bool(answer["is_correct"]),
+            action=decision["action"],
+            probability_correct=decision["probability_correct"],
+            error_cost=decision["error_cost"],
+            verification_cost=decision["verification_cost"],
+        )
+        scored.append(
+            {
+                **decision,
+                **scores,
+                "is_correct": bool(answer["is_correct"]),
+                "category": answer.get("category"),
+            }
+        )
+    return scored
+
+
+def _frozen_field_mismatches(
+    rows: Sequence[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    issues: list[dict[str, Any]] = []
+    grouped: dict[tuple[Any, ...], dict[str, Mapping[str, Any]]] = defaultdict(dict)
+    keys = (
+        "example_id",
+        "model_id",
+        "decision_owner",
+        "confidence_visibility",
+        "error_cost",
+    )
+    for row in rows:
+        grouped[tuple(row.get(key) for key in keys)][str(row["prompt_family"])] = row
+    for key, families in grouped.items():
+        if (
+            PRIMARY_PROMPT_FAMILY not in families
+            or ROBUSTNESS_PROMPT_FAMILY not in families
+        ):
+            continue
+        primary = families[PRIMARY_PROMPT_FAMILY]
+        paraphrase = families[ROBUSTNESS_PROMPT_FAMILY]
+        for field in ("frozen_answer_label", "probability_correct"):
+            if primary.get(field) != paraphrase.get(field):
+                issues.append(
+                    {
+                        **dict(zip(keys, key)),
+                        "field": field,
+                        "primary": primary.get(field),
+                        "paraphrase": paraphrase.get(field),
+                    }
+                )
+    return issues
+
+
+def _question_effect_pairs(
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    factor_key: str,
+    left: str,
+    right: str,
+) -> dict[str, float]:
+    pairs = _paired_values(
+        rows,
+        factor_key=factor_key,
+        left=left,
+        right=right,
+        value=lambda row: float(row["verified_first"]),
+    )
+    return {example_id: float(left_value) - float(right_value) for example_id, left_value, right_value in pairs}
+
+
+def _compare_family_effects(
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    group_keys: Sequence[str],
+    factor_key: str,
+    left: str,
+    right: str,
+    n_resamples: int,
+    confidence_level: float,
+    seed: int,
+) -> list[dict[str, Any]]:
+    grouped: dict[tuple[Any, ...], list[Mapping[str, Any]]] = defaultdict(list)
+    for row in rows:
+        grouped[tuple(row.get(key) for key in group_keys)].append(row)
+    output: list[dict[str, Any]] = []
+    for index, (key, group) in enumerate(
+        sorted(grouped.items(), key=lambda item: repr(item[0]))
+    ):
+        primary_rows = [
+            row for row in group if row["prompt_family"] == PRIMARY_PROMPT_FAMILY
+        ]
+        paraphrase_rows = [
+            row
+            for row in group
+            if row["prompt_family"] == ROBUSTNESS_PROMPT_FAMILY
+        ]
+        primary_effects = _question_effect_pairs(
+            primary_rows, factor_key=factor_key, left=left, right=right
+        )
+        paraphrase_effects = _question_effect_pairs(
+            paraphrase_rows, factor_key=factor_key, left=left, right=right
+        )
+        shared = sorted(set(primary_effects) & set(paraphrase_effects))
+        primary = paired_bootstrap(
+            [
+                (example_id, primary_effects[example_id] + 0.0, 0.0)
+                for example_id in shared
+            ],
+            n_resamples=n_resamples,
+            confidence_level=confidence_level,
+            seed=seed + index,
+        )
+        paraphrase = paired_bootstrap(
+            [
+                (example_id, paraphrase_effects[example_id] + 0.0, 0.0)
+                for example_id in shared
+            ],
+            n_resamples=n_resamples,
+            confidence_level=confidence_level,
+            seed=seed + 1_000 + index,
+        )
+        difference = paired_bootstrap(
+            [
+                (
+                    example_id,
+                    paraphrase_effects[example_id],
+                    primary_effects[example_id],
+                )
+                for example_id in shared
+            ],
+            n_resamples=n_resamples,
+            confidence_level=confidence_level,
+            seed=seed + 2_000 + index,
+        )
+        output.append(
+            {
+                **dict(zip(group_keys, key)),
+                "n_questions": len(shared),
+                "primary_estimate": primary.estimate,
+                "primary_ci_lower": primary.lower,
+                "primary_ci_upper": primary.upper,
+                "paraphrase_estimate": paraphrase.estimate,
+                "paraphrase_ci_lower": paraphrase.lower,
+                "paraphrase_ci_upper": paraphrase.upper,
+                "difference_estimate": difference.estimate,
+                "difference_ci_lower": difference.lower,
+                "difference_ci_upper": difference.upper,
+                "primary_sign": (
+                    "positive"
+                    if primary.estimate > 0
+                    else "negative"
+                    if primary.estimate < 0
+                    else "zero"
+                ),
+                "paraphrase_sign": (
+                    "positive"
+                    if paraphrase.estimate > 0
+                    else "negative"
+                    if paraphrase.estimate < 0
+                    else "zero"
+                ),
+                "qualitative_sign_match": (
+                    (primary.estimate > 0 and paraphrase.estimate > 0)
+                    or (primary.estimate < 0 and paraphrase.estimate < 0)
+                    or (primary.estimate == 0 and paraphrase.estimate == 0)
+                ),
+            }
+        )
+    return output
+
+
+def analyze_v2_robustness(
+    checkpoint: str | Path,
+    *,
+    output_directory: str | Path,
+    seed: int = 20260904,
+    n_resamples: int = 5000,
+    confidence_level: float = 0.95,
+    make_plots: bool = True,
+    example_ids: set[str] | None = None,
+) -> V2RobustnessAnalysisResult:
+    """Analyze paraphrase robustness without rewriting frozen V2-B tables."""
+    config = load_v2_experiment_config()
+    if example_ids is None:
+        robustness_ids = {
+            example.example_id for example in load_v2_sample(config, "robustness")
+        }
+        if len(robustness_ids) != config.dataset.robustness_size:
+            raise ValueError(
+                "Robustness sample size mismatch: "
+                f"{len(robustness_ids)} != {config.dataset.robustness_size}"
+            )
+    else:
+        robustness_ids = set(example_ids)
+        if not robustness_ids:
+            raise ValueError("example_ids must be non-empty")
+    answers = [
+        row
+        for row in _load_records(checkpoint, "answer")
+        if str(row["example_id"]) in robustness_ids
+    ]
+    decisions = [
+        row
+        for row in _load_records(checkpoint, "verification")
+        if str(row["example_id"]) in robustness_ids
+    ]
+    if not decisions:
+        raise ValueError("No robustness-subset verification records were found")
+    scored = _score_joined_decisions(answers, decisions)
+    frozen_mismatches = _frozen_field_mismatches(scored)
+    if frozen_mismatches:
+        raise ValueError(
+            "Paraphrase records do not reuse the frozen V2-B answer/q: "
+            f"{len(frozen_mismatches)} mismatch(es)"
+        )
+    paraphrase = [
+        row for row in scored if row["prompt_family"] == ROBUSTNESS_PROMPT_FAMILY
+    ]
+    completeness = validate_factor_completeness(paraphrase)
+    action_agreement = _prompt_robustness(scored)
+    owner_rows = [
+        row for row in scored if row["confidence_visibility"] == "hidden"
+    ]
+    owner_robustness = _compare_family_effects(
+        owner_rows,
+        group_keys=("model_id", "error_cost"),
+        factor_key="decision_owner",
+        left="ai_system",
+        right="human",
+        n_resamples=n_resamples,
+        confidence_level=confidence_level,
+        seed=seed + 50_000,
+    )
+    for row in owner_robustness:
+        row["robustness_scope"] = "preregistered_hidden_owner"
+    visibility_robustness = _compare_family_effects(
+        scored,
+        group_keys=("model_id", "decision_owner", "error_cost"),
+        factor_key="confidence_visibility",
+        left="visible",
+        right="hidden",
+        n_resamples=n_resamples,
+        confidence_level=confidence_level,
+        seed=seed + 60_000,
+    )
+    for row in visibility_robustness:
+        row["robustness_scope"] = "post_primary_visible_extension"
+    output = Path(output_directory)
+    output.mkdir(parents=True, exist_ok=True)
+    artifacts = {
+        "prompt_robustness": action_agreement,
+        "prompt_owner_robustness": owner_robustness,
+        "prompt_confidence_visibility_robustness": visibility_robustness,
+    }
+    written: list[str] = []
+    for name, rows in artifacts.items():
+        csv_name = f"{name}.csv"
+        json_name = f"{name}.json"
+        if csv_name in _FROZEN_V2B_OUTPUT_NAMES or json_name in _FROZEN_V2B_OUTPUT_NAMES:
+            raise RuntimeError(f"Refusing to overwrite frozen V2-B file {csv_name}")
+        _write_csv(output / csv_name, rows)
+        _write_json(output / json_name, rows)
+        written.extend([csv_name, json_name])
+    table_specs = {
+        "prompt_robustness": (
+            action_agreement,
+            (
+                "model_id",
+                "decision_owner",
+                "confidence_visibility",
+                "error_cost",
+                "n",
+                "action_agreement",
+                "primary_verify_rate",
+                "paraphrase_verify_rate",
+            ),
+        ),
+        "prompt_owner_robustness": (
+            owner_robustness,
+            (
+                "model_id",
+                "error_cost",
+                "n_questions",
+                "primary_estimate",
+                "primary_ci_lower",
+                "primary_ci_upper",
+                "paraphrase_estimate",
+                "paraphrase_ci_lower",
+                "paraphrase_ci_upper",
+                "difference_estimate",
+                "difference_ci_lower",
+                "difference_ci_upper",
+                "qualitative_sign_match",
+                "robustness_scope",
+            ),
+        ),
+        "prompt_confidence_visibility_robustness": (
+            visibility_robustness,
+            (
+                "model_id",
+                "decision_owner",
+                "error_cost",
+                "n_questions",
+                "primary_estimate",
+                "primary_ci_lower",
+                "primary_ci_upper",
+                "paraphrase_estimate",
+                "paraphrase_ci_lower",
+                "paraphrase_ci_upper",
+                "difference_estimate",
+                "difference_ci_lower",
+                "difference_ci_upper",
+                "qualitative_sign_match",
+                "robustness_scope",
+            ),
+        ),
+    }
+    for name, (rows, columns) in table_specs.items():
+        md_name = f"table_{name}.md"
+        tex_name = f"table_{name}.tex"
+        if md_name in _FROZEN_V2B_OUTPUT_NAMES or tex_name in _FROZEN_V2B_OUTPUT_NAMES:
+            raise RuntimeError(f"Refusing to overwrite frozen V2-B table {md_name}")
+        _write_markdown_table(output / md_name, rows, columns)
+        _write_latex_table(output / tex_name, rows, columns)
+        written.extend([md_name, tex_name])
+    if make_plots:
+        figure_rows = [
+            {
+                "model_id": row["model_id"],
+                "prompt_family": family,
+                "error_cost": row["error_cost"],
+                "estimate": row[f"{label}_estimate"],
+            }
+            for row in visibility_robustness
+            for family, label in (
+                (PRIMARY_PROMPT_FAMILY, "primary"),
+                (ROBUSTNESS_PROMPT_FAMILY, "paraphrase"),
+            )
+        ]
+        paths = plot_prompt_visibility_robustness(
+            figure_rows,
+            output / "figure_prompt_confidence_visibility_robustness",
+        )
+        written.extend([Path(path).name for path in paths.values()])
+    _write_json(
+        output / "robustness_analysis_manifest.json",
+        {
+            "checkpoint": str(Path(checkpoint).resolve()),
+            "n_questions": len(robustness_ids),
+            "paraphrase_decisions": len(paraphrase),
+            "primary_subset_decisions": sum(
+                row["prompt_family"] == PRIMARY_PROMPT_FAMILY for row in scored
+            ),
+            "frozen_mismatch_count": len(frozen_mismatches),
+            "completeness_issue_count": len(completeness),
+            "n_resamples": n_resamples,
+            "confidence_level": confidence_level,
+            "seed": seed,
+            "hidden_label": "preregistered_hidden_owner",
+            "visible_label": "post_primary_visible_extension",
+            "overwrote_frozen_v2b_tables": False,
+        },
+    )
+    written.append("robustness_analysis_manifest.json")
+    return V2RobustnessAnalysisResult(
+        n_questions=len(robustness_ids),
+        paraphrase_decisions=len(paraphrase),
+        frozen_mismatches=frozen_mismatches,
+        completeness_issues=completeness,
+        owner_robustness=owner_robustness,
+        visibility_robustness=visibility_robustness,
+        action_agreement=action_agreement,
+        output_directory=output,
+        written_files=tuple(written),
     )

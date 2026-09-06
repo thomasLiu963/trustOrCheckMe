@@ -27,7 +27,7 @@ from .config import (
 from .datasets import load_local_sample, load_or_create_pilot_sample
 from .runner import ExperimentRunner, RunSummary
 from .schemas import ConfidenceVisibility, DecisionOwner
-from .v2_analysis import analyze_v2
+from .v2_analysis import analyze_v2, analyze_v2_robustness
 from .v2_datasets import load_v2_sample, prepare_v2_sample
 from .v2_prompts import (
     PRIMARY_PROMPT_FAMILY,
@@ -554,7 +554,9 @@ async def _run_v2_robustness(args: argparse.Namespace) -> None:
             allow_paid=bool(args.yes),
             retry_failed=args.retry_failed,
             prompt_family=ROBUSTNESS_PROMPT_FAMILY,
-            confidence_states=[ConfidenceVisibility.HIDDEN],
+            confidence_states=[
+                ConfidenceVisibility(args.confidence_visibility)
+            ],
         )
     summary_data = dict(summary.__dict__)
     payloads = summary_data.pop("sample_payloads")
@@ -595,6 +597,28 @@ def _analyze_v2(args: argparse.Namespace) -> None:
         f"Analyzed {len(result.scored_rows)} V2 decisions; "
         f"{len(result.completeness_issues)} factor-completeness issue(s). "
         f"Outputs: {result.output_directory}"
+    )
+
+
+def _analyze_v2_robustness(args: argparse.Namespace) -> None:
+    config = _v2_config(args)
+    result = analyze_v2_robustness(
+        _v2_checkpoint(config, args.checkpoint),
+        output_directory=config.resolve_path(config.results.paper_output_directory),
+        seed=config.seed,
+        n_resamples=(
+            args.bootstrap_resamples
+            if args.bootstrap_resamples is not None
+            else config.bootstrap.n_resamples
+        ),
+        confidence_level=config.bootstrap.confidence_level,
+    )
+    print(
+        f"Analyzed paraphrase robustness on {result.n_questions} questions; "
+        f"{result.paraphrase_decisions} paraphrase decisions; "
+        f"{len(result.completeness_issues)} completeness issue(s). "
+        f"Wrote {len(result.written_files)} robustness-only file(s) to "
+        f"{result.output_directory}"
     )
 
 
@@ -728,6 +752,15 @@ def build_parser() -> argparse.ArgumentParser:
     robustness.add_argument("--limit", type=int)
     robustness.add_argument("--concurrency", type=int)
     robustness.add_argument("--retry-failed", action="store_true")
+    robustness.add_argument(
+        "--confidence-visibility",
+        choices=("hidden", "visible"),
+        default="hidden",
+        help=(
+            "hidden is the preregistered robustness test. "
+            "visible is the post-primary confidence-visibility extension."
+        ),
+    )
     robustness_mode = robustness.add_mutually_exclusive_group(required=True)
     robustness_mode.add_argument("--dry-run", action="store_true")
     robustness_mode.add_argument("--yes", action="store_true")
@@ -736,6 +769,11 @@ def build_parser() -> argparse.ArgumentParser:
     _add_v2_config_options(analysis_v2)
     analysis_v2.add_argument("--checkpoint")
     analysis_v2.add_argument("--bootstrap-resamples", type=int)
+
+    analysis_robustness = subparsers.add_parser("analyze-v2-robustness")
+    _add_v2_config_options(analysis_robustness)
+    analysis_robustness.add_argument("--checkpoint")
+    analysis_robustness.add_argument("--bootstrap-resamples", type=int)
     return parser
 
 
@@ -775,6 +813,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             asyncio.run(_run_v2_robustness(args))
         elif args.command == "analyze-v2":
             _analyze_v2(args)
+        elif args.command == "analyze-v2-robustness":
+            _analyze_v2_robustness(args)
         else:  # pragma: no cover
             parser.error(f"Unknown command: {args.command}")
     except (

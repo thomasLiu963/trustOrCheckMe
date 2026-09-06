@@ -10,8 +10,13 @@ from src.schemas import (
     DecisionOwner,
     VerificationDecisionRecord,
 )
-from src.v2_analysis import analyze_v2
-from src.v2_prompts import build_verification_prompt
+from src.cli import build_parser
+from src.v2_analysis import analyze_v2, analyze_v2_robustness
+from src.v2_prompts import (
+    PRIMARY_PROMPT_FAMILY,
+    ROBUSTNESS_PROMPT_FAMILY,
+    build_verification_prompt,
+)
 from src.v2_scoring import (
     VERIFY_FIRST,
     confidence_policy_action,
@@ -89,6 +94,48 @@ def test_matched_owner_prompts_change_only_owner_language() -> None:
     ):
         assert shared in human
         assert shared in ai
+
+
+def test_paraphrase_visible_adds_only_frozen_probability() -> None:
+    hidden = build_verification_prompt(
+        question=_example().question,
+        choices=_example().choices,
+        answer_label="B",
+        probability_correct=0.73,
+        decision_owner="human",
+        confidence_visibility="hidden",
+        verification_cost=1,
+        error_cost=5,
+        prompt_family=ROBUSTNESS_PROMPT_FAMILY,
+    )
+    visible = build_verification_prompt(
+        question=_example().question,
+        choices=_example().choices,
+        answer_label="B",
+        probability_correct=0.73,
+        decision_owner="human",
+        confidence_visibility="visible",
+        verification_cost=1,
+        error_cost=5,
+        prompt_family=ROBUSTNESS_PROMPT_FAMILY,
+    )
+    sentence = (
+        "The AI previously estimated a 0.73 probability that this frozen answer "
+        "is correct."
+    )
+    assert sentence not in hidden
+    assert sentence in visible
+    hidden_lines = [line for line in hidden.splitlines() if line]
+    visible_lines = [
+        line for line in visible.splitlines() if line and line != sentence
+    ]
+    assert hidden_lines == visible_lines
+
+
+def test_robustness_cli_defaults_to_hidden() -> None:
+    parser = build_parser()
+    args = parser.parse_args(["run-v2-robustness", "--dry-run"])
+    assert args.confidence_visibility == "hidden"
 
 
 def test_confidence_visibility_only_exposes_frozen_probability() -> None:
@@ -338,3 +385,101 @@ def test_v2_analysis_preserves_factorial_pairing(tmp_path) -> None:
     assert (tmp_path / "paper" / "figure_policy_cost.png").exists()
     assert (tmp_path / "paper" / "table_owner_effects.md").exists()
     assert (tmp_path / "paper" / "table_policy_comparison.tex").exists()
+
+
+def test_analyze_v2_robustness_does_not_overwrite_primary_tables(tmp_path) -> None:
+    from src.checkpointing import CheckpointStore
+
+    checkpoint = tmp_path / "robustness.sqlite3"
+    output = tmp_path / "paper"
+    output.mkdir()
+    frozen = output / "owner_effects.csv"
+    frozen.write_text("do-not-touch\n", encoding="utf-8")
+    example = _example()
+    alias = "openai_gpt56_sol"
+    answer_key = "answer-key"
+    with CheckpointStore(checkpoint) as store:
+        store.register_request(
+            request_key=answer_key,
+            run_id="test",
+            stage="answer",
+            dataset=example.dataset_name,
+            example_id=example.example_id,
+            model_alias=alias,
+            requested_model_id="gpt-5.6-sol",
+            prompt_version="stage_1_answer_v2_structured",
+        )
+        store.mark_success(
+            answer_key,
+            AnswerRecord(
+                experiment_version="v2",
+                run_id="test",
+                request_key=answer_key,
+                example_id=example.example_id,
+                model_id=alias,
+                answer_label="B",
+                is_correct=True,
+                category=example.category,
+                question=example.question,
+                choices=example.choices,
+                correct_label="B",
+                raw_response='{"answer":"B"}',
+                prompt_version="stage_1_answer_v2_structured",
+            ),
+        )
+        for family in (PRIMARY_PROMPT_FAMILY, ROBUSTNESS_PROMPT_FAMILY):
+            for owner in DecisionOwner:
+                for visibility in ConfidenceVisibility:
+                    for error_cost in (2, 5, 10, 20):
+                        key = f"{family}-{owner.value}-{visibility.value}-{error_cost}"
+                        store.register_request(
+                            request_key=key,
+                            run_id="test",
+                            stage="verification",
+                            dataset=example.dataset_name,
+                            example_id=example.example_id,
+                            model_alias=alias,
+                            requested_model_id="gpt-5.6-sol",
+                            prompt_version=family,
+                        )
+                        action = (
+                            "VERIFY_FIRST"
+                            if visibility == ConfidenceVisibility.VISIBLE
+                            else "USE_UNVERIFIED"
+                        )
+                        store.mark_success(
+                            key,
+                            VerificationDecisionRecord(
+                                experiment_version="v2",
+                                run_id="test",
+                                request_key=key,
+                                example_id=example.example_id,
+                                model_id=alias,
+                                provider="openai",
+                                requested_model_id="gpt-5.6-sol",
+                                frozen_answer_label="B",
+                                probability_correct=0.73,
+                                decision_owner=owner,
+                                confidence_visibility=visibility,
+                                prompt_family=family,
+                                verification_cost=1,
+                                error_cost=error_cost,
+                                action=action,
+                                raw_response=f'{{"action":"{action}"}}',
+                                prompt_version=family,
+                            ),
+                        )
+    result = analyze_v2_robustness(
+        checkpoint,
+        output_directory=output,
+        n_resamples=20,
+        example_ids={example.example_id},
+    )
+    assert frozen.read_text(encoding="utf-8") == "do-not-touch\n"
+    assert (output / "prompt_robustness.csv").exists()
+    assert (output / "prompt_confidence_visibility_robustness.csv").exists()
+    assert (output / "figure_prompt_confidence_visibility_robustness.png").exists()
+    assert "owner_effects.csv" not in result.written_files
+    assert result.paraphrase_decisions == 16
+    assert result.completeness_issues == []
+    assert result.frozen_mismatches == []

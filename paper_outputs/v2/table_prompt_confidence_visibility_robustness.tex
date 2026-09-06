@@ -1,0 +1,38 @@
+\begin{tabular}{lllllllllllllll}
+\toprule
+model\_id & decision\_owner & error\_cost & n\_questions & primary\_estimate & primary\_ci\_lower & primary\_ci\_upper & paraphrase\_estimate & paraphrase\_ci\_lower & paraphrase\_ci\_upper & difference\_estimate & difference\_ci\_lower & difference\_ci\_upper & qualitative\_sign\_match & robustness\_scope \\
+\midrule
+anthropic\_sonnet5 & ai\_system & 10.0000 & 100 & 0.2200 & 0.1400 & 0.3000 & 0.2000 & 0.1300 & 0.2800 & -0.0200 & -0.0900 & 0.0500 & True & post\_primary\_visible\_extension \\
+anthropic\_sonnet5 & ai\_system & 2.0000 & 100 & 0.1400 & 0.0800 & 0.2100 & 0.1300 & 0.0600 & 0.2100 & -0.0100 & -0.0800 & 0.0600 & True & post\_primary\_visible\_extension \\
+anthropic\_sonnet5 & ai\_system & 20.0000 & 100 & 0.2000 & 0.1200 & 0.2800 & 0.1900 & 0.1200 & 0.2700 & -0.0100 & -0.0800 & 0.0600 & True & post\_primary\_visible\_extension \\
+anthropic\_sonnet5 & ai\_system & 5.0000 & 100 & 0.2200 & 0.1400 & 0.3000 & 0.1600 & 0.0900 & 0.2400 & -0.0600 & -0.1200 & 0.0000 & True & post\_primary\_visible\_extension \\
+anthropic\_sonnet5 & human & 10.0000 & 100 & 0.2500 & 0.1700 & 0.3400 & 0.2100 & 0.1400 & 0.2900 & -0.0400 & -0.1200 & 0.0400 & True & post\_primary\_visible\_extension \\
+anthropic\_sonnet5 & human & 2.0000 & 100 & 0.1000 & 0.0300 & 0.1700 & 0.1200 & 0.0500 & 0.1900 & 0.0200 & -0.0600 & 0.0900 & True & post\_primary\_visible\_extension \\
+anthropic\_sonnet5 & human & 20.0000 & 100 & 0.2500 & 0.1700 & 0.3400 & 0.2100 & 0.1300 & 0.2900 & -0.0400 & -0.1100 & 0.0300 & True & post\_primary\_visible\_extension \\
+anthropic\_sonnet5 & human & 5.0000 & 100 & 0.2300 & 0.1500 & 0.3200 & 0.1300 & 0.0700 & 0.2000 & -0.1000 & -0.1800 & -0.0200 & True & post\_primary\_visible\_extension \\
+google\_gemini38\_flash & ai\_system & 10.0000 & 100 & 0.1500 & 0.0800 & 0.2200 & 0.1100 & 0.0500 & 0.1800 & -0.0400 & -0.0900 & 0.0000 & True & post\_primary\_visible\_extension \\
+google\_gemini38\_flash & ai\_system & 2.0000 & 100 & -0.0300 & -0.0800 & 0.0200 & -0.0400 & -0.1000 & 0.0200 & -0.0100 & -0.0500 & 0.0300 & True & post\_primary\_visible\_extension \\
+google\_gemini38\_flash & ai\_system & 20.0000 & 100 & 0.1400 & 0.0800 & 0.2100 & 0.1700 & 0.1000 & 0.2500 & 0.0300 & -0.0300 & 0.0900 & True & post\_primary\_visible\_extension \\
+google\_gemini38\_flash & ai\_system & 5.0000 & 100 & -0.0300 & -0.0800 & 0.0200 & -0.0300 & -0.0800 & 0.0200 & 0.0000 & -0.0400 & 0.0400 & True & post\_primary\_visible\_extension \\
+google\_gemini38\_flash & human & 10.0000 & 100 & 0.1700 & 0.1000 & 0.2500 & 0.1300 & 0.0700 & 0.2000 & -0.0400 & -0.1000 & 0.0100 & True & post\_primary\_visible\_extension \\
+google\_gemini38\_flash & human & 2.0000 & 100 & -0.0200 & -0.0700 & 0.0300 & -0.0600 & -0.1200 & -0.0100 & -0.0400 & -0.0800 & -0.0100 & True & post\_primary\_visible\_extension \\
+google\_gemini38\_flash & human & 20.0000 & 100 & 0.1900 & 0.1100 & 0.2700 & 0.1300 & 0.0700 & 0.2000 & -0.0600 & -0.1100 & -0.0200 & True & post\_primary\_visible\_extension \\
+google\_gemini38\_flash & human & 5.0000 & 100 & 0.0500 & -0.0100 & 0.1100 & -0.0100 & -0.0700 & 0.0500 & -0.0600 & -0.1200 & -0.0100 & False & post\_primary\_visible\_extension \\
+openai\_gpt56\_sol & ai\_system & 10.0000 & 100 & -0.2200 & -0.3000 & -0.1400 & -0.3200 & -0.4200 & -0.2200 & -0.1000 & -0.1800 & -0.0200 & True & post\_primary\_visible\_extension \\
+openai\_gpt56\_sol & ai\_system & 2.0000 & 100 & -0.2400 & -0.3300 & -0.1600 & -0.3000 & -0.3900 & -0.2100 & -0.0600 & -0.1300 & 0.0100 & True & post\_primary\_visible\_extension \\
+openai\_gpt56\_sol & ai\_system & 20.0000 & 100 & -0.1300 & -0.2200 & -0.0500 & -0.3000 & -0.4000 & -0.2000 & -0.1700 & -0.2600 & -0.0900 & True & post\_primary\_visible\_extension \\
+openai\_gpt56\_sol & ai\_system & 5.0000 & 100 & -0.1700 & -0.2500 & -0.0900 & -0.3100 & -0.4100 & -0.2100 & -0.1400 & -0.2100 & -0.0700 & True & post\_primary\_visible\_extension \\
+openai\_gpt56\_sol & human & 10.0000 & 100 & -0.1800 & -0.2600 & -0.1000 & -0.3100 & -0.4100 & -0.2200 & -0.1300 & -0.2100 & -0.0500 & True & post\_primary\_visible\_extension \\
+openai\_gpt56\_sol & human & 2.0000 & 100 & -0.2000 & -0.2800 & -0.1200 & -0.3000 & -0.3900 & -0.2100 & -0.1000 & -0.1800 & -0.0200 & True & post\_primary\_visible\_extension \\
+openai\_gpt56\_sol & human & 20.0000 & 100 & -0.1700 & -0.2600 & -0.0900 & -0.3000 & -0.4100 & -0.2000 & -0.1300 & -0.2300 & -0.0300 & True & post\_primary\_visible\_extension \\
+openai\_gpt56\_sol & human & 5.0000 & 100 & -0.1700 & -0.2500 & -0.1000 & -0.3200 & -0.4200 & -0.2300 & -0.1500 & -0.2300 & -0.0700 & True & post\_primary\_visible\_extension \\
+xai\_grok420\_nonreasoning & ai\_system & 10.0000 & 100 & -0.1800 & -0.2600 & -0.1000 & -0.1000 & -0.1700 & -0.0400 & 0.0800 & -0.0100 & 0.1700 & True & post\_primary\_visible\_extension \\
+xai\_grok420\_nonreasoning & ai\_system & 2.0000 & 100 & -0.1800 & -0.2600 & -0.1000 & -0.1000 & -0.1800 & -0.0300 & 0.0800 & -0.0200 & 0.1800 & True & post\_primary\_visible\_extension \\
+xai\_grok420\_nonreasoning & ai\_system & 20.0000 & 100 & -0.0900 & -0.1600 & -0.0300 & -0.1100 & -0.1800 & -0.0400 & -0.0200 & -0.1200 & 0.0700 & True & post\_primary\_visible\_extension \\
+xai\_grok420\_nonreasoning & ai\_system & 5.0000 & 100 & -0.0900 & -0.1700 & -0.0100 & -0.0900 & -0.1500 & -0.0300 & 0.0000 & -0.0700 & 0.0700 & True & post\_primary\_visible\_extension \\
+xai\_grok420\_nonreasoning & human & 10.0000 & 100 & -0.1300 & -0.2000 & -0.0600 & -0.1200 & -0.1900 & -0.0500 & 0.0100 & -0.0700 & 0.0800 & True & post\_primary\_visible\_extension \\
+xai\_grok420\_nonreasoning & human & 2.0000 & 100 & -0.2000 & -0.2800 & -0.1200 & -0.1400 & -0.2200 & -0.0700 & 0.0600 & -0.0200 & 0.1500 & True & post\_primary\_visible\_extension \\
+xai\_grok420\_nonreasoning & human & 20.0000 & 100 & -0.1100 & -0.1800 & -0.0500 & -0.1200 & -0.1900 & -0.0600 & -0.0100 & -0.0900 & 0.0600 & True & post\_primary\_visible\_extension \\
+xai\_grok420\_nonreasoning & human & 5.0000 & 100 & -0.1500 & -0.2300 & -0.0800 & -0.1400 & -0.2100 & -0.0800 & 0.0100 & -0.0700 & 0.0900 & True & post\_primary\_visible\_extension \\
+\bottomrule
+\end{tabular}
