@@ -44,325 +44,89 @@
 \maketitle
 
 \begin{abstract}
-% Write the abstract after the main manuscript is stable.
+When should users trust an AI answer, and when should they verify it independently? We study whether a language model's own reported confidence can reliably govern that decision as the cost of being wrong rises. On a deterministic 500-question sample from MMLU-Pro across four model families, we freeze each answer and reported probability of correctness, then vary confidence visibility, human versus AI decision authority, and error cost, yielding 32,000 matched verification decisions. Making confidence visible produces large but model-specific shifts: Claude verifies more, GPT-5.6 Sol and Grok~4.20 verify less, and Gemini shifts toward more verification mainly at higher costs. For GPT-5.6 Sol, visible confidence reduces disagreement with the policy implied by its reported probability from 19.6--27.2\% to 0.2--2.2\% and nearly eliminates stake-monotonicity violations. Yet at the highest error cost, wrong answers left unverified rise from roughly 32--33\% to 54--56\%. Thus, a model can become much more consistent with its stated confidence while becoming worse at catching its own errors. Self-reported confidence is therefore not merely an uncertainty report; it can act as a downstream control signal for when human or external scrutiny enters the loop.
 \end{abstract}
 
 \section{Introduction}
 
-Large language models are increasingly asked not only to produce answers, but
-also to influence whether those answers receive further scrutiny. A system may
-answer directly, seek additional information, invoke a tool, defer to a human,
-or recommend that an answer be independently checked before it is used. This
-creates a second-order decision problem beyond answer generation itself:
-\emph{when should an already-generated answer be used as is, and when should it
-be verified first?} When the same AI system both generates an answer and
-participates in deciding whether that answer needs checking, uncertainty
-becomes part of a decision-authority mechanism: the system can shape not only
-what information is produced, but also when independent judgment enters the
-loop.
+Large language models are increasingly asked not only to produce answers, but also to influence whether those answers receive further scrutiny. A system may answer directly, invoke a tool, defer to a human, or recommend that an answer be independently checked before it is used. This creates a second-order decision problem beyond answer generation itself: \emph{when should an already-generated answer be trusted as is, and when should it be verified first?} When the same AI system both produces an answer and participates in deciding whether that answer needs checking, it can shape not only what information is produced, but also when independent judgment enters the loop.
 
-A natural control signal for this decision is the model's own reported
-confidence. Suppose a model has already produced an answer and reports a
-probability $q$ that the answer is correct. If independent verification costs
-$C$, while using a wrong answer without verification incurs cost $L$, then
-treating $q$ as the probability of correctness induces the simple
-expected-cost rule
+A natural control signal for this decision is the model's own reported confidence. Suppose a model has already produced an answer and reports a probability $q$ that the answer is correct. If independent verification costs $C$, while using a wrong answer without verification incurs cost $L$, then treating $q$ as the probability of correctness induces the expected-cost rule
 \[
     (1-q)L > C
     \quad \Longrightarrow \quad
     \textsc{Verify\_First}.
 \]
-This apparently straightforward rule hides two different questions. First,
-will a model's downstream verification behavior actually follow the policy
-implied by its stated confidence? Second, if it does, will stronger agreement
-with that policy produce better decisions about which answers actually need
-checking? These questions are distinct. A verification policy can be highly
-consistent with reported confidence even when that confidence is poorly
-aligned with whether a particular answer is correct.
+This raises two distinct questions. Will the model's downstream behavior actually follow the policy implied by its stated confidence? And if it does, will stronger agreement with that policy produce better decisions about which answers need checking? A verification policy can be highly consistent with reported confidence even when that confidence is poorly aligned with whether a particular answer is correct.
 
-We study these questions with a controlled post-answer design that separates
-answer generation, confidence elicitation, and verification policy. For each
-question, the model first produces a multiple-choice answer, which is frozen.
-It then reports a probability $q$ that this frozen answer is correct, which is
-also frozen. Only afterward does the model choose between using the answer
-without verification and verifying it first. At this final stage, we vary
-whether the previously reported $q$ is hidden or explicitly shown, whether
-verification authority is described as belonging to a human or to the AI
-system, and the cost of using a wrong answer without verification. Because the
-answer and reported confidence are held fixed before these manipulations, the
-experiment isolates changes in downstream verification policy rather than
-changes in answer generation or confidence elicitation.
+We study these questions with a controlled post-answer design that separates answer generation, confidence elicitation, and verification policy. For each question, the model first produces a multiple-choice answer, which is frozen. It then reports a probability $q$ that this frozen answer is correct, which is also frozen. Only afterward does the model choose between using the answer without verification and verifying it first. At this final stage, we vary whether the previously reported $q$ is hidden or explicitly shown, whether verification authority belongs to a human or to the AI system, and the cost of using a wrong answer without verification. Because the answer and reported confidence are held fixed before these manipulations, the experiment isolates changes in downstream verification policy rather than changes in answer generation or confidence elicitation.
 
-We evaluate 500 deterministic MMLU-Pro questions across four model families:
-OpenAI GPT-5.6 Sol, Anthropic Claude Sonnet 5, Google Gemini 3.8 Flash, and xAI
-Grok 4.20 non-reasoning. For each model--question pair, the final decision
-crosses two decision-authority conditions, two confidence-visibility
-conditions, and four error costs $L \in \{2,5,10,20\}$, with verification cost
-fixed at $C=1$. This yields 32,000 primary verification decisions. Statistical
-comparisons use the question as the independent sampling unit and
-question-level paired bootstrap confidence intervals.
+We evaluate a deterministic 500-question sample from MMLU-Pro across OpenAI GPT-5.6 Sol, Anthropic Claude Sonnet 5, Google Gemini 3.8 Flash, and xAI Grok 4.20 non-reasoning. Crossing two decision-authority conditions, two confidence-visibility conditions, and four error costs $L \in \{2,5,10,20\}$ with verification cost fixed at $C=1$ yields 32,000 primary verification decisions. Making confidence visible strongly changes verification behavior, but not in a common direction: Claude verifies more, GPT-5.6 Sol and Grok~4.20 verify less, and Gemini shifts toward more verification mainly at higher error costs.
 
-Explicitly surfacing the model's own previously reported confidence strongly
-changes verification behavior, but not in a common direction across model
-families. For Claude Sonnet 5, visible confidence increases verification by
-approximately 12.8--22.4 percentage points across authority and cost
-conditions. For GPT-5.6 Sol, it decreases verification by 16.2--20.8 points
-throughout. Grok 4.20 similarly decreases verification by 8.6--16.4 points.
-Gemini 3.8 Flash shows smaller effects at low error costs but substantially
-higher verification when confidence is visible at larger costs, with increases
-of roughly 12--17 points at $L=10$ and $L=20$. Thus, the same intervention---
-making self-reported confidence explicit to the downstream decision---can
-produce large and opposite policy shifts across model families.
+The clearest divergence appears in GPT-5.6 Sol. When confidence is hidden, its action disagrees with the policy implied by frozen reported confidence on roughly 19.6--27.2\% of questions across authority and cost conditions; when the same $q$ is shown, disagreement falls to 0.2--2.2\%. Stake-monotonicity violations simultaneously fall from 95 to 1 per 1,000 trajectories. Yet at $L=20$, among answers that are actually wrong, unverified use rises from 32.18\% to 56.32\% under human authority and from 33.33\% to 54.02\% under AI authority. Thus, greater confidence-policy alignment and better error filtering are not the same property.
 
-The most revealing case is GPT-5.6 Sol. We define
-\emph{confidence-policy alignment} by comparing the model's final action with
-the action implied by its frozen reported confidence under the supplied cost
-structure. When confidence is hidden, GPT-5.6 Sol disagrees with this
-confidence-implied policy on roughly 19.6--27.2\% of questions across
-authority and cost conditions. When the same reported $q$ is explicitly
-shown, disagreement collapses to 0.2--2.2\%. Its behavior simultaneously
-becomes almost perfectly ordered by the cost of error: stake-monotonicity
-violations fall from 95 to 1 per 1,000 trajectories.
-
-Yet this increased alignment with reported confidence does not improve actual
-error filtering. At the highest error cost, among GPT-5.6 Sol answers that are
-in fact wrong, the fraction used without verification rises from 32.18\% to
-56.32\% under human decision authority and from 33.33\% to 54.02\% under AI
-decision authority when confidence is made visible. In this case, explicitly
-surfacing confidence therefore produces a policy that is substantially more
-consistent with the model's stated uncertainty while leaving substantially
-more of its high-cost errors unchecked. Greater confidence-policy alignment
-and better verification quality are not the same property.
-
-This distinction also matters when comparing models. A system can catch nearly
-all of its wrong answers simply by verifying almost everything, but such a
-policy defeats the purpose of selective verification. Conversely, reducing
-verification burden can leave more errors unchecked. We therefore evaluate
-verification behavior using both error filtering and unnecessary verification
-of correct answers rather than interpreting raw verification rate as a measure
-of quality.
-
-Decision authority produces a smaller and less universal effect. Claude shows
-the clearest directional shift, generally verifying more when the AI system
-rather than the human is described as controlling the decision, particularly
-at higher error costs. The other model families show small or mixed average
-effects. We therefore do not find a general human-versus-AI authority
-asymmetry across models. Finally, on a prespecified 100-question robustness
-subset, the major confidence-visibility directions persist under one
-semantically equivalent Stage-3 paraphrase, although we do not claim
-invariance to arbitrary prompt wording.
-
-These results concern model behavior rather than human responses. We do not
-measure whether people trust, follow, resist, or override a model's
-verification recommendation. Instead, we isolate a technical prerequisite for
-such questions: whether a model's own uncertainty can reliably govern when its
-outputs are subjected to independent scrutiny. This matters for human--AI
-systems in which an AI does more than provide information and also participates
-in determining when human judgment, external evidence, or additional
-computation should intervene.
-
-\paragraph{Contributions.}
-Our contributions are threefold. First, we introduce a controlled post-answer
-evaluation that freezes both answer and reported confidence before separately
-varying confidence visibility, decision authority, and error cost across
-32,000 matched verification decisions. Second, we show that explicitly
-surfacing self-reported confidence can strongly reshape verification policy in
-opposite directions across model families, cautioning against treating
-reported confidence as a universally portable verification-control signal.
-Third, we identify a direct divergence between confidence-policy alignment and
-verification quality: for GPT-5.6 Sol, visible confidence makes downstream
-actions nearly coincide with the policy implied by reported $q$ while
-substantially more wrong high-cost answers remain unverified.
+Decision authority has a smaller and less universal effect: Claude shows the clearest directional shift, while the other model families show small or mixed average effects. On a fixed 100-question prompt-paraphrase subset, the major confidence-visibility directions also persist under one semantically equivalent Stage~3 wording, although effect magnitudes are not prompt-invariant. We study model behavior rather than human responses; the experiment does not measure whether people trust or follow these recommendations. Instead, it isolates an upstream question for human--AI systems---whether an AI's own uncertainty can reliably govern when its outputs are exposed to independent judgment.
 
 \section{Related Work}
 
 \paragraph{Self-reported uncertainty in language models.}
-A growing literature studies whether language models can express useful
-uncertainty about their own answers. Early work showed that models can be
-trained to verbalize probabilities that are meaningfully calibrated
-\citep{lin2022uncertainty}, while subsequent studies examined black-box
-confidence elicitation in instruction-tuned and closed-source models
-\citep{tian2023calibration,xiong2024uncertainty}. These results motivate
-self-reported confidence as an accessible uncertainty signal, particularly
-when token probabilities or model internals are unavailable. At the same
-time, calibration is not sufficient for our setting: even a confidence score
-that is informative about correctness may or may not govern a model's later
-decision about whether its answer should be checked.
+A growing literature studies whether language models can express useful uncertainty about their own answers. Early work showed that models can be trained to verbalize probabilities that are meaningfully calibrated \citep{lin2022uncertainty}, while subsequent studies examined black-box confidence elicitation in instruction-tuned and closed-source models \citep{tian2023calibration,xiong2024uncertainty}. These results motivate self-reported confidence as an accessible uncertainty signal, particularly when token probabilities or model internals are unavailable. At the same time, calibration is not sufficient for our setting: even a confidence score that is informative about correctness may or may not govern a model's later decision about whether its answer should be checked.
 
 \paragraph{Confidence, abstention, and downstream action.}
-Recent work has begun to examine this gap directly. RiskEval evaluates whether
-LLMs adapt abstention behavior as the penalty for an incorrect answer changes,
-finding that models can fail to convert verbal uncertainty into appropriately
-risk-sensitive abstention policies \citep{wang2026faithful}. Kumaran
-\citep{kumaran2026commitment} uses a two-stage answer--confidence--abstention
-paradigm and finds that verbal confidence predicts subsequent commitment more
-strongly than objective correctness, distinguishing verbal confidence from
-token-probability-based uncertainty. More broadly, selective prediction and
-abstention methods use uncertainty to trade coverage for error reduction,
-including approaches that explicitly control the error rate among accepted
-answers \citep{dong2026abstention}.
+Recent work has begun to examine this gap directly. RiskEval evaluates whether LLMs adapt abstention behavior as the penalty for an incorrect answer changes, finding that models can fail to convert verbal uncertainty into appropriately risk-sensitive abstention policies \citep{wang2026faithful}. \citet{kumaran2026commitment} uses a two-stage answer--confidence--abstention paradigm and finds that verbal confidence predicts subsequent commitment more strongly than objective correctness, distinguishing verbal confidence from token-probability-based uncertainty. More broadly, selective prediction and abstention methods use uncertainty to trade coverage for error reduction, including approaches that explicitly control the error rate among accepted answers \citep{dong2026abstention}.
 
-Our experiment is complementary to this work. Rather than asking only whether
-reported confidence predicts a later decision, we freeze the answer and
-reported probability and intervene on whether that same probability is
-explicitly available at decision time. This permits a matched comparison of
-the downstream policy with confidence hidden versus visible. It also separates
-\emph{confidence-policy alignment}---whether the action agrees with the
-decision rule implied by reported $q$---from \emph{verification quality}---
-whether wrong answers are filtered while unnecessary verification of correct
-answers is avoided.
+Our experiment is complementary to this work. Rather than asking only whether reported confidence predicts a later decision, we freeze the answer and reported probability and intervene on whether that same probability is explicitly available at decision time. This permits a matched comparison of the downstream policy with confidence hidden versus visible. It also separates \emph{confidence-policy alignment}---whether the action agrees with the decision rule implied by reported $q$---from \emph{verification quality}---whether wrong answers are filtered while unnecessary verification of correct answers is avoided.
 
 \paragraph{Reliance and decision authority in human--AI systems.}
-Research on AI-assisted decision making distinguishes mere reliance from
-\emph{appropriate} reliance: accepting useful AI advice while rejecting or
-scrutinizing erroneous advice \citep{schemmer2022reliance}. Interface
-interventions can alter this behavior; for example, cognitive forcing
-mechanisms can reduce human overreliance on incorrect AI recommendations
-\citep{bucinca2021trust}. Our study does not measure human reliance. Instead,
-it examines an upstream system-design question relevant to such interactions:
-when an AI participates in deciding whether its own output deserves
-independent scrutiny, how do its reported uncertainty and the location of
-decision authority shape that recommendation?
+Research on AI-assisted decision making distinguishes mere reliance from \emph{appropriate} reliance: accepting useful AI advice while rejecting or scrutinizing erroneous advice \citep{schemmer2022reliance}. Interface interventions can alter this behavior; for example, cognitive forcing mechanisms can reduce human overreliance on incorrect AI recommendations \citep{bucinca2021trust}. Our study does not measure human reliance. Instead, it examines an upstream system-design question relevant to such interactions: when an AI participates in deciding whether its own output deserves independent scrutiny, how do its reported uncertainty and the location of decision authority shape that recommendation?
 
 \section{Experimental Setup}
 
 \subsection{Dataset and models}
 
-We use the MMLU-Pro test split \citep{wang2024mmlupro}, a
-multiple-choice benchmark spanning 14 subject categories. The primary V2-B
-sample contains 500 questions: the earlier 200-question V2-A sample plus 300
-additional questions selected by deterministic category-stratified sampling
-without reference to observed model results. The 500 questions constitute a
-single primary sample; V2-A and V2-B are therefore not independent
-replications. A separate 100-question category-stratified subset, also selected
-without reference to outcomes, is used for prompt robustness.
+We use the MMLU-Pro test split \citep{wang2024mmlupro}, a multiple-choice benchmark spanning 14 subject categories. The primary sample contains 500 questions: the original 200-question sample plus 300 additional questions selected by deterministic category-stratified sampling without reference to model results. These 500 questions constitute a single primary sample rather than independent replications. A separate 100-question category-stratified subset, also selected without reference to outcomes, is used for prompt robustness.
 
-We evaluate four independently developed model families: OpenAI GPT-5.6 Sol
-(\texttt{gpt-5.6-sol}), Anthropic Claude Sonnet 5
-(\texttt{claude-sonnet-5}), Google Gemini 3.8 Flash
-(\texttt{gemini-3.8-flash}), and xAI Grok 4.20 non-reasoning
-(\texttt{grok-4.20-0309-non-reasoning}). OpenAI used reasoning effort
-\texttt{none}, Anthropic thinking was disabled, Gemini used thinking level
-\texttt{low}, and the xAI model is explicitly non-reasoning. No tools, search,
-retrieval, code execution, or external context were available. We used
-provider-native structured JSON outputs and did not override temperature or
-top-$p$ sampling parameters. Output was capped at 64 tokens for OpenAI,
-Anthropic, and xAI. Gemini used a 512-token ceiling because its mandatory
-low-thinking tokens share the output budget.
+We evaluate four independently developed model families: OpenAI GPT-5.6 Sol (\texttt{gpt-5.6-sol}), Anthropic Claude Sonnet 5 (\texttt{claude-sonnet-5}), Google Gemini 3.8 Flash (\texttt{gemini-3.8-flash}), and xAI Grok 4.20 non-reasoning (\texttt{grok-4.20-0309-non-reasoning}). OpenAI used reasoning effort \texttt{none}, Anthropic thinking was disabled, Gemini used thinking level \texttt{low}, and the xAI model is explicitly non-reasoning. No tools, search, retrieval, code execution, or external context were available. We used provider-native structured JSON outputs and did not override temperature or top-$p$ sampling parameters. Output was capped at 64 tokens for OpenAI, Anthropic, and xAI. Gemini used a 512-token ceiling because its mandatory low-thinking tokens share the output budget.
 
 \subsection{Three-stage protocol}
 
-Each model--question pair proceeds through three stages. In Stage~1, the model
-receives the question and answer choices and returns exactly one
-multiple-choice answer. This answer is then frozen. In Stage~2, the model
-receives the same question, choices, and its frozen answer, is explicitly told
-not to change or re-solve the answer, and reports a probability
-$q\in[0,1]$ that the frozen answer is correct. This reported confidence is also
-frozen.
+Each model--question pair proceeds through three stages. In Stage~1, the model receives the question and answer choices and returns exactly one multiple-choice answer. This answer is then frozen. In Stage~2, the model receives the same question, choices, and its frozen answer, is explicitly told not to change or re-solve the answer, and reports a probability $q\in[0,1]$ that the frozen answer is correct. This reported confidence is also frozen.
 
-Stage~3 does not permit the answer to change. Instead, the model selects exactly
-one of two actions:
-\textsc{Use\_Unverified} or \textsc{Verify\_First}. Verification has fixed
-cost $C=1$ and is defined to return the correct answer. Using the frozen answer
-without verification costs zero if it is correct and $L$ if it is wrong, where
+Stage~3 does not permit the answer to change. Instead, the model selects exactly one of two actions: \textsc{Use\_Unverified} or \textsc{Verify\_First}. Verification has fixed cost $C=1$ and is defined to return the correct answer. Using the frozen answer without verification costs zero if it is correct and $L$ if it is wrong, where
 \[
     L \in \{2,5,10,20\}.
 \]
-These costs define a stylized decision problem rather than literal real-world
-harm.
+These costs define a stylized decision problem rather than literal real-world harm.
 
-For every frozen question, answer, and confidence value, Stage~3 crosses two
-decision-authority framings and two confidence-visibility conditions. Under
-\emph{human authority}, the prompt states that the human controls whether the
-answer is independently verified before use; under \emph{AI authority}, it
-states that the AI system controls verification before delivery to the human.
-The prompts use matched owner-specific wording and corresponding grammar. In
-the \emph{visible-confidence} condition, Stage~3 additionally states the
-model's previously reported probability $q$; in the \emph{hidden-confidence}
-condition, this sentence is omitted. Confidence is never re-elicited in
-Stage~3. Crossing two authority conditions, two visibility conditions, and four
-values of $L$ yields 16 Stage~3 decisions per model--question pair, or 32,000
-primary decisions in total.
+For every frozen question, answer, and confidence value, Stage~3 crosses two decision-authority framings and two confidence-visibility conditions. Under \emph{human authority}, the prompt states that the human controls whether the answer is independently verified before use; under \emph{AI authority}, it states that the AI system controls verification before delivery to the human. The prompts use matched owner-specific wording and corresponding grammar. In the \emph{visible-confidence} condition, Stage~3 additionally states the model's previously reported probability $q$; in the \emph{hidden-confidence} condition, this sentence is omitted. Confidence is never re-elicited in Stage~3. Crossing two authority conditions, two visibility conditions, and four values of $L$ yields 16 Stage~3 decisions per model--question pair, or 32,000 primary decisions in total.
 
 \subsection{Metrics}
 
-We report Stage~1 accuracy and the Brier score of Stage~2 confidence separately
-from Stage~3 verification behavior. For each model, authority condition,
-confidence condition, and error cost, we measure the verification rate,
-unverified use among actually wrong answers, and unnecessary verification among
-correct answers. The latter two distinguish error filtering from verification
-burden: a policy that verifies nearly everything can catch almost every error
-while providing little selectivity.
+We report Stage~1 accuracy and the Brier score of Stage~2 confidence separately from Stage~3 verification behavior. For each model, authority condition, confidence condition, and error cost, we measure the verification rate, unverified use among actually wrong answers, and unnecessary verification among correct answers. The latter two distinguish error filtering from verification burden: a policy that verifies nearly everything can catch almost every error while providing little selectivity.
 
-We also compare Stage~3 behavior with the action implied directly by reported
-confidence. Under the supplied cost model, the confidence-implied policy
-verifies when
+We also compare Stage~3 behavior with the action implied directly by reported confidence. Under the supplied cost model, the confidence-implied policy verifies when
 \[
     (1-q)L > C.
 \]
-We call agreement between the model's Stage~3 action and this action
-\emph{confidence-policy alignment}, and report the corresponding disagreement
-rate. This is a behavioral comparison with the model's \emph{reported}
-probability; it does not assume that $q$ represents a latent internal belief.
-We additionally measure stake-monotonicity violations, defined as
-\textsc{Verify\_First}$\rightarrow$\textsc{Use\_Unverified} reversals as $L$
-increases within an otherwise matched trajectory, as well as realized cost
-under the synthetic cost model.
+We call agreement between the model's Stage~3 action and this action \emph{confidence-policy alignment}, and report the corresponding disagreement rate. This is a behavioral comparison with the model's \emph{reported} probability; it does not assume that $q$ represents a latent internal belief. We additionally measure stake-monotonicity violations, defined as \textsc{Verify\_First}$\rightarrow$\textsc{Use\_Unverified} reversals as $L$ increases within an otherwise matched trajectory, as well as realized cost under the synthetic cost model.
 
-The confidence-visibility effect is the paired difference
-\[
-P(\textsc{Verify\_First}\mid\text{visible})
--
-P(\textsc{Verify\_First}\mid\text{hidden}),
-\]
-and the owner effect is
-\[
-P(\textsc{Verify\_First}\mid\text{AI authority})
--
-P(\textsc{Verify\_First}\mid\text{human authority}).
-\]
-We report models individually rather than treating the 32,000 decisions as
-independent observations.
+The confidence-visibility effect is the paired difference $P(\textsc{Verify\_First}\mid\mathrm{visible})-P(\textsc{Verify\_First}\mid\mathrm{hidden})$; the owner effect analogously compares AI with human authority. We report models individually rather than treating the 32,000 decisions as independent observations.
 
 \subsection{Statistical inference and prompt robustness}
 
-The independent sampling unit is the question. We use 5,000 question-level
-paired bootstrap resamples and report nominal 95\% percentile confidence
-intervals, keeping all matched factor cells for a resampled question together.
-For metrics restricted to wrong answers, questions are resampled first and the
-wrong-answer subset is applied within each bootstrap replicate. We do not apply
-a multiplicity correction across the many descriptive cellwise comparisons;
-accordingly, we emphasize effect sizes, intervals, and repeated directional
-patterns rather than isolated significant cells.
+The independent sampling unit is the question. We use 5,000 question-level paired bootstrap resamples and report nominal 95\% percentile confidence intervals, keeping all matched factor cells for a resampled question together. For metrics restricted to wrong answers, questions are resampled first and the wrong-answer subset is applied within each bootstrap replicate. We do not apply a multiplicity correction across the many descriptive cellwise comparisons; accordingly, we emphasize effect sizes, intervals, and repeated directional patterns rather than isolated significant cells.
 
-Prompt robustness uses the fixed 100-question subset with the same frozen
-answers and reported confidences under one semantically equivalent Stage~3
-paraphrase. The preregistered robustness analysis covered the
-hidden-confidence condition (3,200 decisions). After completion of the primary
-experiment, we ran the corresponding visible-confidence extension (3,200
-additional decisions). We therefore distinguish the hidden-condition
-robustness analysis as preregistered and the visible-condition extension as
-post-primary.
+Prompt robustness uses the fixed 100-question subset with the same frozen answers and reported confidences under one semantically equivalent Stage~3 paraphrase. The preregistered robustness analysis covered the hidden-confidence condition (3,200 decisions). After completion of the primary experiment, we ran the corresponding visible-confidence extension (3,200 additional decisions). We therefore distinguish the hidden-condition robustness analysis as preregistered and the visible-condition extension as post-primary.
 
 \section{Results}
 
 \subsection{Baseline answer and confidence performance}
 
-The four model families differ substantially in both answer accuracy and
-reported-confidence calibration (Table~\ref{tab:baseline}). Gemini has the
-highest Stage~1 accuracy at 88.0\%, followed by GPT-5.6 Sol at 82.6\%, Claude
-Sonnet~5 at 74.2\%, and Grok~4.20 at 64.4\%. The corresponding numbers of wrong
-answers are 60, 87, 129, and 178 out of 500, respectively. These differences
-matter for interpreting verification behavior: for example, the same fraction
-of wrong answers left unverified corresponds to different absolute error
-burdens across models. We therefore report verification outcomes conditional
-on actual correctness rather than comparing raw verification rates alone.
+The four model families differ substantially in both answer accuracy and reported-confidence calibration (Table~\ref{tab:baseline}). Gemini has the highest Stage~1 accuracy at 88.0\%, followed by GPT-5.6 Sol at 82.6\%, Claude Sonnet~5 at 74.2\%, and Grok~4.20 at 64.4\%. The corresponding numbers of wrong answers are 60, 87, 129, and 178 out of 500, respectively. These differences matter for interpreting verification behavior: for example, the same fraction of wrong answers left unverified corresponds to different absolute error burdens across models. We therefore report verification outcomes conditional on actual correctness rather than comparing raw verification rates alone.
 
 \begin{table}[t]
   \centering
-  \caption{Stage~1 answer accuracy and Stage~2 confidence calibration on the
-  500-question primary sample. Brier score is computed from each model's
-  reported probability that its frozen answer is correct.}
+  \caption{Stage~1 answer accuracy and Stage~2 confidence calibration on the 500-question primary sample. Brier score is computed from each model's reported probability that its frozen answer is correct.}
   \label{tab:baseline}
   \begin{tabular}{lrrr}
     \toprule
@@ -378,61 +142,72 @@ on actual correctness rather than comparing raw verification rates alone.
 
 \subsection{Explicit confidence strongly changes verification policy}
 
-Making the model's own frozen confidence explicit produces large changes in
-verification behavior, but the direction differs sharply across model families
-(Figure~\ref{fig:visibility-rates}). Claude becomes consistently more
-verification-prone: across both authority conditions and all four error costs,
-visible confidence increases the verification rate by 12.8--22.4 percentage
-points. All eight corresponding 95\% bootstrap intervals exclude zero.
+Making the model's own frozen confidence explicit produces large changes in verification behavior, but the direction differs sharply across model families (Figure~\ref{fig:visibility-rates}). Claude becomes consistently more verification-prone: across both authority conditions and all four error costs, visible confidence increases the verification rate by 12.8--22.4 percentage points. All eight corresponding 95\% bootstrap intervals exclude zero.
 
-GPT-5.6 Sol moves in the opposite direction. Showing its frozen confidence
-reduces verification in all eight matched authority--cost conditions, by
-16.2--20.8 percentage points; again, all eight intervals exclude zero.
-Grok~4.20 shows the same qualitative direction, with decreases of
-8.6--16.4 points across all eight conditions.
+GPT-5.6 Sol moves in the opposite direction. Showing its frozen confidence reduces verification in all eight matched authority--cost conditions, by 16.2--20.8 percentage points; again, all eight intervals exclude zero. Grok~4.20 shows the same qualitative direction, with decreases of 8.6--16.4 points across all eight conditions.
 
-Gemini exhibits a different cost-dependent pattern. At $L=2$, visible
-confidence slightly reduces verification by 2.0--2.2 points. At $L=5$, the
-effects are small and mixed across authority conditions. At the larger error
-costs, however, visibility substantially increases verification: by
-12.4--13.0 points at $L=10$ and 16.4--16.6 points at $L=20$, with all four
-high-cost intervals excluding zero.
+Gemini exhibits a different cost-dependent pattern. At $L=2$, visible confidence slightly reduces verification by 2.0--2.2 points. At $L=5$, the effects are small and mixed across authority conditions. At the larger error costs, however, visibility substantially increases verification: by 12.4--13.0 points at $L=10$ and 16.4--16.6 points at $L=20$, with all four high-cost intervals excluding zero.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/figure_visibility_effect.pdf}
-  \caption{Effect of explicitly surfacing frozen self-reported confidence on
-  verification rate. Points show the paired difference
-  $P(\textsc{Verify\_First}\mid\mathrm{visible})-
-  P(\textsc{Verify\_First}\mid\mathrm{hidden})$; error bars are nominal 95\%
-  question-level bootstrap intervals. Positive values indicate more
-  verification when confidence is visible. The same intervention shifts
-  Claude toward more verification and GPT-5.6 Sol and Grok~4.20 toward less,
-  while Gemini's effect becomes positive at higher error costs.}
+  \caption{Effect of explicitly surfacing frozen self-reported confidence on verification rate. Points show the paired difference $P(\textsc{Verify\_First}\mid\mathrm{visible})-P(\textsc{Verify\_First}\mid\mathrm{hidden})$; error bars are nominal 95\% question-level bootstrap intervals. Positive values indicate more verification when confidence is visible. The same intervention shifts Claude toward more verification and GPT-5.6 Sol and Grok~4.20 toward less, while Gemini's effect becomes positive at higher error costs.}
   \label{fig:visibility-rates}
 \end{figure}
 
-The consistency of these within-model directions is more important than any
-single cellwise comparison. The same intervention---revealing a probability
-the model itself had already reported for the same frozen answer---increases
-verification by more than 20 points in some Claude conditions while decreasing
-it by roughly 20 points in GPT-5.6 Sol. Self-reported confidence therefore does
-not act as a model-independent verification-control signal with a common
-behavioral effect. Its downstream influence depends strongly on the model
-family using it.
+The consistency of these within-model directions is more important than any single cellwise comparison. The same intervention---revealing a probability the model itself had already reported for the same frozen answer---increases verification by more than 20 points in some Claude conditions while decreasing it by roughly 20 points in GPT-5.6 Sol. Self-reported confidence therefore does not act as a model-independent verification-control signal with a common behavioral effect. Its downstream influence depends strongly on the model family using it.
 
-% \subsection{Baseline Answer and Confidence Performance}
-% \subsection{Explicit Confidence Strongly Changes Verification Policy}
-% \subsection{Confidence-Policy Alignment Can Diverge from Error Filtering}
-% \subsection{Decision Authority Has a Model-Specific Effect}
-% \subsection{Prompt-Paraphrase Robustness}
-%
-% \section{Discussion and Limitations}
-%
-% \section{Conclusion}
+\subsection{Confidence-policy alignment can diverge from error filtering}
+\label{sec:alignment-quality}
+
+GPT-5.6 Sol provides the clearest separation between behavioral alignment with reported confidence and verification quality. When confidence is hidden, its Stage~3 action disagrees with the confidence-implied policy on 19.6--27.2\% of questions across authority and error-cost conditions (Figure~\ref{fig:openai-divergence}a). Making the same frozen $q$ explicit reduces disagreement to only 0.2--2.2\%. Thus, once its previously reported probability is shown, GPT-5.6 Sol's verification choices nearly coincide with the action obtained by directly applying that probability to the supplied cost rule.
+
+A separate consistency diagnostic shows the same transition. With confidence hidden, 95 of every 1,000 owner-specific trajectories contain at least one \textsc{Verify\_First}$\rightarrow$\textsc{Use\_Unverified} reversal as the cost of an error increases. With confidence visible, this falls to 1 per 1,000. Explicit confidence therefore makes the verification policy much more internally ordered as well as much more closely aligned with the policy implied by reported $q$.
+
+Crucially, stronger alignment does not imply better filtering of actual errors. At $L=20$, among GPT-5.6 Sol's 87 wrong answers, the fraction used without verification rises from 32.18\% to 56.32\% under human authority and from 33.33\% to 54.02\% under AI authority when confidence is made visible (Figure~\ref{fig:openai-divergence}b). At the same time, unnecessary verification among the 413 correct answers falls from 31.23\% to 16.71\% under human authority and from 33.17\% to 17.43\% under AI authority. Visibility therefore reduces verification burden on correct answers while allowing many more wrong answers through unchecked.
+
+The same tradeoff is reflected in realized cost under our synthetic decision model. At $L=20$, mean realized cost increases from 1.496 to 2.174 under human authority and from 1.550 to 2.104 under AI authority when confidence is shown. These costs are not measures of real-world harm; they summarize performance under the stylized $C=1$, $L=20$ decision problem. Together, the results show why confidence-policy alignment and verification quality must be evaluated separately: a downstream policy can become substantially more aligned with a model's \emph{reported} probability while becoming less effective at catching that model's actual errors.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/figure_openai_divergence.pdf}
+  \caption{For GPT-5.6 Sol, explicit confidence increases confidence-policy alignment while worsening high-cost error filtering. \textbf{(a)} Disagreement between the Stage~3 action and the action implied by frozen reported confidence $q$ across error costs. Visible confidence reduces disagreement from roughly 20--27\% to 0--2\%. \textbf{(b)} At $L=20$, the proportion of actually wrong answers used without verification increases substantially when confidence is visible, under both human and AI decision authority. Error bars are nominal 95\% question-level bootstrap intervals.}
+  \label{fig:openai-divergence}
+\end{figure}
+
+\subsection{Decision authority has a model-specific effect}
+
+Decision authority produces substantially smaller and less universal effects than confidence visibility. Claude shows the clearest directional pattern. When confidence is visible, assigning verification authority to the AI system increases the verification rate by 3.8--5.0 percentage points across all four error costs, with all corresponding 95\% bootstrap intervals excluding zero. With confidence hidden, the owner effect is small at $L=2$ and $L=5$, but increases to 4.0 points at $L=10$ and 4.8 points at $L=20$, with both high-cost intervals excluding zero. The remaining model families show small or mixed signed effects rather than a common human-versus-AI asymmetry.
+
+Small marginal owner effects do not imply identical question-level decisions. For GPT-5.6 Sol, for example, human- and AI-authority actions disagree on 11.6--15.4\% of questions when confidence is hidden even though the signed owner effect remains near zero; with confidence visible, paired disagreement falls to 0.2--2.2\%. Grok~4.20 shows the opposite change, with paired disagreement rising from 2.8--6.2\% when confidence is hidden to 13.4--18.2\% when it is visible. Thus, the marginal owner gap and the frequency with which authority framing changes individual decisions capture different aspects of policy sensitivity.
+
+\subsection{Prompt-paraphrase robustness}
+
+We repeated Stage~3 on the fixed 100-question subset using one semantically equivalent paraphrase. The hidden-confidence paraphrase was preregistered; the corresponding visible-confidence condition was added after completion of the primary experiment, allowing the confidence-visibility effect to be compared under the alternate wording.
+
+The qualitative visibility direction is preserved in all eight authority--cost cells for Claude, GPT-5.6 Sol, and Grok~4.20. Gemini preserves the direction in seven of eight cells, including the negative low-cost pattern and positive effects at $L=10$ and $L=20$. The sole sign change occurs under human authority at $L=5$: the primary-subset estimate is $+5$ percentage points (95\% CI $[-1,11]$), whereas the paraphrase estimate is $-1$ point (95\% CI $[-7,5]$); both intervals include zero. Effect magnitudes are not invariant---most notably, GPT-5.6 Sol's negative visibility effect becomes larger under the paraphrase---so we treat the robustness study as evidence for the major directional patterns rather than for prompt-independent effect sizes.
+
+\section{Discussion and Limitations}
+
+Our results suggest that making an AI system's self-reported uncertainty explicit is not a passive act of transparency. The same frozen probability substantially changes downstream verification policy, and does so in opposite directions across model families. A design that exposes confidence in order to make a system ``more uncertainty-aware'' can therefore alter how often the system seeks independent scrutiny rather than merely communicating information it was already using.
+
+The GPT-5.6 Sol result sharpens this distinction. Once its frozen reported confidence is visible, downstream actions nearly coincide with the policy mathematically implied by that probability, and stake-monotonicity violations almost disappear. Yet high-cost error filtering becomes worse. This shows that two desirable-looking properties---a policy that consistently follows stated uncertainty and a policy that selectively catches actual errors---need not coincide. In systems that use a model's own confidence to determine whether to call tools, defer, request human review, or otherwise seek external checks, evaluating only calibration or behavioral consistency can therefore miss an important failure mode.
+
+The authority manipulation gives a narrower result. We find no general human-versus-AI asymmetry across model families, although Claude shows a consistent directional effect and some models exhibit substantial paired decision changes despite near-zero marginal owner gaps. More broadly, our experiment does not establish how humans would react to these recommendations or who should normatively control verification. It instead isolates a system-level component of agency: an AI may participate not only in producing an answer, but also in determining when that answer is exposed to independent judgment. Whether uncertainty supports or undermines such oversight depends on how it is incorporated into the downstream policy.
+
+Several limitations bound these conclusions. First, we test four closed model families on a 500-question MMLU-Pro sample, so the results should not be treated as universal properties of language models or vendors. Model versions, provider-side changes, reasoning configurations, and decoding behavior may change the observed policies. Second, our cost model is deliberately stylized: verification is assumed to cost $C=1$ and to return the correct answer, while an unverified error incurs synthetic cost $L$. Real verification can itself fail, vary in cost, or introduce delay. Third, reported $q$ is an elicited verbal probability, not a direct measurement of latent internal uncertainty. Confidence-policy alignment therefore describes behavioral agreement with a rule constructed from the reported probability, not faithfulness to an inaccessible internal state.
+
+Fourth, Stage~3 uses one primary prompt family plus one semantically equivalent paraphrase on a 100-question subset. The main visibility directions are fairly robust to that paraphrase, but effect magnitudes can change substantially, and we do not claim prompt invariance. The visible-confidence half of the paraphrase study was added post-primary and is reported as such. Fifth, the authority manipulation changes prompt framing rather than instantiating a real human decision-maker, institution, or deployment context. Finally, we report many cellwise comparisons with nominal bootstrap intervals and no multiplicity correction; our strongest claims therefore rely on large paired effects and repeated directional patterns rather than isolated threshold crossings.
+
+These limitations leave several natural extensions: testing additional model families and open-weight systems, replacing the perfect verifier with noisy or cost-varying verification mechanisms, studying richer tasks beyond multiple-choice QA, and measuring how human users respond when an AI both answers a question and recommends whether its answer deserves independent checking.
+
+\section{Conclusion}
+
+Self-reported confidence can strongly govern whether a language model chooses to seek independent verification, but greater agreement with that confidence does not guarantee better verification. Across four model families, making frozen confidence explicit produced large and model-specific policy shifts. Most notably, GPT-5.6 Sol became almost perfectly aligned with the policy implied by its reported probability while leaving substantially more wrong high-cost answers unchecked. Systems that use model-generated uncertainty to control oversight should therefore evaluate not only whether downstream behavior follows confidence, but whether that confidence leads scrutiny to the answers that actually need it.
+
 % -------------------------------------------------------------------------
-
 \FloatBarrier
+
 \bibliographystyle{plainnat}
 \bibliography{references}
 
