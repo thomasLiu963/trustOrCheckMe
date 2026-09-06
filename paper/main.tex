@@ -20,6 +20,7 @@
 % Keep PDF metadata anonymous for double-blind review.
 % Do not put real names, affiliations, or emails here.
 \hypersetup{
+  hidelinks,
   pdfauthor={Anonymous Author(s)},
   pdfcreator={LaTeX},
   pdfsubject={NeurIPS 2026 workshop submission (anonymous review)}
@@ -341,7 +342,83 @@ additional decisions). We therefore distinguish the hidden-condition
 robustness analysis as preregistered and the visible-condition extension as
 post-primary.
 
-% \section{Results}
+\section{Results}
+
+\subsection{Baseline answer and confidence performance}
+
+The four model families differ substantially in both answer accuracy and
+reported-confidence calibration (Table~\ref{tab:baseline}). Gemini has the
+highest Stage~1 accuracy at 88.0\%, followed by GPT-5.6 Sol at 82.6\%, Claude
+Sonnet~5 at 74.2\%, and Grok~4.20 at 64.4\%. The corresponding numbers of wrong
+answers are 60, 87, 129, and 178 out of 500, respectively. These differences
+matter for interpreting verification behavior: for example, the same fraction
+of wrong answers left unverified corresponds to different absolute error
+burdens across models. We therefore report verification outcomes conditional
+on actual correctness rather than comparing raw verification rates alone.
+
+\begin{table}[t]
+  \centering
+  \caption{Stage~1 answer accuracy and Stage~2 confidence calibration on the
+  500-question primary sample. Brier score is computed from each model's
+  reported probability that its frozen answer is correct.}
+  \label{tab:baseline}
+  \begin{tabular}{lrrr}
+    \toprule
+    Model & Accuracy (\%) & Wrong $n$ & Brier $\downarrow$ \\
+    \midrule
+    Gemini 3.8 Flash        & 88.0 & 60  & 0.0834 \\
+    GPT-5.6 Sol             & 82.6 & 87  & 0.1579 \\
+    Claude Sonnet 5         & 74.2 & 129 & 0.1633 \\
+    Grok 4.20 non-reasoning & 64.4 & 178 & 0.1912 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Explicit confidence strongly changes verification policy}
+
+Making the model's own frozen confidence explicit produces large changes in
+verification behavior, but the direction differs sharply across model families
+(Figure~\ref{fig:visibility-rates}). Claude becomes consistently more
+verification-prone: across both authority conditions and all four error costs,
+visible confidence increases the verification rate by 12.8--22.4 percentage
+points. All eight corresponding 95\% bootstrap intervals exclude zero.
+
+GPT-5.6 Sol moves in the opposite direction. Showing its frozen confidence
+reduces verification in all eight matched authority--cost conditions, by
+16.2--20.8 percentage points; again, all eight intervals exclude zero.
+Grok~4.20 shows the same qualitative direction, with decreases of
+8.6--16.4 points across all eight conditions.
+
+Gemini exhibits a different cost-dependent pattern. At $L=2$, visible
+confidence slightly reduces verification by 2.0--2.2 points. At $L=5$, the
+effects are small and mixed across authority conditions. At the larger error
+costs, however, visibility substantially increases verification: by
+12.4--13.0 points at $L=10$ and 16.4--16.6 points at $L=20$, with all four
+high-cost intervals excluding zero.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/figure_visibility_rates.pdf}
+  \caption{Verification rates across error costs, confidence visibility, and
+  decision authority. Each panel shows one model family. Solid lines denote
+  hidden confidence and dashed lines visible confidence; marker shape
+  distinguishes human from AI decision authority. Explicitly surfacing the
+  same previously reported confidence produces opposite shifts across model
+  families: Claude generally verifies more, GPT-5.6 Sol and Grok~4.20 verify
+  less, and Gemini shifts toward greater verification primarily at higher
+  error costs.}
+  \label{fig:visibility-rates}
+\end{figure}
+
+The consistency of these within-model directions is more important than any
+single cellwise comparison. The same intervention---revealing a probability
+the model itself had already reported for the same frozen answer---increases
+verification by more than 20 points in some Claude conditions while decreasing
+it by roughly 20 points in GPT-5.6 Sol. Self-reported confidence therefore does
+not act as a model-independent verification-control signal with a common
+behavioral effect. Its downstream influence depends strongly on the model
+family using it.
+
 % \subsection{Baseline Answer and Confidence Performance}
 % \subsection{Explicit Confidence Strongly Changes Verification Policy}
 % \subsection{Confidence-Policy Alignment Can Diverge from Error Filtering}
