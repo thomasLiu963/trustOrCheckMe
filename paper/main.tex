@@ -221,13 +221,126 @@ when an AI participates in deciding whether its own output deserves
 independent scrutiny, how do its reported uncertainty and the location of
 decision authority shape that recommendation?
 
-% -------------------------------------------------------------------------
-% The remaining main-paper structure will be added as we write it:
-%
-% \section{Related Work}
-%
-% \section{Experimental Setup}
-%
+\section{Experimental Setup}
+
+\subsection{Dataset and models}
+
+We use the MMLU-Pro test split \citep{wang2024mmlupro}, a
+multiple-choice benchmark spanning 14 subject categories. The primary V2-B
+sample contains 500 questions: the earlier 200-question V2-A sample plus 300
+additional questions selected by deterministic category-stratified sampling
+without reference to observed model results. The 500 questions constitute a
+single primary sample; V2-A and V2-B are therefore not independent
+replications. A separate 100-question category-stratified subset, also selected
+without reference to outcomes, is used for prompt robustness.
+
+We evaluate four independently developed model families: OpenAI GPT-5.6 Sol
+(\texttt{gpt-5.6-sol}), Anthropic Claude Sonnet 5
+(\texttt{claude-sonnet-5}), Google Gemini 3.8 Flash
+(\texttt{gemini-3.8-flash}), and xAI Grok 4.20 non-reasoning
+(\texttt{grok-4.20-0309-non-reasoning}). OpenAI used reasoning effort
+\texttt{none}, Anthropic thinking was disabled, Gemini used thinking level
+\texttt{low}, and the xAI model is explicitly non-reasoning. No tools, search,
+retrieval, code execution, or external context were available. We used
+provider-native structured JSON outputs and did not override temperature or
+top-$p$ sampling parameters. Output was capped at 64 tokens for OpenAI,
+Anthropic, and xAI. Gemini used a 512-token ceiling because its mandatory
+low-thinking tokens share the output budget.
+
+\subsection{Three-stage protocol}
+
+Each model--question pair proceeds through three stages. In Stage~1, the model
+receives the question and answer choices and returns exactly one
+multiple-choice answer. This answer is then frozen. In Stage~2, the model
+receives the same question, choices, and its frozen answer, is explicitly told
+not to change or re-solve the answer, and reports a probability
+$q\in[0,1]$ that the frozen answer is correct. This reported confidence is also
+frozen.
+
+Stage~3 does not permit the answer to change. Instead, the model selects exactly
+one of two actions:
+\textsc{Use\_Unverified} or \textsc{Verify\_First}. Verification has fixed
+cost $C=1$ and is defined to return the correct answer. Using the frozen answer
+without verification costs zero if it is correct and $L$ if it is wrong, where
+\[
+    L \in \{2,5,10,20\}.
+\]
+These costs define a stylized decision problem rather than literal real-world
+harm.
+
+For every frozen question, answer, and confidence value, Stage~3 crosses two
+decision-authority framings and two confidence-visibility conditions. Under
+\emph{human authority}, the prompt states that the human controls whether the
+answer is independently verified before use; under \emph{AI authority}, it
+states that the AI system controls verification before delivery to the human.
+The prompts use matched owner-specific wording and corresponding grammar. In
+the \emph{visible-confidence} condition, Stage~3 additionally states the
+model's previously reported probability $q$; in the \emph{hidden-confidence}
+condition, this sentence is omitted. Confidence is never re-elicited in
+Stage~3. Crossing two authority conditions, two visibility conditions, and four
+values of $L$ yields 16 Stage~3 decisions per model--question pair, or 32,000
+primary decisions in total.
+
+\subsection{Metrics}
+
+We report Stage~1 accuracy and the Brier score of Stage~2 confidence separately
+from Stage~3 verification behavior. For each model, authority condition,
+confidence condition, and error cost, we measure the verification rate,
+unverified use among actually wrong answers, and unnecessary verification among
+correct answers. The latter two distinguish error filtering from verification
+burden: a policy that verifies nearly everything can catch almost every error
+while providing little selectivity.
+
+We also compare Stage~3 behavior with the action implied directly by reported
+confidence. Under the supplied cost model, the confidence-implied policy
+verifies when
+\[
+    (1-q)L > C.
+\]
+We call agreement between the model's Stage~3 action and this action
+\emph{confidence-policy alignment}, and report the corresponding disagreement
+rate. This is a behavioral comparison with the model's \emph{reported}
+probability; it does not assume that $q$ represents a latent internal belief.
+We additionally measure stake-monotonicity violations, defined as
+\textsc{Verify\_First}$\rightarrow$\textsc{Use\_Unverified} reversals as $L$
+increases within an otherwise matched trajectory, as well as realized cost
+under the synthetic cost model.
+
+The confidence-visibility effect is the paired difference
+\[
+P(\textsc{Verify\_First}\mid\text{visible})
+-
+P(\textsc{Verify\_First}\mid\text{hidden}),
+\]
+and the owner effect is
+\[
+P(\textsc{Verify\_First}\mid\text{AI authority})
+-
+P(\textsc{Verify\_First}\mid\text{human authority}).
+\]
+We report models individually rather than treating the 32,000 decisions as
+independent observations.
+
+\subsection{Statistical inference and prompt robustness}
+
+The independent sampling unit is the question. We use 5,000 question-level
+paired bootstrap resamples and report nominal 95\% percentile confidence
+intervals, keeping all matched factor cells for a resampled question together.
+For metrics restricted to wrong answers, questions are resampled first and the
+wrong-answer subset is applied within each bootstrap replicate. We do not apply
+a multiplicity correction across the many descriptive cellwise comparisons;
+accordingly, we emphasize effect sizes, intervals, and repeated directional
+patterns rather than isolated significant cells.
+
+Prompt robustness uses the fixed 100-question subset with the same frozen
+answers and reported confidences under one semantically equivalent Stage~3
+paraphrase. The preregistered robustness analysis covered the
+hidden-confidence condition (3,200 decisions). After completion of the primary
+experiment, we ran the corresponding visible-confidence extension (3,200
+additional decisions). We therefore distinguish the hidden-condition
+robustness analysis as preregistered and the visible-condition extension as
+post-primary.
+
 % \section{Results}
 % \subsection{Baseline Answer and Confidence Performance}
 % \subsection{Explicit Confidence Strongly Changes Verification Policy}
