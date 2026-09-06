@@ -543,3 +543,65 @@ manipulation rather than a real deployment in which a human or institution
 actually delegates decision rights. Cross-model differences provide evidence
 of heterogeneity, not controlled comparisons of internal reasoning budgets or
 claims that one vendor is broadly safer than another.
+
+\section{Compute resources}
+\label{app:compute}
+
+All model calls used commercial hosted APIs (OpenAI, Anthropic, Google Vertex
+AI, and xAI). We did not train or fine-tune models and used no GPU cluster.
+Dataset construction, scoring, calibration, and the 5,000-resample bootstrap
+were run locally on CPU.
+
+Token and latency totals below come from successful attempts in the V2
+experiment checkpoint. Latency is the sum of provider request durations, not
+wall-clock time of the concurrent pipeline (concurrency 4). Dollar figures
+for V2 are estimates from the configured provider list prices, not invoices.
+
+The V2 checkpoint contains 41,600 successful attempts totaling 24.95 million
+tokens and 17.8 hours of summed request latency, or about \$55 at those list
+prices. Of this, the V2-B core run accounts for 21,600 attempts, 12.84 million
+tokens, and 9.2 hours; the earlier V2-A validation run on the overlapping
+200-question subset accounts for 13,532 attempts, 8.15 million tokens, and
+5.7 hours; and the 6,400 paraphrase cells account for 6,400 attempts,
+3.93 million tokens, and 2.9 hours. A one-question smoke test is included
+and is negligible (68 attempts).
+
+The V1 pilot is additional and is not in the V2 checkpoint: 2,885 attempts,
+1.38 million tokens, and \$4.19 in observed provider cost. The full project
+therefore used more compute than the 32,000 primary V2-B decisions alone,
+because it also includes the V1 pilot, V2-A validation, smoke testing,
+formatting repairs, and transient retries.
+
+\section{Licenses for existing assets}
+\label{app:licenses}
+
+We use the MMLU-Pro test split \citep{wang2024mmlupro} from
+\texttt{TIGER-Lab/MMLU-Pro}, pinned to revision
+\texttt{b189ec765aa7ed75c8acfea42df31fdae71f97be}. The upstream GitHub
+repository licenses the dataset under the Apache License 2.0. Closed models
+were queried under the respective provider terms of use. We release no new
+dataset, model, or code artifact with this submission.
+
+\section{Broader impacts}
+\label{app:impacts}
+
+A potential positive impact is better system design for when an AI answer
+should be independently checked. The results show that exposing a model's
+own reported confidence is an intervention that can change verification
+policy, and that agreement with that confidence is not the same as catching
+actual errors. That distinction is relevant to tool use, human-review
+routing, and other settings in which uncertainty is used to decide whether
+scrutiny enters the loop.
+
+A potential negative impact is misplaced trust in verbal confidence as a
+control signal. In GPT-5.6 Sol, making frozen $q$ visible made downstream
+actions nearly coincide with the confidence-implied rule while leaving more
+wrong high-cost answers unchecked. If designers treat such consistency as
+safety, they may reduce verification precisely where errors remain. Because
+visibility effects have opposite signs across model families, a single
+``show the confidence'' policy could increase checking in one system and
+decrease it in another. The study does not measure human over-reliance, so
+it cannot rule out further harm if users treat these recommendations as
+authoritative. The appropriate mitigation is to evaluate verification
+quality---error filtering and unnecessary checking---rather than calibration
+or confidence-policy alignment alone.
