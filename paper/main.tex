@@ -16,6 +16,8 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{flafter}
 
 % Keep PDF metadata anonymous for double-blind review.
 % Do not put real names, affiliations, or emails here.
@@ -398,15 +400,15 @@ high-cost intervals excluding zero.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/figure_visibility_rates.pdf}
-  \caption{Verification rates across error costs, confidence visibility, and
-  decision authority. Each panel shows one model family. Solid lines denote
-  hidden confidence and dashed lines visible confidence; marker shape
-  distinguishes human from AI decision authority. Explicitly surfacing the
-  same previously reported confidence produces opposite shifts across model
-  families: Claude generally verifies more, GPT-5.6 Sol and Grok~4.20 verify
-  less, and Gemini shifts toward greater verification primarily at higher
-  error costs.}
+  \includegraphics[width=\textwidth]{figures/figure_visibility_effect.pdf}
+  \caption{Effect of explicitly surfacing frozen self-reported confidence on
+  verification rate. Points show the paired difference
+  $P(\textsc{Verify\_First}\mid\mathrm{visible})-
+  P(\textsc{Verify\_First}\mid\mathrm{hidden})$; error bars are nominal 95\%
+  question-level bootstrap intervals. Positive values indicate more
+  verification when confidence is visible. The same intervention shifts
+  Claude toward more verification and GPT-5.6 Sol and Grok~4.20 toward less,
+  while Gemini's effect becomes positive at higher error costs.}
   \label{fig:visibility-rates}
 \end{figure}
 
@@ -430,6 +432,7 @@ family using it.
 % \section{Conclusion}
 % -------------------------------------------------------------------------
 
+\FloatBarrier
 \bibliographystyle{plainnat}
 \bibliography{references}
 
