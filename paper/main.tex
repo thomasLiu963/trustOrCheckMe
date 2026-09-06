@@ -5,6 +5,19 @@
 
 \workshoptitle{AI and the Self: Human Identity, Authenticity, and Agency in the Age of AI}
 
+% Review mode hardcodes Affiliation/Address/email in neurips_2026.sty.
+% Override the visible title-block extras without editing the style file.
+\makeatletter
+\patchcmd{\@maketitle}{%
+        Anonymous Author(s) \\
+        Affiliation \\
+        Address \\
+        \texttt{email} \\
+}{%
+        Anonymous Author(s) \\
+}{}{\errmessage{Failed to strip anonymous affiliation placeholders}}
+\makeatother
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
@@ -33,10 +46,7 @@
 % The style file replaces this block with ``Anonymous Author(s)'' in review mode.
 % Keep this placeholder anonymous; do not insert real author information.
 \author{%
-  Anonymous Author(s) \\
-  Affiliation \\
-  Address \\
-  \texttt{email}
+  Anonymous Author(s)
 }
 
 \begin{document}
@@ -44,7 +54,7 @@
 \maketitle
 
 \begin{abstract}
-When should users trust an AI answer, and when should they verify it independently? We study whether a language model's own reported confidence can reliably govern that decision as the cost of being wrong rises. On a deterministically selected 500-question sample from MMLU-Pro across four model families, we freeze each answer and reported probability of correctness, then vary confidence visibility, human versus AI decision authority, and error cost, yielding 32,000 matched verification decisions. Making confidence visible produces large but model-specific shifts: Claude verifies more, GPT-5.6 Sol and Grok~4.20 verify less, and Gemini shifts toward more verification mainly at higher costs. For GPT-5.6 Sol, visible confidence reduces disagreement with the policy implied by its reported probability from 19.6--27.2\% to 0.2--2.2\% and nearly eliminates stake-monotonicity violations. Yet at the highest error cost, wrong answers left unverified rise from roughly 32--33\% to 54--56\%. Thus, a model can become much more consistent with its stated confidence while becoming worse at catching its own errors. Self-reported confidence is therefore not merely an uncertainty report; it can act as a downstream control signal for when human or external scrutiny enters the loop.
+When should users trust an AI answer, and when should they verify it independently? We study whether a language model's own reported confidence can reliably govern that decision as the cost of being wrong rises. On a deterministically selected 500-question sample from MMLU-Pro across four model families, we freeze each answer and reported probability of correctness, then vary confidence visibility, human versus AI decision authority, and error cost, yielding 32,000 matched verification decisions. Making confidence visible produces large but model-specific shifts: Claude verifies more, GPT-5.6 Sol and Grok~4.20 verify less, and Gemini shifts toward more verification mainly at higher costs. For GPT-5.6 Sol, visible confidence reduces disagreement with the policy implied by its reported probability from 19.6--27.2\% to 0.2--2.2\% and nearly eliminates stake-monotonicity violations. Yet at the highest error cost, wrong answers left unverified rise from roughly 32--33\% to 54--56\%. Thus, a model can become much more consistent with its stated confidence while becoming worse at catching its own errors. Self-reported confidence is therefore not merely an uncertainty report; when surfaced explicitly, it can act as a downstream control signal for whether independent scrutiny is recommended.
 \end{abstract}
 
 \section{Introduction}
@@ -116,7 +126,7 @@ The confidence-visibility effect is the paired difference $P(\textsc{Verify\_Fir
 
 The independent sampling unit is the question. We use 5,000 question-level paired bootstrap resamples and report nominal 95\% percentile confidence intervals, keeping all matched factor cells for a resampled question together. For metrics restricted to wrong answers, questions are resampled first and the wrong-answer subset is applied within each bootstrap replicate. We do not apply a multiplicity correction across the many descriptive cellwise comparisons; accordingly, we emphasize effect sizes, intervals, and repeated directional patterns rather than isolated significant cells.
 
-Prompt robustness uses the fixed 100-question subset with the same frozen answers and reported confidences under one semantically equivalent Stage~3 paraphrase. The preregistered robustness analysis covered the hidden-confidence condition (3,200 decisions). After completion of the primary experiment, we ran the corresponding visible-confidence extension (3,200 additional decisions). We therefore distinguish the hidden-condition robustness analysis as preregistered and the visible-condition extension as post-primary. The frozen protocol designated decision authority as the primary question and confidence visibility as a mechanism question; Appendix~A documents this preregistered framing and the manuscript's subsequent change in emphasis.
+Prompt robustness uses the fixed 100-question subset with the same frozen answers and reported confidences under one semantically equivalent Stage~3 paraphrase. The prespecified robustness analysis covered the hidden-confidence condition (3,200 decisions). After completion of the primary experiment, we ran the corresponding visible-confidence extension (3,200 additional decisions). We therefore distinguish the hidden-condition robustness analysis as prespecified in the frozen protocol and the visible-condition extension as post-primary. The frozen protocol designated decision authority as the primary question and confidence visibility as a mechanism question; Appendix~A documents this prespecified framing and the manuscript's subsequent change in emphasis.
 
 \section{Results}
 
@@ -183,7 +193,7 @@ Small marginal owner effects do not imply identical question-level decisions. Fo
 
 \subsection{Prompt-paraphrase robustness}
 
-We repeated Stage~3 on the fixed 100-question subset using one semantically equivalent paraphrase. The hidden-confidence paraphrase was preregistered; the corresponding visible-confidence condition was added after completion of the primary experiment, allowing the confidence-visibility effect to be compared under the alternate wording.
+We repeated Stage~3 on the fixed 100-question subset using one semantically equivalent paraphrase. The hidden-confidence paraphrase was prespecified in the frozen protocol; the corresponding visible-confidence condition was added after completion of the primary experiment, allowing the confidence-visibility effect to be compared under the alternate wording.
 
 The qualitative visibility direction is preserved in all eight authority--cost cells for Claude, GPT-5.6 Sol, and Grok~4.20. Gemini preserves the direction in seven of eight cells, including the negative low-cost pattern and positive effects at $L=10$ and $L=20$. The sole sign change occurs under human authority at $L=5$: the primary-subset estimate is $+5$ percentage points (95\% CI $[-1,11]$), whereas the paraphrase estimate is $-1$ point (95\% CI $[-7,5]$); both intervals include zero. Effect magnitudes are not invariant---most notably, GPT-5.6 Sol's negative visibility effect becomes larger under the paraphrase---so we treat the robustness study as evidence for the major directional patterns rather than for prompt-independent effect sizes.
 
