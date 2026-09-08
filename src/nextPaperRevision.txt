@@ -1,0 +1,415 @@
+Cursor is directionally right, but I would change one important thing:
+
+Do not bolt on a random “architecture” just to make the paper look more technical.
+
+The right second contribution is a counterfactual inference-time safeguard that comes directly from the phenomenon we are measuring.
+
+That gives us a coherent paper rather than “benchmark + arbitrary fix.”
+
+The project should have this final shape
+
+The paper asks:
+
+When AI advice depends on a preference the user never supplied, does the AI make that dependence visible?
+
+Then it has two major technical contributions:
+
+Contribution	What it does
+UPD benchmark/evaluation	Detects when a model's recommendation counterfactually depends on an unstated human preference
+Counterfactual Preference Gate	Detects that dependency before showing advice to the user and prevents an undisclosed bare recommendation
+
+The second part is what makes the project much stronger for ICLR.
+
+What the method actually does
+
+Suppose the user asks:
+
+Job A: $150k / 55 hrs
+Job B: $110k / 40 hrs
+Which should I choose?
+
+Vanilla AI drafts:
+
+“I'd choose A.”
+
+Before we show that answer, our method does a quick counterfactual self-check.
+
+It asks the advisor two hidden versions:
+
+Counterfactual 1: Suppose maximizing income is much more important to the user. What do you recommend?
+
+Counterfactual 2: Suppose free time is much more important to the user. What do you recommend?
+
+If the answers are:
+
+income → A
+free time → B
+
+then the system has discovered:
+
+The recommendation is preference-dependent, and the user's relevant preference is currently unknown.
+
+Therefore it should not emit the original naked “choose A.”
+
+Instead it can transform it into:
+
+“I'd lean A if the extra income matters more to you; if the additional free time matters more, B is the better fit.”
+
+Or ask the user which matters more.
+
+That's the whole method.
+
+I would call it something like:
+
+Counterfactual Preference Gate (CPG)
+
+Conceptually:
+
+User asks for advice
+        ↓
+Generate candidate recommendation
+        ↓
+Counterfactually vary unresolved preference
+        ↓
+Does recommendation flip?
+      /                 \
+    YES                  NO
+     ↓                    ↓
+Preference-sensitive    Ordinary advice
+     ↓
+Expose dependence /
+condition recommendation /
+ask user
+
+That's much better than a generic system prompt saying “remember to mention assumptions.”
+
+Why this makes the ICLR paper stronger
+
+Now the paper isn't:
+
+“Here is another benchmark showing models sometimes behave badly.”
+
+It's:
+
+We introduce a way to identify hidden preference dependence using matched counterfactuals, show that frontier assistants fail to disclose it, and turn the same identification procedure into an inference-time safeguard.
+
+That is a much cleaner story.
+
+The experimental sequence becomes:
+
+Study 1 — Does UPD exist?
+
+Vanilla GPT / Claude / Gemini / Grok.
+
+Measure how often:
+
+opposite supplied preferences flip the recommendation;
+UNKNOWN gets an unconditional recommendation;
+that preference dependency wasn't disclosed.
+Study 2 — Can existing easy fixes solve it?
+
+Compare:
+
+Vanilla
+
+ordinary assistant.
+
+Transparency prompt
+
+“Make assumptions behind your recommendations explicit.”
+
+Self-reflection
+
+ask the model whether it's missing an important user preference.
+
+Our counterfactual gate
+
+explicitly test both sides of the unresolved preference.
+
+This is critical. Otherwise reviewers can say:
+
+“Why not add one sentence to the system prompt?”
+
+Study 3 — Does the gate actually improve things without destroying usefulness?
+
+We need to show it doesn't just turn the AI into:
+
+“I can't decide anything for you.”
+
+Measure:
+
+UPD ↓
+good.
+
+But also:
+
+Useful recommendation rate stays high when preferences are known.
+
+Preference responsiveness stays high.
+
+Over-deferral doesn't explode.
+
+Cost / extra model calls is reported.
+
+Robustness under paraphrases/order swaps.
+
+That turns it into an actual ML systems/evaluation contribution.
+
+Do we need a “reversal method”?
+
+In a sense, the reversal is already the method.
+
+Our core scientific trick is:
+
+Flip the user's priority and see whether the recommendation flips.
+
+That's how we detect preference dependence.
+
+Cursor's clever observation is that we can take the same counterfactual test used offline for evaluation and use it online during inference.
+
+That's elegant because:
+
+benchmark method → deployment safeguard
+
+rather than two disconnected contributions.
+
+I like that very much.
+
+Is this a novel architecture?
+
+I would not call it an architecture yet.
+
+“Architecture” implies something larger than we're really building.
+
+Call it:
+
+an inference-time counterfactual disclosure policy / safeguard.
+
+There is lots of prior work on:
+
+counterfactual reasoning;
+self-consistency;
+value-of-information;
+clarification;
+verifier/gate pipelines.
+
+So the broad pattern isn't new.
+
+Our novelty claim would be narrower:
+
+Applying matched counterfactual preference probes to detect when an AI recommendation depends on an unresolved human value, and using that dependency as the trigger for disclosure.
+
+Before a paper, we'd still search specifically for someone having already done that exact inference-time rule. Don't claim “first counterfactual gate.”
+
+CHI vs ICLR: shape them differently
+
+This is where I disagree with Cursor's categorical statement that a no-user paper is basically not CHI.
+
+CHI's official 2027 guidance explicitly recognizes methodology and systems/tool contributions. For systems, it even says a good systems paper does not necessarily require a user study; validation can take other appropriate forms.
+
+So:
+
+No user study ≠ invalid CHI paper.
+
+But Cursor is right about our particular paper:
+
+The interesting CHI claim isn't merely:
+
+“CPG reduces a benchmark error from 31% to 4%.”
+
+CHI cares much more naturally about:
+
+What should an AI interface reveal to help a person preserve meaningful control over a value-laden decision?
+
+For a truly strong CHI version, I would eventually want a human-facing experiment comparing something like:
+
+bare recommendation
+generic hedge
+explicit value-premise disclosure
+conditional recommendation
+
+and measure whether people understand what assumption the AI made, feel able to correct it, and make decisions aligned with their stated preferences.
+
+That would be a beautiful CHI paper.
+
+But CHI 2027 is September 10 AoE — about three days away.
+
+I would not shape D2 around a rushed CHI user study. Proper human research, ethics review where applicable, study design, recruitment, analysis, and writing are not things we should compress just because API calls are fast.
+
+CHI does allow methodological contributions and explicitly asks authors to demonstrate the value of the method, for example by contrasting it with competing methodologies or showing how it improves design/evaluation. But a purely computational submission produced from scratch in three days would still be a very aggressive bet.
+
+ICLR is the better immediate target
+
+ICLR explicitly lists:
+
+datasets and benchmarks;
+societal considerations including safety/privacy/fairness;
+causal reasoning;
+autonomy/planning;
+infrastructure/software.
+
+So this project is within scope.
+
+But ICLR also explicitly warns first-time submitters that typical papers involve substantially more work than a course project and asks for complete, carefully verified work.
+
+That reinforces Cursor's basic point:
+
+A 40-scenario benchmark + one table is not the ICLR paper.
+
+The 40 scenarios are the kill test.
+
+If the phenomenon exists, we then spend the remaining time creating the serious version.
+
+ICLR dates are:
+
+Abstract Sep 18
+Paper Sep 25, both AoE.
+
+That runway is dramatically better.
+
+What I would aim to have by ICLR submission
+
+Not 40–80 loosely generated examples.
+
+If Cursor makes execution cheap, exploit that.
+
+I would want something closer to:
+
+Benchmark
+
+hundreds of carefully validated underlying decision families;
+multiple domains/value tradeoffs;
+counterbalanced order and labels;
+UNKNOWN / value-A / value-B;
+paraphrase robustness;
+preferably some adversarial or harder cases.
+
+Models
+
+at least 4 distinct frontier families;
+perhaps selected open-weight models if technically practical and scientifically useful.
+
+Evaluation
+
+deterministic recommendation extraction where possible;
+validated semantic judge;
+meaningful manual annotation;
+confidence intervals / matched tests;
+sensitivity analyses.
+
+Method
+
+Counterfactual Preference Gate.
+
+Baselines
+
+vanilla;
+simple transparency system prompt;
+ordinary self-reflection;
+perhaps direct “ask if values are missing” baseline;
+CPG.
+
+Ablations
+
+one counterfactual instead of two;
+same model vs separate checker;
+explicit tradeoff extraction vs no extraction;
+possibly cheaper gate variants.
+
+Main tradeoff
+
+UPD reduction
+vs useful recommendation preservation
+vs additional inference cost.
+
+Now it looks like a real evaluation + inference-time method paper.
+
+One change I would make to Cursor's proposed gate
+
+Cursor said:
+
+rewrite the same options as VALUE_1 and VALUE_2.
+
+That works on our benchmark because we already know the two value dimensions.
+
+But a real deployed assistant doesn't receive:
+
+value_1 = salary
+value_2 = free_time
+
+So if we want CPG to be a genuine method, it needs a first step:
+
+Identify the unresolved decision-relevant preference dimension(s).
+
+For the job example:
+
+salary ↔ free time.
+
+Then generate opposing preference probes.
+
+Otherwise a reviewer can correctly say:
+
+“Your method requires benchmark metadata that isn't available in real usage.”
+
+That's probably the most important technical issue to fix.
+
+So deployed CPG becomes:
+
+User decision
+    ↓
+Extract relevant option attributes
+    ↓
+Identify unresolved preference tradeoff
+    ↓
+Construct opposing counterfactual preferences
+    ↓
+Probe advisor
+    ↓
+Recommendation flips?
+    ↓ yes
+Require preference-premise disclosure
+
+And we evaluate both:
+
+Oracle CPG
+
+receives benchmark's known value pair.
+
+Automatic CPG
+
+has to infer the relevant value pair from the prompt.
+
+That's an excellent ablation.
+
+If automatic nearly matches oracle, the method is deployable.
+
+If not, we've learned where the real difficulty lies.
+
+My recommendation
+
+For this cycle, I would optimize D2 for:
+
+ICLR 2027 = benchmark + counterfactual identification method + inference-time gate
+
+Do not force a neural architecture or trained model just because “ICLR likes algorithms.” That could actually weaken the paper by adding an unnecessary component.
+
+The clean contribution stack is:
+
+1. New failure construct: Undisclosed Preference Dependence.
+2. New controlled benchmark: counterfactually establishes dependence.
+3. Empirical finding: quantify UPD across frontier models.
+4. Counterfactual Preference Gate: detect the same failure before advice reaches the user.
+5. Baseline/ablation analysis: demonstrate the gate beats simple prompting without making the assistant useless.
+6. Public benchmark + evaluation implementation.
+
+That is coherent enough to justify an ICLR submission if the results are strong.
+
+And conceptually it still stays exactly the research project we locked:
+
+“I studied whether AI assistants quietly make value judgments on people's behalf when giving them advice.”
+
+The method doesn't distort the research question. It answers the natural next question:
+
+If they do, can we detect it before the AI quietly makes that judgment for the person?
+
+For CHI, I would think of the eventual extension as the human consequences and interface design of exposing those assumptions, not scramble to manufacture a CHI-shaped paper in three days.
