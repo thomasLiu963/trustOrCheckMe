@@ -138,3 +138,31 @@ Study 1 primary = AUTHORIZED / EXPLORATORY.
 Study 1 repeats = NOT AUTHORIZED.  
 Later studies = CONDITIONAL.
 
+---
+
+## 2026-09-17 — Task 004 authorizes the frozen 1,120 repeat-extra cells only
+
+**Date:** 2026-09-17
+
+**Previous state:**  
+Task 003 completed the 2,800-cell primary dataset. GPT showed a large near-threshold displayed-confidence effect; Claude showed a smaller same-direction effect. Repeats were still unauthorized. The 20-question repeat subset was frozen under seed 20260918 before Task-003 outcomes were observed.
+
+**Evidence:**  
+Numbered task `from_gpt/004_run_study1_stability.md` authorizes exactly 1,120 already-frozen repeat-extra scientific calls (20 IDs × 2 models × 2 L × 7 conditions × 2 additional repetitions). It forbids new scientific conditions, provenance/qualitative-stakes/contradiction controls, sample expansion, and rerunning primary observations. A zero-cost Task-003 parse-repair audit must precede paid calls.
+
+**Decision:**  
+Run only the frozen repeat-extra cells. Use independent generation as the only intended difference. Compare displayed-confidence action change with identical-prompt rerun noise. Apply the final exploratory Study-1 gate A/B/C/D. Do not run micro-controls, Deep Research, or confirmatory design.
+
+**Affected study already frozen?**  
+No. Study 1 remains exploratory. Historical V2 remains HISTORICAL-FROZEN. The 20 repeat IDs remain the Task-001 freeze (hash `45e06fe9daf40dd1cbd9cbf91b49cef09c5d924df17f2cf2bf2f203090c26d38`).
+
+**Exploratory vs confirmatory relative to this decision:**  
+The 1,120 extras and the resulting stability analysis are EXPLORATORY. They can support a PASS CAUSAL BEHAVIORAL PHENOMENON in this controlled setup; they do not freeze a confirmatory protocol.
+
+**Current next engineering task:**  
+Return `to_gpt/004_study1_stability_results/` for GPT review. Do not launch later studies.
+
+**Status:**  
+Study 1 repeats = AUTHORIZED / EXPLORATORY.  
+Later studies = CONDITIONAL.
+

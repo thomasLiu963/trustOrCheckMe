@@ -131,9 +131,25 @@ class Study1Runner:
         if not dry_run:
             resolved = Study1Phase(phase)
             if resolved == Study1Phase.REPEATS:
-                raise Study1AuthorizationError(
-                    "Task 003 does not authorize the 1,120 repeat-extra cells."
-                )
+                if int(max_calls) != 1120:
+                    raise Study1AuthorizationError(
+                        "Task 004 repeats max_calls must be exactly 1120"
+                    )
+                from .study1_repeats import execute_repeats_task
+
+                payload = execute_repeats_task()
+                return {
+                    "task_id": "004_run_study1_stability",
+                    "dry_run": False,
+                    "allow_paid": True,
+                    "phase": "repeats",
+                    "preflight_ok": bool(payload.get("preflight_ok")),
+                    "new_initiated": payload.get("new_initiated"),
+                    "stopped_reason": payload.get("stopped_reason"),
+                    "wall_clock_seconds": payload.get("wall_clock_seconds"),
+                    "checkpoint_path": payload.get("checkpoint_path")
+                    or str(self.config.study1_sqlite()),
+                }
             if resolved != Study1Phase.PRIMARY:
                 raise Study1AuthorizationError(f"unsupported paid phase: {resolved}")
             if int(max_calls) != 2800:

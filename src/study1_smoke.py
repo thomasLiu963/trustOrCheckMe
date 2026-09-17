@@ -365,7 +365,7 @@ async def _execute_cell(
     last_raw = ""
     parse_repairs = 0
     record_kwargs = dict(
-        phase=Study1Phase.PRIMARY,
+        phase=row.phase,
         run_id=run_id,
         request_key=row.request_key,
         question_id=row.question_id,
@@ -386,7 +386,7 @@ async def _execute_cell(
         prompt_hash=row.prompt_hash,
         selected_sample_hash=row.selected_sample_hash,
         code_commit=code_commit,
-        repeat_index=0,
+        repeat_index=row.repeat_index,
         historical_answer_request_key=row.historical_answer_request_key,
         historical_confidence_request_key=row.historical_confidence_request_key,
         model_settings={

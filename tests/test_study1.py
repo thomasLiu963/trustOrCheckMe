@@ -293,8 +293,8 @@ def test_paid_calls_disabled_by_default_and_cap_enforced() -> None:
     runner = Study1Runner()
     with pytest.raises(Study1AuthorizationError, match="2800"):
         runner.run(phase="primary", dry_run=False, allow_paid=True, max_calls=5)
-    with pytest.raises(Study1AuthorizationError, match="repeat"):
-        runner.run(phase="repeats", dry_run=False, allow_paid=True, max_calls=1120)
+    with pytest.raises(Study1AuthorizationError, match="1120"):
+        runner.run(phase="repeats", dry_run=False, allow_paid=True, max_calls=5)
 
 
 def test_cli_study1_run_requires_explicit_mode() -> None:
@@ -400,6 +400,30 @@ def test_primary_preflight_reuses_identical_smoke_keys() -> None:
         "badd6938e5ded12c9dd62733426e1db26d9843bb6a2321a4e4c9eb7e3547fe94"
     )
     assert preflight["smoke_question_id"] == "mmlu_pro:test:7552"
+    assert preflight["provider_attempt_cap"] == math.ceil(
+        preflight["new_scientific_calls"] * 1.10
+    )
+
+
+def test_repeats_preflight_uses_frozen_hash_and_excludes_primary() -> None:
+    from src.study1_repeats import audit_task003_parse_repairs, validate_repeats_preflight
+
+    audit = audit_task003_parse_repairs()
+    assert audit["distinct_repair_cells"] == 52
+    assert audit["by_model"].get("openai_gpt56_sol", 0) == 0
+    assert audit["by_model"]["anthropic_sonnet5"] == 52
+    assert audit["proceed"] is True
+    assert audit["stop_before_paid"] is False
+    preflight = validate_repeats_preflight()
+    assert preflight["ok"], preflight["errors"]
+    assert preflight["planned_repeat_extra_cells"] == 1120
+    assert preflight["planned_primary_cells"] == 2800
+    assert preflight["question_count"] == 20
+    assert preflight["primary_successes_untouched_target"] == 2800
+    assert preflight["new_scientific_calls"] == 1120 - preflight["existing_repeat_successes_reused"]
+    assert preflight["repeat_question_hash"] == (
+        "45e06fe9daf40dd1cbd9cbf91b49cef09c5d924df17f2cf2bf2f203090c26d38"
+    )
     assert preflight["provider_attempt_cap"] == math.ceil(
         preflight["new_scientific_calls"] * 1.10
     )
