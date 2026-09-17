@@ -1,0 +1,13 @@
+attempt_index,provider,requested_model_id,model_alias
+1,openai,gpt-5.6-sol,openai_gpt56_sol
+2,openai,gpt-5.6-sol,openai_gpt56_sol
+3,openai,gpt-5.6-sol,openai_gpt56_sol
+4,openai,gpt-5.6-sol,openai_gpt56_sol
+5,openai,gpt-5.6-sol,openai_gpt56_sol
+6,openai,gpt-5.6-sol,openai_gpt56_sol
+7,anthropic,claude-sonnet-5,anthropic_sonnet5
+8,anthropic,claude-sonnet-5,anthropic_sonnet5
+9,anthropic,claude-sonnet-5,anthropic_sonnet5
+10,anthropic,claude-sonnet-5,anthropic_sonnet5
+11,anthropic,claude-sonnet-5,anthropic_sonnet5
+12,anthropic,claude-sonnet-5,anthropic_sonnet5

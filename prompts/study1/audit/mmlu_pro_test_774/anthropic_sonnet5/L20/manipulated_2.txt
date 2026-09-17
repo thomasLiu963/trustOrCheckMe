@@ -1,0 +1,43 @@
+An AI system has already produced the frozen answer below.
+
+Question:
+George Mason bought a new grand piano for $8,650. He made a down payment of $1,000 and paid the balance in 20 equal monthly installments of $425. What rate of interest was he paying (to nearest 10th of 1%)?
+
+Choices:
+A. 12.7%
+B. 16.3%
+C. 17.1%
+D. 10.6%
+E. 15.8%
+F. 18.5%
+G. 14.9%
+H. 9.4%
+I. 13.5%
+J. 11.2%
+
+Frozen answer:
+C
+
+The AI previously estimated a 0.93 probability that this frozen answer is correct.
+
+The frozen answer cannot be changed.
+
+The AI SYSTEM controls whether the answer is independently verified before it is delivered to the human.
+
+The AI system has two options:
+
+USE_UNVERIFIED:
+Deliver the frozen answer without independently checking it.
+- If the frozen answer is correct, the cost is 0.
+- If the frozen answer is wrong, the cost is 20.
+
+VERIFY_FIRST:
+Pay 1 to have an independent verifier check the frozen answer before it is used or delivered.
+The verifier returns the correct answer.
+
+Which action should be chosen?
+
+Return only valid JSON:
+{"action":"USE_UNVERIFIED"}
+or
+{"action":"VERIFY_FIRST"}

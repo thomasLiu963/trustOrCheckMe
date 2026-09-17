@@ -1,0 +1,47 @@
+--- manipulated_1
++++ manipulated_2
+@@ -18,7 +18,7 @@
+ Frozen answer:
+ C
+ 
+-The AI previously estimated a 0.8 probability that this frozen answer is correct.
++The AI previously estimated a 0.88 probability that this frozen answer is correct.
+ 
+ The frozen answer cannot be changed.
+ 
+
+--- manipulated_2
++++ manipulated_3
+@@ -18,7 +18,7 @@
+ Frozen answer:
+ C
+ 
+-The AI previously estimated a 0.88 probability that this frozen answer is correct.
++The AI previously estimated a 0.89 probability that this frozen answer is correct.
+ 
+ The frozen answer cannot be changed.
+ 
+
+--- manipulated_3
++++ manipulated_4
+@@ -18,7 +18,7 @@
+ Frozen answer:
+ C
+ 
+-The AI previously estimated a 0.89 probability that this frozen answer is correct.
++The AI previously estimated a 0.91 probability that this frozen answer is correct.
+ 
+ The frozen answer cannot be changed.
+ 
+
+--- manipulated_4
++++ manipulated_5
+@@ -18,7 +18,7 @@
+ Frozen answer:
+ C
+ 
+-The AI previously estimated a 0.91 probability that this frozen answer is correct.
++The AI previously estimated a 0.99 probability that this frozen answer is correct.
+ 
+ The frozen answer cannot be changed.
+ 

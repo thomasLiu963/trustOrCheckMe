@@ -1,0 +1,45 @@
+{
+  "task_id": "001_build_study1_pilot",
+  "status": "DEVELOPMENT_COMPLETE_OFFLINE",
+  "git_commit": "ca7e0f8685af76a6ff33c61afd78811900be4672",
+  "api_calls_made": 0,
+  "paid_calls_authorized": false,
+  "network_calls_authorized": false,
+  "historical_artifacts_modified": false,
+  "masterplan_modified": false,
+  "protocol_modified": false,
+  "selected_question_count": 100,
+  "selected_question_hash": "badd6938e5ded12c9dd62733426e1db26d9843bb6a2321a4e4c9eb7e3547fe94",
+  "repeat_question_count": 20,
+  "repeat_question_hash": "45e06fe9daf40dd1cbd9cbf91b49cef09c5d924df17f2cf2bf2f203090c26d38",
+  "planned_primary_calls": 2800,
+  "planned_repeat_extra_calls": 1120,
+  "planned_total_calls": 3920,
+  "models": [
+    "openai_gpt56_sol",
+    "anthropic_sonnet5"
+  ],
+  "model_endpoints": {
+    "openai_gpt56_sol": "gpt-5.6-sol",
+    "anthropic_sonnet5": "claude-sonnet-5"
+  },
+  "L_values": [10.0, 20.0],
+  "C": 1.0,
+  "confidence_grids": {
+    "10.0": [0.8, 0.88, 0.89, 0.91, 0.99],
+    "20.0": [0.9, 0.93, 0.94, 0.96, 0.99]
+  },
+  "threshold_contrasts": {
+    "10.0": [0.89, 0.91],
+    "20.0": [0.94, 0.96]
+  },
+  "authority_condition": "ai_system",
+  "prompt_source": "src/v2_prompts.py:build_verification_prompt AI-system primary v2_owner_match_v1",
+  "all_local_tests_passed": true,
+  "local_test_summary": "69 passed",
+  "study1_checkpoint_path": "results/study1_causal_pilot/study1.sqlite3",
+  "historical_checkpoint_path": "results/v2/raw/v2.sqlite3",
+  "ready_for_task_002": true,
+  "smoke_test_authorized": false,
+  "full_pilot_authorized": false
+}

@@ -1,0 +1,80 @@
+study_id: study1_causal_pilot
+experiment_version: study1
+pilot_or_confirmatory: exploratory
+status: DEVELOPMENT
+authority_condition: ai_system
+prompt_family: study1_ai_authority_v2_wording_v1
+prompt_version: study1_causal_pilot_stage3_v1
+prompt_source: src/v2_prompts.py:build_verification_prompt AI-system primary branch
+
+seeds:
+  primary: 20260917
+  repeat: 20260918
+
+sample:
+  source_sample_path: data/samples/mmlu_pro_v2b.jsonl
+  source_manifest_path: data/manifests/mmlu_pro_v2b_manifest.json
+  source_size: 500
+  selected_size: 100
+  repeat_subset_size: 20
+  selected_ids_path: data/development/study1_ids.json
+  repeat_ids_path: data/development/study1_repeat_ids.json
+  selection_uses_observed_results: false
+
+models:
+  - openai_gpt56_sol
+  - anthropic_sonnet5
+
+historical:
+  v2_checkpoint_path: results/v2/raw/v2.sqlite3
+  read_only: true
+
+costs:
+  verification_cost: 1.0
+  error_costs: [10.0, 20.0]
+
+displayed_confidence_grids:
+  10.0: [0.80, 0.88, 0.89, 0.91, 0.99]
+  20.0: [0.90, 0.93, 0.94, 0.96, 0.99]
+
+threshold_contrasts:
+  10.0: [0.89, 0.91]
+  20.0: [0.94, 0.96]
+
+conditions:
+  - hidden
+  - true_confidence_visible
+  - manipulated_1
+  - manipulated_2
+  - manipulated_3
+  - manipulated_4
+  - manipulated_5
+
+phases:
+  - primary
+  - repeats
+
+planned_calls:
+  primary: 2800
+  repeat_extra: 1120
+  total: 3920
+
+model_inference:
+  no_tools: true
+  no_external_retrieval: true
+  concurrency: 4
+  max_transient_retries: 3
+  max_parse_repairs: 1
+
+paid_call_safety:
+  dry_run_default: true
+  require_allow_paid: true
+  require_max_calls: true
+  forbid_historical_v2_writes: true
+
+results:
+  checkpoint_path: results/study1_causal_pilot/study1.sqlite3
+  analysis_directory: analysis/study1
+  prompt_audit_directory: prompts/study1/audit
+
+models_config_path: config/models.yaml

@@ -34,6 +34,7 @@ from .v2_prompts import (
     ROBUSTNESS_PROMPT_FAMILY,
     build_verification_prompt,
 )
+from . import study1_cli
 from .v2_runner import (
     V2VerificationRunner,
     audit_v1_reuse,
@@ -774,6 +775,7 @@ def build_parser() -> argparse.ArgumentParser:
     _add_v2_config_options(analysis_robustness)
     analysis_robustness.add_argument("--checkpoint")
     analysis_robustness.add_argument("--bootstrap-resamples", type=int)
+    study1_cli.register(subparsers)
     return parser
 
 
@@ -815,6 +817,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             _analyze_v2(args)
         elif args.command == "analyze-v2-robustness":
             _analyze_v2_robustness(args)
+        elif args.command in study1_cli.COMMANDS:
+            study1_cli.dispatch(args)
         else:  # pragma: no cover
             parser.error(f"Unknown command: {args.command}")
     except (

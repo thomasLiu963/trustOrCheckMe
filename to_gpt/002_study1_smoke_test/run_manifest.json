@@ -1,0 +1,37 @@
+{
+  "task_id": "002_smoke_test_study1",
+  "status": "SUCCESS",
+  "git_commit": "ca7e0f8685af76a6ff33c61afd78811900be4672",
+  "paid_calls_authorized": true,
+  "scientific_cell_cap": 12,
+  "provider_attempt_cap": 20,
+  "selected_question_id": "mmlu_pro:test:7552",
+  "models": [
+    "openai_gpt56_sol",
+    "anthropic_sonnet5"
+  ],
+  "L_values": [
+    10.0,
+    20.0
+  ],
+  "planned_cells": 12,
+  "successful_cells": 12,
+  "failed_cells": 0,
+  "provider_attempts_total": 12,
+  "retry_attempts": 0,
+  "repair_attempts": 0,
+  "api_cost_usd": 0.020056,
+  "historical_artifacts_modified": false,
+  "study1_checkpoint_path": "/Users/thomas/Desktop/trustOrCheckMe/results/study1_causal_pilot/study1.sqlite3",
+  "provider_model_metadata": {
+    "openai_gpt56_sol": [
+      "gpt-5.6-sol"
+    ],
+    "anthropic_sonnet5": [
+      "claude-sonnet-5"
+    ]
+  },
+  "ready_for_task_003": true,
+  "wall_clock_seconds": 22.775412749964744,
+  "stopped_reason": null
+}
