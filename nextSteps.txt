@@ -1,352 +1,263 @@
-We are finishing the robustness experiment for NeurIPS Project 1, “Trust Me or Check Me?”
+Where we started
 
-IMPORTANT: before changing anything, read the frozen V2 protocol and the existing V2-B outputs:
-- EXPERIMENT_V2.md
-- paper_outputs/v2/PAPER_RESEARCH_BRIEF.md
-- paper_outputs/v2/README_RESULTS.md
-- paper_outputs/v2/analysis_manifest.json
-- the prompt-building code for:
-  - v2_owner_match_v1
-  - v2_owner_match_paraphrase_v1
-- the code/config that defines the preregistered 100-question paraphrase subset
-- results/v2/raw/v2.sqlite3
+Originally, the interesting observation was:
 
-DO NOT modify, overwrite, rerun, or reinterpret the completed V2-B primary experiment.
-The primary V2-B run is frozen:
-- run ID: v2b-core-20260905
-- 500 MMLU-Pro questions
-- 4 models
-- 32,000 / 32,000 Stage-3 decisions
-- prompt family: v2_owner_match_v1
+“If you show an AI the confidence number it previously gave, it changes whether it wants its answer checked.”
 
-SCIENTIFIC GOAL
+That was surprising because nothing about the answer changed. For GPT, showing confidence made it verify much less; for Claude, it often made it verify more.
 
-The paper’s empirical headline has evolved.
+But that was mostly an observation. We didn’t know why.
 
-The strongest result is now:
-Explicitly showing a model its own previously reported confidence strongly changes verification policy, but the direction and realized error-handling consequences are model-dependent.
+Then came Checkpoint A.
 
-The original planned robustness test was narrower:
-- 100-question preregistered subset
-- prompt family v2_owner_match_paraphrase_v1
-- confidence HIDDEN
-- tests robustness of the owner manipulation.
+What Checkpoint A actually told us
 
-DO NOT silently replace or redefine that preregistered test.
+Checkpoint A asked a more important question:
 
-Instead:
+Suppose the AI says “99% confident.” Is that number actually everything the AI knows about whether the answer is risky?
 
-A. RUN THE ORIGINAL PREREGISTERED ROBUSTNESS TEST EXACTLY AS PLANNED.
-B. EXTEND THE SAME PARAPHRASED PROMPT FAMILY TO VISIBLE-CONFIDENCE CONDITIONS so we can additionally robustness-test the paper’s confidence-visibility result.
+And the answer looked like no, at least behaviorally.
 
-The visible-confidence extension must be recorded as a post-primary/full-factorial robustness extension, NOT falsely described as part of the original preregistered hidden-only robustness test.
+The clearest example was GPT. There were lots of answers where GPT had given the exact same confidence, 99%. Yet when the confidence number was hidden, GPT treated some of those answers as “this should be checked” and others as “this is safe.”
 
-==================================================
-1. SAMPLE
-==================================================
+Even more importantly, the ones GPT naturally wanted checked were actually wrong much more often.
 
-Use the EXISTING preregistered 100-question paraphrase subset.
+So in layman’s terms:
 
-Do not choose a new subset.
-Do not optimize the subset based on V2-B results.
-Do not resample questions.
+GPT’s single confidence number was throwing away some useful nuance.
 
-If the exact frozen 100-question ID list cannot be found in the repo/config/checkpoint, STOP and report that instead of creating a replacement sample.
+Not necessarily secret neurons or “the model knows it’s wrong.” It could simply be that when GPT gets another look at the problem during the verification stage, it notices something it didn’t encode into the original percentage.
 
-==================================================
-2. REUSE FROZEN STAGE-1 AND STAGE-2 OUTPUTS
-==================================================
+That is the core Checkpoint A clue.
 
-For these 100 questions, reuse the existing V2-B:
+At the same time, Checkpoint A prevented us from telling a fake story. For GPT, much of the original bad outcome from showing confidence was simply because GPT was overconfident and then faithfully followed that overly optimistic number. So we stopped saying things like “showing confidence definitely suppresses a superior internal signal.” That was not established.
 
-- frozen Stage-1 answer
-- frozen Stage-2 self-reported probability q
+Then Study 1 answered a different question
 
-Do NOT ask any model to answer the MMLU-Pro question again.
-Do NOT elicit confidence again.
+Study 1 asked:
 
-The point is to change ONLY the Stage-3 prompt wording.
+Is the number itself actually causing the later decision?
 
-Verify programmatically that every paraphrase Stage-3 record uses exactly the same:
-- example_id
-- model
-- frozen_answer_label
-- probability_correct
+So we froze the exact same question and exact same answer and literally changed only the displayed confidence.
 
-as the corresponding V2-B primary record.
+GPT’s result was extreme.
 
-==================================================
-3. MODELS AND SETTINGS
-==================================================
+At \(L=10\):
 
-Use exactly the same models/settings as V2-B:
+show 89% → essentially always CHECK;
+show 91% → essentially never CHECK.
 
-- OpenAI gpt-5.6-sol, reasoning effort none
-- Anthropic claude-sonnet-5, thinking disabled
-- Google gemini-3.8-flash, thinking low
-- xAI grok-4.20-0309-non-reasoning
+At \(L=20\):
 
-Preserve the same provider-specific generation settings and token ceilings used in V2-B.
-No tools, browsing, search, retrieval, code execution, or external context.
+show 94% → essentially always CHECK;
+show 96% → essentially never CHECK.
 
-==================================================
-4. PARAPHRASED STAGE-3 PROMPT
-==================================================
+And the repeat study showed this wasn’t randomness. Rerunning the exact same GPT prompt changed the decision only about 2–3% of the time; changing the confidence across the threshold changed it around 99% of the time.
 
-First inspect the existing frozen v2_owner_match_paraphrase_v1 implementation.
+So we now have a clean causal fact:
 
-If the preregistered hidden-confidence paraphrase wording already exists, DO NOT EDIT ITS WORDING.
+For GPT in this setup, the displayed confidence number can almost completely control the verification decision.
 
-Use that wording exactly for the preregistered hidden-confidence cells.
+Claude responds too, but much less mechanically. Its tiny near-threshold effect did not survive reruns cleanly, although moving from very low to very high displayed confidence still had a substantial effect.
 
-Then create the visible-confidence counterpart by making the minimum necessary addition that exposes the SAME frozen Stage-2 probability q.
+That’s a real result.
 
-The paraphrased prompt must preserve all experimental semantics:
+But—and this is where Claude’s critique was important—it is not yet a crazy discovery.
 
-- same frozen question
-- same frozen answer
-- same perfect-verifier assumption
-- verification cost C = 1
-- wrong-unverified-answer cost L ∈ {2, 5, 10, 20}
-- same two action labels:
-  - USE_UNVERIFIED
-  - VERIFY_FIRST
-- same structured output schema
-- same numeric information
-- same distinction between HUMAN owner and AI SYSTEM owner
+Why Claude says the current result is somewhat obvious
 
-The owner manipulation must still differ ONLY in who controls whether verification occurs.
+Imagine I tell you:
 
-The visibility manipulation must differ ONLY in whether the previously elicited q is shown.
+“This answer has a 91% chance of being correct. Checking costs 1 point. Using a wrong answer costs 10 points.”
 
-Do NOT introduce new loaded/normative language such as:
-- safe / unsafe
-- responsible / irresponsible
-- trustworthy
-- recommended
-- cautious
-- dangerous
-- protect the user
-- accountability
+There is a mathematically correct decision:
 
-unless such wording already exists in the frozen preregistered paraphrase.
+don’t check.
 
-We are trying to alter surface wording, not alter the construct.
+If I instead say 89%, the math says:
 
-==================================================
-5. CONDITIONS TO COLLECT
-==================================================
+check.
 
-For the 100 questions, collect the full paraphrased Stage-3 factorial:
+So if GPT behaves exactly that way, a reviewer can reasonably say:
 
-100 questions
-× 4 models
-× 2 owners
-× 2 confidence-visibility conditions
-× 4 error costs
-= 6,400 paraphrased Stage-3 decisions
+“Congratulations, GPT understood the instructions and did the arithmetic.”
 
-The hidden-confidence half corresponds to the original preregistered robustness test:
-3,200 decisions.
+And actually GPT is arguably behaving correctly given what we told it.
 
-The visible-confidence half is the additional extension:
-3,200 decisions.
+So the paper cannot be:
 
-Do not rerun the original v2_owner_match_v1 Stage-3 cells; those already exist.
+“GPT is bad because it obeys confidence too much.”
 
-Use a distinct run ID/checkpoint identity for the paraphrase run and preserve prompt-family/version metadata so primary and paraphrase records can never be confused.
+That would be conceptually weak.
 
-==================================================
-6. COMPLETENESS / VALIDATION
-==================================================
+Claude’s better framing is to stop blaming the model and start questioning the system design.
 
-Before analysis, verify:
+The designer chose to compress all uncertainty into one number, then fed that number back into the model and essentially told it to base oversight on that number.
 
-- exactly 100 unique question IDs
-- all 4 models
-- both owners
-- both confidence visibility states
-- all four L values
-- 6,400 / 6,400 expected paraphrase Stage-3 cells
-- no duplicate factor cells
-- no missing factor cells
-- no imputation
-- frozen answer and q exactly match primary V2-B
-- no primary V2-B records were overwritten
+The question becomes:
 
-If API failures occur, retry the SAME missing cells only and preserve failure/retry logs.
+What useful information might the system lose when it does that?
 
-==================================================
-7. PRIMARY ROBUSTNESS ANALYSES
-==================================================
+That is much more interesting.
 
-Compare the paraphrased decisions with v2_owner_match_v1 on the SAME 100 questions.
+This is the “bridge to Checkpoint A”
 
-A. Original preregistered owner robustness
-For HIDDEN confidence:
-- model × L owner effect:
-  P(VERIFY | AI owner) - P(VERIFY | human owner)
-- primary-prompt estimate
-- paraphrase estimate
-- difference between estimates
-- nominal paired question-level 95% bootstrap CI
-- action agreement between primary and paraphrase
+This is the key connection.
 
-This preserves the originally planned owner robustness test.
+Checkpoint A tells us:
 
-B. Confidence-visibility robustness — IMPORTANT NEW EXTENSION
-For each model × owner × L:
+When the confidence number is hidden, the model’s natural CHECK/USE decision sometimes contains useful information that the confidence number itself does not contain.
 
-visibility effect =
-P(VERIFY | visible) - P(VERIFY | hidden)
+Study 1 tells us:
 
-Report:
-- primary-prompt visibility effect on the same 100 questions
-- paraphrase-prompt visibility effect
-- difference between those effects
-- paired question-level 95% bootstrap CI
-- whether the qualitative sign/pattern is preserved
+When the number is explicitly shown, especially for GPT, that number can almost completely control the final CHECK/USE decision.
 
-The four headline patterns we specifically care about are:
+Put those together:
 
-1. Anthropic:
-   visible confidence increases verification.
+What happens to that extra useful information when we feed the confidence number back in?
 
-2. OpenAI:
-   visible confidence decreases verification.
+That is the bridge.
 
-3. xAI:
-   visible confidence decreases verification.
+Here’s the simplest possible example.
 
-4. Google:
-   visibility is small/mixed at lower stakes but increases verification strongly at L=10 and L=20.
+Suppose we show 99% confidence to every question.
 
-DO NOT define “success” as reproducing identical percentages.
-The robustness question is whether the major qualitative effects survive a semantically equivalent wording change.
+Now the displayed confidence contains zero information about which particular question is wrong, because every question gets the exact same number.
 
-C. Prompt-level action agreement
-For every:
-model × owner × visibility × L
+GPT at 99% basically says:
 
-report:
-- n
-- primary verify rate
-- paraphrase verify rate
-- action agreement
-- paired rate difference
-- bootstrap CI
+“Use them all.”
 
-D. Secondary analyses
-Recompute, if straightforward:
-- owner × confidence interaction
-- stake sensitivity
-- monotonicity
+So its final decision distinguishes almost none of the questions.
 
-These are secondary. Do not delay the main robustness output for elaborate analyses.
-
-Do NOT make wrong-answer filtering on only 100 questions a headline robustness test because the wrong-answer denominators will be small. It can be included descriptively if useful.
-
-==================================================
-8. BOOTSTRAP
-==================================================
-
-Use the same statistical convention as V2-B:
-
-- question-level paired bootstrap
-- 5,000 resamples
-- nominal 95% intervals
-- keep all matched factor cells for a question together
-
-Do not pretend individual Stage-3 decisions are independent samples.
-
-==================================================
-9. OUTPUT FILES
-==================================================
-
-Do not overwrite the current V2-B tables.
-
-Fill/update the currently empty robustness outputs where appropriate and create additional files if needed.
-
-At minimum produce machine-readable:
-
-paper_outputs/v2/prompt_robustness.csv
-paper_outputs/v2/prompt_robustness.json
-
-and add a confidence-centered output such as:
-
-paper_outputs/v2/prompt_confidence_visibility_robustness.csv
-paper_outputs/v2/prompt_confidence_visibility_robustness.json
-
-Also produce paper-ready:
-
-table_prompt_robustness.md
-table_prompt_robustness.tex
-
-table_prompt_confidence_visibility_robustness.md
-table_prompt_confidence_visibility_robustness.tex
-
-Create ONE clean robustness figure if useful:
-- four model panels
-- compare primary vs paraphrase confidence-visibility effects
-- emphasize effect direction rather than raw volume of cells
-
-Do not generate a pile of redundant PNGs.
-
-==================================================
-10. UPDATE THE RESEARCH BRIEF
-==================================================
-
-After analysis, update PAPER_RESEARCH_BRIEF.md with:
-
-- exact run status
-- 6,400 planned / actual decisions
-- any retries/failures
-- exact robustness results
-- whether each headline confidence pattern survived
-- original preregistered hidden-owner robustness result
-- clear labeling that the visible-confidence extension was added to test the confidence-centered paper finding
-
-Do not claim:
-- a second benchmark
-- additional models
-- independent replication of V2-B
-- universal behavior across LLMs
-
-==================================================
-11. DO NOT DO THESE THINGS
-==================================================
-
-Do NOT:
-- run GPQA
-- add more model families
-- regenerate Stage 1
-- regenerate Stage 2
-- rerun the 500-question primary Stage 3
-- change V2-B results
-- cherry-pick models
-- change the 100-question subset
-- quietly redefine the preregistered robustness experiment
-- modify the primary prompt family
-- reinterpret V2-A as an independent replication
-
-==================================================
-12. EXECUTION ORDER
-==================================================
-
-1. Inspect code/config and identify the exact frozen 100-question subset.
-2. Show/record the existing paraphrase prompt and verify semantic matching.
-3. Confirm expected API-call count = 6,400 Stage-3 calls.
-4. Run the paraphrase experiment.
-5. Retry only failed cells.
-6. Validate 6,400/6,400 completeness.
-7. Run paired robustness analysis.
-8. Generate tables and at most one main robustness figure.
-9. Update PAPER_RESEARCH_BRIEF.md.
-10. Give me a concise final summary containing:
-   - completeness
-   - confidence-effect comparison primary vs paraphrase for all four models
-   - owner robustness result
-   - any qualitative result that failed to survive
-   - exact paths of new output files.
-
-If you discover that the frozen preregistered design differs from anything in these instructions, DO NOT silently change it. Preserve the frozen preregistered component and explain the conflict before proceeding.
+Claude at 99% still checks many of them.
+
+The important question is which ones Claude checks.
+
+If Claude’s checked answers are disproportionately the actually wrong ones, then Claude is still using useful question-specific evidence despite seeing the same 99% score everywhere.
+
+If not, then Claude is just generally more cautious.
+
+That’s the analysis we have not run yet.
+
+And it could be the most important analysis so far.
+
+So is what we have right now “good”?
+
+Yes, but in a specific sense.
+
+We now have a very clean exploratory causal finding.
+
+Study 1 passed its own gate: the GPT effect is huge, stable under repetition, and caused by changing only the displayed confidence.
+
+I would describe the current package as:
+
+Too strong to dismiss as a fluke, but not deep enough yet to be the ICLR story.
+
+Right now you have something I would be happy with as a strong workshop contribution.
+
+For ICLR, we need to answer the next layer.
+
+What the strong ICLR story could become
+
+The strongest version I currently see is something like this:
+
+AI systems increasingly need to decide which of their own outputs deserve extra scrutiny. Confidence scores are an obvious way to make that decision. But a confidence score is only a compressed summary of uncertainty. We find that once the score is fed back into the model as a control input, it can dramatically reshape the verification policy and, in some models, potentially crowd out answer-specific information that was useful for identifying errors. We measure how much useful information survives, explain where that information comes from, and design routing policies that preserve it and catch more errors at the same oversight budget.
+
+That is narratively strong because it has a clean progression:
+
+AI needs selective oversight
+→ confidence seems like the obvious routing signal
+→ confidence is only a summary
+→ feeding that summary back changes behavior
+→ maybe it replaces richer answer-specific judgment
+→ measure what survives
+→ figure out where it comes from
+→ design a better router.
+
+That feels like one paper.
+
+Not six disconnected experiments.
+
+What would make it a very strong ICLR paper
+
+I would now think about the project in roughly five steps.
+
+Prove the “evidence retention” result.
+On the Study-1 data we already have, hold displayed confidence fixed and ask whether VERIFY vs USE still predicts actual wrongness. If Claude retains useful error discrimination and GPT loses most of it, that is potentially the conceptual centerpiece. This costs nothing.
+Rule out the boring explanation for Checkpoint A.
+Ask for a second confidence estimate. Maybe the “extra information” in hidden verification is simply the benefit of looking at the question twice. If a second confidence sample explains everything, we should say so. If it does not, the deeper story survives.
+Remove the arithmetic crutch.
+Run a qualitative-stakes experiment with no exact cost formula or crisp numerical threshold. If GPT still lets the displayed score strongly dominate—and especially if useful answer-specific discrimination drops—then the result is no longer just “GPT did arithmetic.”
+Confirm and generalize.
+Freeze a fresh experiment on unseen questions, ideally add one open-weight model and one non-MCQ task such as math. The Master Plan already treats fresh prospective confirmation and modest generalization as the core path after the exploratory pilot.
+Show a practical payoff.
+At the same number of allowed checks, compare:
+raw confidence, calibrated confidence, natural verification judgment, repeated assessment, and combinations. If a combined router catches more real mistakes for the same checking budget, the paper ends with something designers can actually use.
+
+That last part matters a lot narratively.
+
+Otherwise the paper ends:
+
+“Here is a weird behavior.”
+
+Much better is:
+
+“Here is the failure mode, here is why it happens, and here is a better way to allocate oversight.”
+
+Where interpretability fits now
+
+Much later.
+
+Claude was right here too.
+
+We do not need activation steering or probes just to make this respectable.
+
+If the behavioral story becomes strong:
+
+explicit score dominates;
+useful answer-specific evidence disappears or weakens;
+this survives second-confidence controls;
+survives qualitative stakes;
+generalizes;
+better router recovers performance;
+
+that could already be a strong paper.
+
+Interpretability then becomes the high-ceiling question:
+
+What internal signal is being used when confidence is hidden, and does displaying confidence reduce its influence on the final action?
+
+That would be exciting.
+
+But we shouldn't do it just because “ICLR likes mechanistic work.”
+
+The Master Plan itself says the mechanistic contribution only earns its place if the behavioral continuity and stronger baselines survive first.
+
+The current project landscape, in plain English
+
+I’d divide where we are into four boxes.
+
+What we know:
+GPT’s displayed confidence can causally and almost deterministically control verification in our numerical-cost setup. That survives rerun noise. Claude is less score-dominated. Checkpoint A also showed natural verification contains information beyond one verbal-confidence report.
+
+What we strongly suspect but haven’t shown:
+When GPT becomes score-dominated, some useful answer-specific discrimination may stop influencing the decision.
+
+What could kill the deeper story:
+Maybe Claude’s residual checking is just blanket caution. Maybe asking for confidence a second time completely explains the hidden-policy advantage. Maybe GPT only acts this way because we literally gave it an arithmetic threshold.
+
+What would turn it into the strong paper:
+Show that useful answer-specific evidence really gets reduced by explicit-score conditioning, survives boring-explanation controls, replicates prospectively and across another setting, and can be exploited to build a better routing policy.
+
+The simplest version of the whole paper
+
+If everything works, I think the elevator pitch eventually becomes:
+
+A confidence score is not the same thing as everything an AI knows about whether its answer is risky. When we feed that score back into the model to control whether its answer gets checked, some models let the score dominate the decision. We study what useful information is lost, why, and how to route verification better.
+
+That is much stronger than:
+
+“Changing 89% to 91% changes GPT’s action.”
+
+The 89→91 result is now the instrument that lets us study the deeper phenomenon, not the phenomenon we ultimately want the paper to be remembered for.
