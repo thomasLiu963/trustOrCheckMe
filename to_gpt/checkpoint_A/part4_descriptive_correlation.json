@@ -1,0 +1,28 @@
+{
+  "n_cells": 32,
+  "pearson_r_descriptive_only": 0.11249869022977822,
+  "spearman_r_descriptive_only": 0.0722217637917458,
+  "warning": "These 32 cells are not independent. Each model contributes 8 cells that reuse the same 500 questions. Do not treat r as a confirmatory test.",
+  "within_model": {
+    "anthropic_sonnet5": {
+      "n_cells": 8,
+      "pearson_r": 0.8549882004470432,
+      "spearman_r": 0.9285714285714287
+    },
+    "google_gemini38_flash": {
+      "n_cells": 8,
+      "pearson_r": -0.21735345314681032,
+      "spearman_r": -0.261904761904762
+    },
+    "openai_gpt56_sol": {
+      "n_cells": 8,
+      "pearson_r": -0.3008678409978643,
+      "spearman_r": -0.261904761904762
+    },
+    "xai_grok420_nonreasoning": {
+      "n_cells": 8,
+      "pearson_r": 0.28635264279108646,
+      "spearman_r": 0.13849906542061674
+    }
+  }
+}

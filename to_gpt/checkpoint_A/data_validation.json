@@ -1,0 +1,323 @@
+{
+  "actions": {
+    "USE_UNVERIFIED": 16880,
+    "VERIFY_FIRST": 15120
+  },
+  "answer_ids_match_v2b_sample": true,
+  "answer_run_ids": {
+    "v2-v1-reuse": 400,
+    "v2a-core-20260904": 398,
+    "v2a-smoke-20260904": 2,
+    "v2b-core-20260905": 1200
+  },
+  "checkpoint": "/Users/thomas/Desktop/trustOrCheckMe/results/v2/raw/v2.sqlite3",
+  "error_costs": [
+    2.0,
+    5.0,
+    10.0,
+    20.0
+  ],
+  "factor_completeness_issue_count": 0,
+  "factor_completeness_issues": [],
+  "missing_answer_joins": 0,
+  "missing_confidence_joins": 0,
+  "models": [
+    "anthropic_sonnet5",
+    "google_gemini38_flash",
+    "openai_gpt56_sol",
+    "xai_grok420_nonreasoning"
+  ],
+  "most_common_confidence_values": {
+    "anthropic_sonnet5": [
+      [
+        0.85,
+        81
+      ],
+      [
+        0.6,
+        69
+      ],
+      [
+        0.72,
+        67
+      ],
+      [
+        0.9,
+        41
+      ],
+      [
+        0.95,
+        38
+      ],
+      [
+        0.75,
+        33
+      ],
+      [
+        0.55,
+        28
+      ],
+      [
+        0.7,
+        22
+      ]
+    ],
+    "google_gemini38_flash": [
+      [
+        0.99,
+        170
+      ],
+      [
+        0.95,
+        115
+      ],
+      [
+        0.98,
+        89
+      ],
+      [
+        0.85,
+        60
+      ],
+      [
+        0.9,
+        14
+      ],
+      [
+        0.65,
+        9
+      ],
+      [
+        0.4,
+        5
+      ],
+      [
+        0.88,
+        5
+      ]
+    ],
+    "openai_gpt56_sol": [
+      [
+        0.99,
+        247
+      ],
+      [
+        0.98,
+        66
+      ],
+      [
+        0.97,
+        35
+      ],
+      [
+        0.999,
+        20
+      ],
+      [
+        0.93,
+        17
+      ],
+      [
+        0.96,
+        12
+      ],
+      [
+        0.94,
+        11
+      ],
+      [
+        0.88,
+        10
+      ]
+    ],
+    "xai_grok420_nonreasoning": [
+      [
+        0.65,
+        154
+      ],
+      [
+        0.85,
+        116
+      ],
+      [
+        0.4,
+        53
+      ],
+      [
+        0.6,
+        38
+      ],
+      [
+        0.95,
+        29
+      ],
+      [
+        0.45,
+        25
+      ],
+      [
+        0.8,
+        18
+      ],
+      [
+        0.35,
+        13
+      ]
+    ]
+  },
+  "n_answer_ids_not_in_sample": 0,
+  "n_answer_records": 2000,
+  "n_confidence_records": 2000,
+  "n_duplicate_answer_keys": 0,
+  "n_duplicate_confidence_keys": 0,
+  "n_duplicate_primary_cells": 0,
+  "n_models": 4,
+  "n_other_prompt_family": 0,
+  "n_primary_stage3": 32000,
+  "n_questions": 500,
+  "n_refused_primary": 0,
+  "n_robustness_stage3": 6400,
+  "n_sample_ids_without_answers": 0,
+  "n_unique_answer_keys": 2000,
+  "n_unique_confidence_keys": 2000,
+  "n_unique_confidence_values": {
+    "anthropic_sonnet5": 28,
+    "google_gemini38_flash": 23,
+    "openai_gpt56_sol": 39,
+    "xai_grok420_nonreasoning": 23
+  },
+  "n_unique_primary_cells": 32000,
+  "n_verification_records_all": 38400,
+  "notes": [
+    "Primary analysis uses prompt family v2_owner_match_v1 only.",
+    "6400 paraphrase-robustness Stage-3 rows are excluded from Checkpoint A.",
+    "One overlapping V2-A cell was completed during v2b-core (19201 V2-B run_id rows rather than 19200). The scientific cell grid is complete and unique; this is a run-id bookkeeping detail, not a missing/extra cell.",
+    "Frozen Stage-1 answers and Stage-2 confidences are unique on (example_id, model_id) and are copied consistently into every Stage-3 cell."
+  ],
+  "owners": [
+    "ai_system",
+    "human"
+  ],
+  "pairs_with_inconsistent_confidence_across_cells": 0,
+  "pairs_with_inconsistent_frozen_answer_across_cells": 0,
+  "primary_run_ids": {
+    "v2a-core-20260904": 12735,
+    "v2a-smoke-20260904": 64,
+    "v2b-core-20260905": 19201
+  },
+  "prompt_family_analyzed": "v2_owner_match_v1",
+  "prompt_family_excluded": "v2_owner_match_paraphrase_v1",
+  "questions_per_model": {
+    "anthropic_sonnet5": 500,
+    "google_gemini38_flash": 500,
+    "openai_gpt56_sol": 500,
+    "xai_grok420_nonreasoning": 500
+  },
+  "run_counts": [
+    [
+      "v2-v1-reuse",
+      "answer",
+      "success",
+      400
+    ],
+    [
+      "v2-v1-reuse",
+      "confidence",
+      "success",
+      400
+    ],
+    [
+      "v2a-core-20260904",
+      "answer",
+      "success",
+      398
+    ],
+    [
+      "v2a-core-20260904",
+      "confidence",
+      "success",
+      398
+    ],
+    [
+      "v2a-core-20260904",
+      "verification",
+      "success",
+      12736
+    ],
+    [
+      "v2a-smoke-20260904",
+      "answer",
+      "success",
+      2
+    ],
+    [
+      "v2a-smoke-20260904",
+      "confidence",
+      "success",
+      2
+    ],
+    [
+      "v2a-smoke-20260904",
+      "verification",
+      "success",
+      64
+    ],
+    [
+      "v2b-core-20260905",
+      "answer",
+      "success",
+      1200
+    ],
+    [
+      "v2b-core-20260905",
+      "confidence",
+      "success",
+      1200
+    ],
+    [
+      "v2b-core-20260905",
+      "verification",
+      "success",
+      19200
+    ],
+    [
+      "v2b-robustness-hidden-20260905",
+      "verification",
+      "success",
+      3200
+    ],
+    [
+      "v2b-robustness-visible-20260905",
+      "verification",
+      "success",
+      3200
+    ]
+  ],
+  "sample_file": "/Users/thomas/Desktop/trustOrCheckMe/data/samples/mmlu_pro_v2b.jsonl",
+  "stage3_vs_stage1_answer_mismatches": 0,
+  "stage3_vs_stage2_confidence_mismatches": 0,
+  "status_counts": [
+    [
+      "answer",
+      "success",
+      2000
+    ],
+    [
+      "confidence",
+      "success",
+      2000
+    ],
+    [
+      "verification",
+      "success",
+      38400
+    ]
+  ],
+  "verification_cost_values": [
+    1.0
+  ],
+  "visibility": [
+    "hidden",
+    "visible"
+  ]
+}

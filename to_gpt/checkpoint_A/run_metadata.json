@@ -1,0 +1,10 @@
+{
+  "bootstrap": "Question-level resampling with replacement, 5000 replicates, percentile 95% intervals. Budget is recomputed inside each replicate. Repeated L/authority cells are averaged inside the replicate rather than treated as independent samples.",
+  "calibration": "Per-model 5-fold StratifiedKFold on Stage-1 correctness, seed 20260904 hashed with model id. Primary calibrator is pool-adjacent-violators isotonic regression from src.calibration. Robustness calibrator is unregularized logistic / Platt scaling of raw q.",
+  "excluded": "6400 paraphrase Stage-3 rows (v2_owner_match_paraphrase_v1) were excluded from Checkpoint A.",
+    "n_bootstrap": 5000,
+    "n_folds": 5,
+    "residual_auroc_bootstrap": "Log-loss and Brier deltas use 5000 question-level replicates. AUROC deltas use every 5th replicate (1000 samples); AUROC point estimates use the full sample.",
+    "seed": 20260904,
+  "tie_handling": "Fractional/expected inclusion at the cutoff confidence value. All strictly lower-q items are verified. Items tied at the cutoff share equal weight so the expected number verified equals the hidden policy's integer verification count."
+}
