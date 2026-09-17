@@ -129,11 +129,33 @@ class Study1Runner:
             config=self.config,
         )
         if not dry_run:
-            raise Study1AuthorizationError(
-                "study1-run does not authorize paid/network execution. "
-                "Task 002 uses study1-smoke (12 cells / 20 attempts) only. "
-                "The 2,800-call primary pilot is not authorized."
-            )
+            resolved = Study1Phase(phase)
+            if resolved == Study1Phase.REPEATS:
+                raise Study1AuthorizationError(
+                    "Task 003 does not authorize the 1,120 repeat-extra cells."
+                )
+            if resolved != Study1Phase.PRIMARY:
+                raise Study1AuthorizationError(f"unsupported paid phase: {resolved}")
+            if int(max_calls) != 2800:
+                raise Study1AuthorizationError(
+                    "Task 003 primary max_calls must be exactly 2800"
+                )
+            from .study1_primary import execute_primary_task
+
+            payload = execute_primary_task()
+            return {
+                "task_id": "003_run_study1_primary",
+                "dry_run": False,
+                "allow_paid": True,
+                "phase": "primary",
+                "preflight_ok": bool(payload.get("preflight_ok")),
+                "reused": payload.get("reused"),
+                "new_initiated": payload.get("new_initiated"),
+                "stopped_reason": payload.get("stopped_reason"),
+                "wall_clock_seconds": payload.get("wall_clock_seconds"),
+                "checkpoint_path": payload.get("checkpoint_path")
+                or str(self.config.study1_sqlite()),
+            }
         return {
             "dry_run": True,
             "allow_paid": False,

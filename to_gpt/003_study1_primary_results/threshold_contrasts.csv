@@ -1,0 +1,9 @@
+model_alias,model_label,L,low_displayed,high_displayed,n_questions,rate_low,rate_high,difference,ci_lower,ci_upper,verify_to_use,use_to_verify,no_change,seed,n_resamples,correctness_split
+openai_gpt56_sol,GPT,10.0,0.89,0.91,100,1.0,0.04,0.96,0.92,0.99,96,0,4,20260917,5000,
+openai_gpt56_sol,GPT,20.0,0.94,0.96,100,0.97,0.02,0.95,0.9,0.99,95,0,5,20260917,5000,
+anthropic_sonnet5,Claude,10.0,0.89,0.91,100,0.79,0.72,0.07,0.02,0.12,7,0,93,20260917,5000,
+anthropic_sonnet5,Claude,20.0,0.94,0.96,100,0.77,0.7,0.07,0.03,0.12024999999999636,7,0,93,20260917,5000,
+openai_gpt56_sol,GPT,10.0,0.8,0.99,100,1.0,0.0,1.0,1.0,1.0,100,0,0,20260917,5000,
+openai_gpt56_sol,GPT,20.0,0.9,0.99,100,1.0,0.02,0.98,0.95,1.0,98,0,2,20260917,5000,
+anthropic_sonnet5,Claude,10.0,0.8,0.99,100,0.86,0.5,0.36,0.27,0.45,36,0,64,20260917,5000,
+anthropic_sonnet5,Claude,20.0,0.9,0.99,100,0.9,0.62,0.28,0.19,0.37,28,0,72,20260917,5000,

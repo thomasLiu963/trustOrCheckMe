@@ -109,3 +109,32 @@ Study 1 infrastructure = DEVELOPMENT / EXPLORATORY.
 Study 1 data collection = SMOKE TEST ONLY (not a scientific sample).  
 Full primary/repeats = NOT AUTHORIZED.
 
+---
+
+## 2026-09-17 — Task 003 authorizes the 2,800-cell primary only
+
+**Date:** 2026-09-17
+
+**Previous state:**  
+Task 002 12-cell engineering smoke test succeeded. Full primary and repeats were still unauthorized.
+
+**Evidence:**  
+Numbered task `from_gpt/003_run_study1_primary.md` authorizes the frozen 2,800 primary cells and requires analysis of that primary dataset. It withholds the 1,120 repeat-extra cells, micro-controls, and later studies. Task-002 cells for `mmlu_pro:test:7552` reuse identical primary request keys.
+
+**Decision:**  
+Run remaining primary cells after reusing the 12 valid smoke-test records. Do not run repeats or controls. Analyze the 2,800-cell primary dataset as exploratory evidence. Do not claim the effect exceeds ordinary rerun noise.
+
+**Affected study already frozen?**  
+No. Study 1 remains exploratory. Historical V2 remains HISTORICAL-FROZEN.
+
+**Exploratory vs confirmatory relative to this decision:**  
+The 2,800-cell primary is EXPLORATORY. Repeats, if later authorized, would still be exploratory stability evidence, not confirmatory.
+
+**Current next engineering task:**  
+Return `to_gpt/003_study1_primary_results/` for GPT review. Do not launch Task 004.
+
+**Status:**  
+Study 1 primary = AUTHORIZED / EXPLORATORY.  
+Study 1 repeats = NOT AUTHORIZED.  
+Later studies = CONDITIONAL.
+

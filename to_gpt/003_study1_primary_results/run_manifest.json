@@ -1,0 +1,47 @@
+{
+  "task_id": "003_run_study1_primary",
+  "status": "SUCCESS",
+  "git_commit": "933662823c78b305444400b2ac281cebe28ff0d9",
+  "paid_calls_authorized": true,
+  "primary_dataset_target": 2800,
+  "existing_smoke_cells_reused": 12,
+  "prior_primary_cells_reused": 0,
+  "new_scientific_calls": 2788,
+  "provider_attempts_total": 2853,
+  "retry_attempts": 53,
+  "repair_attempts": 52,
+  "successful_unique_primary_cells": 2800,
+  "failed_primary_cells": 0,
+  "models": [
+    "openai_gpt56_sol",
+    "anthropic_sonnet5"
+  ],
+  "L_values": [
+    10.0,
+    20.0
+  ],
+  "confidence_grids": {
+    "10": [
+      0.8,
+      0.88,
+      0.89,
+      0.91,
+      0.99
+    ],
+    "20": [
+      0.9,
+      0.93,
+      0.94,
+      0.96,
+      0.99
+    ]
+  },
+  "selected_question_hash": "badd6938e5ded12c9dd62733426e1db26d9843bb6a2321a4e4c9eb7e3547fe94",
+  "api_cost_usd": 4.94662,
+  "wall_clock_seconds": 1240.6819999999998,
+  "historical_artifacts_modified": false,
+  "data_validation_passed": true,
+  "gate_recommendation": "C",
+  "ready_for_gpt_review": true,
+  "stopped_reason": null
+}

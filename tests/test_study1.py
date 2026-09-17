@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 import pytest
@@ -290,8 +291,10 @@ def test_paid_calls_disabled_by_default_and_cap_enforced() -> None:
             planned_calls=2800, dry_run=False, allow_paid=True, max_calls=5, phase="primary"
         )
     runner = Study1Runner()
-    with pytest.raises(Study1AuthorizationError):
-        runner.run(phase="primary", dry_run=False, allow_paid=True, max_calls=2800)
+    with pytest.raises(Study1AuthorizationError, match="2800"):
+        runner.run(phase="primary", dry_run=False, allow_paid=True, max_calls=5)
+    with pytest.raises(Study1AuthorizationError, match="repeat"):
+        runner.run(phase="repeats", dry_run=False, allow_paid=True, max_calls=1120)
 
 
 def test_cli_study1_run_requires_explicit_mode() -> None:
@@ -380,3 +383,23 @@ def test_smoke_paid_path_requires_exact_caps() -> None:
                 allow_paid=True, scientific_cell_cap=12, provider_attempt_cap=21
             )
         )
+
+
+def test_primary_preflight_reuses_identical_smoke_keys() -> None:
+    from src.study1_primary import validate_primary_preflight
+
+    preflight = validate_primary_preflight()
+    assert preflight["ok"], preflight["errors"]
+    assert preflight["planned_primary_cells"] == 2800
+    assert preflight["repeat_extra_cells_excluded"] == 1120
+    assert preflight["smoke_keys_are_primary_keys"] is True
+    assert preflight["existing_smoke_cells_reused"] == 12
+    assert preflight["existing_successes_reused"] >= 12
+    assert preflight["new_scientific_calls"] == 2800 - preflight["existing_successes_reused"]
+    assert preflight["selected_question_hash"] == (
+        "badd6938e5ded12c9dd62733426e1db26d9843bb6a2321a4e4c9eb7e3547fe94"
+    )
+    assert preflight["smoke_question_id"] == "mmlu_pro:test:7552"
+    assert preflight["provider_attempt_cap"] == math.ceil(
+        preflight["new_scientific_calls"] * 1.10
+    )
