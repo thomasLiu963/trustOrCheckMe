@@ -1,0 +1,48 @@
+{
+  "task_id": "000_workflow_setup",
+  "task_title": "Establish GPT-Cursor workflow and audit Study 1 readiness",
+  "date": "2026-09-17",
+  "git_commit": "490c229109a76bd5f1fc0e26272f1950d457b046",
+  "executor": "cursor",
+  "status": "complete",
+  "api_calls_made": 0,
+  "paid_calls_authorized": false,
+  "smoke_test_authorized": false,
+  "study1_infrastructure_built": false,
+  "study1_ids_selected": false,
+  "study1_prompts_changed": false,
+  "study1_pilot_run": false,
+  "historical_artifacts_modified": false,
+  "scientific_sources_modified": false,
+  "ready_for_task_001": true,
+  "canonical_sources": {
+    "master_plan": "docs/D1_MASTER_RESEARCH_PLAN.md",
+    "experimental_protocol": "docs/D1_EXPERIMENTAL_PROTOCOL_v1.0_DRAFT.md",
+    "workflow_contract": "docs/GPT_CURSOR_WORKFLOW.md",
+    "decision_log": "docs/D1_DECISION_LOG.md",
+    "originals_preserved": [
+      "masterplan.txt",
+      "experimentalProtocol.txt"
+    ],
+    "copy_integrity": {
+      "master_plan_sha256": "768339ead3bc0b3751b6bd645a6ce317bae947c7edb8a81eb5be73e1fc9eef98",
+      "protocol_sha256": "937e408d7afc12fdb910a39cbf336a037ef0cb3ac7991c18f3fd1a606f3d7e37",
+      "canonical_copies_byte_identical_to_originals": true
+    }
+  },
+  "preserved_historical_paths": [
+    "results/v2/raw/v2.sqlite3",
+    "data/samples/mmlu_pro_v2b.jsonl",
+    "to_gpt/checkpoint_A/",
+    "paper_outputs/v2/",
+    "EXPERIMENT_V2.md"
+  ],
+  "created_paths": [
+    "docs/",
+    "from_gpt/",
+    "to_gpt/000_workflow_setup/"
+  ],
+  "preexisting_to_gpt_contents_left_in_place": [
+    "to_gpt/checkpoint_A/"
+  ]
+}

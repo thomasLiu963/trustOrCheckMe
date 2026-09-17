@@ -1,0 +1,10 @@
+docs/D1_MASTER_RESEARCH_PLAN.md
+docs/D1_EXPERIMENTAL_PROTOCOL_v1.0_DRAFT.md
+docs/GPT_CURSOR_WORKFLOW.md
+docs/D1_DECISION_LOG.md
+from_gpt/README.md
+to_gpt/README.md
+to_gpt/000_workflow_setup/report.md
+to_gpt/000_workflow_setup/changed_files.txt
+to_gpt/000_workflow_setup/repository_readiness.md
+to_gpt/000_workflow_setup/run_manifest.json
