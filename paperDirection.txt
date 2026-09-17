@@ -1,0 +1,431 @@
+
+Executive summary:
+D1 now has a real, unusually clean causal result, but the current evidence is not yet enough for the strongest version of an ICLR paper. The project has progressed beyond the original workshop observation in an important way: we can now hold the question and frozen answer fixed, change only the displayed confidence number, and cause GPT’s verification decision to flip almost deterministically. In the 100-question Study 1 primary experiment, GPT verification fell from 100% to 4% when displayed confidence crossed 0.89→0.91 at (L=10), and from 97% to 2% across 0.94→0.96 at (L=20). The pre-frozen repeat experiment then showed that this is not ordinary generation noise: GPT changed its action only about 2.7% under identical-prompt reruns but about 99.2% when the displayed score crossed the local decision threshold. Claude is qualitatively different: its extreme low-to-high confidence manipulation is reproducible, but its small near-threshold effect is comparable to rerun noise. 
+ 
+
+That is a good scientific result. It is not, by itself, a sufficiently surprising headline. Given an explicit probability and explicit verification/error costs, GPT is arguably doing exactly what a rational threshold policy should do. This is also where the closest 2026 literature substantially overlaps with us. Act or Escalate? already studies model-specific escalation curves under externally supplied predictive-accuracy signals and cost ratios; the Nature Machine Intelligence paper already gives causal evidence that confidence signals govern abstention and shows threshold-based control; RiskEval already studies the disconnect between verbal confidence and cost-sensitive abstention; and Kumaran’s commitment paper already shows that verbal confidence can align more strongly with later commitment than with objective correctness. 
+
+The surviving opening is therefore narrower and, in my judgment, better:
+
+D1 should study what happens when an externalized scalar uncertainty report becomes a control input for selective oversight: how strongly does the score dominate the action, how much reproducible answer-specific error information remains expressed in the routing decision, where does that information come from, and which routing policy catches the most errors at a fixed verification budget?
+
+This reframing creates a genuine bridge between Checkpoint A and Study 1. Checkpoint A showed that hidden VERIFY/USE behavior can contain correctness information not captured by a single verbal confidence report—clearest for Claude, where the hidden policy caught about 9.6 percentage points more errors than confidence ranking at the same checking budget, and suggestive for GPT. Study 1 then gives us a causal instrument for making the displayed score dominate the downstream action. 
+ The next question is not whether “confidence matters”; that is now established both by our experiment and by prior work. The next question is what other useful information still gets a say once the score is supplied.
+
+Claude’s adversarial critique is substantially right on three points. First, GPT’s near-0%/100% fixed-score behavior creates a genuine corner problem: at those saturated operating points, the binary action cannot express question-specific variation, so we cannot equate “no information visible in the action” with “the model internally lost the information.” Second, reasoning mode is an important omitted moderator: Act or Escalate? finds material interactions between cost framing and extended reasoning, so D1 should test whether reasoning changes score dominance rather than assuming the current low/no-reasoning result generalizes. Third, a strong paper should end in matched-budget routing performance, not just a behavioral curiosity. 
+ 
+
+Claude overstates several other points. Conditional mutual information is useful as a secondary descriptive quantity but is not a magical estimand when GPT’s action is structurally saturated. Kumaran’s 2026 commitment paper does not already perform our proposed independent second-confidence (q_2) experiment; it residualizes verbal confidence against calibrated token log probabilities, which is related but answers a different question. RiskEval’s apparent tension with our result is intriguing, but comparing two different papers cannot establish that “format and framing” caused the difference; D1 would need a matched within-study control. And a 600–1,000-question evidence-retention replication is a plausible planning range, not a justified fixed sample size until we simulate power using our own pilot effect sizes. 
+
+My recommendation is therefore yes, proceed—but sequentially. The immediate next task should cost zero dollars: analyze the existing Study 1 data for score dominance, fixed-score answer sensitivity, and whether any remaining answer sensitivity predicts actual errors, while explicitly treating GPT’s saturated cells as structurally uninformative rather than evidence of internal information loss. Then run a 1,000-call independent second-confidence experiment, an approximately 800-call GPT reasoning-mode check, and an approximately 1,600-call qualitative-stakes experiment with no explicit arithmetic threshold. A small non-MCQ math generalization can follow if those survive. At the requested $0.0017/cell planning rate, those four paid diagnostics together are only about 4,600 calls or $7.82 before retry overhead.
+
+The current package is strong workshop-level evidence and a strong foundation for an ICLR paper; it is not yet, in my independent judgment, a complete strong ICLR main-track package. What would change that assessment is a fresh prospective result showing that score feedback measurably changes the expression of useful answer-specific evidence, that this is not merely a second noisy confidence sample or arithmetic instruction-following, that the phenomenon survives at least one meaningful generalization, and that a better routing strategy catches more errors at the same verification budget. This is also substantially aligned with the project’s own original gate-based protocol: observe, test the simplest explanation cheaply, and scale only when the phenomenon survives. 
+
+Current evidence and what D1 has actually established
+The project now has four layers of evidence: the historical V2 discovery experiment, Checkpoint A, the Study 1 primary causal manipulation, and the pre-frozen repeated-sampling stability analysis. The distinction matters because V2 and Checkpoint A were exploratory with respect to the current D1 theory, while Study 1 was deliberately designed as an exploratory causal pilot rather than a confirmatory study. The Master Plan and Experimental Protocol explicitly preserve those provenance distinctions and require fresh prospective evidence before later work is called confirmatory. 
+ 
+
+Checkpoint A is the bridge between the old paper and the new paper. It showed that visible GPT agreed with the raw confidence-threshold policy on roughly 99.2% of historical decisions, and that GPT’s confidence was substantially overconfident. At (L=20), hidden GPT verified roughly 38%, visible GPT roughly 22%, the raw-confidence policy roughly 24%, while a cross-fitted calibrated-confidence rule would have wanted to verify roughly 96%. This substantially weakened the early story that visible GPT necessarily failed because it “lost” some superior internal uncertainty signal; a large portion of the cost failure is more simply explained by faithful use of an overconfident scalar score. 
+
+At the same time, Checkpoint A uncovered the clue that now matters most. Claude’s hidden verification policy caught approximately 88.3% of its errors, while confidence-only ranking at the identical verification budget caught approximately 78.6%, a difference of about +9.6 percentage points with a reported 95% interval of roughly [3.2, 16.0]. GPT’s analogous point estimate was positive, about +7.1 points, but its interval crossed zero. Even more suggestively, GPT had 247 answers reported at exactly 99% confidence; in a representative hidden condition, answers GPT chose to verify were wrong about 26.2% of the time, whereas answers it chose to use were wrong about 5.5% of the time despite identical verbal confidence. The correct inference is behavioral: the hidden action contains information beyond one verbal report. It is not yet evidence for a privileged internal “truth signal.” 
+
+Study 1 then tested whether the displayed score itself is causal. Cursor froze 100 questions with seed 20260917, froze a 20-question repeat subset with seed 20260918, reused historical Stage-1 answers and Stage-2 confidence values, maintained separate reported_confidence and displayed_confidence fields, and constructed exactly 2,800 primary cells plus 1,120 pre-planned repeat-extra cells. The prompt audit confirmed that manipulated prompts differed only in the displayed numeric confidence value and that the historical V2 AI-authority wording was preserved. 
+ 
+ 
+
+The Study 1 primary result is unusually clean:
+
+Model	Condition	Verification rates	Paired effect
+GPT, (L=10)	0.89 → 0.91	100% → 4%	96 pp
+GPT, (L=20)	0.94 → 0.96	97% → 2%	95 pp
+GPT, (L=10) extreme	0.80 → 0.99	100% → 0%	100 pp
+GPT, (L=20) extreme	0.90 → 0.99	100% → 2%	98 pp
+Claude, (L=10)	0.89 → 0.91	79% → 72%	7 pp
+Claude, (L=20)	0.94 → 0.96	77% → 70%	7 pp
+Claude, (L=10) extreme	0.80 → 0.99	86% → 50%	36 pp
+Claude, (L=20) extreme	0.90 → 0.99	90% → 62%	28 pp
+
+These are within-question causal contrasts: question, frozen answer, reported historical confidence, costs, authority framing, and output schema were held fixed while the displayed number changed. GPT’s manipulated response curve is almost a step function around the mechanically implied threshold; Claude’s is much more gradual. 
+
+The primary run comprised exactly 2,800 successful unique cells, 1,400 per model, with 12 smoke-test cells reused and 2,788 new unique primary calls. Current hidden/true-visible behavior also closely resembled historical V2 on the same 100 questions: for example, GPT (L=10) hidden was 33% historically and 32% currently, while Claude (L=10) hidden was 56% historically and 57% currently. That reduces concern that the phenomenon simply disappeared under current endpoints. 
+
+The stability experiment matters because it turns the GPT cliff from an eye-catching one-shot observation into a robust behavioral fact. All 1,120 pre-frozen repeat-extra calls succeeded, yielding three generations for each of 560 repeated cells. GPT identical-prompt reruns changed decisions only about 2.68% on average, while the near-threshold manipulation changed actions about 99.17%. At (L=10), the 20-question three-generation mean remained 100% verification at 0.89 and 0% at 0.91. At (L=20), it remained 100% at 0.94 and 1.7% at 0.96. 
+
+Claude’s repeats materially narrow the claim. Its ordinary rerun disagreement was about 3.39% and its near-threshold action change about 5%. The (L=10) repeated near-threshold contrast actually reversed slightly to −1.7 points, while (L=20) was +5 points with an interval touching zero. The extreme contrasts remained reproducible at roughly 23.3 pp and 25.0 pp. Therefore the paper should not describe Claude as reproducing GPT’s threshold effect; Claude provides a distinct model with broader score responsiveness but no stable local threshold cliff. 
+
+There were engineering parse-repair asymmetries—52 primary repair cells and 18 repeat-run repair cells were Claude-only—but the audit found no concentration at one side of the key confidence contrasts. GPT had zero parse repairs. Historical V2 remained unchanged throughout. 
+
+The direct API spending has also been small. The smoke test cost $0.020056. The Task 003 report records $4.946620 for the primary Study 1 state, and Task 004 records $1.939522 for repeats. Because the primary report’s accounting includes the already-reused smoke attempts in its Study-1 SQLite statistics, those numbers should not simply be added blindly if an exact cumulative ledger is required. Operationally, the causal pilot was a single-digit-dollar experiment. 
+ 
+ 
+ 
+
+The key repository artifacts are now:
+
+Purpose	Canonical artifact
+Strategic plan	docs/D1_MASTER_RESEARCH_PLAN.md
+Experimental protocol	docs/D1_EXPERIMENTAL_PROTOCOL_v1.0_DRAFT.md
+Historical causal motivation	to_gpt/checkpoint_A/
+Study 1 database	results/study1_causal_pilot/study1.sqlite3
+Study 1 primary report/data	to_gpt/003_study1_primary_results/
+Study 1 stability report/data	to_gpt/004_study1_stability_results/
+Frozen primary ID hash	badd6938...e3547fe94
+Frozen repeat ID hash	45e06fe9...090c26d38
+
+These paths and the project’s immutable-historical-artifact policy are documented in the workflow, readiness audit, Study 1 reports, and protocol. 
+ 
+ 
+
+The scientifically defensible bottom line today is:
+
+In this controlled numerical-cost verification task, experimentally changing only a displayed confidence scalar robustly causes GPT to switch verification policy, with an effect around the supplied threshold that is vastly larger than identical-prompt rerun noise. Claude is also responsive to large changes in displayed confidence, but does not reproduce GPT’s stable local threshold cliff.
+
+What D1 does not yet establish is equally important: it has not shown that GPT internally loses error evidence, that the phenomenon is special to the model’s “own” confidence, that it survives removal of explicit cost arithmetic, that a second assessment does not explain the hidden-action advantage, or that the effect generalizes to a fresh task or open model. The Study 1 reports themselves explicitly maintain those boundaries. 
+
+Novelty and overlap with the closest literature
+The literature review changes the paper’s center of gravity. There is still an identifiable D1 contribution, but “confidence controls behavior” is too broad to claim as novel.
+
+Act or Escalate? — DiSorbo & Ju, arXiv:2604.08588. This is probably the closest threat to Study 1’s systems framing. The paper formalizes an LLM’s implement-versus-escalate decision using an estimated probability of correctness and an error/escalation cost ratio. It evaluates eight models across several decision domains and finds strongly model-specific escalation thresholds and model-specific miscalibration. Critically, each scenario can receive an external natural-language signal containing a decision tree’s predictive accuracy, and escalation generally decreases as that supplied accuracy signal rises. They also vary cost ratios and show that extended reasoning can interact strongly with cost framing; for example, their reported sample-level cost-optimal decision rate for GPT-5-mini rises from 64.7% baseline to 87.1% under medium reasoning plus cost framing. 
+
+What it does not do, based on its published methods, is our exact fixed-item counterfactual replacement. Their accuracy signal varies with scenario conditions and is generated externally; their protocol does not take the same frozen model answer and systematically show that identical item 0.89, 0.91, 0.99, and so forth while holding all else constant. D1 therefore has a cleaner intervention on the displayed scalar itself. But Act or Escalate? already owns broad claims such as “escalation curves differ across models,” “miscalibration has operational consequences,” and “cost-sensitive routing interacts with reasoning.” D1 should not market those as new. 
+
+Kumaran et al., Nature Machine Intelligence, “Causal evidence that language models use confidence to drive behaviour.” This paper is an even larger threat to any broad claim about the causal importance of confidence. It presents a four-phase paradigm in which confidence predicts abstention, causal activation steering shifts confidence and abstention, and instructed thresholds alter abstention policies. Its activation-steering intervention changes Gemma 3 abstention by tens of percentage points, and its Phase 4 explicitly models pre-decisional confidence being compared with an instructed downstream threshold. The paper also reports that verbal confidence independently predicts abstention despite weaker correctness discrimination than calibrated confidence and argues that observable confidence measures are lossy readouts of richer representations. 
+
+The gap for D1 is again the intervention location. Nature intervenes on internal confidence representations and on the decision threshold; D1 counterfactually changes the externalized scalar confidence report that is fed back during a later verification decision while the frozen answer remains fixed. Nature therefore makes “confidence can causally guide abstention” unavailable as D1 novelty, but it does not answer the systems question we now care about: when an external scalar report is inserted into a later decision, how does that change the expression of answer-specific information in the routing policy? The Nature paper itself emphasizes a two-stage confidence→policy architecture and notes open questions about reasoning settings, which makes D1’s reasoning-mode test particularly well motivated. 
+
+RiskEval — Wang, Zhou, Devic & Fu, arXiv:2601.07767. RiskEval varies error penalties and examines whether models adapt answer-versus-abstain decisions to their own verbal confidence. Its principal result is almost the mirror image of GPT Study 1: many tested models continue answering at high penalties and fail to implement the Bayes-optimal confidence threshold. In an ablation, the authors explicitly append an instruction to “use this confidence” in deciding whether to answer or abstain and report essentially invariant abstention/regret trajectories. 
+
+That contrast is highly interesting but not yet a causal D1 result about formatting. RiskEval varies penalty and tells the model to consult its confidence; D1 literally places a concrete counterfactual score in front of the model alongside a verification decision. There are many other task/model/prompt differences. The rigorous way to exploit the tension is to add a matched D1 control: one condition says “use your previously assessed confidence” without displaying its numeric value, while another displays the numeric scalar. If only the latter produces the strong score-following behavior, then D1 can legitimately say that explicit scalar presentation matters beyond a generic instruction to use uncertainty. RiskEval motivates that test; it does not make the cross-paper difference itself a causal result. 
+
+Kumaran, “Reported Confidence in LLMs Tracks Commitment More Than Correctness,” arXiv:2606.29490. This paper is highly relevant to Checkpoint A’s “one verbal report is not everything” clue. Across non-reasoning and reasoning models, verbal confidence predicts later commit/abstain behavior more strongly than objective correctness, while calibrated answer-token log probabilities track correctness more strongly. Kumaran then residualizes verbal confidence against calibrated log-probability confidence and finds that the residual remains predictive of later commitment while its correctness discrimination falls to around chance. The paper also contains mechanistic evidence in Gemma models and causal steering of a verbal-confidence-related direction. 
+
+This does not subsume the proposed (q_2) experiment. Kumaran asks what component of verbal confidence remains after removing a log-probability-based answer-evidence signal. Our second-confidence test asks whether an independently elicited second verbal assessment of the same frozen answer explains the correctness information carried by the later hidden verification action. Those are different alternative explanations. Kumaran gives us methodological scaffolding—nested predictors, paired AUROCs, residualization logic—but not the answer. 
+
+The novelty ledger I would use is therefore:
+
+Claim	Prior work status	D1 status
+Confidence influences abstention/escalation	Already strongly covered	Not novel
+Models have different escalation thresholds	Covered by Act or Escalate and Nature	Not novel
+Confidence signals can causally drive abstention	Covered by Nature	Not novel
+Verbal confidence and correctness are not identical signals	Covered by Kumaran and broader UQ literature	Not novel by itself
+Counterfactually replace one displayed confidence scalar while holding the same frozen answer/item fixed	Not found in these closest papers	Distinct D1 asset
+Quantify whether useful item-specific error discrimination remains expressed after scalar-score conditioning	Not directly answered by these papers	Promising D1 gap
+Test whether that residual survives an independent second verbal assessment	Not answered by Kumaran’s log-prob residualization	Promising D1 gap
+Compare score-only, hidden judgment, repeated assessment and combinations at matched oversight budget	Adjacent selective-prediction literature exists, but D1 combination is project-specific	Potential practical contribution
+
+For routing metrics, selective-classification work provides a mature evaluation language. AUGRC, for example, was proposed specifically as an area-under-risk–coverage metric that can be interpreted as the average risk of undetected failures, while E-AURC/AURC-style methods offer complementary coverage-aware summaries. These should supplement—not replace—the paper’s most intuitive metric, error catch rate at a fixed verification budget. 
+
+My independent novelty judgment is therefore: no single one of these four papers appears to subsume D1’s exact counterfactual displayed-number experiment, but the broad conceptual territory is crowded enough that Study 1 alone is incremental. The paper becomes substantially more distinctive if it establishes what useful information is or is not expressed once the scalar is supplied, explains that residual, and turns the result into a routing improvement.
+
+Assessment of Claude’s critique
+Claude’s critique is useful precisely because it attacks the version of the story we were in danger of overclaiming. I would accept several of its points nearly unchanged.
+
+The first valid point is the normative arithmetic objection. GPT’s cliff is not automatically a “failure.” At (L=10,C=1), a stated 0.91 probability makes USE_UNVERIFIED expected-cost optimal if that stated probability is accepted literally; a stated 0.89 makes checking optimal. The Study 1 result shows extraordinary sensitivity and causal control, but GPT may simply be executing the requested policy correctly. Act or Escalate? formalizes essentially the same threshold (1-C/L), and the Nature paper likewise models a confidence signal being compared against a policy threshold. 
+
+The systems-level question is stronger: is the scalar a sufficient statistic for deciding what deserves scrutiny? Checkpoint A suggests not always, particularly for Claude. If the system designer replaces a more discriminative item-sensitive router with an overconfident or lossy scalar because the scalar is easy to expose, the design can become worse even if the model follows the supplied probability perfectly. That reframing is consistent with D1’s own Master Plan, which already separates calibration, error ranking, checking budget, and policy agreement. 
+
+The second valid point is the corner problem. For GPT at 0.80, 0.88, and 0.89, verification is effectively 100%; at 0.91 and 0.99 it is effectively 0%. At a score where every question receives the same action, the binary action cannot carry observable item-level correctness information. That does not establish that the model’s internal representation lost such information. The correct language is:
+
+At saturated displayed-score operating points, answer-specific differences are no longer expressed through the final binary routing action.
+
+Anything stronger—“the score erased the evidence,” “the model forgot its uncertainty,” “the signal was suppressed”—requires another experiment. 
+
+The third valid point is the reasoning-mode gap. The current GPT adapter used no reasoning effort and Claude thinking was disabled in the historical Stage-3 implementation. 
+ Act or Escalate? finds meaningful interactions between extended reasoning and cost framing. That does not imply reasoning will reduce score dominance: more reasoning might instead make GPT an even more exact expected-cost calculator. Either direction is scientifically important. The experiment should therefore ask whether reasoning changes the integration of displayed score and answer-specific evidence, not assume the desired outcome. 
+
+The fourth valid point is statistical power. Study 1 has 19 GPT errors and 27 Claude errors among the 100 questions. The current data can detect enormous error-targeting differences but not subtle ones. As a simple approximation, if verified wrong answers occur at 70% and verified correct answers at 50%, a two-group difference based on roughly 19 wrong versus 81 correct GPT items has an approximate 95% standard-error half-width around 23 percentage points; Claude’s analogous figure is roughly 21 points. At 600 items and similar error rates, the illustrative half-width falls to approximately 8–10 points. Those are only planning calculations—the repeated within-question structure means the actual confirmation size should be obtained by simulation—but they explain why the current 100-question retention analysis must be treated as a signal check, not a publication-grade estimate.
+
+The fifth valid point is that routing payoff should move forward. D1 already has one particularly persuasive practical result: Claude’s hidden policy caught more errors than confidence ranking at the same verification budget. 
+ A strong final paper should compare raw confidence, calibrated confidence, hidden action, repeated confidence, and combinations along a risk/coverage or error-catch-at-budget curve. This gives the behavioral work a systems consequence rather than ending at “models react strangely.”
+
+Several parts of Claude’s memo are nevertheless overstated. Its proposed statement that D1 already shows a score “converts an evidence-using policy into a score-only policy” is too strong. We know GPT’s observable action becomes score-dominated; we do not yet know whether internal item evidence disappears, is overridden, or remains available but behaviorally irrelevant under the specified threshold. 
+
+Similarly, conditional mutual information is useful but should not be the sole primary estimand. If action is constant at a GPT fixed-score stratum, empirical (I(\text{error};\text{action}\mid\text{score})) will be near zero by construction. Reporting that as “zero retained evidence” would encode the corner problem into the statistic rather than solve it. CMI is therefore appropriate as a secondary measure of expressed information, accompanied by an explicit “structurally unmeasurable at saturation” label.
+
+Claude also overstates Kumaran’s overlap with the second-confidence control. Kumaran residualizes verbal confidence against calibrated token-log-probability confidence; it does not independently query (q_2) and ask whether (q_1+q_2) absorbs the hidden action’s incremental correctness information. 
+
+I would also reject “Grok + Gemini are mandatory” at this stage. The original four-model V2 panel is valuable historical context, but the next model should be chosen because it falsifies a specific hypothesis, not because four names look more complete. The Master Plan itself explicitly warns against resurrecting the rejected simple cross-model law merely because a later subset looks favorable. 
+ An open model may ultimately be more scientifically useful than another closed endpoint because it enables token probabilities, hidden states, and reproducibility.
+
+Finally, RiskEval’s “instruction inert / displayed number potent” discrepancy is not yet a standalone D1 contribution. RiskEval shows that an instruction to use confidence barely changes policy in its paradigm. 
+ D1 shows strong responsiveness in a different paradigm. A publishable causal statement about explicit number versus instruction requires both conditions inside D1.
+
+The net priority change from Claude’s critique should therefore be:
+
+Move evidence-retention measurement, second-assessment controls, reasoning mode, and matched-budget routing earlier; demote provenance, mechanistic probing, and broad model expansion until those core alternatives are resolved.
+
+That is not a rejection of paperDirection.txt; it is a tightening of its causal language.
+
+Zero-cost evidence-retention analysis on the existing data
+The zero-cost analysis should begin with a deliberately modest claim. We are not trying to prove “information was destroyed.” We are asking three separable behavioral questions:
+
+Score dominance: how strongly does the experimentally assigned scalar determine the routing action?
+
+Answer sensitivity at fixed score: when every question receives the same displayed score, does the model still make different routing decisions for different questions in a reproducible way?
+
+Useful answer sensitivity: when those question-specific differences exist, do they preferentially identify answers that are actually wrong?
+
+Let (A=1) denote VERIFY_FIRST, (E=1) denote that the frozen Stage-1 answer is wrong, (S) the manipulated displayed score, and (Q) question identity.
+
+For score dominance, the primary quantities should remain the transparent paired contrasts already used in Study 1:
+
+[ D_{\text{near}} = P(A=1\mid S=s_{\text{below}})
+P(A=1\mid S=s_{\text{above}}) ]
+
+and
+
+[ D_{\text{extreme}} = P(A=1\mid S=s_{\text{low}})
+P(A=1\mid S=s_{\text{high}}). ]
+
+Use 5,000 question-level bootstrap resamples with the existing protocol seed 20260917, preserving every score condition for a question in the same resample. Report exact VERIFY→USE, USE→VERIFY, and no-change counts. These quantities already establish GPT’s extreme score dominance and Claude’s weaker global responsiveness. 
+
+As a secondary model-based summary, fit the action rather than correctness:
+
+[ \text{logit},P(A_{qs}=1)
+\beta_0 + f(S_{qs}) + \beta_E E_q + f(S_{qs})E_q + u_q + v_qS_{qs}. ]
+
+Fit this separately by model and (L), with question random intercepts and, if supported by convergence, random score slopes. Because GPT exhibits quasi-complete separation, ordinary maximum-likelihood logistic coefficients can explode. Use either a weakly regularized Bayesian mixed-effects logistic model or a penalized/Firth-style sensitivity analysis rather than presenting an infinite ordinary-logit slope as a meaningful magnitude. The paired percentage-point contrasts should remain the headline effect size.
+
+For answer sensitivity at fixed score, first report the raw amount of observable cross-question variation. For every model × (L) × displayed value, provide the verification rate and its question-bootstrap interval. Then use the 20-question three-generation subset to separate stable item variation from generation noise. At a minimum report:
+
+fraction of questions with all three generations agreeing;
+mean pairwise rerun disagreement;
+distribution of three-generation per-question verification probabilities (0,1/3,2/3,1);
+a random-intercept logistic variance/ICC within each displayed-value stratum where both actions occur.
+For GPT’s 0%/100% strata, do not label the resulting near-zero action variance “no evidence retained.” Label it:
+
+action saturated; item sensitivity not identifiable from this binary output at this operating point.
+
+Claude is much better suited to this measurement because its verification rate spans roughly 50–90% across fixed displayed values and its overall identical-prompt disagreement is only about 3–4%, so there is reproducible cross-question variation available to analyze. 
+
+A useful additional diagnostic is hidden-action retention. For the same question and (L), compare hidden VERIFY/USE to the action at each fixed manipulated score. Produce paired transition matrices:
+
+Hidden action	Fixed-score VERIFY	Fixed-score USE
+VERIFY	count	count
+USE	count	count
+
+Report agreement, Cohen’s (\kappa) descriptively, and paired bootstrap intervals. This answers whether the questions naturally flagged as suspicious remain preferentially flagged once a common score is shown. It still does not establish that the hidden action is useful; correctness is needed for that.
+
+For useful answer sensitivity, the most important requested output is a 2×2 correctness-by-action table at every fixed displayed score:
+
+Model	L	displayed score	wrong + VERIFY	wrong + USE	correct + VERIFY	correct + USE
+
+From each table compute:
+
+[ \text{error catch}=P(A=1\mid E=1), ]
+
+[ \text{correct-check rate}=P(A=1\mid E=0), ]
+
+and
+
+[ \Delta_{\text{error-targeting}}
+P(A=1\mid E=1)-P(A=1\mid E=0). ]
+
+A positive (\Delta_{\text{error-targeting}}) means that among questions all shown the same score, wrong answers are still more likely to be routed to verification. Also report an odds ratio with penalized/Firth confidence intervals where cells are sparse and the AUROC obtained by treating the binary action as an error score. Because the score is experimentally identical within each stratum, this is an especially intuitive test of useful question-specific routing.
+
+The pooled mixed-effects model should again put action as the outcome:
+
+[ \text{logit},P(A=1)
+\beta_0 + f(S) + \beta_E E + f(S)\times E + (1+S\mid Q). ]
+
+Here (\beta_E) asks whether wrong answers receive more verification after holding the experimentally assigned score fixed, while the interaction asks whether that error targeting changes as the score becomes more dominant. This is statistically cleaner than putting correctness on the left-hand side with a question random intercept, because correctness is constant within each question cluster.
+
+For a directly predictive formulation, run grouped cross-validation by question comparing:
+
+[ M_0:\ E\sim S ]
+
+versus
+
+[ M_1:\ E\sim S+A+S\times A. ]
+
+All rows belonging to one question must remain in the same fold. Report grouped cross-validated log loss, AUROC, and calibration, with a question-level bootstrap around the incremental performance. This tells us whether knowing the action improves error prediction after knowing the displayed score. It should be treated as complementary to the more causally interpretable fixed-score tables.
+
+Claude’s proposed conditional mutual information
+
+[ I(E;A\mid S) ]
+
+can be reported as a secondary summary of expressed information. Estimate it from the 2×2 tables within score strata, pool over the randomized score distribution, and bias-correct against a within-score permutation null using 10,000 permutations with seed 20260919. But annotate GPT saturated strata explicitly as structurally degenerate; do not interpret near-zero CMI there as evidence that internal information has disappeared.
+
+The repeat subset should be used as a noise correction. Recompute error-targeting after aggregating each question/condition’s three generations to a mean verification propensity. Compare this to the primary-only estimate. A relationship that disappears when the same prompt is resampled was probably generation noise; a relationship preserved across repeats is evidence for reproducible item sensitivity.
+
+The current primary report contains one warning sign worth taking seriously. Claude’s score-manipulation effect was actually larger among originally correct than originally wrong answers: at (L=10), the extreme score effect was about 43.8 points among correct answers versus 14.8 among wrong ones; at (L=20), about 35.6 versus 7.4. That does not answer the fixed-score retention question, but it means we should not assume Claude’s residual verification is useful merely because it exists. It may indeed be blanket caution. 
+
+The exact zero-cost output package I would request is:
+
+Output	Required contents
+verification_rates_by_displayed_score.csv	model, L, displayed value, n, VERIFY count/rate, bootstrap CI
+fixed_score_correctness_contingency.csv	model, L, displayed value, VERIFY/USE × correct/wrong counts
+useful_answer_sensitivity.csv	error catch, correct-check rate, difference, odds ratio, binary-action AUROC, CI
+paired_question_contrasts.csv	near-threshold and extreme pairs, directional flips, paired CI
+hidden_action_retention.csv	hidden-vs-fixed transition matrices, agreement, correctness stratification
+repeat_noise_decomposition.csv	all-3 agreement, disagreement, between-item variance/ICC where identifiable
+mixed_effects_models.md	model formulas, coefficients, uncertainty, convergence/separation diagnostics
+conditional_information.csv	CMI, permutation-null estimate, bias-corrected value, degeneracy flag
+power_simulation.csv	candidate N, expected errors, power/precision under several pilot-sized effects
+
+Required figures should include the four manipulated-score response curves; a heatmap of (\Delta_{\text{error-targeting}}) by model/L/score; wrong-versus-correct verification curves at fixed scores; a hidden-action versus fixed-score transition figure; and a repeat-noise decomposition. A “score dominance versus useful answer sensitivity” scatter can be shown descriptively, but with only GPT and Claude it must not be marketed as a validated cross-model law.
+
+The power simulation should resample synthetic questions using empirical error rates, score-specific verification rates, and the observed repeat disagreement structure, with seed 20260920. Evaluate candidate (N={100,200,400,600,800,1000}). The final prospective sample size should be chosen from the smallest (N) that gives useful precision on the effect we actually observe, rather than adopting 600–1,000 because an external critique suggested it.
+
+Prioritized follow-up experiments and decision gates
+The experiments below are deliberately smaller than a full-factorial expansion. Each exists to kill one important alternative explanation. Costs use the user-specified planning baseline of $0.0017 per cell; real cost will vary with token length, reasoning settings, provider pricing, retries, and Stage-1/Stage-2 calls.
+
+Experiment	Calls	Baseline cost	Primary scientific goal	Priority
+Existing-data retention analysis	0	$0	Determine whether any reproducible fixed-score action variation actually predicts errors	Immediate
+Independent second confidence (q_2)	1,000	$1.70	Test “hidden action is just another noisy look”	Very high
+GPT reasoning-mode variation	800	$1.36	Test whether score dominance is an inference-mode artifact/moderator	Very high
+Qualitative-stakes experiment	1,600	$2.72	Remove explicit threshold arithmetic	Very high
+Small non-MCQ math check	1,200	$2.04	Test one meaningful task generalization	High after earlier gates
+Prospective confirmation	provisional 5k–8k	$8.50–$13.60	Convert exploratory story into fresh confirmation	Required before final ICLR claim
+
+The second-confidence re-elicitation should use all 500 historical V2-B questions for exactly GPT and Claude: 500 questions × 2 models = 1,000 calls. Reuse the frozen Stage-1 answer; do not display (q_1), hidden action, correctness, or later Study 1 information. Ask for one independent numerical probability that the frozen answer is correct using a new frozen prompt and the same low/no-reasoning mode as the original Stage-2 baseline. L and C are not applicable because this is confidence elicitation, not routing. Use all 500 rather than selecting a subset, so no sample-selection seed is needed; use 20260921 for bootstrap/cross-validation fold generation.
+
+Analyze four grouped models of correctness: (q_1); (q_1+q_2); (q_1+) hidden action; and (q_1+q_2+) hidden action. Evaluate cross-validated AUROC/log loss and error catch at matched budgets. The scientific gate should not be “did a p-value cross 0.05?” A reasonable predeclared practical gate is: if hidden action still adds roughly ≥3 percentage points of error catch across a meaningful 20–40% verification-budget range, or a comparably material discrimination gain with a question-bootstrap interval excluding zero, after (q_1+q_2), then the extra judgment is not adequately explained by one additional verbal sample. If the incremental contribution essentially vanishes, reframe the Checkpoint A result as repeated assessment/ensembling. That is still useful: repeated assessment becomes a cheap routing intervention.
+
+The reasoning-mode variation should be smaller and targeted at GPT, because GPT is where the cliff is strongest and where Act or Escalate? makes the missing-reasoning concern most acute. Reuse the same frozen 100 Study 1 questions and answers. Run one supported higher reasoning setting on exactly eight cells per question: for each of (L=10) and (L=20), hidden, true-visible, just-below threshold, and just-above threshold. That is 100 × 8 = 800 calls. Keep (C=1); use 0.89/0.91 and 0.94/0.96 exactly. Compare directly with the already-collected low/no-reasoning cells, so no rerun of the original mode is needed unless model-version drift requires it. The repository’s current adapter should be treated as authoritative about which nonzero reasoning setting the endpoint actually supports. The scientific question is two-sided: does reasoning weaken the cliff because GPT re-evaluates the answer, or sharpen the cliff because GPT executes the expected-cost rule more faithfully? Act or Escalate? makes either outcome plausible. 
+
+Predeclare that a roughly 15–20 pp change in the near-threshold contrast, or a roughly ≥10 pp shift in hidden/true-visible behavior, is a substantive moderation signal that must enter the paper’s scope. If the cliff remains within about 10 pp of the current effect and answer-sensitive metrics are similar, the operating-mode objection is substantially weakened. These thresholds are design heuristics, not confirmatory significance thresholds.
+
+The qualitative-stakes experiment is the most important test of the “you gave it arithmetic” objection. Reuse the 100 Study 1 questions, GPT and Claude, and frozen answers. Use two separately frozen qualitative stakes framings with no numerical (L), (C), expected-value formula, or implied exact cutoff. For example, one can describe an unchecked error as “costly” and checking as consuming meaningful resources; the other can describe an unchecked error as “very costly” while checking carries a substantially smaller but nonzero resource cost. Exact prose should be audited before running.
+
+Within each stakes framing use four conditions: hidden confidence, displayed 0.70, displayed 0.90, displayed 0.99. This gives:
+
+[ 100\times2\text{ models}\times2\text{ stakes}\times4\text{ conditions}
+1,600 ]
+
+calls, approximately $2.72 at the planning baseline. There is deliberately no (L/C) because removing that arithmetic is the intervention. Use the same 100-ID seed lineage (20260917) because this is exploratory development rather than confirmation; use analysis bootstrap seed 20260922.
+
+The primary outcome is not “did the model choose the mathematically correct threshold?” because no such threshold exists. Measure the displayed-score response slope, high-versus-low contrast, useful fixed-score error discrimination, and whether the stronger qualitative-stakes wording increases verification. If GPT still changes verification by a substantial amount—say ≥15 pp between 0.70 and 0.99 with the expected direction under both stakes descriptions—the claim that Study 1 is only arithmetic execution is materially weakened. If the effect collapses to roughly <5 pp with uncertainty spanning zero, the honest conclusion is that GPT’s spectacular Study 1 cliff is largely specific to an explicit numerical decision rule. That would narrow, not invalidate, the paper.
+
+The small generalization check should use one non-MCQ objectively scored math task rather than immediately adding several more proprietary models. Freeze 100 hard free-response math questions prospectively with seed 20260923; a Level 4/5 subset of a standard exact-answer math benchmark is preferable to an easy arithmetic set so both frontier models produce enough mistakes. For each GPT/Claude question, collect one fresh answer and one blind confidence estimate, then run four qualitative-stakes Stage-3 cells: hidden, 0.70, 0.90, 0.99. That produces 200 Stage-1 answer calls + 200 confidence calls + 800 routing calls = 1,200 calls, around $2.04 at the requested baseline. Use an exact/symbolically normalized answer checker and manually audit ambiguous cases before looking at routing results.
+
+This is explicitly a diagnostic generalization, not a powered replication. A useful proceed rule is that at least one model shows the same directional score effect with an extreme contrast of roughly ≥10 pp and no obvious scoring artifact. If neither model shows a directional effect, the paper should scope the phenomenon to the original MCQ/routing setup until a better explanation is found.
+
+These experiments should remain gated rather than running as one giant batch:
+
+Yes
+
+No
+
+Checkpoint A + stable Study 1 causal result
+
+Zero-cost evidence-retention and routing analysis
+
+Is fixed-score item variation useful or scientifically informative?
+
+Independent second confidence q2: 1,000 calls
+
+GPT reasoning-mode check: 800 calls
+
+Qualitative-stakes test: 1,600 calls
+
+Does score responsiveness survive without explicit arithmetic?
+
+Small non-MCQ math check: 1,200 calls
+
+Scope claim to explicit numerical decision policies
+
+Simulation-based power analysis
+
+Freeze fresh prospective confirmatory protocol
+
+Prospective confirmation
+
+Matched-budget routing comparison
+
+Final ICLR paper
+
+
+
+Show code
+A prospective confirmatory study is still required. I would not freeze its exact cells today, because the qualitative-stakes and (q_2) experiments are specifically meant to determine which phenomenon deserves confirmation. The provisional planning range should be around 600 fresh questions per model if the target is moderate evidence-retention effects; at current error rates that would yield on the order of a hundred GPT errors and more Claude errors, enough to estimate roughly 10-point error-targeting differences far more precisely than the current 100-question set. The final (N) should come from the zero-cost simulation rather than being declared in advance.
+
+The combined immediate paid program before that prospective study is only 4,600 calls, approximately $7.82 at $0.0017/cell, or about $8.60 under a simple 10% planning buffer. The scientific discipline matters more than the money: each experiment should be allowed to stop or redirect the next one.
+
+Draft ICLR narrative and contribution structure
+The strongest narrative is no longer “we discovered that confidence changes verification.” Prior work already makes that too easy to dismiss. The paper should instead tell a systems story about what happens when a compressed uncertainty report becomes a routing input.
+
+A provisional elevator pitch is:
+
+As language models become more autonomous, they must decide which of their own outputs deserve additional checking. A natural design is to route oversight using an explicit confidence score, but a scalar confidence report need not contain all of the answer-specific information available to the model. We study what happens when such a report is fed back into the model as a downstream control input. By counterfactually changing only the displayed confidence on the same frozen answers, we show that the scalar can exert enormous causal control over verification—nearly deterministically for GPT under explicit cost rules—while other models remain substantially less score-dominated. We then measure how much reproducible, error-relevant item information remains expressed once the score is supplied, test whether that information is merely a second noisy confidence assessment or an artifact of numerical threshold arithmetic, and compare routing strategies at equal oversight budget. The result is a design lesson: good selective oversight requires evaluating not merely whether a model follows its uncertainty score, but whether the score preserves the information needed to send the right mistakes to scrutiny.
+
+That story has a natural beginning, middle, and end:
+
+Beginning: selective oversight is necessary because verification is expensive. Confidence is an obvious cheap control signal.
+
+Tension: a verbal score is a compressed report, and prior literature already shows that confidence, correctness, commitment, and abstention are not interchangeable constructs. 
+
+Causal observation: D1 can make the same frozen GPT answer switch almost completely by changing only the displayed score; the effect is stable relative to rerun noise. 
+
+Deeper question: when that score becomes dominant, what useful item-specific information remains behaviorally expressed?
+
+Explanation: does the residual reduce to a second confidence sample? Does explicit arithmetic cause the policy collapse? Does reasoning change the integration rule?
+
+Payoff: which router catches the most actual errors for the same number of checks?
+
+The eventual paper should aim for three or four main claims, with each carefully tagged by evidence stage.
+
+Current causal claim, already supported: counterfactual manipulation of a displayed confidence scalar causes very large changes in GPT’s verification decision under explicit numerical costs, far exceeding identical-prompt generation noise; Claude shows a weaker, gradual global response rather than the same local threshold cliff. 
+
+Target behavioral claim, not yet established: at fixed displayed scores, models differ in how much reproducible answer-specific error discrimination remains expressed through the routing action. This must be supported by the zero-cost pilot and then fresh powered data.
+
+Target explanatory claim, not yet established: the residual item information is not fully reducible to a second independent verbal-confidence sample, and/or the score-dominance phenomenon persists when no explicit arithmetic threshold is provided.
+
+Target design claim, not yet established: a router that preserves complementary error information—through calibration, repeated assessment, hidden judgment, or a combination—catches more actual errors than raw score-only routing at the same verification budget.
+
+The main paper figures should follow the narrative rather than the chronological order of every experiment.
+
+Figure 1: Experimental idea and causal instrument. Show one frozen question/answer receiving different displayed scores, followed by GPT and Claude response curves and the rerun-noise comparison. This immediately communicates the unusually clean intervention.
+
+Figure 2: Score dominance versus useful item sensitivity. For each model, show verification rate by displayed score alongside wrong-versus-correct verification at each fixed score. Saturated GPT cells should visibly be marked “action saturated / discrimination not identifiable,” rather than plotted as evidence of zero internal information.
+
+Figure 3: What explains the residual? Show incremental error-prediction or matched-budget catch for (q_1), (q_1+q_2), hidden action, and their combinations, plus qualitative-stakes and reasoning-mode moderation.
+
+Figure 4: Practical routing. Error catch versus verification budget, with raw verbal confidence, calibrated confidence, hidden action, repeated confidence, and combined policy. AUGRC/E-AURC can appear as compact secondary summaries, while the visual and textual headline remains “errors caught at the same checking budget.” 
+
+A compact table should summarize each model/task’s accuracy, calibration, score-dominance contrast, fixed-score error-targeting, rerun noise, and best matched-budget router. That is more useful than a giant model leaderboard.
+
+Title options should remain conservative until the evidence-retention study lands:
+
+From Confidence Report to Control Signal: Causal Effects on LLM Verification
+When Confidence Controls Oversight: Counterfactual Score Feedback in Language Models
+Confidence as Control: How Displayed Uncertainty Reshapes LLM Verification
+A Score Is Not the State: Uncertainty Feedback and Selective Verification in LLMs
+What Gets Checked? Confidence Scores and Answer-Specific Evidence in LLM Verification
+The fourth is the most memorable but should be used only if the deeper “score does not exhaust useful evidence” result survives. The first is the safest title today.
+
+Final recommendation and immediate decision
+Proceed with the research program, but do not treat the current result as an ICLR-ready endpoint.
+
+Current evidence is considerably better than the original workshop story. D1 now has a clean manipulation, a large GPT causal effect, a genuinely informative Claude contrast, pre-frozen stability data, historical continuity checks, and a plausible bridge to an equal-budget error-routing result. The empirical foundation is strong. 
+ 
+
+However, I would not currently expect the package as it stands to be a strong ICLR main-track submission. That judgment comes from the combination of exploratory provenance and substantive prior-art overlap. The Nature paper already provides causal confidence→abstention evidence and threshold-policy experiments; Act or Escalate? already provides external accuracy-signal escalation curves, costs, and reasoning-mode interventions; RiskEval already studies cost-sensitive abstention versus verbal confidence; Kumaran already decomposes verbal confidence’s relationship to truth versus downstream commitment. 
+ What none of those papers clearly gives us is the complete D1 chain from counterfactual externalized-score intervention → remaining item-sensitive routing information → explanation → matched-budget remedy.
+
+The main scientific risks and their mitigations are now concrete:
+
+Risk	Why it matters	Cheapest decisive mitigation
+“GPT just did arithmetic”	Could make the 96–100 pp cliff conceptually trivial	Qualitative-stakes experiment
+GPT corner saturation	Prevents inference about hidden retained information	Mark as unidentifiable; use intermediate operating points/qualitative framing
+Claude residual verification is blanket caution	Would kill the strongest evidence-retention contrast	Fixed-score correctness tables on current data
+Hidden action is merely a second noisy look	Would narrow the “extra evidence” story	Independent (q_2) experiment
+Effect is specific to low/no reasoning	Would sharply narrow generality	GPT reasoning-mode mini-grid
+Result is MCQ-specific	Limits systems relevance	Small free-response math test
+Novelty is swallowed by 2026 work	Strong reviewer threat	Frame around counterfactual external score + retained useful evidence + routing
+No practical performance gain	Leaves paper as behavioral curiosity	Equal-budget routing curves
+Exploratory adaptivity	Prevents strong confirmatory language	Fresh frozen prospective study after the diagnostics
+
+A particularly important point is that several “negative” outcomes remain publishable if framed honestly. If (q_2) absorbs the hidden action, D1 discovers that a second cheap assessment recovers the information missing from one confidence report, which naturally leads to a repeated-assessment router. If qualitative stakes erase the GPT cliff, D1 learns that explicit numerical utility framing causes unusually faithful score execution, which is narrower but still a valid systems result. If reasoning mode removes the collapse, D1 becomes an inference-mode paper. What would be damaging is not a falsified deeper hypothesis; it would be running many unrelated controls after each failure until one produces a favorable story.
+
+The project’s existing protocol already contains the correct meta-principle:
+
+observe → identify the simplest alternative explanation → test it cheaply → scale only if the phenomenon survives. 
+
+That should remain the governing strategy.
+
+Immediate decision checklist
+
+Run the zero-cost evidence-retention analysis first, including fixed-score correctness contingency tables, paired/bootstrap contrasts, mixed-effects action models, repeat-noise decomposition, and simulation-based power sizing; make no new API calls until we know whether Claude’s residual variation is actually error-targeted and how GPT’s saturation should be handled.
+Then freeze the two highest-information cheap experiments: the 1,000-call independent (q_2) re-elicitation and the 800-call GPT reasoning-mode check; run the 1,600-call qualitative-stakes study once those prompts and decision gates are fixed.
+Do not call the paper ICLR-ready until fresh prospective evidence exists and at least one matched-budget routing comparison shows why the distinction matters operationally; use the small non-MCQ generalization and power analysis to decide the shape of that final confirmation.

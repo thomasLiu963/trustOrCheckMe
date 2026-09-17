@@ -1,263 +1,269 @@
-Where we started
+Where we are in the paper story
 
-Originally, the interesting observation was:
+The current paper direction says:
 
-“If you show an AI the confidence number it previously gave, it changes whether it wants its answer checked.”
+A confidence score is not necessarily everything an AI knows about whether an answer deserves checking. Once that score is fed back into the model as a control signal, it can strongly reshape the verification policy. The interesting question is what useful answer-specific information still affects the decision, where that information comes from, and whether preserving it improves routing.
 
-That was surprising because nothing about the answer changed. For GPT, showing confidence made it verify much less; for Claude, it often made it verify more.
+I still think that is the right direction. The deep-research audit independently arrived at essentially the same center of gravity.
 
-But that was mostly an observation. We didn’t know why.
+The current causal result is Figure 1 material, not the entire paper.
 
-Then came Checkpoint A.
+It establishes:
 
-What Checkpoint A actually told us
+Displayed confidence can become an extremely powerful control input.
 
-Checkpoint A asked a more important question:
+The next part must establish something like:
 
-Suppose the AI says “99% confident.” Is that number actually everything the AI knows about whether the answer is risky?
+That control input is not necessarily a sufficient basis for deciding which individual answers deserve scrutiny.
 
-And the answer looked like no, at least behaviorally.
+And then the practical ending becomes:
 
-The clearest example was GPT. There were lots of answers where GPT had given the exact same confidence, 99%. Yet when the confidence number was hidden, GPT treated some of those answers as “this should be checked” and others as “this is safe.”
+Here is a better way to allocate the same limited number of checks.
 
-Even more importantly, the ones GPT naturally wanted checked were actually wrong much more often.
+That beginning → tension → explanation → remedy structure is what can make the paper feel narratively strong instead of like a collection of confidence experiments.
 
-So in layman’s terms:
+Your paperDirection already captures that intended progression very well: selective oversight matters, confidence is an obvious router, confidence is a compressed summary, feeding it back can dominate behavior, we ask what useful item-specific information remains, explain it, and build a better router.
 
-GPT’s single confidence number was throwing away some useful nuance.
+How far are we from the strong version?
 
-Not necessarily secret neurons or “the model knows it’s wrong.” It could simply be that when GPT gets another look at the problem during the verification stage, it notices something it didn’t encode into the original percentage.
+I would think of the project as four major layers.
 
-That is the core Checkpoint A clue.
+Layer 1: Clean causal phenomenon — basically done
 
-At the same time, Checkpoint A prevented us from telling a fake story. For GPT, much of the original bad outcome from showing confidence was simply because GPT was overconfident and then faithfully followed that overly optimistic number. So we stopped saying things like “showing confidence definitely suppresses a superior internal signal.” That was not established.
+This is what we've just completed.
 
-Then Study 1 answered a different question
+We know:
 
-Study 1 asked:
+GPT is extremely score-dominated under explicit numerical costs.
+This is causal, not merely correlational.
+It survives reruns.
+Claude reacts differently: larger score changes matter, but it does not exhibit GPT's stable local cliff.
+Historical hidden behavior suggests that at least some routing judgments contain correctness information beyond one verbal confidence report.
 
-Is the number itself actually causing the later decision?
+Study 1 itself appropriately says it does not establish self-provenance, practical generalization, a hidden-state mechanism, novelty relative to all prior literature, or a confirmatory estimate.
 
-So we froze the exact same question and exact same answer and literally changed only the displayed confidence.
+So Layer 1 is strong.
 
-GPT’s result was extreme.
+Layer 2: Establish what information the score-dominated policy is missing — not done
 
-At \(L=10\):
+This is now the immediate bottleneck.
 
-show 89% → essentially always CHECK;
-show 91% → essentially never CHECK.
+Checkpoint A gave us the clue. When confidence was hidden, the model sometimes treated two answers with the same verbal confidence very differently, and that difference predicted actual error.
 
-At \(L=20\):
+That suggests the model's later verification judgment can contain useful information that wasn't present in the original scalar confidence report.
 
-show 94% → essentially always CHECK;
-show 96% → essentially never CHECK.
+But we still don't know:
 
-And the repeat study showed this wasn’t randomness. Rerunning the exact same GPT prompt changed the decision only about 2–3% of the time; changing the confidence across the threshold changed it around 99% of the time.
+whether Claude's remaining variation under a fixed displayed score actually targets errors;
+whether the hidden-action advantage is just a second noisy look at the question;
+whether GPT's apparent “loss” is merely because its binary output is stuck at a 0/100% corner;
+whether any of this survives outside the explicit arithmetic setup.
 
-So we now have a clean causal fact:
+Until we resolve those questions, the deeper story is only suggestive.
 
-For GPT in this setup, the displayed confidence number can almost completely control the verification decision.
+Layer 3: Fresh confirmation + generalization — not done
 
-Claude responds too, but much less mechanically. Its tiny near-threshold effect did not survive reruns cleanly, although moving from very low to very high displayed confidence still had a substantial effect.
+Even if all the exploratory diagnostics look fantastic, we still need to stop using the same historical questions and freeze a genuinely fresh experiment.
 
-That’s a real result.
+That is what converts:
 
-But—and this is where Claude’s critique was important—it is not yet a crazy discovery.
+“We found an interesting pattern and designed experiments around it”
 
-Why Claude says the current result is somewhat obvious
+into:
 
-Imagine I tell you:
+“We predicted the pattern and reproduced it prospectively.”
 
-“This answer has a 91% chance of being correct. Checking costs 1 point. Using a wrong answer costs 10 points.”
+For a serious paper, this matters a lot.
 
-There is a mathematically correct decision:
+This is also where we should probably add one meaningful generalization—not 20 random models. The best candidates are:
 
-don’t check.
+one reasoning-mode comparison;
+one open model eventually;
+one non-MCQ objectively scored task such as math.
+Layer 4: Practical routing result — not done
 
-If I instead say 89%, the math says:
+This is what could make the paper land.
 
-check.
+Suppose we show:
 
-So if GPT behaves exactly that way, a reviewer can reasonably say:
+raw verbal confidence is not always the best way to choose which outputs deserve checking.
 
-“Congratulations, GPT understood the instructions and did the arithmetic.”
+Fine.
 
-And actually GPT is arguably behaving correctly given what we told it.
+The next question every systems reviewer asks is:
 
-So the paper cannot be:
+Then what should I use?
 
-“GPT is bad because it obeys confidence too much.”
+We want a figure that says:
 
-That would be conceptually weak.
+With exactly 20%, 30%, or 40% of answers allowed to be checked, here is how many actual errors each router catches.
 
-Claude’s better framing is to stop blaming the model and start questioning the system design.
+Possible routers:
 
-The designer chose to compress all uncertainty into one number, then fed that number back into the model and essentially told it to base oversight on that number.
+raw verbal confidence;
+calibrated confidence;
+natural hidden check judgment;
+two independent confidence samples;
+combinations of confidence + judgment;
+potentially reasoning or open-model signals if later justified.
 
-The question becomes:
+If some simple combined/repeated policy catches materially more errors for the same amount of verification, the paper goes from a behavioral curiosity to a systems result.
 
-What useful information might the system lose when it does that?
+So what should we do next?
 
-That is much more interesting.
+I would not jump directly into the final 600-question confirmation yet.
 
-This is the “bridge to Checkpoint A”
+We still don't know exactly what deserves confirmation.
 
-This is the key connection.
+The next phase should be deliberately cheap and diagnostic.
 
-Checkpoint A tells us:
+Run the zero-cost analysis on the Study-1 data. This is next, before any API calls. We need to quantify three things separately: how strongly the displayed score controls action; whether there is reproducible question-specific variation at a fixed displayed score; and, where such variation exists, whether it actually targets wrong answers. GPT's saturated cells must be labeled uninformative for this question rather than interpreted as “zero evidence.” Claude is the more interesting model for this pilot.
 
-When the confidence number is hidden, the model’s natural CHECK/USE decision sometimes contains useful information that the confidence number itself does not contain.
+Run the independent second-confidence experiment. Take all 500 historical questions for GPT and Claude, keep the frozen answer, and ask for another independent confidence estimate \(q_2\). Then ask whether hidden verification still tells us something about correctness after we already know \(q_1\) and \(q_2\). This is one of the highest-value experiments in the project because it can dramatically simplify the explanation.
 
-Study 1 tells us:
+If \(q_2\) explains the entire hidden-action advantage, then the story becomes:
 
-When the number is explicitly shown, especially for GPT, that number can almost completely control the final CHECK/USE decision.
+one confidence sample is noisy; a second assessment recovers useful information.
 
-Put those together:
+That's not a failure. It gives us an immediate practical remedy: repeated assessment.
 
-What happens to that extra useful information when we feed the confidence number back in?
+If hidden action still adds substantial information beyond both confidence reports, then the deeper “verification judgment contains something qualitatively additional” story survives.
 
-That is the bridge.
+Test reasoning mode on GPT. We should not assume the current cliff is a universal GPT property. More reasoning might make GPT reconsider the answer and retain more answer-specific behavior—or it might make GPT even more faithfully execute the supplied expected-cost rule. Either result is scientifically useful.
+Run the qualitative-stakes experiment. Remove explicit \(L\), \(C\), and the exact arithmetic cutoff. Say, in matched language, that errors are costly and independent checking also consumes resources. Then manipulate displayed confidence. If confidence still strongly changes verification, the “you simply handed GPT the arithmetic” objection weakens substantially. If the giant cliff vanishes, then our correct conclusion is that the cliff specifically reflects explicit numeric utility reasoning.
 
-Here’s the simplest possible example.
+Those are the four near-term things I care about. I would not yet spend time on provenance, Grok, Gemini, deep interpretability, reliability-warning prompts, lots of \(C\) values, and so on.
 
-Suppose we show 99% confidence to every question.
+Those might eventually earn their place. They are not on the critical path today.
 
-Now the displayed confidence contains zero information about which particular question is wrong, because every question gets the exact same number.
+After those diagnostics, there are a few possible worlds
 
-GPT at 99% basically says:
+This is important because we shouldn't design the project as if only one result is acceptable.
 
-“Use them all.”
+Best behavioral world
 
-So its final decision distinguishes almost none of the questions.
+We find that:
 
-Claude at 99% still checks many of them.
+Claude's fixed-score decisions still preferentially target actual errors;
+hidden actions still add information after \(q_1+q_2\);
+displayed confidence still matters without explicit arithmetic;
+reasoning mode changes the degree of score domination but does not erase the phenomenon.
 
-The important question is which ones Claude checks.
+Then we have a genuinely interesting core:
 
-If Claude’s checked answers are disproportionately the actually wrong ones, then Claude is still using useful question-specific evidence despite seeing the same 99% score everywhere.
+A scalar uncertainty report can dominate downstream oversight even though the model's verification process has access to additional useful item-specific information.
 
-If not, then Claude is just generally more cautious.
+At that point we do the powered prospective confirmation, one generalization, and routing comparison.
 
-That’s the analysis we have not run yet.
+That has a plausible path to a strong ICLR-style paper.
 
-And it could be the most important analysis so far.
+Second-read world
 
-So is what we have right now “good”?
+Suppose \(q_2\) completely explains the hidden-action advantage.
 
-Yes, but in a specific sense.
+Then we do not claim mysterious richer uncertainty.
 
-We now have a very clean exploratory causal finding.
+The paper becomes:
 
-Study 1 passed its own gate: the GPT effect is huge, stable under repetition, and caused by changing only the displayed confidence.
+One verbal confidence sample is an insufficient routing statistic; repeated assessment recovers useful information, while feeding one scalar back as a control signal can cause overly brittle routing.
 
-I would describe the current package as:
+Then demonstrate:
 
-Too strong to dismiss as a fluke, but not deep enough yet to be the ICLR story.
+two-read routing beats one-score routing at equal budget.
 
-Right now you have something I would be happy with as a strong workshop contribution.
+That is actually a pretty clean systems paper.
 
-For ICLR, we need to answer the next layer.
+Arithmetic world
 
-What the strong ICLR story could become
+Suppose the GPT cliff disappears when there is no explicit numerical cost rule.
 
-The strongest version I currently see is something like this:
+Then the enormous 96–100pp phenomenon is specific to explicit utility arithmetic.
 
-AI systems increasingly need to decide which of their own outputs deserve extra scrutiny. Confidence scores are an obvious way to make that decision. But a confidence score is only a compressed summary of uncertainty. We find that once the score is fed back into the model as a control input, it can dramatically reshape the verification policy and, in some models, potentially crowd out answer-specific information that was useful for identifying errors. We measure how much useful information survives, explain where that information comes from, and design routing policies that preserve it and catch more errors at the same oversight budget.
+The project becomes narrower:
 
-That is narratively strong because it has a clean progression:
+When models are given explicit probabilities and explicit costs, some models collapse onto a near-deterministic scalar threshold policy, even when their unconstrained verification behavior contains other useful information.
 
-AI needs selective oversight
-→ confidence seems like the obvious routing signal
-→ confidence is only a summary
-→ feeding that summary back changes behavior
-→ maybe it replaces richer answer-specific judgment
-→ measure what survives
-→ figure out where it comes from
-→ design a better router.
+Less broad, but still scientifically coherent.
 
-That feels like one paper.
+No useful residual world
 
-Not six disconnected experiments.
+Suppose Claude's fixed-score variation does not target errors, and \(q_2\) explains the hidden residual.
 
-What would make it a very strong ICLR paper
+Then the “evidence retention” spine weakens a lot.
 
-I would now think about the project in roughly five steps.
+At that point I would pivot the center toward routing design:
 
-Prove the “evidence retention” result.
-On the Study-1 data we already have, hold displayed confidence fixed and ask whether VERIFY vs USE still predicts actual wrongness. If Claude retains useful error discrimination and GPT loses most of it, that is potentially the conceptual centerpiece. This costs nothing.
-Rule out the boring explanation for Checkpoint A.
-Ask for a second confidence estimate. Maybe the “extra information” in hidden verification is simply the benefit of looking at the question twice. If a second confidence sample explains everything, we should say so. If it does not, the deeper story survives.
-Remove the arithmetic crutch.
-Run a qualitative-stakes experiment with no exact cost formula or crisp numerical threshold. If GPT still lets the displayed score strongly dominate—and especially if useful answer-specific discrimination drops—then the result is no longer just “GPT did arithmetic.”
-Confirm and generalize.
-Freeze a fresh experiment on unseen questions, ideally add one open-weight model and one non-MCQ task such as math. The Master Plan already treats fresh prospective confirmation and modest generalization as the core path after the exploratory pilot.
-Show a practical payoff.
-At the same number of allowed checks, compare:
-raw confidence, calibrated confidence, natural verification judgment, repeated assessment, and combinations. If a combined router catches more real mistakes for the same checking budget, the paper ends with something designers can actually use.
+Which uncertainty signals actually make good selective-verification policies?
 
-That last part matters a lot narratively.
+Study 1 becomes a striking example of why policy fidelity is not enough, and the contribution becomes systematic matched-budget evaluation + better router.
 
-Otherwise the paper ends:
+Still potentially publishable, but probably lower ceiling unless the routing improvement is strong.
 
-“Here is a weird behavior.”
+What the final strong paper would likely contain
 
-Much better is:
+If things go well, I can imagine the paper being only four main empirical sections.
 
-“Here is the failure mode, here is why it happens, and here is a better way to allocate oversight.”
+1. Counterfactual confidence intervention.
+Same answer, different displayed score. GPT changes almost deterministically; Claude responds more gradually. This establishes score control.
 
-Where interpretability fits now
+2. What still distinguishes risky answers?
+At fixed score, quantify reproducible item-specific routing and whether it targets actual errors. Bring in Checkpoint A and \(q_2\).
 
-Much later.
+3. What causes the phenomenon?
+Qualitative stakes + reasoning mode. This separates “generic score conditioning” from “explicit arithmetic execution” and scopes the result honestly.
 
-Claude was right here too.
+4. Better routing.
+Fresh prospective dataset. Compare raw confidence, calibrated confidence, repeated assessment, hidden judgment, and combinations at equal checking budget. Add one meaningful generalization.
 
-We do not need activation steering or probes just to make this respectable.
+That is a much cleaner final paper than the enormous Study 0–Study 6 tree in the original Master Plan.
 
-If the behavioral story becomes strong:
+Interpretability becomes an optional fifth section only if it reveals something genuinely additional.
 
-explicit score dominates;
-useful answer-specific evidence disappears or weakens;
-this survives second-confidence controls;
-survives qualitative stakes;
-generalizes;
-better router recovers performance;
+How strong would that be?
 
-that could already be a strong paper.
+There are really three different bars.
 
-Interpretability then becomes the high-ceiling question:
+What we have today: strong workshop-level work and a very good foundation. It is a real causal finding, not a toy correlation, but the most striking GPT result can still be dismissed conceptually as “the model followed the supplied probability and costs.”
 
-What internal signal is being used when confidence is hidden, and does displaying confidence reduce its influence on the final action?
+After the next diagnostics: if we find reproducible useful answer sensitivity, survive \(q_2\), and survive qualitative stakes/reasoning, then we have the scientific core of an ICLR paper. At that point the project is no longer “89→91 flips GPT”; it is about how a compressed uncertainty signal interacts with richer verification judgment.
 
-That would be exciting.
+After prospective confirmation + routing + one generalization: that is where I would start describing the package as a strong ICLR-quality research submission, assuming the effect sizes are material and the analyses are clean.
 
-But we shouldn't do it just because “ICLR likes mechanistic work.”
+A potentially standout version would add one deeper result, for example:
 
-The Master Plan itself says the mechanistic contribution only earns its place if the behavioral continuity and stronger baselines survive first.
+displaying the score causally reduces the influence of an independently identified error-related signal;
 
-The current project landscape, in plain English
+or
 
-I’d divide where we are into four boxes.
+a very simple combined router consistently recovers large amounts of missed error detection across models/tasks.
 
-What we know:
-GPT’s displayed confidence can causally and almost deterministically control verification in our numerical-cost setup. That survives rerun noise. Claude is less score-dominated. Checkpoint A also showed natural verification contains information beyond one verbal-confidence report.
+We do not need to force that now.
 
-What we strongly suspect but haven’t shown:
-When GPT becomes score-dominated, some useful answer-specific discrimination may stop influencing the decision.
+The most important strategy change
 
-What could kill the deeper story:
-Maybe Claude’s residual checking is just blanket caution. Maybe asking for confidence a second time completely explains the hidden-policy advantage. Maybe GPT only acts this way because we literally gave it an arithmetic threshold.
+We are closer than the original Master Plan makes it look, because we do not actually need ten more sprawling studies.
 
-What would turn it into the strong paper:
-Show that useful answer-specific evidence really gets reduced by explicit-score conditioning, survives boring-explanation controls, replicates prospectively and across another setting, and can be exploited to build a better routing policy.
+But we are also farther than the 96pp GPT effect makes it feel, because the large cliff itself is not the breakthrough.
 
-The simplest version of the whole paper
+The project is currently between:
 
-If everything works, I think the elevator pitch eventually becomes:
+“We found a powerful causal phenomenon.”
 
-A confidence score is not the same thing as everything an AI knows about whether its answer is risky. When we feed that score back into the model to control whether its answer gets checked, some models let the score dominate the decision. We study what useful information is lost, why, and how to route verification better.
+and
 
-That is much stronger than:
+“We understand why it matters and can use that understanding to design better oversight.”
 
-“Changing 89% to 91% changes GPT’s action.”
+That second sentence is the paper.
 
-The 89→91 result is now the instrument that lets us study the deeper phenomenon, not the phenomenon we ultimately want the paper to be remembered for.
+So I would think of the current plan as:
+
+Now: zero-cost retention analysis.
+Then: \(q_2\) + reasoning + qualitative stakes.
+Then regroup.
+Then: power/freeze fresh prospective study.
+Then: confirmation + routing + one generalization.
+Then only if useful: mechanism.
+
+That sequence is short enough to finish cleanly, and every step can kill or sharpen the story before we waste time on the next one.
+
+And I would still hold off on rewriting paperDirection.txt until the zero-cost analysis comes back. That analysis is the first thing that can tell us whether the deeper centerpiece we currently like has actual empirical support rather than just a compelling narrative.
