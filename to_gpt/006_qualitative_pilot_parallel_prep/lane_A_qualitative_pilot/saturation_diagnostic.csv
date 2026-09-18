@@ -1,0 +1,13 @@
+model_alias,model_label,family,score_condition,n,n_verify,n_use,verify_rate,rate_0_or_100,rate_le_10_or_ge_90,useful_intermediate_10_90,both_actions_present
+openai_gpt56_sol,GPT,moderate,displayed_0.70,20,14,6,0.7,False,False,True,True
+openai_gpt56_sol,GPT,moderate,displayed_0.90,20,4,16,0.2,False,False,True,True
+openai_gpt56_sol,GPT,moderate,displayed_0.99,20,1,19,0.05,False,True,False,True
+openai_gpt56_sol,GPT,stronger,displayed_0.70,20,19,1,0.95,False,True,False,True
+openai_gpt56_sol,GPT,stronger,displayed_0.90,20,7,13,0.35,False,False,True,True
+openai_gpt56_sol,GPT,stronger,displayed_0.99,20,4,16,0.2,False,False,True,True
+anthropic_sonnet5,Claude,moderate,displayed_0.70,20,19,1,0.95,False,True,False,True
+anthropic_sonnet5,Claude,moderate,displayed_0.90,20,15,5,0.75,False,False,True,True
+anthropic_sonnet5,Claude,moderate,displayed_0.99,20,13,7,0.65,False,False,True,True
+anthropic_sonnet5,Claude,stronger,displayed_0.70,20,19,1,0.95,False,True,False,True
+anthropic_sonnet5,Claude,stronger,displayed_0.90,20,15,5,0.75,False,False,True,True
+anthropic_sonnet5,Claude,stronger,displayed_0.99,20,13,7,0.65,False,False,True,True

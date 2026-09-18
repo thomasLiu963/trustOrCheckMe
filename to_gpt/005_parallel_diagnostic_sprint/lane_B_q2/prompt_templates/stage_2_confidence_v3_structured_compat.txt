@@ -1,0 +1,18 @@
+You previously answered the multiple-choice question below.
+
+Question:
+{question}
+
+Choices:
+{formatted_choices}
+
+Your frozen answer was:
+{answer_label}
+
+Do not change the answer and do not solve the question again.
+
+Estimate the probability that this frozen answer is correct.
+Return a number between 0 and 1.
+
+Return only valid JSON in exactly this form:
+{{"probability_correct":0.72}}

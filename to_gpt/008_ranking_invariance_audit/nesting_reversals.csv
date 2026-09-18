@@ -1,0 +1,13 @@
+model_alias,model_label,family,from_score,to_score,n_questions,n_VV,n_VU,n_UU,n_UV,reversal_rate,reversal_ci_lower,reversal_ci_upper,material_reversal,n_perfectly_nested_trajectories,n_non_nested_trajectories,trajectory_VVV,trajectory_VVU,trajectory_VUU,trajectory_UUU,note
+openai_gpt56_sol,GPT,moderate,0.7,0.9,100,20,39,41,0,0.0,0.0,0.0,False,100,0,7,13,39,41,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+openai_gpt56_sol,GPT,moderate,0.9,0.99,100,7,13,80,0,0.0,0.0,0.0,False,100,0,7,13,39,41,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+openai_gpt56_sol,GPT,moderate,0.7,0.99,100,7,52,41,0,0.0,0.0,0.0,False,100,0,7,13,39,41,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+openai_gpt56_sol,GPT,stronger,0.7,0.9,100,40,52,8,0,0.0,0.0,0.0,False,98,2,14,26,50,8,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+openai_gpt56_sol,GPT,stronger,0.9,0.99,100,14,26,58,2,0.02,0.0,0.05,False,98,2,14,26,50,8,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+openai_gpt56_sol,GPT,stronger,0.7,0.99,100,16,76,8,0,0.0,0.0,0.0,False,98,2,14,26,50,8,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+anthropic_sonnet5,Claude,moderate,0.7,0.9,100,79,11,10,0,0.0,0.0,0.0,False,100,0,59,20,11,10,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+anthropic_sonnet5,Claude,moderate,0.9,0.99,100,59,20,21,0,0.0,0.0,0.0,False,100,0,59,20,11,10,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+anthropic_sonnet5,Claude,moderate,0.7,0.99,100,59,31,10,0,0.0,0.0,0.0,False,100,0,59,20,11,10,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+anthropic_sonnet5,Claude,stronger,0.7,0.9,100,82,11,7,0,0.0,0.0,0.0,False,100,0,67,15,11,7,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+anthropic_sonnet5,Claude,stronger,0.9,0.99,100,67,15,18,0,0.0,0.0,0.0,False,100,0,67,15,11,7,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."
+anthropic_sonnet5,Claude,stronger,0.7,0.99,100,67,26,7,0,0.0,0.0,0.0,False,100,0,67,15,11,7,"As displayed score rises, nested VERIFY sets imply UV=0. Nesting supports but does not prove ranking invariance."

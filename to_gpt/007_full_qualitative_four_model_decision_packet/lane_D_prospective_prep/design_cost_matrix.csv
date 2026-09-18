@@ -1,0 +1,10 @@
+design,n_questions,n_models,stakes_families,stage3_conditions_per_stakes,stage1_cells,q1_cells,optional_q2_cells,stage3_cells,stage1_plus_q1_plus_stage3,with_optional_q2,note,sample_not_frozen,candidate_seed_if_using_task006_list
+D1_lean,200,4,1,4,800,800,800,3200,4800,5600,one stakes family; hidden + 0.70 + 0.90 + 0.99,True,20260918
+D2_visibility_bridge,200,4,1,5,800,800,800,4000,5600,6400,one stakes family; hidden + true-q visible + 0.70 + 0.90 + 0.99,True,20260918
+D3_stakes_replication,200,4,2,4,800,800,800,6400,8000,8800,moderate+stronger; hidden + 0.70 + 0.90 + 0.99,True,20260918
+D1_lean,400,4,1,4,1600,1600,1600,6400,9600,11200,one stakes family; hidden + 0.70 + 0.90 + 0.99,True,20260919
+D2_visibility_bridge,400,4,1,5,1600,1600,1600,8000,11200,12800,one stakes family; hidden + true-q visible + 0.70 + 0.90 + 0.99,True,20260919
+D3_stakes_replication,400,4,2,4,1600,1600,1600,12800,16000,17600,moderate+stronger; hidden + 0.70 + 0.90 + 0.99,True,20260919
+D1_lean,600,4,1,4,2400,2400,2400,9600,14400,16800,one stakes family; hidden + 0.70 + 0.90 + 0.99,True,20260920
+D2_visibility_bridge,600,4,1,5,2400,2400,2400,12000,16800,19200,one stakes family; hidden + true-q visible + 0.70 + 0.90 + 0.99,True,20260920
+D3_stakes_replication,600,4,2,4,2400,2400,2400,19200,24000,26400,moderate+stronger; hidden + 0.70 + 0.90 + 0.99,True,20260920

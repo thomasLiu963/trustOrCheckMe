@@ -1,0 +1,9 @@
+model_alias,family,from_score,to_score,n_remain_verify,n_switch_verify_to_use,n_remain_use,n_switch_use_to_verify,mean_other_n_correct_remain_verify,mean_other_n_correct_switch_v_to_u,mean_other_n_correct_remain_use,mean_other_n_correct_switch_u_to_v,mean_error_remain_verify,mean_error_switch_v_to_u,preferentially_keeps_harder
+openai_gpt56_sol,moderate,0.7,0.9,20,39,41,0,1.45,2.282051282051282,2.731707317073171,nan,0.45,0.1282051282051282,True
+openai_gpt56_sol,moderate,0.9,0.99,7,13,80,0,1.1428571428571428,1.6153846153846154,2.5125,nan,0.5714285714285714,0.38461538461538464,True
+openai_gpt56_sol,stronger,0.7,0.9,40,52,8,0,1.875,2.519230769230769,3.0,nan,0.325,0.11538461538461539,True
+openai_gpt56_sol,stronger,0.9,0.99,14,26,58,2,1.6428571428571428,2.0,2.603448275862069,2.0,0.42857142857142855,0.2692307692307692,True
+anthropic_sonnet5,moderate,0.7,0.9,79,11,10,0,2.2658227848101267,2.6363636363636362,3.0,nan,0.31645569620253167,0.18181818181818182,True
+anthropic_sonnet5,moderate,0.9,0.99,59,20,21,0,2.2033898305084745,2.45,2.8095238095238093,nan,0.3728813559322034,0.15,True
+anthropic_sonnet5,stronger,0.7,0.9,82,11,7,0,2.268292682926829,2.8181818181818183,3.0,nan,0.3170731707317073,0.09090909090909091,True
+anthropic_sonnet5,stronger,0.9,0.99,67,15,18,0,2.253731343283582,2.3333333333333335,2.888888888888889,nan,0.34328358208955223,0.2,True

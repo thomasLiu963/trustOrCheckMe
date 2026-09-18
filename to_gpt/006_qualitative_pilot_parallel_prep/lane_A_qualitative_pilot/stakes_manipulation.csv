@@ -1,0 +1,9 @@
+model_alias,score_condition,displayed_confidence,n,mean_stronger_minus_moderate,ci_lower,ci_upper,n_stronger_only,n_moderate_only,n_both_verify,n_both_use,note
+openai_gpt56_sol,hidden,,20,0.25,0.1,0.45,5,0,8,7,pilot paired question comparison
+openai_gpt56_sol,displayed_0.70,0.7,20,0.25,0.1,0.45,5,0,14,1,pilot paired question comparison
+openai_gpt56_sol,displayed_0.90,0.9,20,0.15,-0.05,0.35,4,1,3,12,pilot paired question comparison
+openai_gpt56_sol,displayed_0.99,0.99,20,0.15,0.0,0.3,3,0,1,16,pilot paired question comparison
+anthropic_sonnet5,hidden,,20,0.05,0.0,0.15,1,0,13,6,pilot paired question comparison
+anthropic_sonnet5,displayed_0.70,0.7,20,0.0,0.0,0.0,0,0,19,1,pilot paired question comparison
+anthropic_sonnet5,displayed_0.90,0.9,20,0.0,0.0,0.0,0,0,15,5,pilot paired question comparison
+anthropic_sonnet5,displayed_0.99,0.99,20,0.0,0.0,0.0,0,0,13,7,pilot paired question comparison

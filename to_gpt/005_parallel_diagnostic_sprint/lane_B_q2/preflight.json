@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "errors": [],
+  "n_errors": 0,
+  "n_calls": 1000,
+  "n_questions": 500,
+  "models": [
+    "anthropic_sonnet5",
+    "openai_gpt56_sol"
+  ],
+  "q2_sqlite": "/Users/thomas/Desktop/trustOrCheckMe/results/study2_q2_diagnostic/q2.sqlite3",
+  "study1_sqlite": "/Users/thomas/Desktop/trustOrCheckMe/results/study1_causal_pilot/study1.sqlite3",
+  "v2_sqlite": "/Users/thomas/Desktop/trustOrCheckMe/results/v2/raw/v2.sqlite3",
+  "prompt_version": "stage_2_confidence_v3_structured_compat",
+  "experiment_version": "study2_q2_diagnostic",
+  "scientific_cap": 1000,
+  "provider_attempt_cap": 1300,
+  "paperDirection_sha256": "52cbde69e42f4db59f481d574a4f4395d1c7acfebb0b6f13a4390eda2c1f1d36",
+  "v2_sha256": "8597e3f73226bf39770af99a877282c22428203a3e2c11521256bf5cb3db5eb6",
+  "study1_sha256": "f8e5ddbb91db360403ea519b9b3481575c6cbc5ccdb553c650dbe726025ecfbd",
+  "gpt_endpoint": "gpt-5.6-sol",
+  "claude_endpoint": "claude-sonnet-5",
+  "gpt_reasoning_effort": "none",
+  "will_not_modify_paperDirection": true
+}

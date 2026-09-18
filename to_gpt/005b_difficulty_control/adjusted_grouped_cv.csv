@@ -1,0 +1,25 @@
+unit,slice,model,n_rows,n_questions,n_folds,log_loss,auroc,delta_log_loss,delta_auroc,delta_log_loss_ci_lower,delta_log_loss_ci_upper,delta_auroc_ci_lower,delta_auroc_ci_upper,unstable,comparison,note
+cell,L10,stratum_only,500,100,5,0.5956221360742964,0.3680872653475393,,,,,,,False,,
+cell,L10,difficulty_plus_stratum,500,100,5,0.5184097323818345,0.810755961440893,,,,,,,False,,
+cell,L10,difficulty_plus_stratum_plus_action,500,100,5,0.5209357836401912,0.8113039066463724,,,,,,,False,,
+cell,L10,stratum_plus_action,500,100,5,0.5706189848215272,0.5279147640791477,,,,,,,False,,
+cell,L10,incremental_action_after_stratum_only,500,100,5,,,-0.025003151252769196,0.1598274987316084,-0.0553437267118283,0.008022338942968332,0.07740952380952393,0.2447082699137495,False,stratum_plus_action minus stratum_only,replicates Task 005 unadjusted increment (score vs score+action)
+cell,L10,incremental_action_after_difficulty,500,100,5,,,0.0025260512583566985,0.0005479452054794054,-0.007136667610244951,0.012743437107743838,-0.012261072261072092,0.013599999999999945,False,difficulty_plus_stratum_plus_action minus difficulty_plus_stratum,primary 005B test: does action still help after other-model difficulty + category + length + choice count
+cell,L10,incremental_difficulty_after_stratum,500,100,5,,,-0.07721240369246185,0.4426686960933537,-0.25004901678436803,0.13265052458368876,0.26918859649122817,0.5971410006497726,False,difficulty_plus_stratum minus stratum_only,how much observable difficulty itself predicts Claude correctness
+cell,L20,stratum_only,500,100,5,0.5956248109248005,0.3680872653475393,,,,,,,False,,
+cell,L20,difficulty_plus_stratum,500,100,5,0.5182900833538471,0.810755961440893,,,,,,,False,,
+cell,L20,difficulty_plus_stratum_plus_action,500,100,5,0.517561001634801,0.8166818873668189,,,,,,,False,,
+cell,L20,stratum_plus_action,500,100,5,0.5656556991087882,0.5295991882293252,,,,,,,False,,
+cell,L20,incremental_action_after_stratum_only,500,100,5,,,-0.02996911181601225,0.16151192288178584,-0.06303157880152677,0.004776030076714344,0.08460498960498963,0.24379456706281832,False,stratum_plus_action minus stratum_only,replicates Task 005 unadjusted increment (score vs score+action)
+cell,L20,incremental_action_after_difficulty,500,100,5,,,-0.0007290817190460652,0.00592592592592589,-0.014720083023507025,0.013486387426852542,-0.008583484026522092,0.022208000000000006,False,difficulty_plus_stratum_plus_action minus difficulty_plus_stratum,primary 005B test: does action still help after other-model difficulty + category + length + choice count
+cell,L20,incremental_difficulty_after_stratum,500,100,5,,,-0.07733472757095339,0.4426686960933537,-0.25000757751379865,0.13239266420090967,0.26918859649122817,0.5971410006497726,False,difficulty_plus_stratum minus stratum_only,how much observable difficulty itself predicts Claude correctness
+cell,pooled_L,stratum_only,1000,100,5,0.5956237950533614,0.3680872653475393,,,,,,,False,,
+cell,pooled_L,difficulty_plus_stratum,1000,100,5,0.5731863465903616,0.8031456113647895,,,,,,,False,,
+cell,pooled_L,difficulty_plus_stratum_plus_action,1000,100,5,0.5756533746039477,0.8036377473363775,,,,,,,False,,
+cell,pooled_L,stratum_plus_action,1000,100,5,0.5678995642492303,0.531714865550482,,,,,,,False,,
+cell,pooled_L,incremental_action_after_stratum_only,1000,100,5,,,-0.02772423080413111,0.16362760020294265,-0.05977691669909557,0.006276139724036511,0.08403554778554784,0.2481887366818874,False,stratum_plus_action minus stratum_only,replicates Task 005 unadjusted increment (score vs score+action)
+cell,pooled_L,incremental_action_after_difficulty,1000,100,5,,,0.0024670280135861145,0.0004921359715880369,-0.008944044725232025,0.014257558782770574,-0.012196499153020901,0.013001402524544292,False,difficulty_plus_stratum_plus_action minus difficulty_plus_stratum,primary 005B test: does action still help after other-model difficulty + category + length + choice count
+cell,pooled_L,incremental_difficulty_after_stratum,1000,100,5,,,-0.022437448462999776,0.43505834601725013,-0.23474322235500478,0.23881906748522086,0.2615176151761519,0.5870695256660168,False,difficulty_plus_stratum minus stratum_only,how much observable difficulty itself predicts Claude correctness
+question,all_questions,difficulty_only,100,100,5,0.4618164615176643,0.8295281582952816,,,,,,,False,,
+question,all_questions,difficulty_plus_action,100,100,5,0.4580182690432107,0.836631151699645,,,,,,,False,,
+question,all_questions,incremental_action_after_difficulty,100,100,5,,,-0.003798192474453621,0.007102993404363378,-0.015363003353701887,0.008407300932958495,-0.008184523809523725,0.026133333333333342,False,difficulty_plus_action minus difficulty_only,question-level: mean VERIFY propensity after other-model difficulty + category + length + choice count

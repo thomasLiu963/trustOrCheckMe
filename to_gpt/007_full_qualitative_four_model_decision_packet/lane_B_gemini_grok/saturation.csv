@@ -1,0 +1,17 @@
+model_alias,family,score_condition,n,verify_rate,both_actions_present,useful_intermediate_10_90,label
+google_gemini38_flash,moderate,hidden,20,0.2,True,True,
+google_gemini38_flash,moderate,displayed_0.70,20,0.2,True,True,
+google_gemini38_flash,moderate,displayed_0.90,20,0.1,True,True,
+google_gemini38_flash,moderate,displayed_0.99,20,0.1,True,True,
+google_gemini38_flash,stronger,hidden,20,0.2,True,True,
+google_gemini38_flash,stronger,displayed_0.70,20,0.65,True,True,
+google_gemini38_flash,stronger,displayed_0.90,20,0.05,True,False,
+google_gemini38_flash,stronger,displayed_0.99,20,0.25,True,True,
+xai_grok420_nonreasoning,moderate,hidden,20,1.0,False,False,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION
+xai_grok420_nonreasoning,moderate,displayed_0.70,20,1.0,False,False,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION
+xai_grok420_nonreasoning,moderate,displayed_0.90,20,0.95,True,False,
+xai_grok420_nonreasoning,moderate,displayed_0.99,20,0.9,True,True,
+xai_grok420_nonreasoning,stronger,hidden,20,1.0,False,False,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION
+xai_grok420_nonreasoning,stronger,displayed_0.70,20,1.0,False,False,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION
+xai_grok420_nonreasoning,stronger,displayed_0.90,20,1.0,False,False,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION
+xai_grok420_nonreasoning,stronger,displayed_0.99,20,0.9,True,True,

@@ -112,17 +112,22 @@ def _is_transient(error: BaseException) -> bool:
     if status in {408, 409, 425, 429} or (isinstance(status, int) and status >= 500):
         return True
     name = type(error).__name__.lower()
-    return any(
-        marker in name
-        for marker in (
-            "timeout",
-            "connection",
-            "ratelimit",
-            "internalserver",
-            "serviceunavailable",
-            "overloaded",
-        )
-    ) or isinstance(error, (TimeoutError, ConnectionError, asyncio.TimeoutError))
+    text = str(error).lower()
+    markers = (
+        "timeout",
+        "connection",
+        "ratelimit",
+        "rate limit",
+        "resource_exhausted",
+        "resource exhausted",
+        "internalserver",
+        "serviceunavailable",
+        "overloaded",
+        "429",
+    )
+    if any(marker in name for marker in markers) or any(marker in text for marker in markers):
+        return True
+    return isinstance(error, (TimeoutError, ConnectionError, asyncio.TimeoutError))
 
 
 async def _notify(callback: AttemptCallback | None, event: Mapping[str, Any]) -> None:

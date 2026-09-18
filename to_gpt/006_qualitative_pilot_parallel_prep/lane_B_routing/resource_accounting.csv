@@ -1,0 +1,8 @@
+router,conceptual_signals,deployment_fair,note
+raw_q1,one Stage-2 confidence report (q1),True,
+calibrated_q1,one Stage-2 confidence report + grouped-CV isotonic fit (not an extra model call),True,
+raw_q2,one independent Stage-2 re-elicitation (q2); conceptually one extra self-assessment call,True,
+mean_q1_q2,two confidence reports (q1 and q2),True,
+single_hidden_ai_L10,one verification-decision elicitation in the predeclared hidden AI-system L=10 cell; deployment-fairer than the aggregate,True,
+hidden_aggregate,"fraction VERIFY across historical hidden owner×L cells; multi-elicitation upper bound / diagnostic, not a one-call practical router",False,combined uses three elicitations; hidden_aggregate uses many historical cells
+combined_q1_q2_single_hidden,"q1 + q2 + one hidden verification judgment; grouped-CV logistic, OOF predicted P(error); three elicitations",False,

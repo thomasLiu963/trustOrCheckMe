@@ -1,0 +1,17 @@
+model_alias,model_label,family,score_condition,n,n_verify,n_use,verify_rate,ci_lower,ci_upper
+google_gemini38_flash,google_gemini38_flash,moderate,hidden,20,4,16,0.2,0.05,0.4
+google_gemini38_flash,google_gemini38_flash,moderate,displayed_0.70,20,4,16,0.2,0.05,0.4
+google_gemini38_flash,google_gemini38_flash,moderate,displayed_0.90,20,2,18,0.1,0.0,0.25
+google_gemini38_flash,google_gemini38_flash,moderate,displayed_0.99,20,2,18,0.1,0.0,0.25
+google_gemini38_flash,google_gemini38_flash,stronger,hidden,20,4,16,0.2,0.05,0.4
+google_gemini38_flash,google_gemini38_flash,stronger,displayed_0.70,20,13,7,0.65,0.45,0.85
+google_gemini38_flash,google_gemini38_flash,stronger,displayed_0.90,20,1,19,0.05,0.0,0.15
+google_gemini38_flash,google_gemini38_flash,stronger,displayed_0.99,20,5,15,0.25,0.05,0.45
+xai_grok420_nonreasoning,xai_grok420_nonreasoning,moderate,hidden,20,20,0,1.0,1.0,1.0
+xai_grok420_nonreasoning,xai_grok420_nonreasoning,moderate,displayed_0.70,20,20,0,1.0,1.0,1.0
+xai_grok420_nonreasoning,xai_grok420_nonreasoning,moderate,displayed_0.90,20,19,1,0.95,0.85,1.0
+xai_grok420_nonreasoning,xai_grok420_nonreasoning,moderate,displayed_0.99,20,18,2,0.9,0.75,1.0
+xai_grok420_nonreasoning,xai_grok420_nonreasoning,stronger,hidden,20,20,0,1.0,1.0,1.0
+xai_grok420_nonreasoning,xai_grok420_nonreasoning,stronger,displayed_0.70,20,20,0,1.0,1.0,1.0
+xai_grok420_nonreasoning,xai_grok420_nonreasoning,stronger,displayed_0.90,20,20,0,1.0,1.0,1.0
+xai_grok420_nonreasoning,xai_grok420_nonreasoning,stronger,displayed_0.99,20,18,2,0.9,0.75,1.0

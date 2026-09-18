@@ -1,0 +1,41 @@
+{
+  "decision_bucket": "INVARIANCE_SUPPORTED_EXPLORATORY",
+  "favored_world": "WORLD 1",
+  "favor_strength": "MODERATELY_FAVORS",
+  "per_model": {
+    "openai_gpt56_sol": {
+      "label": "invariance",
+      "max_reversal": 0.02,
+      "material_reversal": false,
+      "material_logit_interaction": false,
+      "cv_interaction_helps": false,
+      "cv_rich_helps": false,
+      "loco_rich_helps": false,
+      "shared_predicts_heldout": true,
+      "mean_u_auc": 0.776629927454635,
+      "large_auc_shift": false,
+      "reshape_votes": 0,
+      "invariance_votes": 5
+    },
+    "anthropic_sonnet5": {
+      "label": "invariance",
+      "max_reversal": 0.0,
+      "material_reversal": false,
+      "material_logit_interaction": false,
+      "cv_interaction_helps": false,
+      "cv_rich_helps": false,
+      "loco_rich_helps": false,
+      "shared_predicts_heldout": true,
+      "mean_u_auc": 0.8810624376147635,
+      "large_auc_shift": false,
+      "reshape_votes": 0,
+      "invariance_votes": 5
+    }
+  },
+  "rules": {
+    "material_reversal": 0.05,
+    "material_logloss": 0.01,
+    "material_auroc": 0.05,
+    "unit": "question_id"
+  }
+}

@@ -166,3 +166,111 @@ Return `to_gpt/004_study1_stability_results/` for GPT review. Do not launch late
 Study 1 repeats = AUTHORIZED / EXPLORATORY.  
 Later studies = CONDITIONAL.
 
+---
+
+## 2026-09-17 — Task 005 parallel diagnostic sprint (exploratory, not confirmatory)
+
+**Date:** 2026-09-17
+
+**Previous state:**  
+Study 1 primary (2,800) and stability repeats (1,120) complete. GPT showed a large, rerun-stable displayed-confidence cliff. Claude was a weaker/gradual contrast. Checkpoint A had shown hidden verification carrying extra correctness information beyond verbal confidence `q1`.
+
+**Previous plan:**  
+Do not scale blindly or write the paper. Resolve three uncertainties: useful item-specific verification at fixed displayed score; whether hidden-action residual is just a second confidence assessment; whether GPT's cliff is specific to low/no-reasoning mode. Prepare, but do not run, a qualitative-stakes experiment.
+
+**Evidence:**  
+Numbered task `from_gpt/005_parallel_diagnostic_sprint.md`.
+
+**Decision:**
+
+1. Lane A analyzes existing Study-1 and historical V2 data with zero API calls. Question identity is the unit for correctness analyses. GPT action saturation is labeled `ACTION_SATURATED__ITEM_DISCRIMINATION_NOT_IDENTIFIABLE` and is not translated into hidden-state suppression claims.
+2. Lane B re-elicits an independent Stage-2 confidence `q2` on all 500 V2-B questions for the Study-1 GPT and Claude endpoints (1,000 scientific calls). Exact historical Stage-2 template. New sqlite `results/study2_q2_diagnostic/q2.sqlite3`. Do not write Study-1 or V2 databases.
+3. Lane C is `BLOCKED_UNSUPPORTED_REASONING_SETTING`. The current OpenAI adapter/config only support `reasoning.effort=none` for `gpt-5.6-sol`. Zero Lane-C calls. No guessed nonzero effort values.
+4. Lane D drafts two qualitative-stakes prompt families for GPT review. Zero calls. Prompts are not frozen.
+5. Do not modify `paperDirection.txt`. Do not call any result confirmatory. Do not auto-scale after seeing q2.
+
+**Affected study already frozen?**  
+Historical V2 remains HISTORICAL-FROZEN. Study 1 remains exploratory. Task 003/004 data are not overwritten.
+
+**Exploratory vs confirmatory relative to this decision:**  
+All Task 005 outputs are EXPLORATORY diagnostics.
+
+**Current next engineering task:**  
+Return `to_gpt/005_parallel_diagnostic_sprint/` for GPT review. Do not execute the recommended next scientific action.
+
+**Status:**  
+Task 005 = AUTHORIZED / EXPLORATORY.  
+Lane C = BLOCKED_UNSUPPORTED_REASONING_SETTING.  
+Later studies = CONDITIONAL.  
+Confirmatory study = NOT AUTHORIZED.
+
+---
+
+## 2026-09-17 — Task 006 qualitative 20-question pilot and parallel prep
+
+**Date:** 2026-09-17
+
+**Previous state:**  
+Study 1 and Task 005 complete as exploratory. Task 005B difficulty-control audit ran on existing Claude cells (zero API). GPT's Study-1 cliff remains consistent with explicit numerical L/C arithmetic; that objection was untested.
+
+**Evidence:**  
+Numbered task `from_gpt/006_qualitative_pilot_parallel_prep.md`.
+
+**Decision:**
+
+1. Lane A runs a 20-question qualitative-stakes pilot (320 scientific calls) using the Task-006 frozen prompt skeleton, not the Task-005 Lane D drafts. No numerical L/C, expected-value language, `outweigh`, `justified`, or `not as a default`. Score grid: hidden / 0.70 / 0.90 / 0.99. Families: moderate vs stronger consequence sentences specified in the task. Frozen Stage-1 answers reused. New sqlite `results/study1_qualitative_pilot/qualitative_pilot.sqlite3`.
+2. Lane B is a zero-call exploratory matched-budget routing analysis of q1, q2, a predeclared single hidden cell (`ai_system`, L=10, hidden), the hidden aggregate (labeled multi-elicitation / not deployment-fair), and a grouped-CV q1+q2+single-hidden combination. Question identity is the unit.
+3. Lane C builds an unseen MMLU-Pro eligible pool excluding the 500 V2-B IDs and writes candidate stratified lists for N=200…1000. No confirmatory sample is frozen. No target-model calls.
+4. Lane D audits Gemini/Grok/open-model feasibility in code/config only. No provider calls.
+5. Do not modify `paperDirection.txt`, historical V2, Study 1, q2, Task 005, or Task 005B data. Do not auto-expand from 20 to 100 questions.
+
+**Affected study already frozen?**  
+Historical V2 remains HISTORICAL-FROZEN. Study 1 / Tasks 003–005 remain exploratory and are not overwritten.
+
+**Exploratory vs confirmatory relative to this decision:**  
+All Task 006 outputs are EXPLORATORY.
+
+**Current next engineering task:**  
+Return `to_gpt/006_qualitative_pilot_parallel_prep/` for GPT review together with Task 005B. Do not execute the recommended next scientific action.
+
+**Status:**  
+Task 006 = AUTHORIZED / EXPLORATORY.  
+Confirmatory study = NOT AUTHORIZED.
+
+---
+
+## 2026-09-18 — Task 007 full qualitative 100 + four-model pilot + paper-direction packet
+
+**Date:** 2026-09-18
+
+**Previous state:**  
+Task 006 qualitative 20-q GPT/Claude pilot gated A-GO-FULL-QUALITATIVE. Tasks 005B/005C showed that much of the natural-verification residual is empirical item difficulty. `paperDirection.txt` was still unmodified.
+
+**Evidence:**  
+Numbered task `from_gpt/007_full_qualitative_four_model_decision_packet.md`.
+
+**Decision:**
+
+1. Lane A completes the remaining 80 Study-1 questions for GPT/Claude with the frozen Task-006 qualitative prompts (1,280 new cells). Task-006's original 320 cells are reused, not rerun. Merged grid = 1,600 exploratory cells. New sqlite `results/study1_qualitative_full80/qualitative_full80.sqlite3`.
+2. Lane B runs Gemini/Grok on the frozen 20-question subset with the same prompts (up to 320 cells) if adapters/historical Stage-1 pass. Separate sqlite `results/study1_qualitative_gemini_grok20/qualitative_gemini_grok20.sqlite3`. No q2. No endpoint substitution.
+3. Lane C tests whether displayed score merely shifts the verification budget or changes difficulty-sensitive prioritization. Cross-model other-correct is an evaluation proxy, not a production feature.
+4. Lane D prepares, and does not run, a prospective four-model pipeline and D1/D2/D3 cost matrix on the Task-006 unseen pool.
+5. Lane E writes a paper-direction decision packet. **Do not edit `paperDirection.txt` in this task.**
+6. Do not launch a confirmatory study. Do not infer hidden-state suppression.
+
+**Lane C buckets / spine:** GPT/Claude buckets and recommended Spine C (GPT SCORE_SHIFTS_BUDGET_PRESERVES_DIFFICULTY_PRIORITY; Claude SCORE_SHARPENS_DIFFICULTY_PRIORITY) are in `to_gpt/007_full_qualitative_four_model_decision_packet/`. Hold revision: no.
+
+**Affected study already frozen?**  
+Historical V2 remains HISTORICAL-FROZEN. Study 1 / Tasks 003–006 remain exploratory and are not overwritten.
+
+**Exploratory vs confirmatory relative to this decision:**  
+All Task 007 outputs are EXPLORATORY.
+
+**Current next engineering task:**  
+Return `to_gpt/007_full_qualitative_four_model_decision_packet/` for GPT review. Do not edit `paperDirection.txt` until GPT accepts the packet. Do not launch the confirmatory study.
+
+**Status:**  
+Task 007 = AUTHORIZED / EXPLORATORY.  
+Confirmatory study = NOT AUTHORIZED.  
+paperDirection.txt = UNMODIFIED.
+

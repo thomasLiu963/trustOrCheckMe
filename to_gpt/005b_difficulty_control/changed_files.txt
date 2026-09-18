@@ -1,0 +1,13 @@
+to_gpt/005b_difficulty_control/report.md
+to_gpt/005b_difficulty_control/raw_fixed_score_results.csv
+to_gpt/005b_difficulty_control/difficulty_features.csv
+to_gpt/005b_difficulty_control/difficulty_vs_action.csv
+to_gpt/005b_difficulty_control/adjusted_grouped_cv.csv
+to_gpt/005b_difficulty_control/stratified_or_matched_analysis.csv
+to_gpt/005b_difficulty_control/repeat_subset_check.csv
+to_gpt/005b_difficulty_control/changed_files.txt
+to_gpt/005b_difficulty_control/task005b_difficulty.py
+to_gpt/005b_difficulty_control/run_005b.py
+to_gpt/005b_difficulty_control/summary.json
+src/task005b_difficulty.py
+from_gpt/005b_difficulty_control.md

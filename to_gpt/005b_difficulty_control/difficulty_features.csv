@@ -1,0 +1,101 @@
+question_id,category,n_choices,question_char_len,question_ws_tokens,gpt_correct,gemini_correct,grok_correct,claude_correct,other_n_correct,other_frac_correct,other_frac_wrong,four_model_n_correct,four_model_frac_correct,choice_count_varies,n_choices_unique_values,choice_count_dropped,frozen_answer_is_option_letter,option_text_length_omitted,option_text_length_reason
+mmlu_pro:test:7552,economics,10,257,50,0,1,1,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:1860,law,10,1740,316,1,1,0,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:8317,math,10,43,7,1,0,0,0,1,0.3333333333333333,0.6666666666666667,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10119,physics,10,184,26,0,1,1,0,2,0.6666666666666666,0.33333333333333337,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11106,philosophy,10,38,9,0,0,0,0,0,0.0,1.0,0,0.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3955,chemistry,10,270,56,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3333,biology,4,86,16,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6790,health,10,964,145,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3047,biology,10,271,48,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:115,business,10,221,46,1,1,0,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2089,psychology,10,98,18,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11038,philosophy,10,124,21,0,0,1,0,1,0.3333333333333333,0.6666666666666667,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:4773,history,10,1262,213,1,1,1,0,3,1.0,0.0,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6662,health,10,37,6,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:4290,chemistry,10,205,34,0,0,0,0,0,0.0,1.0,0,0.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10164,physics,10,205,37,1,1,0,0,2,0.6666666666666666,0.33333333333333337,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11906,engineering,10,202,34,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6624,health,9,22,4,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11701,engineering,10,81,10,0,1,1,0,2,0.6666666666666666,0.33333333333333337,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6452,health,9,71,12,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2849,biology,10,175,26,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:8186,math,10,36,7,0,1,0,0,1,0.3333333333333333,0.6666666666666667,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2864,biology,10,116,14,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10556,computer science,10,175,29,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10842,philosophy,10,44,6,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:5886,other,10,52,8,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11183,philosophy,10,91,14,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:8662,math,10,269,46,1,1,1,0,3,1.0,0.0,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10667,computer science,4,271,45,1,1,0,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:4924,history,10,433,80,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:316,business,10,96,14,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:4781,history,10,85,13,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:9601,physics,10,391,68,1,1,0,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:9826,physics,10,73,13,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:494,business,10,117,22,1,1,0,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2180,psychology,10,44,7,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10709,computer science,10,113,16,1,1,0,0,2,0.6666666666666666,0.33333333333333337,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:7085,economics,10,869,143,0,0,0,1,0,0.0,1.0,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10406,computer science,10,82,16,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:1731,law,9,861,146,1,0,0,0,1,0.3333333333333333,0.6666666666666667,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3682,chemistry,10,389,63,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10497,computer science,10,336,54,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11774,engineering,10,611,104,1,1,1,0,3,1.0,0.0,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:391,business,10,130,23,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6112,health,9,402,60,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:9646,physics,10,87,17,0,0,0,0,0,0.0,1.0,0,0.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:79,business,10,148,31,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11138,philosophy,10,61,10,0,1,0,0,1,0.3333333333333333,0.6666666666666667,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:7622,economics,10,162,25,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6524,health,10,60,11,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2284,psychology,10,65,8,1,0,0,1,1,0.3333333333333333,0.6666666666666667,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10486,computer science,10,203,35,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10539,computer science,10,548,86,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10332,physics,10,113,19,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:7434,economics,10,14,2,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:4568,chemistry,10,178,34,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3225,biology,10,83,15,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2925,biology,4,97,14,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2770,psychology,10,54,11,1,1,0,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:5056,history,4,1201,216,1,1,0,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:5777,other,10,313,54,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10831,philosophy,4,59,9,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2737,psychology,10,148,20,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11327,engineering,10,232,40,1,1,1,0,3,1.0,0.0,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:4848,history,8,1069,179,0,1,1,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6186,health,10,448,74,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3111,biology,4,144,31,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2885,biology,10,221,40,0,1,0,1,1,0.3333333333333333,0.6666666666666667,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:4042,chemistry,10,205,29,1,1,0,0,2,0.6666666666666666,0.33333333333333337,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6549,health,10,373,60,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3888,chemistry,10,28,6,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11444,engineering,10,470,78,0,0,0,1,0,0.0,1.0,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:1441,law,10,717,128,0,0,1,0,1,0.3333333333333333,0.6666666666666667,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6893,economics,4,176,32,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6099,health,9,68,10,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:471,business,10,286,48,1,1,0,0,2,0.6666666666666666,0.33333333333333337,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:1404,law,10,764,120,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:774,business,10,206,39,0,1,0,0,1,0.3333333333333333,0.6666666666666667,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3539,chemistry,10,257,46,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:429,business,9,134,27,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11802,engineering,10,397,77,0,0,0,0,0,0.0,1.0,0,0.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3491,biology,10,82,14,0,1,0,0,1,0.3333333333333333,0.6666666666666667,1,0.25,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:1340,law,9,529,103,0,1,0,1,1,0.3333333333333333,0.6666666666666667,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6856,economics,10,42,6,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2776,psychology,7,87,14,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:5390,other,4,40,9,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:5807,other,10,23,3,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:1908,law,10,401,72,0,0,0,0,0,0.0,1.0,0,0.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:9018,math,10,50,15,1,1,0,0,2,0.6666666666666666,0.33333333333333337,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:10659,computer science,10,501,83,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11944,engineering,4,139,24,1,1,0,0,2,0.6666666666666666,0.33333333333333337,2,0.5,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:3770,chemistry,10,231,43,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6020,health,10,53,9,1,1,0,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:1485,law,4,61,11,1,1,1,0,3,1.0,0.0,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:1065,law,10,862,139,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:2223,psychology,10,173,33,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:4822,history,9,63,10,1,1,1,0,3,1.0,0.0,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:529,business,10,110,21,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:11201,philosophy,10,92,16,1,1,1,1,3,1.0,0.0,4,1.0,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful
+mmlu_pro:test:6167,health,10,158,28,1,1,0,1,2,0.6666666666666666,0.33333333333333337,3,0.75,True,"[4, 7, 8, 9, 10]",False,True,True,Study-1 frozen answers are option letters; letter length is not meaningful

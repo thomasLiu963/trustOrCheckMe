@@ -1,0 +1,44 @@
+analysis,L,displayed_confidence,difficulty_bin,n,n_wrong,n_correct,n_verify,n_use,n_questions_in_bin_global,p_verify_given_wrong,p_verify_given_correct,delta,ci_lower,ci_upper,estimable,note,mean_verify_propensity_wrong,mean_verify_propensity_correct,delta_mean_propensity,n_matched,error_rate_verify_matched,error_rate_use_matched,delta_error_verify_minus_use,mean_other_n_correct_verify,mean_other_n_correct_use,mean_difficulty_abs_diff,frac_same_category
+stratified_2x2,10.0,0.8,0-1,18,13,5,17,1,18,0.9230769230769231,1.0,-0.07692307692307687,-0.25,0.0,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.8,2,19,8,11,19,0,19,,,,,,False,sparse; estimate not forced,,,,,,,,,,,
+stratified_2x2,10.0,0.8,3,63,6,57,50,13,63,1.0,0.7719298245614035,0.22807017543859653,0.125,0.3448275862068966,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.88,0-1,18,13,5,15,3,18,0.7692307692307693,1.0,-0.23076923076923073,-0.4666666666666667,0.0,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.88,2,19,8,11,19,0,19,,,,,,False,sparse; estimate not forced,,,,,,,,,,,
+stratified_2x2,10.0,0.88,3,63,6,57,46,17,63,1.0,0.7017543859649122,0.29824561403508776,0.18518518518518523,0.4181818181818182,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.89,0-1,18,13,5,16,2,18,0.8461538461538461,1.0,-0.15384615384615385,-0.375,0.0,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.89,2,19,8,11,19,0,19,,,,,,False,sparse; estimate not forced,,,,,,,,,,,
+stratified_2x2,10.0,0.89,3,63,6,57,44,19,63,1.0,0.6666666666666666,0.33333333333333337,0.21818181818181814,0.4629629629629629,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.91,0-1,18,13,5,14,4,18,0.6923076923076923,1.0,-0.3076923076923077,-0.5833333333333333,-0.07692307692307687,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.91,2,19,8,11,19,0,19,,,,,,False,sparse; estimate not forced,,,,,,,,,,,
+stratified_2x2,10.0,0.91,3,63,6,57,39,24,63,1.0,0.5789473684210527,0.42105263157894735,0.2931034482758621,0.5517241379310345,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.99,0-1,18,13,5,13,5,18,0.6153846153846154,1.0,-0.3846153846153846,-0.6666666666666667,-0.125,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.99,2,19,8,11,15,4,19,1.0,0.6363636363636364,0.36363636363636365,0.09090909090909094,0.6666666666666667,True,,,,,,,,,,,,
+stratified_2x2,10.0,0.99,3,63,6,57,22,41,63,1.0,0.2807017543859649,0.7192982456140351,0.5967741935483871,0.8301886792452831,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.9,0-1,18,13,5,18,0,18,,,,,,False,sparse; estimate not forced,,,,,,,,,,,
+stratified_2x2,20.0,0.9,2,19,8,11,19,0,19,,,,,,False,sparse; estimate not forced,,,,,,,,,,,
+stratified_2x2,20.0,0.9,3,63,6,57,53,10,63,1.0,0.8245614035087719,0.17543859649122806,0.08620689655172409,0.2807017543859649,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.93,0-1,18,13,5,16,2,18,0.8461538461538461,1.0,-0.15384615384615385,-0.375,0.0,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.93,2,19,8,11,19,0,19,,,,,,False,sparse; estimate not forced,,,,,,,,,,,
+stratified_2x2,20.0,0.93,3,63,6,57,45,18,63,1.0,0.6842105263157895,0.3157894736842105,0.19999999999999996,0.44067796610169496,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.94,0-1,18,13,5,15,3,18,0.7692307692307693,1.0,-0.23076923076923073,-0.4666666666666667,0.0,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.94,2,19,8,11,19,0,19,,,,,,False,sparse; estimate not forced,,,,,,,,,,,
+stratified_2x2,20.0,0.94,3,63,6,57,43,20,63,1.0,0.6491228070175439,0.3508771929824561,0.2321428571428571,0.4736842105263158,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.96,0-1,18,13,5,15,3,18,0.7692307692307693,1.0,-0.23076923076923073,-0.4666666666666667,0.0,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.96,2,19,8,11,18,1,19,1.0,0.9090909090909091,0.09090909090909094,0.0,0.30000000000000004,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.96,3,63,6,57,37,26,63,1.0,0.543859649122807,0.45614035087719296,0.33333333333333337,0.5849056603773585,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.99,0-1,18,13,5,16,2,18,0.8461538461538461,1.0,-0.15384615384615385,-0.36363636363636365,0.0,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.99,2,19,8,11,15,4,19,1.0,0.6363636363636364,0.36363636363636365,0.09090909090909094,0.6666666666666667,True,,,,,,,,,,,,
+stratified_2x2,20.0,0.99,3,63,6,57,31,32,63,1.0,0.43859649122807015,0.5614035087719298,0.4285714285714286,0.6851851851851851,True,,,,,,,,,,,,
+question_mean_propensity_by_bin,pooled_question_mean,all_manipulated,0-1,18,13,5,,,,,,,,,True,question-level mean VERIFY propensity; not independent cells,0.8076923076923077,1.0,-0.1923076923076923,,,,,,,,
+question_mean_propensity_by_bin,pooled_question_mean,all_manipulated,2,19,8,11,,,,,,,,,True,question-level mean VERIFY propensity; not independent cells,1.0,0.9181818181818181,0.0818181818181819,,,,,,,,
+question_mean_propensity_by_bin,pooled_question_mean,all_manipulated,3,63,6,57,,,,,,,,,True,question-level mean VERIFY propensity; not independent cells,1.0,0.6140350877192983,0.38596491228070173,,,,,,,,
+nearest_neighbor,10.0,0.8,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,14,0.35714285714285715,0.07142857142857142,0.2857142857142857,2.357142857142857,2.857142857142857,0.6428571428571429,0.21428571428571427
+nearest_neighbor,10.0,0.88,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,20,0.35,0.15,0.19999999999999998,2.3,2.65,0.45,0.15
+nearest_neighbor,10.0,0.89,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,21,0.42857142857142855,0.09523809523809523,0.3333333333333333,2.1904761904761907,2.761904761904762,0.5714285714285714,0.23809523809523808
+nearest_neighbor,10.0,0.91,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,28,0.42857142857142855,0.14285714285714285,0.2857142857142857,2.1785714285714284,2.6785714285714284,0.5714285714285714,0.17857142857142858
+nearest_neighbor,10.0,0.99,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,50,0.44,0.1,0.33999999999999997,2.08,2.68,0.64,0.32
+nearest_neighbor,20.0,0.9,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,10,0.3,0.0,0.3,2.6,3.0,0.4,0.3
+nearest_neighbor,20.0,0.93,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,20,0.4,0.1,0.30000000000000004,2.3,2.75,0.45,0.2
+nearest_neighbor,20.0,0.94,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,23,0.43478260869565216,0.13043478260869565,0.30434782608695654,2.130434782608696,2.652173913043478,0.5217391304347826,0.21739130434782608
+nearest_neighbor,20.0,0.96,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,30,0.43333333333333335,0.1,0.33333333333333337,2.1,2.7,0.6,0.23333333333333334
+nearest_neighbor,20.0,0.99,,,,,,,,,,,,,True,"nearest USE match on (other_n_correct, category mismatch, length)",,,,38,0.39473684210526316,0.05263157894736842,0.34210526315789475,2.1315789473684212,2.763157894736842,0.631578947368421,0.21052631578947367

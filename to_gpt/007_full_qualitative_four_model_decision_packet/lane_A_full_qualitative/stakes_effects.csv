@@ -1,0 +1,9 @@
+model_alias,score_condition,n,mean_stronger_minus_moderate,ci_lower,ci_upper,n_stronger_only,n_moderate_only
+openai_gpt56_sol,hidden,100,0.17,0.09,0.25,18,1
+openai_gpt56_sol,displayed_0.70,100,0.33,0.24,0.42,33,0
+openai_gpt56_sol,displayed_0.90,100,0.2,0.12,0.28,21,1
+openai_gpt56_sol,displayed_0.99,100,0.09,0.03,0.16,10,1
+anthropic_sonnet5,hidden,100,0.06,0.02,0.11,6,0
+anthropic_sonnet5,displayed_0.70,100,0.03,0.0,0.07,3,0
+anthropic_sonnet5,displayed_0.90,100,0.03,0.0,0.07,3,0
+anthropic_sonnet5,displayed_0.99,100,0.08,0.03,0.14,8,0

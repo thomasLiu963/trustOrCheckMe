@@ -1,0 +1,13 @@
+model_alias,family,score_condition,n,n_wrong,n_correct,p_verify_given_wrong,p_verify_given_correct,delta,label
+openai_gpt56_sol,moderate,displayed_0.70,20,5,15,0.6,0.7333333333333333,-0.1333333333333333,identifiable_pilot_only
+openai_gpt56_sol,moderate,displayed_0.90,20,5,15,0.4,0.13333333333333333,0.2666666666666667,identifiable_pilot_only
+openai_gpt56_sol,moderate,displayed_0.99,20,5,15,0.2,0.0,0.2,identifiable_pilot_only
+openai_gpt56_sol,stronger,displayed_0.70,20,5,15,1.0,0.9333333333333333,0.06666666666666665,identifiable_pilot_only
+openai_gpt56_sol,stronger,displayed_0.90,20,5,15,0.6,0.26666666666666666,0.3333333333333333,identifiable_pilot_only
+openai_gpt56_sol,stronger,displayed_0.99,20,5,15,0.2,0.2,0.0,identifiable_pilot_only
+anthropic_sonnet5,moderate,displayed_0.70,20,10,10,1.0,0.9,0.09999999999999998,identifiable_pilot_only
+anthropic_sonnet5,moderate,displayed_0.90,20,10,10,0.9,0.6,0.30000000000000004,identifiable_pilot_only
+anthropic_sonnet5,moderate,displayed_0.99,20,10,10,0.8,0.5,0.30000000000000004,identifiable_pilot_only
+anthropic_sonnet5,stronger,displayed_0.70,20,10,10,1.0,0.9,0.09999999999999998,identifiable_pilot_only
+anthropic_sonnet5,stronger,displayed_0.90,20,10,10,0.9,0.6,0.30000000000000004,identifiable_pilot_only
+anthropic_sonnet5,stronger,displayed_0.99,20,10,10,0.8,0.5,0.30000000000000004,identifiable_pilot_only

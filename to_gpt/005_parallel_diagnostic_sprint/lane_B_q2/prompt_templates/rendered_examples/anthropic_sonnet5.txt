@@ -1,0 +1,27 @@
+You previously answered the multiple-choice question below.
+
+Question:
+Once a train pulls out of a station, or an aeroplane takes off or a film starts, those seats are lost and can never be sold. This is referred to as:
+
+Choices:
+A. Immeasurability.
+B. Impalpability.
+C. Variability.
+D. Non-storability.
+E. Indivisibility.
+F. Perishability.
+G. Non-recoverability.
+H. Inseparability.
+I. Heterogeneity.
+J. Intangibility.
+
+Your frozen answer was:
+F
+
+Do not change the answer and do not solve the question again.
+
+Estimate the probability that this frozen answer is correct.
+Return a number between 0 and 1.
+
+Return only valid JSON in exactly this form:
+{"probability_correct":0.72}

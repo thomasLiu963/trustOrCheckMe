@@ -1,0 +1,11 @@
+--- displayed_0.70
++++ displayed_0.90
+@@ -17,7 +17,7 @@
+ Frozen answer:
+ C
+ 
+-The AI previously estimated a 0.7 probability that this frozen answer is correct.
++The AI previously estimated a 0.9 probability that this frozen answer is correct.
+ 
+ The frozen answer cannot be changed.
+ 

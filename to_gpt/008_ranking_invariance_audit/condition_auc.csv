@@ -1,0 +1,25 @@
+model_alias,model_label,family,score_condition,displayed_confidence,n_questions,verify_rate,auroc_verify_vs_wrongness,auroc_ci_lower,auroc_ci_upper,saturation,note
+openai_gpt56_sol,GPT,moderate,displayed_0.70,0.7,100,0.59,0.5906432748538011,0.47289972899729005,0.7005420054200542,identifiable,Binary-action AUROC is coarse; equal to a two-point ROC.
+openai_gpt56_sol,GPT,moderate,displayed_0.90,0.9,100,0.2,0.6689408706952567,0.5460526315789473,0.7886825817860301,identifiable,Binary-action AUROC is coarse; equal to a two-point ROC.
+openai_gpt56_sol,GPT,moderate,displayed_0.99,0.99,100,0.07,0.5867446393762183,0.4984930681133213,0.6855509355509356,low_coverage_saturated,Binary-action AUROC is coarse; equal to a two-point ROC.
+openai_gpt56_sol,GPT,moderate,delta_0.70_to_0.90,,100,,0.07829759584145557,-0.039772727272727404,0.18627450980392146,both_identifiable,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+openai_gpt56_sol,GPT,moderate,delta_0.90_to_0.99,,100,,-0.0821962313190383,-0.1896929824561403,0.018750000000000044,includes_saturated_cell,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+openai_gpt56_sol,GPT,moderate,delta_0.70_to_0.99,,100,,-0.0038986354775827348,-0.13095238095238093,0.12296037296037288,includes_saturated_cell,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+openai_gpt56_sol,GPT,stronger,displayed_0.70,0.7,100,0.92,0.5493827160493827,0.5189873417721519,0.5833333333333333,high_coverage_saturated,Binary-action AUROC is coarse; equal to a two-point ROC.
+openai_gpt56_sol,GPT,stronger,displayed_0.90,0.9,100,0.4,0.6754385964912282,0.5508187464709203,0.7886904761904762,identifiable,Binary-action AUROC is coarse; equal to a two-point ROC.
+openai_gpt56_sol,GPT,stronger,displayed_0.99,0.99,100,0.16,0.5961663417803769,0.4848484848484848,0.7112718505123568,identifiable,Binary-action AUROC is coarse; equal to a two-point ROC.
+openai_gpt56_sol,GPT,stronger,delta_0.70_to_0.90,,100,,0.12605588044184546,0.0025536261491317935,0.2431372549019608,includes_saturated_cell,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+openai_gpt56_sol,GPT,stronger,delta_0.90_to_0.99,,100,,-0.07927225471085131,-0.20467836257309935,0.038270729978738594,both_identifiable,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+openai_gpt56_sol,GPT,stronger,delta_0.70_to_0.99,,100,,0.04678362573099415,-0.06630500301386372,0.16666666666666674,includes_saturated_cell,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+anthropic_sonnet5,Claude,moderate,displayed_0.70,0.7,100,0.9,0.5684931506849316,0.5324675324675325,0.608974358974359,high_coverage_saturated,Binary-action AUROC is coarse; equal to a two-point ROC.
+anthropic_sonnet5,Claude,moderate,displayed_0.90,0.9,100,0.79,0.5930999492643328,0.5190258751902588,0.6602564102564102,identifiable,Binary-action AUROC is coarse; equal to a two-point ROC.
+anthropic_sonnet5,Claude,moderate,displayed_0.99,0.99,100,0.59,0.6539827498731607,0.5515350877192983,0.7452891487979207,identifiable,Binary-action AUROC is coarse; equal to a two-point ROC.
+anthropic_sonnet5,Claude,moderate,delta_0.70_to_0.90,,100,,0.02460679857940129,-0.04427083333333326,0.08215697346132123,includes_saturated_cell,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+anthropic_sonnet5,Claude,moderate,delta_0.90_to_0.99,,100,,0.06088280060882789,-0.018640350877193068,0.1351351351351351,both_identifiable,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+anthropic_sonnet5,Claude,moderate,delta_0.70_to_0.99,,100,,0.08548959918822918,-0.00994575045207946,0.17463235294117652,includes_saturated_cell,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+anthropic_sonnet5,Claude,stronger,displayed_0.70,0.7,100,0.93,0.547945205479452,0.5149253731343284,0.5844155844155844,high_coverage_saturated,Binary-action AUROC is coarse; equal to a two-point ROC.
+anthropic_sonnet5,Claude,stronger,displayed_0.90,0.9,100,0.82,0.597919837645865,0.5361842105263158,0.6558441558441559,identifiable,Binary-action AUROC is coarse; equal to a two-point ROC.
+anthropic_sonnet5,Claude,stronger,displayed_0.99,0.99,100,0.67,0.6245560629122273,0.53125,0.7094298245614036,identifiable,Binary-action AUROC is coarse; equal to a two-point ROC.
+anthropic_sonnet5,Claude,stronger,delta_0.70_to_0.90,,100,,0.04997463216641296,-0.004677754677754664,0.10144927536231885,includes_saturated_cell,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+anthropic_sonnet5,Claude,stronger,delta_0.90_to_0.99,,100,,0.026636225266362334,-0.05477131564088089,0.09859154929577474,both_identifiable,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.
+anthropic_sonnet5,Claude,stronger,delta_0.70_to_0.99,,100,,0.07661085743277529,-0.014705882352941235,0.15714285714285703,includes_saturated_cell,ΔAUROC (higher score minus lower). Ignore pairs that include a saturated cell.

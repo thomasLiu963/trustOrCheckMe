@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "api_calls": 0,
+  "buckets": {
+    "openai_gpt56_sol": {
+      "bucket": "HIDDEN_PARTIALLY_ADDS",
+      "rationale": "Contrast A \u0394AUROC 0.081 [0.003, 0.163]; Contrast B \u0394AUROC 0.015 [0.001, 0.031], \u0394log-loss -0.005 [-0.015, 0.004]."
+    },
+    "anthropic_sonnet5": {
+      "bucket": "DIFFICULTY_LARGELY_EXPLAINS_HIDDEN_RESIDUAL",
+      "rationale": "Contrast A \u0394AUROC 0.045 [0.016, 0.075]; Contrast B \u0394AUROC 0.005 [-0.008, 0.017], \u0394log-loss -0.008 [-0.020, 0.005]."
+    }
+  },
+  "hashes": {
+    "v2": "8597e3f73226bf39770af99a877282c22428203a3e2c11521256bf5cb3db5eb6",
+    "study1": "f8e5ddbb91db360403ea519b9b3481575c6cbc5ccdb553c650dbe726025ecfbd",
+    "q2": "57be401c4f069d5541f3b785e3c51448e49e915727eef178062196ea95272e6a",
+    "paperDirection": "52cbde69e42f4db59f481d574a4f4395d1c7acfebb0b6f13a4390eda2c1f1d36",
+    "task005_report": "a536d304a7d2581087fa1daba5e9ed92979f488f2348925142b79e28d8f06c69",
+    "task005b_report": "356fd4fc35aaac473fcc5551eb3d3cd6dc517273cf62851ca7de68d14b41daf2"
+  },
+  "n_gpt": 500,
+  "n_claude": 500
+}

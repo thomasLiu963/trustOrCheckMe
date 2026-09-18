@@ -1,0 +1,23 @@
+{
+  "n_rows": 1000,
+  "summaries": {
+    "openai_gpt56_sol": {
+      "n": 500,
+      "n_wrong": 87,
+      "catch_at_30_raw_q1": 0.5287356321839081,
+      "catch_at_30_combined": 0.5300127713920818,
+      "catch_at_30_single_hidden": 0.5454899668809662,
+      "catch_at_30_q2": 0.5547667342799188,
+      "catch_at_30_hidden_agg": 0.6118999323867478
+    },
+    "anthropic_sonnet5": {
+      "n": 500,
+      "n_wrong": 129,
+      "catch_at_30_raw_q1": 0.528324388789505,
+      "catch_at_30_combined": 0.5271317829457365,
+      "catch_at_30_single_hidden": 0.4539662312838484,
+      "catch_at_30_q2": 0.5390578413834227,
+      "catch_at_30_hidden_agg": 0.5285412262156448
+    }
+  }
+}

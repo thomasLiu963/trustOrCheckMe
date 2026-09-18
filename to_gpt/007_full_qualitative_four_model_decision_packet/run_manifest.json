@@ -1,0 +1,66 @@
+{
+  "task": "007_full_qualitative_four_model_decision_packet",
+  "started": "2026-09-18T05:02:11.260321+00:00",
+  "finished": "2026-09-18T05:04:20.732127+00:00",
+  "lane_a_cap": 1280,
+  "lane_b_cap": 320,
+  "lane_a_new_calls": 1280,
+  "lane_b_new_calls": 320,
+  "fingerprints": {
+    "v2": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/results/v2/raw/v2.sqlite3",
+      "exists": true,
+      "size_bytes": 203341824,
+      "sha256": "8597e3f73226bf39770af99a877282c22428203a3e2c11521256bf5cb3db5eb6"
+    },
+    "study1": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/results/study1_causal_pilot/study1.sqlite3",
+      "exists": true,
+      "size_bytes": 21471232,
+      "sha256": "f8e5ddbb91db360403ea519b9b3481575c6cbc5ccdb553c650dbe726025ecfbd"
+    },
+    "q2": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/results/study2_q2_diagnostic/q2.sqlite3",
+      "exists": true,
+      "size_bytes": 4648960,
+      "sha256": "57be401c4f069d5541f3b785e3c51448e49e915727eef178062196ea95272e6a"
+    },
+    "paperDirection": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/paperDirection.txt",
+      "sha256": "52cbde69e42f4db59f481d574a4f4395d1c7acfebb0b6f13a4390eda2c1f1d36"
+    },
+    "task005_report": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/to_gpt/005_parallel_diagnostic_sprint/report.md",
+      "exists": true,
+      "size_bytes": 12888,
+      "sha256": "a536d304a7d2581087fa1daba5e9ed92979f488f2348925142b79e28d8f06c69"
+    },
+    "task005b_report": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/to_gpt/005b_difficulty_control/report.md",
+      "exists": true,
+      "size_bytes": 9980,
+      "sha256": "356fd4fc35aaac473fcc5551eb3d3cd6dc517273cf62851ca7de68d14b41daf2"
+    },
+    "task005c_report": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/to_gpt/005c_hidden_residual_after_difficulty/report.md",
+      "exists": true,
+      "size_bytes": 7283,
+      "sha256": "2973a2db3fde9773edf211af537825dbd023dd4aac134c97195cbc3361318253"
+    },
+    "task006_report": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/to_gpt/006_qualitative_pilot_parallel_prep/report.md",
+      "exists": true,
+      "size_bytes": 8445,
+      "sha256": "770d0fd63d5ec8b0993a8ee1557ec537e56decd52af956df9e59eff53370f971"
+    },
+    "task006_sqlite": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/results/study1_qualitative_pilot/qualitative_pilot.sqlite3",
+      "exists": true,
+      "size_bytes": 1957888,
+      "sha256": "d26ad5d2d40b6f1d98648d05d4940d2fcfd2dc7d1cf0751a38a5b0a19ef8f013"
+    }
+  },
+  "remaining_80_hash": "fbc898025194beba47bff4a96115d652838358f4755ee850ff4fddcd197ac34e",
+  "hold_revision": null,
+  "paperDirection_modified": false
+}

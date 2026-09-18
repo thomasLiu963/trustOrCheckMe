@@ -1,0 +1,71 @@
+{
+  "ok": true,
+  "errors": [],
+  "n_errors": 0,
+  "n_calls": 320,
+  "n_questions": 20,
+  "repeat_ids": [
+    "mmlu_pro:test:1731",
+    "mmlu_pro:test:6452",
+    "mmlu_pro:test:429",
+    "mmlu_pro:test:3333",
+    "mmlu_pro:test:774",
+    "mmlu_pro:test:4568",
+    "mmlu_pro:test:9646",
+    "mmlu_pro:test:11802",
+    "mmlu_pro:test:10497",
+    "mmlu_pro:test:2776",
+    "mmlu_pro:test:2849",
+    "mmlu_pro:test:1065",
+    "mmlu_pro:test:4290",
+    "mmlu_pro:test:3888",
+    "mmlu_pro:test:471",
+    "mmlu_pro:test:11138",
+    "mmlu_pro:test:10164",
+    "mmlu_pro:test:4773",
+    "mmlu_pro:test:8662",
+    "mmlu_pro:test:10842"
+  ],
+  "repeat_hash": "45e06fe9daf40dd1cbd9cbf91b49cef09c5d924df17f2cf2bf2f203090c26d38",
+  "gpt_endpoint": "gpt-5.6-sol",
+  "claude_endpoint": "claude-sonnet-5",
+  "gpt_reasoning_effort": "none",
+  "claude_thinking": "disabled",
+  "scientific_cap": 320,
+  "provider_attempt_cap": 400,
+  "conditions_per_question_model": 8,
+  "stakes_families": [
+    "moderate",
+    "stronger"
+  ],
+  "score_conditions": [
+    "hidden",
+    "displayed_0.70",
+    "displayed_0.90",
+    "displayed_0.99"
+  ],
+  "visible_tokens": {
+    "0.70": "0.7",
+    "0.90": "0.9",
+    "0.99": "0.99"
+  },
+  "prompt_hash_moderate": "ec90530c644038dcee86accfc578c501533fdb69d5ea23caeae23dcc1d06dbad",
+  "prompt_hash_stronger": "b758935fecdd49ad7a6a0a491d9c71abee35f90981a7030d90ac59a18dca9f3b",
+  "prompt_version": "task006_qualitative_pilot_v1",
+  "qual_sqlite": "/Users/thomas/Desktop/trustOrCheckMe/results/study1_qualitative_pilot/qualitative_pilot.sqlite3",
+  "will_not_modify_paperDirection": true,
+  "paperDirection_sha256": "52cbde69e42f4db59f481d574a4f4395d1c7acfebb0b6f13a4390eda2c1f1d36",
+  "v2_sha256": "8597e3f73226bf39770af99a877282c22428203a3e2c11521256bf5cb3db5eb6",
+  "study1_sha256": "f8e5ddbb91db360403ea519b9b3481575c6cbc5ccdb553c650dbe726025ecfbd",
+  "q2_sha256": "57be401c4f069d5541f3b785e3c51448e49e915727eef178062196ea95272e6a",
+  "forbidden_substrings_checked": [
+    "L =",
+    "C =",
+    "1 -",
+    "expected cost",
+    "expected value",
+    "outweigh",
+    "justified",
+    "not as a default"
+  ]
+}

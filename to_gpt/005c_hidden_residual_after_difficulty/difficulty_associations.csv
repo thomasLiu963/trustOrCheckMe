@@ -1,0 +1,19 @@
+model_alias,metric,value,note,n,target_error_rate,mean_hidden_verify_fraction,mean_single_hidden_verify,mean_q1,mean_q2
+openai_gpt56_sol,other_n_correct_auroc_for_target_correct,0.8708079374356406,higher other-model correct count should rank correct items higher,,,,,,
+openai_gpt56_sol,pearson_hidden_frac_vs_other_frac_wrong,0.5084928194560436,,,,,,,
+openai_gpt56_sol,pearson_hidden_frac_vs_target_error,0.35490526509561365,,,,,,,
+openai_gpt56_sol,pearson_single_hidden_vs_other_frac_wrong,0.4457922113712681,,,,,,,
+openai_gpt56_sol,auroc_other_n_correct_predicting_single_hidden_verify,0.7466022983680537,harder items (fewer others correct) ranked as more likely VERIFY,,,,,,
+openai_gpt56_sol,bin_0_of_3_other_correct,,,36,0.7777777777777778,0.6770833333333334,0.75,0.8022222222222222,0.8401388888888889
+openai_gpt56_sol,bin_1_of_3_other_correct,,,77,0.42857142857142855,0.6136363636363636,0.6623376623376623,0.8775337662337662,0.8214025974025974
+openai_gpt56_sol,bin_2_of_3_other_correct,,,105,0.19047619047619047,0.3976190476190476,0.47619047619047616,0.9114285714285715,0.9041523809523809
+openai_gpt56_sol,bin_3_of_3_other_correct,,,282,0.02127659574468085,0.14804964539007093,0.17375886524822695,0.9676347517730496,0.9648758865248226
+anthropic_sonnet5,other_n_correct_auroc_for_target_correct,0.8088133893311603,higher other-model correct count should rank correct items higher,,,,,,
+anthropic_sonnet5,pearson_hidden_frac_vs_other_frac_wrong,0.3938716848971125,,,,,,,
+anthropic_sonnet5,pearson_hidden_frac_vs_target_error,0.4081500960673178,,,,,,,
+anthropic_sonnet5,pearson_single_hidden_vs_other_frac_wrong,0.3513298207673161,,,,,,,
+anthropic_sonnet5,auroc_other_n_correct_predicting_single_hidden_verify,0.7133989726027397,harder items (fewer others correct) ranked as more likely VERIFY,,,,,,
+anthropic_sonnet5,bin_0_of_3_other_correct,,,38,0.7368421052631579,0.7763157894736842,0.7894736842105263,0.555,0.5510526315789473
+anthropic_sonnet5,bin_1_of_3_other_correct,,,49,0.6326530612244898,0.8418367346938775,0.8367346938775511,0.6191836734693877,0.6222448979591837
+anthropic_sonnet5,bin_2_of_3_other_correct,,,113,0.40707964601769914,0.8606194690265486,0.8761061946902655,0.6917699115044248,0.6933628318584071
+anthropic_sonnet5,bin_3_of_3_other_correct,,,300,0.08,0.3770833333333333,0.4066666666666667,0.7907000000000001,0.7925

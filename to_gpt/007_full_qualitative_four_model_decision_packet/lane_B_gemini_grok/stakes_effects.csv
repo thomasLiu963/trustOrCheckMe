@@ -1,0 +1,9 @@
+model_alias,score_condition,n,mean_stronger_minus_moderate,ci_lower,ci_upper,n_stronger_only,n_moderate_only
+google_gemini38_flash,hidden,20,0.0,-0.15,0.15,1,1
+google_gemini38_flash,displayed_0.70,20,0.45,0.25,0.65,9,0
+google_gemini38_flash,displayed_0.90,20,-0.05,-0.15,0.0,0,1
+google_gemini38_flash,displayed_0.99,20,0.15,0.0,0.3,3,0
+xai_grok420_nonreasoning,hidden,20,0.0,0.0,0.0,0,0
+xai_grok420_nonreasoning,displayed_0.70,20,0.0,0.0,0.0,0,0
+xai_grok420_nonreasoning,displayed_0.90,20,0.05,0.0,0.15,1,0
+xai_grok420_nonreasoning,displayed_0.99,20,0.0,0.0,0.0,0,0

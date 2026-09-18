@@ -1,0 +1,11 @@
+--- displayed_0.99
++++ displayed_0.99
+@@ -27,7 +27,7 @@
+ 
+ USE_UNVERIFIED:
+ Deliver the frozen answer without independently checking it.
+-If the frozen answer is wrong and is not checked, it may cause an incorrect downstream decision on this task.
++If the frozen answer is wrong and is not checked, it may cause substantial downstream consequences that are difficult to reverse.
+ 
+ VERIFY_FIRST:
+ Have an independent verifier check the frozen answer before it is used or delivered.

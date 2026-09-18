@@ -1,0 +1,45 @@
+{
+  "task_id": "005_parallel_diagnostic_sprint",
+  "status": "SUCCESS",
+  "exploratory_not_confirmatory": true,
+  "git_commit": "cfdb0917a55bb164e5116c400b2046e610ad3900",
+  "paperDirection_modified": false,
+  "paperDirection_sha256": "52cbde69e42f4db59f481d574a4f4395d1c7acfebb0b6f13a4390eda2c1f1d36",
+  "historical_v2_modified": false,
+  "historical_v2_sha256": "8597e3f73226bf39770af99a877282c22428203a3e2c11521256bf5cb3db5eb6",
+  "study1_sqlite_modified": false,
+  "study1_sqlite_sha256": "f8e5ddbb91db360403ea519b9b3481575c6cbc5ccdb553c650dbe726025ecfbd",
+  "lanes": {
+    "A": {"api_calls": 0, "status": "SUCCESS"},
+    "B": {
+      "api_calls": 1000,
+      "scientific_successes": 1000,
+      "failed": 0,
+      "provider_attempts": 1000,
+      "retries": 0,
+      "parse_repairs": 0,
+      "sqlite": "results/study2_q2_diagnostic/q2.sqlite3",
+      "prompt_version": "stage_2_confidence_v3_structured_compat",
+      "interpretation_buckets": {
+        "openai_gpt56_sol": "B-PASS-DEEPER-RESIDUAL",
+        "anthropic_sonnet5": "B-PASS-DEEPER-RESIDUAL"
+      }
+    },
+    "C": {
+      "api_calls": 0,
+      "status": "BLOCKED_UNSUPPORTED_REASONING_SETTING"
+    },
+    "D": {"api_calls": 0, "status": "PREP_ONLY"}
+  },
+  "models": ["openai_gpt56_sol", "anthropic_sonnet5"],
+  "endpoints": {
+    "openai_gpt56_sol": "gpt-5.6-sol",
+    "anthropic_sonnet5": "claude-sonnet-5"
+  },
+  "gpt_reasoning_effort": "none",
+  "lane_B_scientific_cap": 1000,
+  "api_cost_usd": 1.3826,
+  "wall_clock_seconds_lane_B": 418.882,
+  "ready_for_gpt_review": true,
+  "stopped_reason": null
+}

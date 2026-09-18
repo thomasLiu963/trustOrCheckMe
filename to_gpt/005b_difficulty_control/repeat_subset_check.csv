@@ -1,0 +1,11 @@
+L,displayed_confidence,n,n_wrong,n_correct,n_skipped_wrong_generation_count,raw_delta_mean_propensity,difficulty_bin_adjusted_delta,direction_raw_positive,direction_adjusted_positive,mean_other_n_correct_wrong,mean_other_n_correct_correct,note
+10.0,0.8,20,10,10,0,0.20000000000000007,0.0888888888888889,True,True,1.3,3.0,n=20 qualitative robustness only
+10.0,0.88,20,10,10,0,0.30000000000000004,0.1333333333333333,True,True,1.3,3.0,n=20 qualitative robustness only
+10.0,0.89,20,10,10,0,0.3666666666666667,0.15555555555555553,True,True,1.3,3.0,n=20 qualitative robustness only
+10.0,0.91,20,10,10,0,0.33333333333333337,0.1444444444444445,True,True,1.3,3.0,n=20 qualitative robustness only
+10.0,0.99,20,10,10,0,0.4,0.2,True,True,1.3,3.0,n=20 qualitative robustness only
+20.0,0.9,20,10,10,0,0.23333333333333328,0.07777777777777771,True,True,1.3,3.0,n=20 qualitative robustness only
+20.0,0.93,20,10,10,0,0.30000000000000004,0.1333333333333333,True,True,1.3,3.0,n=20 qualitative robustness only
+20.0,0.94,20,10,10,0,0.29999999999999993,0.14444444444444451,True,True,1.3,3.0,n=20 qualitative robustness only
+20.0,0.96,20,10,10,0,0.33333333333333337,0.16666666666666669,True,True,1.3,3.0,n=20 qualitative robustness only
+20.0,0.99,20,10,10,0,0.33333333333333337,0.1777777777777778,True,True,1.3,3.0,n=20 qualitative robustness only
