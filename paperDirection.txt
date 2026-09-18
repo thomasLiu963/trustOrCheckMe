@@ -1,430 +1,1848 @@
-D1 PAPER DIRECTION — REVISED AFTER TASK 008
+D1 PAPER DIRECTION — REVISED AFTER TASK 009
 Working narrative / scientific source of truth
 Date: 2026-09-18
-Status: exploratory direction only; the central claim is NOT yet prospectively confirmed.
+Status: the central MMLU-Pro result has now been prospectively confirmed on fresh preregistered GPT/Claude data. One broader non-MCQ generalization study is still recommended before the strongest final submission.
 
-==================================================
-0. THE PAPER IN ONE PARAGRAPH
-==================================================
+======================================================================
+0. PURPOSE OF THIS DOCUMENT
+======================================================================
 
-D1 studies what happens when an LLM has already answered a question and must decide whether that frozen answer should receive an independent check.
+This document is the current source of truth for D1.
 
-The key intervention is unusually clean: keep the question and answer fixed, but change the confidence value shown back to the model.
+It is NOT a chronological lab notebook.
 
-Current exploratory evidence suggests that displayed confidence strongly changes HOW MANY answers the model sends for verification, while changing much less about WHICH answers it prioritizes. In simple terms, the score appears to act mainly like a threshold / coverage knob over a mostly stable ordering of which answers seem most worth checking.
+It is NOT a record of every hypothesis we ever considered.
 
-Current leading hypothesis:
+It is a scientific narrative document whose job is to answer:
 
-DISPLAYED CONFIDENCE STRONGLY MOVES VERIFICATION COVERAGE WHILE THE MODEL'S ITEM RANKING / DISCRIMINATION REMAINS LARGELY INVARIANT.
+1. What is the final paper actually about?
+2. What is the core empirical result?
+3. Why is that result interesting?
+4. What did each experiment contribute to isolating that result?
+5. Which earlier interpretations were ruled out?
+6. What is prospectively confirmed versus still exploratory?
+7. What should the final paper claim?
+8. What should it explicitly NOT claim?
+9. What remaining evidence would most increase the ceiling of the submission?
+10. How should the final manuscript tell the story cleanly?
 
-This replaces the older “hidden uncertainty gets crowded out” story.
+The central result is no longer speculative.
 
-==================================================
-1. BASIC VOCABULARY
-==================================================
+Task 009 prospectively tested the ranking-invariance hypothesis on fresh unseen MMLU-Pro questions, with prompts, samples, endpoints, metrics, and decision criteria frozen before verification-rate inspection.
 
-SELF-VERIFICATION
+The result supported the hypothesis.
 
-The model first answers a question. That answer is frozen.
+The paper therefore now has a clear main claim:
 
-Then the model chooses:
-- USE_UNVERIFIED: use the answer without an independent check.
-- VERIFY_FIRST: send the answer to an independent verifier.
+    Counterfactual confidence feedback strongly changes HOW MUCH
+    external verification GPT and Claude request, while score-specific
+    reprioritization contributes essentially no additional held-out
+    predictive value.
 
-So “self-verification” here means the model deciding whether its own answer deserves an external check. It does NOT mean the model literally proves its own answer correct.
+The simplest memory sentence is:
 
-COVERAGE / VERIFICATION RATE
+    CONFIDENCE MOVES THE CUTOFF MUCH MORE THAN THE RANKING.
 
-Coverage is simply the percentage of answers sent for verification.
 
-If 70 of 100 answers are checked, coverage is 70%.
+======================================================================
+1. THE PAPER IN ONE PARAGRAPH
+======================================================================
 
-RANKING / PRIORITIZATION
+AI systems increasingly need to decide which of their own outputs deserve extra scrutiny because expensive verification cannot be applied to everything. Confidence is an obvious signal for making that decision. D1 causally intervenes on this feedback loop by keeping a question and the model's frozen answer fixed while changing only the confidence value shown back to the model before it decides whether to request an independent external verification. The confidence intervention strongly changes the verification rate: on fresh preregistered MMLU-Pro data, displayed 0.70 versus 0.99 moves GPT's verification rate by 50.2 percentage points and Claude's by 35.4 points. But the deeper result is that allowing the displayed score to create a different ranking of which outputs deserve verification adds essentially no held-out predictive value: the richer condition-sensitive model improves held-out log loss by only 0.0008 for GPT and effectively 0.0000 for Claude. The dominant role of counterfactual confidence feedback is therefore to control verification coverage rather than to rewrite the allocation ranking. In practical terms, changing the confidence scalar can tune how much oversight occurs, but if the system is prioritizing the wrong outputs, changing the scalar alone is unlikely to fix that ranking.
 
-Imagine the model has an implicit ordering:
 
-1. answer A — most worth checking
-2. answer B
-3. answer C
-4. answer D
-5. answer E — least worth checking
+======================================================================
+2. PRECISELY WHAT THE SYSTEM IS DOING
+======================================================================
 
-A lower displayed confidence might make the model check A/B/C/D.
+The phrase "self-verification" can be misleading and must be used carefully.
 
-A higher displayed confidence might make it check only A/B.
+The target model is NOT itself performing the independent verification.
 
-The amount of checking changed, but the ordering did not.
+The pipeline is:
 
-RANKING INVARIANCE
+STAGE 1 — ANSWER
+The model answers a question.
 
-Ranking invariance means displayed confidence changes the cutoff much more than it changes the ordering.
+STAGE 2 — CONFIDENCE
+The model reports a probability that its frozen answer is correct.
 
-The paper's current question is therefore:
+STAGE 3 — VERIFICATION-REQUEST DECISION
+The model chooses one of two actions:
 
-Does changing displayed confidence mostly move a threshold over one stable item ranking, or does it actually reshuffle which answers the model treats as risky?
+USE_UNVERIFIED
+    Use or deliver the frozen answer without an independent check.
 
-==================================================
-2. WHERE THE PROJECT STARTED
-==================================================
+VERIFY_FIRST
+    Send the frozen answer to an independent verifier before it is used.
 
-Historical V2 used MMLU-Pro and four model families:
-- GPT
-- Claude
-- Gemini
-- Grok
+The target model therefore behaves as a ROUTER, TRIAGE POLICY, or SELECTIVE-OVERSIGHT CONTROLLER.
 
-Stage 1: answer the question.
-Stage 2: report confidence that the frozen answer is correct.
-Stage 3: choose USE_UNVERIFIED or VERIFY_FIRST.
+Its job is:
+
+    decide whether this already-produced output deserves expensive
+    additional scrutiny.
+
+The external verifier does the actual verification.
+
+This distinction matters for the real-world interpretation.
+
+The paper is not asking:
+
+    "Can GPT solve the same question twice?"
+
+It is asking:
+
+    "Can an AI system decide when one of its own outputs should trigger
+    an additional verification resource?"
+
+That resource could correspond in a real system to:
+
+- a human reviewer;
+- a stronger model;
+- retrieval;
+- web search;
+- a test suite;
+- a specialized checker;
+- another agent;
+- additional compute;
+- a tool call;
+- abstention / deferral.
+
+The experiment uses an abstract perfect independent verifier to isolate the routing decision itself.
+
+
+======================================================================
+3. THE REAL SYSTEMS PROBLEM
+======================================================================
+
+The motivating systems problem is selective oversight under limited resources.
+
+Suppose an AI produces 100,000 outputs.
+
+It may be impossible or wasteful to independently verify all 100,000.
+
+So the system needs to decide:
+
+    which outputs deserve expensive follow-up?
+
+This creates two different technical problems.
+
+PROBLEM A — COVERAGE / BUDGET
+
+How many outputs should receive verification?
+
+Examples:
+- 5%
+- 20%
+- 50%
+
+This is the quantity of oversight.
+
+
+PROBLEM B — RANKING / ALLOCATION
+
+Which outputs should receive that limited verification budget?
+
+If only 20% can be checked, the ideal system spends that 20% on the outputs most likely to be wrong or harmful.
+
+This is the quality of allocation.
+
+
+These two problems are easy to conflate.
+
+A system may be excellent at controlling:
+
+    "verify 20%"
+
+while being poor at:
+
+    "make sure the right 20% are verified."
+
+
+D1's final contribution is about what displayed confidence controls inside this selective-oversight problem.
+
+
+======================================================================
+4. WHAT "RANKING" MEANS
+======================================================================
+
+Ranking does NOT mean the answer choices A/B/C/D/E inside one multiple-choice question.
+
+Ranking means an ordering across DIFFERENT already-answered questions / outputs.
+
+Imagine the model produced answers to five unrelated questions:
+
+Output 1
+Output 2
+Output 3
+Output 4
+Output 5
+
+The model may implicitly behave as though these are ordered:
+
+1. Output 3 — most worth verifying
+2. Output 1
+3. Output 5
+4. Output 2
+5. Output 4 — least worth verifying
+
+Now suppose displayed confidence changes.
+
+At lower displayed confidence, the model may request external verification for:
+
+    Output 3
+    Output 1
+    Output 5
+    Output 2
+
+At higher displayed confidence, it may request verification only for:
+
+    Output 3
+
+The amount of verification changed dramatically.
+
+But the ordering remained broadly stable.
+
+This is the intuition behind ranking invariance.
+
+The model is moving a cutoff over a largely shared ordering rather than constructing a brand-new prioritization policy at each confidence value.
+
+
+======================================================================
+5. WHAT "RANKING INVARIANCE" DOES AND DOES NOT MEAN
+======================================================================
+
+The paper must use "ranking invariance" carefully.
+
+It does NOT mean:
+
+- every item has exactly the same numerical rank at every score;
+- no stochastic reversals ever occur;
+- AUROC is numerically identical at every score;
+- the system is deterministic;
+- score has literally zero influence on any item-specific behavior.
+
+The repeated-generation correlations are substantial but not perfect.
+
+The correct claim is softer and more defensible:
+
+    displayed confidence predominantly changes verification coverage,
+    while explicit score-dependent reprioritization contributes essentially
+    no additional held-out predictive value.
+
+Another acceptable formulation:
+
+    a shared item-ranking tendency plus condition-specific thresholds is
+    sufficient to explain the fresh GPT/Claude data relative to the
+    preregistered richer alternative.
+
+The phrase "largely invariant" therefore means:
+
+    the main systematic effect is on the cutoff / coverage,
+    not on rebuilding the prioritization function.
+
+
+======================================================================
+6. THE KEY CAUSAL INTERVENTION
+======================================================================
+
+Natural confidence is confounded with item difficulty.
+
+Suppose:
+
+- difficult questions produce lower confidence;
+- difficult questions are also more likely to be verified.
+
+Then observing:
+
+    low confidence -> more verification
+
+does not prove that confidence itself caused the verification decision.
+
+The same underlying difficulty could drive both.
+
+D1 solves this with a fixed-item counterfactual intervention.
+
+For a given question:
+
+- keep the question fixed;
+- keep the Stage-1 answer fixed;
+- freeze the answer so it cannot change;
+- change only the displayed confidence value;
+- ask whether the answer should be sent to the external verifier.
+
+Example:
+
+Same question.
+Same frozen answer.
+
+Condition A:
+"The AI previously estimated a 0.70 probability that this frozen answer is correct."
+
+Condition B:
+"...0.90 probability..."
+
+Condition C:
+"...0.99 probability..."
+
+This allows a causal statement about the displayed scalar itself.
+
+The intervention asks:
+
+    If everything about the underlying output stays fixed, what part of
+    the verification policy changes when the displayed confidence changes?
+
+
+======================================================================
+7. THE PAPER'S FINAL HIGH-LEVEL ANSWER
+======================================================================
+
+The evidence now supports:
+
+    displayed confidence strongly changes HOW MUCH verification is requested,
+    but changes much less about WHICH outputs are prioritized.
+
+On prospectively confirmed MMLU-Pro data:
+
+GPT:
+    displayed 0.70 -> 0.99 changes verification by 50.2 percentage points
+    95% CI [45.8, 54.6]
+
+Claude:
+    displayed 0.70 -> 0.99 changes verification by 35.4 percentage points
+    95% CI [31.2, 39.6]
+
+At the same time:
+
+GPT:
+    richer score-specific reprioritization model held-out improvement
+    = 0.0008
+    95% CI [-0.0011, 0.0026]
+
+Claude:
+    richer score-specific reprioritization model held-out improvement
+    ≈ 0.0000
+    95% CI [-0.0009, 0.0008]
+
+Both passed the preregistered invariance criterion.
+
+The result is therefore not merely:
+
+    confidence affects verification.
+
+The stronger result is:
+
+    confidence has a very large causal effect on verification COVERAGE,
+    while a much more complicated hypothesis in which each score condition
+    creates a new prioritization rule provides essentially no additional
+    held-out predictive value.
+
+
+======================================================================
+8. WHY THAT RESULT IS INTERESTING
+======================================================================
+
+Confidence is an intuitive control signal for selective oversight.
+
+A system builder may naturally think:
+
+    "If I can manipulate, calibrate, or expose confidence differently,
+    maybe I can improve the routing policy."
+
+D1 shows an important limitation.
+
+Changing displayed confidence can be highly effective at deciding:
+
+    HOW DEEP DOWN THE EXISTING RANKING TO VERIFY.
+
+But it is a weak lever for deciding:
+
+    WHAT THE RANKING SHOULD BE.
+
+In practical terms:
+
+If the system is already prioritizing the right outputs but verifying too many or too few:
+    adjusting the confidence-driven threshold may help.
+
+If the system is prioritizing the wrong outputs:
+    changing the displayed confidence alone is unlikely to solve that.
+
+The system needs a better ranking / risk signal.
+
+
+======================================================================
+9. WHY THIS IS NOT "JUST CONFIDENCE AFFECTS ABSTENTION"
+======================================================================
+
+A weak framing would be:
+
+    "Confidence affects whether models escalate."
+
+That overlaps strongly with existing abstention, selective prediction, and escalation work.
+
+The stronger paper is about a more specific causal question.
+
+D1 asks:
+
+    if we counterfactually replace the confidence value shown for the exact
+    same frozen output, does that intervention improve/change the allocation
+    of verification, or mostly move the verification rate?
+
+The answer is:
+
+    mostly the verification rate.
+
+The novelty therefore lies in the combination of:
+
+1. fixed-item counterfactual manipulation;
+2. the model's own confidence-style signal being fed back into its routing decision;
+3. explicit separation of coverage change from ranking change;
+4. prospective evidence that the richer score-specific ranking story buys essentially nothing.
+
+
+======================================================================
+10. THE DEVELOPMENT ARC — WHY EACH EXPERIMENT EXISTS
+======================================================================
+
+The clean final paper should not read like a diary.
+
+But the logic of the experiments forms a strong scientific progression:
+
+OBSERVE A SURPRISING EFFECT
+    ->
+CAUSALLY ISOLATE THE SCORE
+    ->
+RULE OUT "JUST ARITHMETIC"
+    ->
+RULE OUT "HIDDEN SECRET KNOWLEDGE"
+    ->
+REFRAME AS COVERAGE VS RANKING
+    ->
+CONFIRM THE RANKING-INVARIANCE HYPOTHESIS PROSPECTIVELY.
+
+Each experiment removes a specific alternative explanation.
+
+The final manuscript should emphasize this logical chain rather than the chronological messiness of how the project was discovered.
+
+
+======================================================================
+11. HISTORICAL V2 — THE MOTIVATING PHENOMENON
+======================================================================
+
+Historical V2 used:
+
+- 500 MMLU-Pro questions;
+- GPT;
+- Claude;
+- Gemini;
+- Grok.
+
+Pipeline:
+
+Stage 1:
+answer the multiple-choice question.
+
+Stage 2:
+report numerical confidence q.
+
+Stage 3:
+choose USE_UNVERIFIED or VERIFY_FIRST.
+
+Factors included:
+
+- confidence visible versus hidden;
+- human versus AI verification authority;
+- numerical error cost L;
+- verification cost C.
+
+The motivating observation:
 
 Making confidence visible strongly changed verification behavior.
 
-GPT was especially dramatic under explicit numerical costs.
+For GPT, confidence visibility often caused Stage-3 behavior to line up extremely closely with the numerical decision rule implied by q, L, and C.
+
+WHY THIS MATTERS TO THE FINAL PAPER:
+
+It supplies the original puzzle.
+
+The paper starts from a real behavioral phenomenon:
+
+    exposing a scalar confidence report can substantially change downstream
+    verification behavior.
+
+But V2 alone cannot identify why.
+
+
+======================================================================
+12. STUDY 1 — CAUSALLY ISOLATING THE DISPLAYED SCORE
+======================================================================
+
+Study 1 held:
+
+- question fixed;
+- Stage-1 answer fixed;
+- historical confidence fixed in the background;
+
+and changed only the confidence number DISPLAYED at Stage 3.
+
+Under explicit numerical costs, GPT produced an extreme threshold response.
 
 At L=10:
-- 0.89 displayed confidence -> essentially always VERIFY
-- 0.91 -> essentially always USE
+
+displayed 0.89:
+    essentially always VERIFY
+
+displayed 0.91:
+    essentially always USE
+
 
 At L=20:
-- 0.94 -> essentially always VERIFY
-- 0.96 -> essentially always USE
 
-Repeated generations showed this was not ordinary sampling noise.
+displayed 0.94:
+    essentially always VERIFY
 
-So the displayed score itself is clearly a causal control input.
+displayed 0.96:
+    essentially always USE
 
-==================================================
-3. WHAT WE NO LONGER BELIEVE
-==================================================
 
-The early interpretation was:
+This is a crucial result because it eliminates a basic confound.
 
-“Showing the score makes the model stop using richer hidden evidence.”
+The difference is not merely:
 
-Later analyses weakened that.
+    naturally low-confidence questions are harder.
 
-GPT was overconfident. If GPT faithfully follows an overconfident probability, it will verify too little. That is a calibration / coverage problem, not proof that useful internal information was destroyed.
+The same frozen item changes action when only the displayed scalar changes.
 
-A second confidence report q2 also did not fully explain the natural VERIFY signal, but difficulty controls showed that much of the apparent extra information was simply:
+CONTRIBUTION TO THE FINAL NARRATIVE:
 
-hard questions are more likely to be wrong and more likely to be checked.
+    The score is a causal control input.
 
-Therefore do NOT claim:
-- hidden verification is privileged correctness knowledge;
-- the model secretly knows when it is wrong;
-- confidence suppresses a hidden truth signal;
-- GPT loses internal evidence.
 
-==================================================
-4. THE EFFECT SURVIVES WITHOUT EXPLICIT ARITHMETIC
-==================================================
+======================================================================
+13. TASK 004 — DISTINGUISHING MANIPULATION FROM RANDOM RERUN NOISE
+======================================================================
 
-Tasks 006/007 removed:
-- numerical error cost;
-- numerical verification cost;
-- expected-value formulas;
-- an exact threshold;
-- “outweighs” / “justified” wording.
+A skeptical explanation for Study 1 could be:
 
-The score effect remained large.
+    "LLMs are stochastic. Maybe the apparent flip is just noisy resampling."
 
-GPT, moderate stakes:
-- displayed 0.70 -> 59% VERIFY
+Task 004 repeated cells.
+
+The result:
+
+- ordinary identical-prompt rerun disagreement was small;
+- crossing the score threshold changed GPT's action roughly 99% of the time.
+
+CONTRIBUTION TO THE FINAL NARRATIVE:
+
+This establishes that the score manipulation effect is vastly larger than normal stochastic variation.
+
+Without this, the dramatic threshold result could look visually impressive but statistically fragile.
+
+With it, the paper can say:
+
+    the intervention has a genuine causal behavioral effect, not just rerun noise.
+
+
+======================================================================
+14. CHECKPOINT A — CALIBRATION EXPLAINS MUCH OF THE ORIGINAL "HARM"
+======================================================================
+
+The original workshop-style interpretation focused on:
+
+    visible confidence sometimes caused fewer wrong answers to be verified.
+
+An overly strong narrative would be:
+
+    "Showing confidence damages the model's judgment."
+
+Checkpoint A showed why this is not the right interpretation.
+
+GPT was overconfident.
+
+If:
+
+- q is overconfident;
+- the model follows q faithfully;
+- the verification threshold depends on q;
+
+then visible confidence can move the system to a low-verification operating point.
+
+That can increase unchecked errors without any need to claim:
+
+    the model lost its ability to rank risky outputs.
+
+CONTRIBUTION TO THE FINAL NARRATIVE:
+
+Checkpoint A separates:
+
+CALIBRATION
+    Are the probability values numerically accurate?
+
+COVERAGE CONTROL
+    Does the scalar move how much verification is requested?
+
+RANKING QUALITY
+    Are the right outputs prioritized?
+
+This conceptual separation becomes central to the final paper.
+
+
+======================================================================
+15. TASK 005 — THE Q2 CONTROL
+======================================================================
+
+Checkpoint A also found that natural hidden verification behavior sometimes predicted correctness beyond q1.
+
+One simple explanation:
+
+    Stage 3 is merely a second confidence sample.
+
+Task 005 elicited q2 independently.
+
+Result:
+
+- q2 did not fully absorb the hidden-action residual;
+- hidden verification still added some predictive information beyond q1+q2.
+
+CONTRIBUTION TO THE FINAL NARRATIVE:
+
+This rules out a simplistic equivalence:
+
+    VERIFY != merely "ask for confidence again."
+
+But this is NOT a main-paper headline.
+
+Why?
+
+Because the next difficulty controls showed that much of the apparent residual did not imply privileged self-knowledge.
+
+
+======================================================================
+16. TASKS 005B / 005C — DIFFICULTY DESTROYS THE "SECRET KNOWLEDGE" INTERPRETATION
+======================================================================
+
+At a fixed displayed score, Claude appeared to verify wrong answers more frequently than correct ones.
+
+That initially suggested:
+
+    perhaps Claude retained richer answer-specific information than q expressed.
+
+Task 005B tested a simpler alternative:
+
+    difficult items are both more likely to be wrong
+    and more likely to be verified.
+
+Difficulty was estimated using OTHER models' correctness, excluding the target model.
+
+For GPT:
+- Claude + Gemini + Grok.
+
+For Claude:
+- GPT + Gemini + Grok.
+
+After controlling for difficulty:
+
+- most of Claude's fixed-score wrong/correct signal disappeared.
+
+Task 005C extended this to the q1+q2 residual.
+
+After q1 + q2 + difficulty:
+
+- Claude's residual was largely explained;
+- GPT retained only a small leftover.
+
+CONTRIBUTION TO THE FINAL NARRATIVE:
+
+These analyses are scientifically valuable because they REMOVE an attractive but unsupported mechanism claim.
+
+They tell us not to write:
+
+- "the model secretly knows it is wrong";
+- "confidence suppresses hidden truth";
+- "VERIFY accesses privileged internal correctness evidence."
+
+Instead:
+
+    verification behavior strongly tracks generic item risk / difficulty.
+
+This is a major narrative cleanup.
+
+
+======================================================================
+17. TASKS 006 / 007 — RULE OUT "GPT JUST DID THE ARITHMETIC"
+======================================================================
+
+Study 1 had an obvious objection:
+
+    "You gave GPT explicit numerical costs. The model simply calculated
+    the threshold."
+
+Tasks 006 and 007 removed:
+
+- numerical L;
+- numerical C;
+- expected-cost formulas;
+- exact thresholds;
+- wording that recreated the arithmetic verbally.
+
+The qualitative setup retained only:
+
+- an unchecked wrong answer has consequences;
+- verification exists;
+- verification capacity is limited.
+
+The score effect survived strongly.
+
+Exploratory GPT N=100:
+
+Moderate stakes:
+- 0.70 -> 59% VERIFY
 - 0.90 -> 20%
 - 0.99 -> 7%
 
-GPT, stronger stakes:
+Stronger:
 - 0.70 -> 92%
 - 0.90 -> 40%
 - 0.99 -> 16%
 
-Claude also responded monotonically.
+Claude also moved monotonically.
 
-Therefore the broad phenomenon is not simply “GPT did the arithmetic.”
+CONTRIBUTION TO THE FINAL NARRATIVE:
 
-Displayed confidence can strongly change verification coverage even without a computable decision rule.
+This turns the finding from:
 
-==================================================
-5. TASK 008: THE NEW CENTRAL RESULT
-==================================================
+    "GPT follows a supplied numerical decision rule"
 
-Task 008 directly asked whether displayed confidence changes only coverage or also changes the item ranking.
+into:
 
-Current decision:
+    "displayed confidence exerts a broad causal control over verification
+    even without a computable cost threshold."
 
-INVARIANCE_SUPPORTED_EXPLORATORY
+This is a central main-paper result.
 
-Current strength:
 
-MODERATELY FAVORS ranking invariance.
+======================================================================
+18. TASK 007 — THE INTERMEDIATE BUDGET/PRIORITIZATION STORY
+======================================================================
 
-Several pieces of evidence point the same way.
+Task 007 initially suggested:
 
-A. VERIFY sets were almost perfectly nested.
+GPT:
+    score shifts budget while preserving difficulty priority.
 
-As displayed confidence increased, the model mostly removed items from the VERIFY set.
+Claude:
+    score may sharpen difficulty prioritization.
 
-USE -> VERIFY reversals were essentially zero, except one small 2% GPT case.
+The switch-set analysis showed that as confidence rose, items retained in VERIFY tended to be harder than items dropped.
 
-That is what we expect if one threshold moves over a stable ranking.
+This was useful because it suggested:
 
-B. A shared item propensity transferred across score conditions.
+    the score was changing coverage without obviously destroying item sensitivity.
 
-Task 008 learned which questions tended to be verification-worthy under some displayed scores and used that to predict decisions under another score.
+But this was not yet the final story.
 
-This worked well, often with held-out-condition AUROCs around 0.7–0.94.
+WHY NOT?
 
-Lay interpretation:
+Because once VERIFY sets are mostly nested, harder items will naturally remain if:
 
-If we learn which questions GPT or Claude distrusts at one displayed confidence, we can often predict which questions it will distrust at another confidence.
+- the underlying verification propensity correlates with difficulty;
+- the score simply moves a threshold.
 
-C. Richer score-specific models added little.
+Also, probability-scale hard/easy gaps can appear to widen near different operating points even with a stable latent slope.
 
-Models that allowed confidence to fundamentally reshape prioritization generally did not materially improve out-of-sample prediction.
+CONTRIBUTION TO THE FINAL NARRATIVE:
 
-D. Claude's old “sharpening” story is demoted.
+Task 007 was the bridge from "hidden uncertainty" to the more precise question:
 
-The apparent widening of hard/easy percentage gaps can partly arise from ceiling/floor effects. Once analyzed on the proper latent scale and judged by out-of-sample usefulness, the evidence for a genuine Claude-specific ranking rewrite is weak.
+    Is the score moving the threshold or changing the ranking?
 
-==================================================
-6. THE SIMPLEST WAY TO UNDERSTAND THE PAPER
-==================================================
 
-Imagine airport security has every passenger ranked from “most suspicious” to “least suspicious.”
+======================================================================
+19. TASK 008 — DISCOVERING THE FINAL HYPOTHESIS
+======================================================================
 
-Changing displayed confidence appears to change how far down that list the model goes.
+Task 008 rigorously audited the threshold/ranking hypothesis on the exploratory N=100 qualitative grid.
 
-Low displayed confidence:
-check the top 60 passengers.
+It found multiple pieces of convergent evidence.
 
-High displayed confidence:
-check only the top 10.
+A. NEAR-NESTING
 
-But the top 10 are mostly still the same people who were at the top before.
+As displayed confidence rose:
 
-That is the current hypothesis.
+- most transitions were VERIFY -> USE;
+- USE -> VERIFY reversals were nearly absent.
 
-So:
+This is expected under a moving threshold over a stable ordering.
 
-CONFIDENCE = mainly controls HOW MUCH checking happens.
 
-THE MODEL'S ITEM RANKING = mainly controls WHICH answers get checked first.
+B. CROSS-CONDITION ITEM PREDICTION
 
-The surprising part is not that confidence changes the number of checks.
+A shared item propensity learned from some score conditions predicted decisions under held-out score conditions well.
 
-The surprising part is that a strong causal manipulation of confidence may move coverage dramatically while leaving the ordering almost intact.
+Held-out AUROCs were often around 0.7–0.94.
 
-==================================================
-7. WHY RANKING MATTERS
-==================================================
+Interpretation:
 
-Suppose two systems both verify 20% of answers.
+    which items are treated as verification-worthy transfers across
+    displayed confidence conditions.
 
-System A checks the 20% most error-prone answers.
 
-System B checks 20% nearly at random.
+C. RICHER INTERACTION MODELS ADDED LITTLE
 
-Same verification cost. Very different usefulness.
+Condition-sensitive models that allowed score-dependent reprioritization generally did not materially improve out-of-sample fit.
 
-So coverage alone is not enough.
 
-A good oversight system needs:
-- the right verification budget;
-- a good ranking of which outputs deserve that budget.
+D. CLAUDE "SHARPENING" DID NOT NEED TO BE A DISTINCT BEHAVIORAL LAW
 
-If ranking invariance is true, showing a different confidence value is useful for tuning the amount of verification, but not for improving the ranking itself.
+Once the analysis moved to the latent scale and judged models by out-of-sample prediction, the evidence did not require a separate "Claude sharpens" mechanism.
 
-If the ranking is bad, changing the displayed score will mostly move up or down the same curve.
 
-You need a better ranking signal.
+Task 008 decision:
 
-==================================================
-8. REINTERPRETING THE ORIGINAL WORKSHOP RESULT
-==================================================
+    INVARIANCE_SUPPORTED_EXPLORATORY
 
-The original result looked like:
 
-“Showing GPT its confidence makes it catch fewer errors.”
+CONTRIBUTION TO THE FINAL NARRATIVE:
 
-The cleaner explanation is now:
+Task 008 DISCOVERED the final candidate hypothesis.
 
-Showing confidence moved GPT to a lower-checking operating point, partly because GPT's confidence was overconfident.
+But because it used the same development data from which the hypothesis emerged, it could not establish the final result.
 
-If the ranking stayed mostly stable, GPT caught fewer errors mainly because it checked fewer answers.
+That required Task 009.
 
-So the current self-correction is:
 
-OLD:
-visible confidence harms verification quality.
+======================================================================
+20. TASK 009 — WHY IT IS THE MOST IMPORTANT EXPERIMENT
+======================================================================
 
-CURRENT:
-visible confidence strongly changes verification coverage; actual ranking degradation is much less established.
+Task 009 is the prospective confirmation.
 
-==================================================
-9. WHAT IS ACTUALLY NOVEL
-==================================================
+Before inspecting the primary verification-rate outcomes, the study froze:
 
-Do NOT claim novelty for:
-- confidence affecting abstention/escalation;
-- risk-coverage curves;
-- thresholded selective prediction;
-- the distinction between coverage and ranking.
+- fresh unseen N=500 MMLU-Pro questions;
+- a secondary N=200 subset;
+- a repeat N=100 subset;
+- model endpoints;
+- prompts;
+- score conditions;
+- primary metrics;
+- retry rules;
+- analysis logic;
+- decision buckets.
 
-The potentially novel package is:
+Fresh Stage-1 answers and fresh q1 confidence were generated.
 
-1. FIXED-ITEM COUNTERFACTUAL INTERVENTION
-Same question, same frozen answer, different displayed confidence.
+Primary models:
+- GPT
+- Claude
 
-2. SELF-REFERENTIAL CONFIDENCE FEEDBACK
-A model's confidence-style output is fed back as a control signal for whether its own already-produced answer gets checked.
+Secondary:
+- Gemini
+- Grok
 
-3. RANKING-INVARIANCE TEST
-Ask not only whether confidence changes verification, but whether it changes the ordering of which items receive scrutiny.
+Visible fixed-score conditions:
+- 0.70
+- 0.85
+- 0.90
+- 0.95
+- 0.99
 
-4. SYSTEMS CONSEQUENCE
-If the displayed score only moves along a largely fixed ranking, then score manipulation tunes verification quantity without improving ranking quality.
+Additional bridge conditions:
+- hidden
+- true-q visible
 
-==================================================
-10. THE TWO POSSIBLE FINAL PAPERS
-==================================================
+The central hypothesis was frozen in advance:
 
-WORLD 1 — RANKING INVARIANCE
+    counterfactual displayed confidence should strongly change coverage,
+    while a condition-specific reranking model should not materially improve
+    held-out prediction relative to a shared-ranking model.
 
-Displayed confidence strongly changes coverage but leaves ranking/discrimination approximately stable.
+This is what turns the paper's headline from:
 
-Memory sentence:
+    "an interesting exploratory pattern"
 
-“Counterfactual confidence feedback changes how much an LLM verifies far more than which answers it prioritizes.”
+into:
 
-This is the current leading hypothesis.
+    "a result that survived a prospective test."
 
-WORLD 2 — RANKING RESHAPING
 
-Displayed confidence changes both:
-- how much checking happens;
-- which outputs receive that checking.
+======================================================================
+21. TASK 009 H1 — LARGE COVERAGE EFFECT ON FRESH DATA
+======================================================================
 
-Memory sentence:
+The preregistered coverage effect replicated strongly.
 
-“Counterfactual confidence feedback reshapes not only the amount of oversight but its allocation.”
+GPT:
 
-If fresh data support World 2, pivot honestly. It may be even more interesting.
+    0.70 -> 0.99 difference = 50.2 percentage points
+    95% CI [45.8, 54.6]
 
-==================================================
-11. CURRENT EVIDENCE STATUS
-==================================================
+Claude:
 
-Strong exploratory foundation:
-- four-model historical V2;
-- fixed-item causal score manipulation;
-- repeat stability;
-- q2 control;
-- difficulty controls;
-- arithmetic-free qualitative manipulation;
-- full N=100 GPT/Claude qualitative grid;
-- Gemini/Grok pilot;
-- Task-008 ranking audit.
+    0.70 -> 0.99 difference = 35.4 percentage points
+    95% CI [31.2, 39.6]
 
-Task-008 conclusion:
+Both exceeded the substantive floors set before result inspection.
 
-INVARIANCE_SUPPORTED_EXPLORATORY
+WHY THIS MATTERS:
+
+The first half of the final claim is now robust.
+
+Displayed confidence is not a weak nudge.
+
+It can substantially alter how often the model requests independent verification even on fresh unseen questions.
+
+This is the "HOW MUCH" side of the paper.
+
+
+======================================================================
+22. TASK 009 H2 — THE CENTRAL RANKING-INVARIANCE TEST
+======================================================================
+
+This is the most important analysis for the final paper.
+
+Two models were compared.
+
+
+SHARED-RANKING MODEL
+
+Conceptually:
+
+    verification propensity =
+        condition-specific threshold / intercept
+        +
+        shared item tendency.
 
 Meaning:
 
-The ranking-invariance hypothesis is now strong enough to deserve a prospective test.
+- different confidence values can make verification globally more or less likely;
+- the underlying item priority structure is shared.
 
-Not meaning:
 
-The final paper can already state invariance as confirmed.
+CONDITION-SENSITIVE MODEL
 
-==================================================
-12. POSSIBLE FINAL CONTRIBUTIONS IF WORLD 1 IS CONFIRMED
-==================================================
+This richer model additionally allows confidence condition to reshape prioritization.
 
-Maximum four main contributions:
 
-1. COUNTERFACTUAL CAUSAL CONTROL
-Changing only displayed confidence on the same frozen answer causally changes verification.
+The preregistered metric was:
 
-2. ARITHMETIC-INDEPENDENT SCORE CONTROL
-The effect survives without explicit cost arithmetic.
+    how much better does the richer model predict held-out data?
 
-3. RANKING INVARIANCE
-Coverage changes dramatically while the ordering/discrimination of verification-worthy items remains approximately stable.
 
-4. PRACTICAL CONSEQUENCE
-Displayed confidence mostly moves the system along an existing risk-coverage relationship. Improving which outputs receive scrutiny requires improving the ranking signal, not merely changing the confidence value shown to the model.
+Results:
 
-==================================================
-13. LIKELY FIGURE STORY
-==================================================
+GPT:
+    improvement = 0.0008
+    95% CI [-0.0011, 0.0026]
 
-Figure 1:
-Same frozen answer, different displayed score -> large coverage movement.
+Claude:
+    improvement ≈ 0.0000
+    95% CI [-0.0009, 0.0008]
 
-Figure 2:
-The centerpiece: ROC / risk-coverage evidence showing that score conditions largely trace the same ranking quality.
+Both passed the preregistered invariance criterion.
 
-Figure 3:
-Cross-condition item stability:
-shared item propensity predicts held-out score conditions; nesting/reversal analysis.
 
-Figure 4:
-Practical consequence:
-errors caught at matched verification budgets with fair baselines.
+WHY THIS MATTERS:
 
-==================================================
-14. WHAT WE MUST NOT CLAIM
-==================================================
+This is the final paper's strongest evidence that:
+
+    the score's dominant role is moving coverage,
+    not creating a new routing order.
+
+The correct interpretation is not:
+
+    "the rankings are exactly identical."
+
+It is:
+
+    "Once we allow the score to move the global verification rate,
+    a richer score-dependent reprioritization hypothesis buys essentially
+    no extra held-out predictive power."
+
+That is the clean central result.
+
+
+======================================================================
+23. TASK 009 H3 — REPEATED GENERATIONS
+======================================================================
+
+Task 009 also repeated Stage-3 decisions three times on a frozen N=100 subset.
+
+Purpose:
+
+A single VERIFY/USE decision is noisy.
+
+Repeats let us estimate:
+
+    how strongly each item tends to attract verification.
+
+Adjacent-score rank correlations:
+
+GPT:
+- 0.70 -> 0.85: 0.477
+- 0.85 -> 0.90: 0.737
+- 0.90 -> 0.95: 0.714
+- 0.95 -> 0.99: 0.694
+
+Claude:
+- 0.70 -> 0.85: 0.553
+- 0.85 -> 0.90: 0.856
+- 0.90 -> 0.95: 0.738
+- 0.95 -> 0.99: 0.831
+
+WHY THIS MATTERS:
+
+These numbers show meaningful cross-condition stability.
+
+But they also prevent overclaiming.
+
+The ranking is not perfectly deterministic.
+
+There is noise and some reordering.
+
+That is why the paper should say:
+
+    "largely stable"
+    "coverage-dominant"
+    "little additional benefit from score-specific reprioritization"
+
+rather than:
+
+    "perfectly invariant."
+
+
+======================================================================
+24. TASK 009 H4 — DISCRIMINATION AUROC CHANGES, SO WORDING MUST BE PRECISE
+======================================================================
+
+Binary VERIFY action AUROC for target wrongness changed across score conditions.
+
+GPT:
+- 0.70: 0.685
+- 0.85: 0.669
+- 0.90: 0.629
+- 0.95: 0.624
+- 0.99: 0.574
+
+Claude:
+- 0.70: 0.550
+- 0.85: 0.602
+- 0.90: 0.612
+- 0.95: 0.669
+- 0.99: 0.680
+
+This should be reported transparently.
+
+However, a binary VERIFY decision is itself an operating point, and the operating point is moving dramatically.
+
+So these AUROCs should not be turned into the headline.
+
+WHY THIS MATTERS TO CLAIM DISCIPLINE:
+
+We should NOT write:
+
+    "discrimination is numerically identical."
+
+Instead:
+
+    "the dominant effect is on coverage, while explicit score-specific
+    reranking contributes essentially no held-out predictive value."
+
+The prospective H2 model comparison is the cleaner test of the paper's actual claim.
+
+
+======================================================================
+25. NESTING / REVERSALS
+======================================================================
+
+Task 009 also recorded whether items reverse direction as displayed confidence rises.
+
+Under a simple threshold model:
+
+- many items should move VERIFY -> USE as confidence rises;
+- few should move USE -> VERIFY.
+
+This is supporting evidence.
+
+It is not by itself proof of invariance.
+
+WHY IT BELONGS IN THE PAPER:
+
+It gives readers an intuitive behavioral visualization.
+
+The shared-ranking model is statistically central.
+
+The nesting pattern makes the same idea easy to see.
+
+
+======================================================================
+26. RISK-COVERAGE INTERPRETATION
+======================================================================
+
+Raw error catch naturally depends on coverage.
+
+If one condition verifies 70% of outputs and another verifies 10%, the first will usually catch more errors simply because it checks more things.
+
+So the paper must distinguish:
+
+RAW CATCH
+    how many errors were caught at the actual induced verification rate.
+
+from
+
+RANKING QUALITY
+    how effectively errors are prioritized for a given verification budget.
+
+This is one of the key corrections to the original workshop interpretation.
+
+The final manuscript should repeatedly avoid phrases like:
+
+    "condition X caught fewer errors, therefore its ranking got worse."
+
+That inference is invalid when coverage differs.
+
+
+======================================================================
+27. REINTERPRETING THE ORIGINAL WORKSHOP RESULT
+======================================================================
+
+The original result could be summarized as:
+
+    visible confidence made GPT leave more wrong answers unverified.
+
+Earlier interpretation risk:
+
+    showing confidence degraded the model's judgment.
+
+Final interpretation:
+
+    displayed confidence strongly changed the verification operating point;
+    GPT's confidence was overconfident;
+    faithfully following that scalar moved GPT toward lower coverage;
+    lower coverage naturally leaves more errors unchecked.
+
+The new paper therefore reframes the old finding:
+
+OLD:
+    confidence visibility harms verification quality.
+
+NEW:
+    confidence visibility changes verification quantity strongly;
+    much of the apparent harm is an operating-point/calibration effect;
+    score-dependent ranking degradation is not required to explain it.
+
+This is a scientifically stronger interpretation because it separates mechanisms that the original paper conflated.
+
+
+======================================================================
+28. GEMINI AND GROK — WHAT THEY DO AND DO NOT ADD
+======================================================================
+
+Task 009 included secondary N=200 generalization checks.
+
+Gemini:
+- 13.5 percentage-point coverage shift.
+
+Grok:
+- nearly always VERIFY;
+- routing is action-saturated;
+- item ranking is not identifiable from that binary decision.
+
+These should not control the main paper claim.
+
+The final paper's core prospective result is GPT + Claude.
+
+The secondary models help define the boundary:
+
+    confidence responsiveness itself differs by model family,
+    and ranking questions are only identifiable when the verification action
+    has enough dynamic range.
 
 Do NOT claim:
-- hidden uncertainty is suppressed;
-- GPT loses internal evidence;
-- Claude has privileged awareness of its errors;
-- ranking invariance is already confirmed;
-- the coverage/ranking distinction is our new framework;
-- empirical cross-model difficulty is a deployable routing feature;
-- all models must behave identically;
-- Tasks 003–008 are confirmatory.
 
-==================================================
-15. FALSIFICATION
-==================================================
+    universal four-model ranking invariance.
 
-The prospective study must be capable of killing World 1.
 
-Ranking invariance should be revised or rejected if fresh data show:
-- substantial score-dependent reordering;
-- frequent reversals beyond rerun noise;
-- condition-specific ranking models materially outperform one shared ranking;
-- discrimination changes meaningfully across non-saturated score conditions.
+======================================================================
+29. ENGINEERING DEVIATIONS — WHY THEY DO NOT CHANGE THE SCIENCE
+======================================================================
 
-If that happens, the paper pivots to World 2 rather than hiding the result.
+Task 009 experienced process interruptions and provider issues.
 
-==================================================
-16. CURRENT SOURCE-OF-TRUTH SUMMARY
-==================================================
+Important facts:
 
-OLD STORY:
-“Showing confidence crowds out richer hidden uncertainty.”
-STATUS: DROP.
+- completed cells were checkpointed;
+- no scientific keys were rewritten;
+- prompts did not change;
+- sample IDs did not change;
+- endpoints did not change;
+- primary metrics did not change;
+- decision criteria did not change;
+- chunking / timeout changes were engineering-only;
+- deviations were recorded before inspecting verification-rate outcomes.
 
-INTERMEDIATE STORY:
-“Confidence changes the operating point while GPT preserves and Claude sharpens difficulty prioritization.”
-STATUS: DEMOTE.
+Therefore the prospective integrity of the primary hypothesis test is preserved.
 
-CURRENT LEADING STORY:
-“Displayed confidence acts mainly like a coverage/threshold control over a largely stable verification ranking.”
-STATUS: EXPLORATORY, MODERATELY SUPPORTED, READY FOR PROSPECTIVE TEST.
+These details belong in reproducibility materials / appendix, not the narrative centerpiece.
 
-CORE FINAL QUESTION:
 
-For the exact same frozen answer, does changing displayed confidence mostly change HOW MANY answers the model verifies, or does it change WHICH answers it prioritizes?
+======================================================================
+30. CURRENT STATUS OF THE MAIN CLAIM
+======================================================================
 
-CURRENT EXPECTATION:
+Before Task 009:
 
-Mostly HOW MANY.
+    ranking invariance was exploratory.
 
-FINAL RULE:
+After Task 009:
 
-Fresh prospective data decide the paper.
+    the shared-ranking / coverage-dominant account is prospectively supported
+    on fresh MMLU-Pro data for GPT and Claude.
+
+This is the most important bookkeeping update.
+
+The paper is no longer:
+
+    "we suspect confidence acts like a coverage knob."
+
+It is now:
+
+    "a preregistered fresh experiment supported the hypothesis that
+    confidence acts primarily as a coverage knob rather than requiring
+    score-specific reprioritization."
+
+
+======================================================================
+31. WHAT IS ACTUALLY NOVEL
+======================================================================
+
+Do NOT claim novelty for:
+
+- confidence affecting abstention;
+- confidence affecting escalation;
+- risk-coverage curves;
+- thresholding;
+- selective prediction;
+- the abstract distinction between coverage and ranking.
+
+The potentially novel empirical package is:
+
+1. FIXED-ITEM COUNTERFACTUAL CONFIDENCE INTERVENTION
+
+Same question.
+Same frozen answer.
+Different displayed confidence.
+
+This isolates the causal effect of the displayed scalar.
+
+
+2. SELF-REFERENTIAL CONFIDENCE FEEDBACK
+
+A confidence-style output from the model is fed back as a control signal for whether the model's own already-produced answer should trigger external scrutiny.
+
+
+3. DIRECT COVERAGE-VERSUS-RANKING QUESTION
+
+Instead of stopping at:
+
+    "does confidence change escalation?"
+
+the paper asks:
+
+    "does the counterfactual confidence intervention actually change
+    the allocation ranking, or mostly move the cutoff?"
+
+
+4. PROSPECTIVE COVERAGE-DOMINANT RESULT
+
+Fresh GPT/Claude evidence supports:
+
+- very large coverage movement;
+- essentially zero held-out gain from score-specific reprioritization.
+
+
+5. DESIGN IMPLICATION
+
+Confidence is a strong budget-control signal.
+
+If ranking quality is poor, changing the scalar itself is not enough.
+
+
+======================================================================
+32. WHY AN ICLR REVIEWER SHOULD CARE
+======================================================================
+
+The broad relevance is selective resource allocation in AI systems.
+
+Modern systems increasingly need to decide:
+
+- when to defer;
+- when to retrieve;
+- when to call another model;
+- when to ask a human;
+- when to use more compute;
+- when to run tools/tests.
+
+Confidence is an obvious control signal for these decisions.
+
+The paper reveals a specific limitation:
+
+    confidence feedback can strongly tune the amount of oversight while
+    doing little to alter the underlying prioritization.
+
+That is useful because system builders can otherwise mistake:
+
+    "we can control escalation rate"
+
+for:
+
+    "we can improve escalation quality."
+
+Those are different.
+
+The paper makes that distinction empirical and causal.
+
+
+======================================================================
+33. THE CLEAN FINAL SELLING POINT
+======================================================================
+
+The selling point should be:
+
+    Counterfactual confidence is a powerful control over the quantity of
+    selective oversight, but a weak lever for changing its allocation.
+
+A more memorable version:
+
+    Confidence changes how far down the queue you go, not the queue itself.
+
+Another:
+
+    Confidence moves the cutoff more than the ranking.
+
+The paper should NOT sell:
+
+    "confidence is bad."
+
+It should sell:
+
+    "confidence has a specific role:
+    it controls the operating point far more than the prioritization function."
+
+
+======================================================================
+34. PRACTICAL EXAMPLE
+======================================================================
+
+Suppose an AI produces 1,000 answers.
+
+A system can afford to independently verify only 100.
+
+The model has an implicit ranking of which outputs seem most worth checking.
+
+If the ranking is good:
+
+    top 100 may contain many of the actual errors.
+
+If the ranking is poor:
+
+    top 100 may waste budget on safe outputs.
+
+Now change displayed confidence.
+
+D1 finds that this can strongly change whether the model sends:
+
+    500 outputs
+    300 outputs
+    100 outputs
+    50 outputs
+
+to verification.
+
+But it does not materially improve the score-specific ranking model.
+
+Therefore:
+
+    changing confidence can help choose the budget,
+    but not necessarily improve the queue.
+
+This is the practical message.
+
+
+======================================================================
+35. CALIBRATION VS COVERAGE VS RANKING
+======================================================================
+
+The paper should clearly separate three ideas.
+
+CALIBRATION
+
+Does 90% confidence correspond to roughly 90% correctness?
+
+
+COVERAGE CONTROL
+
+Does changing the displayed score change how often verification is requested?
+
+
+RANKING QUALITY
+
+For a fixed budget, are the most error-prone outputs prioritized?
+
+
+A model can be:
+
+- badly calibrated;
+- strongly score-responsive;
+- moderately good at ranking.
+
+These are separate properties.
+
+D1's strongest result is about:
+
+    score -> coverage control.
+
+Its deeper result is:
+
+    score-specific reprioritization adds essentially no predictive benefit.
+
+This separation is central to the paper's intellectual clarity.
+
+
+======================================================================
+36. MATCHED-BUDGET ROUTING
+======================================================================
+
+The practical comparison should ask:
+
+    at the same verification budget, how many actual errors are caught?
+
+This is the correct way to compare routing quality.
+
+Task 009 predeclared baselines such as:
+
+- random;
+- raw q1;
+- calibrated q1;
+- one hidden verification judgment;
+- q1 + hidden judgment;
+- hindsight oracle.
+
+Routing should be an IMPORTANT CONSEQUENCE section, not automatically a headline method contribution.
+
+If a new router does not materially beat existing signals, do not force a positive result.
+
+A null result is coherent:
+
+    manipulating confidence changes coverage more than ranking quality.
+
+
+======================================================================
+37. WHAT EACH MAJOR RESULT CONTRIBUTES
+======================================================================
+
+HISTORICAL V2
+Contribution:
+    establishes the motivating phenomenon:
+    confidence visibility strongly changes verification.
+
+STUDY 1
+Contribution:
+    isolates the displayed score causally on fixed answers.
+
+TASK 004
+Contribution:
+    shows the manipulation effect is much larger than ordinary rerun noise.
+
+CHECKPOINT A
+Contribution:
+    reveals calibration / operating-point effects and prevents an "irrationality" story.
+
+TASK 005 q2
+Contribution:
+    rules out "VERIFY is just another confidence sample."
+
+TASK 005B / 005C
+Contribution:
+    rules out the strongest "secret correctness knowledge" interpretation;
+    difficulty explains much of the residual.
+
+TASKS 006 / 007
+Contribution:
+    rules out "GPT only followed explicit arithmetic";
+    qualitative score control survives.
+
+TASK 007
+Contribution:
+    exposes the importance of coverage versus prioritization.
+
+TASK 008
+Contribution:
+    discovers the shared-ranking / threshold hypothesis.
+
+TASK 009
+Contribution:
+    prospectively confirms the core MMLU-Pro result on fresh data.
+
+This is the paper's scientific development.
+
+Each step removes an alternative explanation until the simplest surviving account is:
+
+    confidence strongly controls verification coverage,
+    while the allocation ranking remains largely shared across score conditions.
+
+
+======================================================================
+38. WHAT SHOULD BE MAIN TEXT VS APPENDIX
+======================================================================
+
+MAIN TEXT SHOULD EMPHASIZE:
+
+- system setup;
+- fixed-item intervention;
+- numerical causal effect;
+- qualitative no-arithmetic replication;
+- Task-009 fresh coverage result;
+- shared-ranking vs condition-sensitive held-out comparison;
+- repeated stability as supporting evidence;
+- matched-budget implication;
+- one secondary/generalization figure if available.
+
+
+APPENDIX / SECONDARY:
+
+- q2 details;
+- all difficulty-control variants;
+- authority factor;
+- full Gemini/Grok tables;
+- all rerun matrices;
+- all calibration diagnostics;
+- provider/runtime details;
+- engineering deviations;
+- historical multi-cell hidden aggregate;
+- extra ablations.
+
+
+WHY:
+
+The main paper should read like one coherent result, not like a catalog of every question explored during development.
+
+
+======================================================================
+39. WHAT THE PAPER MUST NOT BECOME
+======================================================================
+
+Do not let it become:
+
+1. A paper about "hidden uncertainty."
+2. A paper about model personalities.
+3. A paper whose novelty is just "confidence affects escalation."
+4. A paper claiming a new selective-prediction framework.
+5. A paper claiming exact deterministic rank identity.
+6. A paper whose main result is difficulty.
+7. A routing-method paper without a material routing improvement.
+8. A chronological story of every pivot.
+9. A mechanism paper without mechanistic evidence.
+10. A universal-law paper based on GPT/Claude primary evidence plus weak/saturated secondary models.
+
+
+======================================================================
+40. CLAIMS NOW SUPPORTED
+======================================================================
+
+PROSPECTIVELY SUPPORTED ON FRESH GPT/CLAUDE MMLU-PRO:
+
+1. Counterfactual displayed confidence causes a large change in verification coverage.
+
+2. The primary shared-ranking model is sufficient relative to the preregistered score-specific reprioritization alternative under held-out evaluation.
+
+3. The dominant role of confidence feedback is therefore consistent with coverage / threshold control over a largely stable prioritization structure.
+
+
+SUPPORTED BY EXPLORATORY / SUPPORTING EVIDENCE:
+
+4. The effect survives without explicit numerical L/C arithmetic.
+
+5. Verification sets are often near-nested across score conditions.
+
+6. Shared item tendencies transfer across conditions.
+
+7. Repeat-based item propensities show substantial rank stability.
+
+8. Difficulty explains much of the historical hidden-action residual.
+
+9. Gemini has a weaker secondary score response.
+
+10. Grok's saturation makes its ranking unidentifiable.
+
+
+======================================================================
+41. CLAIMS NOT SUPPORTED
+======================================================================
+
+Do NOT state as fact:
+
+- score-specific ranking is literally identical;
+- no reordering occurs;
+- all models behave the same;
+- Grok confirms the headline;
+- confidence suppresses hidden uncertainty;
+- the model internally "knows" it is wrong;
+- a neural mechanism has been identified;
+- difficulty is a production router;
+- calibration and ranking are interchangeable;
+- matched-budget routing has materially improved unless the final analysis shows it;
+- the finding generalizes beyond MMLU-Pro until the second task is completed.
+
+
+======================================================================
+42. FINAL CONTRIBUTIONS — KEEP TO FOUR
+======================================================================
+
+CONTRIBUTION 1 — FIXED-ITEM COUNTERFACTUAL INTERVENTION
+
+We isolate displayed confidence as a causal input by changing only the confidence value shown for the same frozen answer.
+
+
+CONTRIBUTION 2 — ARITHMETIC-INDEPENDENT SCORE CONTROL
+
+The score's effect on verification persists even without explicit numerical costs or a computable decision rule.
+
+
+CONTRIBUTION 3 — PROSPECTIVE COVERAGE-DOMINANT CONTROL
+
+On fresh preregistered GPT/Claude data:
+
+- coverage shifts by 50.2pp and 35.4pp;
+- score-specific reprioritization adds essentially no held-out predictive value.
+
+
+CONTRIBUTION 4 — SELECTIVE-OVERSIGHT DESIGN IMPLICATION
+
+Confidence is a powerful lever for setting verification quantity, but improving which outputs receive verification requires improving the ranking signal/policy rather than merely changing the displayed scalar.
+
+
+======================================================================
+43. FINAL PAPER NARRATIVE — FULL VERSION
+======================================================================
+
+AI systems increasingly operate under selective oversight: they cannot afford to send every output to a human, stronger model, retrieval system, or external verifier. Confidence is an obvious signal for controlling those escalation decisions, but confidence can influence two very different parts of the system: how much verification occurs and which outputs receive it. D1 separates these effects causally. For the exact same frozen answer, we counterfactually change only the confidence score shown back to the model and observe whether it requests independent verification. The displayed score has a large causal effect on verification coverage, and the effect survives removing explicit numerical cost arithmetic. We then test whether the score also changes the allocation ranking. A preregistered prospective study on fresh GPT/Claude MMLU-Pro data finds that coverage shifts by 50.2 and 35.4 percentage points, yet a richer score-specific reprioritization model provides essentially no additional held-out predictive value over a shared-ranking model with condition-specific thresholds. Repeated generations show substantial, though imperfect, cross-condition item stability. The dominant role of counterfactual confidence feedback is therefore to move the verification operating point rather than to rewrite which outputs receive priority. This implies that confidence is useful for tuning the quantity of selective oversight, but improving routing quality requires improving the ranking signal itself.
+
+
+======================================================================
+44. FINAL PAPER NARRATIVE — SHORT VERSION
+======================================================================
+
+We counterfactually change the confidence shown for the same frozen LLM answer and ask whether the model requests an independent check. Confidence dramatically changes how often GPT and Claude request verification, but score-specific reprioritization provides essentially no held-out predictive gain. Confidence therefore acts primarily as a verification-budget control rather than a lever for changing which outputs are prioritized.
+
+
+======================================================================
+45. ONE-SENTENCE MEMORY VERSION
+======================================================================
+
+For the same frozen output, changing only displayed confidence strongly changes whether the model requests external verification, but mostly moves a cutoff over a shared prioritization rather than creating a new ranking.
+
+
+======================================================================
+46. FIGURE PLAN
+======================================================================
+
+FIGURE 1 — CAUSAL SCORE CONTROL
+
+Diagram:
+question -> frozen answer -> manipulated displayed confidence -> verification request.
+
+Show:
+- Study-1 threshold effect;
+- rerun-noise baseline;
+- qualitative no-arithmetic response.
+
+Reader takeaway:
+the displayed scalar causally controls verification.
+
+
+FIGURE 2 — PROSPECTIVE COVERAGE EFFECT
+
+Fresh Task-009 GPT/Claude coverage curves across:
+- 0.70
+- 0.85
+- 0.90
+- 0.95
+- 0.99
+
+Reader takeaway:
+the effect is large and replicates prospectively.
+
+
+FIGURE 3 — THE HEADLINE RANKING TEST
+
+Show:
+- shared-ranking model;
+- condition-sensitive richer model;
+- held-out log-loss difference + CIs;
+- perhaps repeat rank stability as secondary panel.
+
+Reader takeaway:
+score-specific reranking buys essentially nothing.
+
+
+FIGURE 4 — SYSTEMS CONSEQUENCE
+
+Risk/error catch versus verification budget.
+
+Include:
+- random;
+- q1;
+- calibrated q1;
+- hidden decision;
+- simple combined policy if retained;
+- oracle bound.
+
+Reader takeaway:
+coverage and routing quality are distinct design problems.
+
+
+OPTIONAL FIGURE 5 — SECOND-TASK GENERALIZATION
+
+If the non-MCQ task reproduces the result, use one clean panel showing the same coverage-dominant pattern beyond MMLU-Pro.
+
+
+======================================================================
+47. TITLE / FRAMING FAMILY
+======================================================================
+
+Do NOT lock a title yet, but the title family should reflect the actual result.
+
+Potential conceptual directions:
+
+"Confidence Controls Coverage, Not Ranking"
+
+"Confidence as a Coverage Control in LLM Self-Verification"
+
+"Changing Confidence Changes How Much, Not What, LLMs Verify"
+
+"Counterfactual Confidence Feedback in Selective LLM Verification"
+
+Avoid mechanism-heavy titles such as:
+
+"A Score Is Not the State"
+
+unless later evidence directly supports an internal-state distinction.
+
+Avoid titles implying exact invariance.
+
+The wording should emphasize:
+- counterfactual confidence;
+- selective verification / oversight;
+- coverage versus ranking.
+
+
+======================================================================
+48. CURRENT LIMITATIONS
+======================================================================
+
+The paper should acknowledge:
+
+1. Primary prospective confirmation is currently on MMLU-Pro multiple choice.
+2. GPT and Claude are the primary models; Gemini/Grok do not provide equally clean confirmation.
+3. The verifier is idealized / independent.
+4. Displayed confidence is experimentally manipulated rather than necessarily arising naturally at deployment time.
+5. The ranking is only approximately stable, not perfectly fixed.
+6. Binary actions are coarse.
+7. Closed-model behavior may change across future versions.
+8. The study is behavioral and does not identify a neural mechanism.
+
+These limitations do not invalidate the central result.
+
+They define its scope.
+
+
+======================================================================
+49. WHAT REMAINS FOR THE STRONGEST FINAL PAPER
+======================================================================
+
+The core MMLU-Pro result is now prospectively supported.
+
+The highest-value remaining scientific addition is:
+
+    ONE NON-MULTIPLE-CHOICE TASK GENERALIZATION.
+
+The purpose is not to discover a new story.
+
+The purpose is to test whether the SAME final story survives outside MMLU-Pro.
+
+A strong candidate is objectively scoreable free-response math because it preserves:
+
+- frozen answer;
+- correctness;
+- confidence;
+- verification-request decision;
+- counterfactual score manipulation;
+
+while removing the multiple-choice format.
+
+If the same pattern holds:
+
+    large coverage movement
+    +
+    little value from score-specific reprioritization
+
+then the paper's scope becomes much stronger.
+
+If it fails:
+
+    the paper learns an important boundary:
+    ranking invariance may be task-format dependent.
+
+Either way, the second task should be designed as a direct generalization test of the already-established hypothesis, not another exploratory search.
+
+
+======================================================================
+50. SOURCE-OF-TRUTH STATUS TABLE
+======================================================================
+
+OLD HYPOTHESIS:
+Showing confidence suppresses richer hidden uncertainty.
+STATUS:
+REJECTED / DO NOT USE.
+
+INTERMEDIATE HYPOTHESIS:
+Confidence sets the verification budget while item difficulty controls prioritization; GPT preserves and Claude sharpens.
+STATUS:
+USEFUL DEVELOPMENT STEP, NOT FINAL HEADLINE.
+
+TASK-008 HYPOTHESIS:
+Displayed confidence acts mainly as a coverage / threshold control over a largely stable ranking.
+STATUS:
+EXPLORATORILY SUPPORTED.
+
+TASK-009 RESULT:
+Fresh preregistered GPT/Claude MMLU-Pro data support the coverage-dominant shared-ranking account.
+STATUS:
+PROSPECTIVELY SUPPORTED.
+
+CURRENT CORE PAPER CLAIM:
+
+    Counterfactual displayed confidence has a large causal effect on how
+    often GPT and Claude request independent verification, while allowing
+    confidence to create score-specific reprioritization provides essentially
+    no held-out predictive benefit.
+
+CURRENT PRACTICAL IMPLICATION:
+
+    confidence can tune the amount of selective oversight;
+    improving which outputs receive oversight requires improving the
+    prioritization signal itself.
+
+CURRENT REMAINING SCIENTIFIC PRIORITY:
+
+    test the same claim on one non-MCQ task.
+
+FINAL WRITING RULE:
+
+    one paper,
+    one main phenomenon,
+    one prospective result,
+    one clear systems implication.
