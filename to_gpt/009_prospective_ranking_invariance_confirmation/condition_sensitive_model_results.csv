@@ -1,0 +1,3 @@
+model_alias,model_label,model_name,formula,n_rows,n_questions,cv_logloss,heldout_improvement_vs_shared,bootstrap_lo,bootstrap_hi,material_logloss,invariance_criterion_pass
+openai_gpt56_sol,GPT,condition_sensitive_score_x_difficulty,shared + gamma*(score-0.90)*wrongness,2500,500,0.4536924903306867,0.0007551855473757474,-0.0010794900954202435,0.002598403062240795,0.01,True
+anthropic_sonnet5,Claude,condition_sensitive_score_x_difficulty,shared + gamma*(score-0.90)*wrongness,2500,500,0.5116562584730645,-3.725671111121098e-05,-0.0009435033745422983,0.0007643042619550067,0.01,True

@@ -533,7 +533,15 @@ class GoogleAdapter(ModelAdapter):
                 project=project,
                 location=location,
             )
-        return await self._client.aio.models.generate_content(**dict(payload))
+        try:
+            return await asyncio.wait_for(
+                self._client.aio.models.generate_content(**dict(payload)),
+                timeout=45,
+            )
+        except TimeoutError as error:
+            raise AdapterError(
+                "Gemini call timed out after 45s", transient=True
+            ) from error
 
     def _decode(
         self,

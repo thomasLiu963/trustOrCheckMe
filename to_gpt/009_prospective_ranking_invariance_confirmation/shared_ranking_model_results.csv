@@ -1,0 +1,3 @@
+model_alias,model_label,model_name,formula,n_rows,n_questions,cv_logloss
+openai_gpt56_sol,GPT,shared_ranking_transferable,logit P(VERIFY)=alpha_condition + beta*other_primary_wrongness,2500,500,0.45444767587806245
+anthropic_sonnet5,Claude,shared_ranking_transferable,logit P(VERIFY)=alpha_condition + beta*other_primary_wrongness,2500,500,0.5116190017619533

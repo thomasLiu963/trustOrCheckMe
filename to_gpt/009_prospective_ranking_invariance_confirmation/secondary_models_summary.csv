@@ -1,0 +1,17 @@
+model_alias,model_label,score_condition,n_questions,verify_rate,ci_lo,ci_hi,saturation,floor,meets_floor
+google_gemini38_flash,Gemini,hidden,200,0.105,0.065,0.15,identifiable,,
+google_gemini38_flash,Gemini,true_q_visible,200,0.095,0.055,0.14,identifiable,,
+google_gemini38_flash,Gemini,displayed_0.70,200,0.205,0.15,0.26,identifiable,,
+google_gemini38_flash,Gemini,displayed_0.85,200,0.085,0.05,0.125,identifiable,,
+google_gemini38_flash,Gemini,displayed_0.90,200,0.09,0.05,0.13,identifiable,,
+google_gemini38_flash,Gemini,displayed_0.95,200,0.08,0.045,0.12,identifiable,,
+google_gemini38_flash,Gemini,displayed_0.99,200,0.07,0.035,0.11,identifiable,,
+google_gemini38_flash,Gemini,H1_0.70_minus_0.99,200,0.135,0.09,0.185,,,False
+xai_grok420_nonreasoning,Grok,hidden,200,1.0,1.0,1.0,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION,,
+xai_grok420_nonreasoning,Grok,true_q_visible,200,0.985,0.965,1.0,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION,,
+xai_grok420_nonreasoning,Grok,displayed_0.70,200,1.0,1.0,1.0,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION,,
+xai_grok420_nonreasoning,Grok,displayed_0.85,200,0.995,0.985,1.0,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION,,
+xai_grok420_nonreasoning,Grok,displayed_0.90,200,0.99,0.975,1.0,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION,,
+xai_grok420_nonreasoning,Grok,displayed_0.95,200,0.975,0.95,0.995,ITEM_ROUTING_NOT_IDENTIFIABLE_DUE_TO_ACTION_SATURATION,,
+xai_grok420_nonreasoning,Grok,displayed_0.99,200,0.905,0.865,0.945,identifiable,,
+xai_grok420_nonreasoning,Grok,H1_0.70_minus_0.99,200,0.095,0.06,0.135,,,False

@@ -1,0 +1,112 @@
+{
+  "task_id": "009_prospective_ranking_invariance_confirmation",
+  "created_at": "2026-09-18T14:34:29.167473+00:00",
+  "code_commit": "9d377506df3cd2890071e22aa94e5460cb6d91d4",
+  "run": {
+    "ok": true,
+    "primary_complete": true,
+    "scientific_used": 15400,
+    "scientific_cap": 15400,
+    "provider_attempts": 2600,
+    "provider_cap": 20020,
+    "wall_clock_seconds": 1062.1788927089656,
+    "code_commit": "9d377506df3cd2890071e22aa94e5460cb6d91d4"
+  },
+  "phases": [
+    {
+      "phase": "primary_stage12_first",
+      "expected_pairs": 1000,
+      "answer_completed": 0,
+      "answer_failed": 0,
+      "answer_new": 0,
+      "confidence_completed": 0,
+      "confidence_failed": 0,
+      "confidence_new": 0
+    },
+    {
+      "phase": "primary_stage12_retry",
+      "expected_pairs": 1000,
+      "answer_completed": 0,
+      "answer_failed": 0,
+      "answer_new": 0,
+      "confidence_completed": 0,
+      "confidence_failed": 0,
+      "confidence_new": 0
+    },
+    {
+      "phase": "primary_stage3",
+      "planned": 7000,
+      "reused": 7000,
+      "new_scientific_calls": 0,
+      "successful": 7000,
+      "failed": 0,
+      "ok": true
+    },
+    {
+      "phase": "primary_stage3_retry",
+      "planned": 7000,
+      "reused": 7000,
+      "new_scientific_calls": 0,
+      "successful": 7000,
+      "failed": 0,
+      "ok": true
+    },
+    {
+      "phase": "repeat_extras",
+      "planned": 2800,
+      "reused": 2800,
+      "new_scientific_calls": 0,
+      "successful": 2800,
+      "failed": 0,
+      "ok": true
+    },
+    {
+      "phase": "repeat_extras_retry",
+      "planned": 2800,
+      "reused": 2800,
+      "new_scientific_calls": 0,
+      "successful": 2800,
+      "failed": 0,
+      "ok": true
+    },
+    {
+      "phase": "secondary_stage12_first",
+      "expected_pairs": 400,
+      "answer_completed": 0,
+      "answer_failed": 0,
+      "answer_new": 0,
+      "confidence_completed": 0,
+      "confidence_failed": 0,
+      "confidence_new": 0
+    },
+    {
+      "phase": "secondary_stage12_retry",
+      "expected_pairs": 400,
+      "answer_completed": 0,
+      "answer_failed": 0,
+      "answer_new": 0,
+      "confidence_completed": 0,
+      "confidence_failed": 0,
+      "confidence_new": 0
+    },
+    {
+      "phase": "secondary_stage3",
+      "planned": 2800,
+      "reused": 675,
+      "new_scientific_calls": 2125,
+      "successful": 2739,
+      "failed": 61,
+      "ok": false
+    },
+    {
+      "phase": "secondary_stage3_retry",
+      "planned": 2800,
+      "reused": 2800,
+      "new_scientific_calls": 0,
+      "successful": 2800,
+      "failed": 0,
+      "ok": true
+    }
+  ],
+  "paperDirection_sha256": "6496db58d51e9246f6ae7fca39104b39256888863022fff03966e0fa467c5bc0"
+}

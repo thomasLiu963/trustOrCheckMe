@@ -1,0 +1,10 @@
+src/task009.py
+src/task009_common.py
+src/task009_sample.py
+src/task009_run.py
+src/task009_analyze.py
+from_gpt/009_prospective_ranking_invariance_confirmation.md
+to_gpt/009_prospective_ranking_invariance_confirmation/report.md
+to_gpt/009_prospective_ranking_invariance_confirmation/preregistration.md
+to_gpt/009_prospective_ranking_invariance_confirmation/freeze_manifest.json
+results/study009_prospective/prospective.sqlite3

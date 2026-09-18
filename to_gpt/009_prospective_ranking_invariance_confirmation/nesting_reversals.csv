@@ -1,0 +1,17 @@
+model_alias,model_label,from_condition,to_condition,n,V_to_V,V_to_U,U_to_U,U_to_V,reversal_rate,downshift_V_to_U,upshift_U_to_V
+openai_gpt56_sol,GPT,displayed_0.70,displayed_0.85,500,114,178,208,0,0.356,0.356,0.0
+openai_gpt56_sol,GPT,displayed_0.85,displayed_0.90,500,78,36,374,12,0.096,0.072,0.024
+openai_gpt56_sol,GPT,displayed_0.90,displayed_0.95,500,59,31,397,13,0.088,0.062,0.026
+openai_gpt56_sol,GPT,displayed_0.95,displayed_0.99,500,39,33,426,2,0.07,0.066,0.004
+anthropic_sonnet5,Claude,displayed_0.70,displayed_0.85,500,399,63,37,1,0.128,0.126,0.002
+anthropic_sonnet5,Claude,displayed_0.85,displayed_0.90,500,382,18,94,6,0.048,0.036,0.012
+anthropic_sonnet5,Claude,displayed_0.90,displayed_0.95,500,323,65,112,0,0.13,0.13,0.0
+anthropic_sonnet5,Claude,displayed_0.95,displayed_0.99,500,282,41,174,3,0.088,0.082,0.006
+google_gemini38_flash,Gemini,displayed_0.70,displayed_0.85,200,16,25,158,1,0.13,0.125,0.005
+google_gemini38_flash,Gemini,displayed_0.85,displayed_0.90,200,12,5,177,6,0.055,0.025,0.03
+google_gemini38_flash,Gemini,displayed_0.90,displayed_0.95,200,12,6,178,4,0.05,0.03,0.02
+google_gemini38_flash,Gemini,displayed_0.95,displayed_0.99,200,10,6,180,4,0.05,0.03,0.02
+xai_grok420_nonreasoning,Grok,displayed_0.70,displayed_0.85,200,199,1,0,0,0.005,0.005,0.0
+xai_grok420_nonreasoning,Grok,displayed_0.85,displayed_0.90,200,197,2,0,1,0.015,0.01,0.005
+xai_grok420_nonreasoning,Grok,displayed_0.90,displayed_0.95,200,193,5,0,2,0.035,0.025,0.01
+xai_grok420_nonreasoning,Grok,displayed_0.95,displayed_0.99,200,178,17,2,3,0.1,0.085,0.015
