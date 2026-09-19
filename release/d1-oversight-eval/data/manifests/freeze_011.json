@@ -1,0 +1,27 @@
+{
+  "task": "011_code_executable_verification_generalization",
+  "label": "confirmatory / preregistered",
+  "created_at": "2026-09-18T19:12:27.902757+00:00",
+  "code_commit": "f783a230eb5263499cdf2c06ba0a5033d947d9ab",
+  "dataset": "livecodebench/code_generation_lite",
+  "release": "release_v6",
+  "lcb_commit": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+  "ladder": "hard_only",
+  "sample": {
+    "n": 286,
+    "seed": 20260922,
+    "id_list_sha256": "254d4a628415fd790b8d883a186ddb92c702854da3cdf30c3baca8cf9babf955"
+  },
+  "models": {
+    "openai_gpt56_sol": "gpt-5.6-sol",
+    "anthropic_sonnet5": "claude-sonnet-5"
+  },
+  "excluded_from_release": [
+    "problem statements",
+    "starter code",
+    "hidden tests",
+    "frozen generated programs",
+    "raw Stage-3 prompts",
+    "SQLite checkpoints"
+  ]
+}

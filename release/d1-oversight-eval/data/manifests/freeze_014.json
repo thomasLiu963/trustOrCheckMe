@@ -1,0 +1,27 @@
+{
+  "task": "014_rank_preserving_confidence_shift",
+  "label": "confirmatory for the offset; post-hoc relative to 009\u2013013",
+  "created_at": "2026-09-19T01:19:17.837539+00:00",
+  "transform": "q_delta = sigmoid(logit(q1) + delta); exact 0/1 endpoints held fixed",
+  "deltas": [
+    -1.5,
+    -0.75,
+    0.0,
+    0.75,
+    1.5
+  ],
+  "delta0_reuse": "REUSE_TRUE_Q_VISIBLE",
+  "display_format": ".12g",
+  "bootstrap": {
+    "seed": 20260927,
+    "resamples": 5000
+  },
+  "models": {
+    "openai_gpt56_sol": "gpt-5.6-sol",
+    "anthropic_sonnet5": "claude-sonnet-5"
+  },
+  "excluded_from_release": [
+    "SQLite path",
+    "filled prompts"
+  ]
+}

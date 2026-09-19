@@ -1,0 +1,25 @@
+{
+  "note": "These hashes are from the Task 009/011 preregistrations. They identify the templates used in the original study. The released .txt files replace benchmark content with placeholders and are therefore not byte-identical to the hashed filled prompts.",
+  "mmlu": {
+    "prompt_version": "task006_qualitative_pilot_v1",
+    "family": "qualitative_stakes_moderate_v1",
+    "template_hash_preregistered": "ec90530c644038dcee86accfc578c501533fdb69d5ea23caeae23dcc1d06dbad",
+    "confidence_sentence": "The AI previously estimated a {displayed_confidence} probability that this frozen answer is correct.",
+    "hidden_omits_confidence_sentence": true,
+    "display_format": "python format(number, '.12g')"
+  },
+  "code": {
+    "prompt_version": "task011_code_moderate_v1",
+    "family": "moderate",
+    "hashes_from_011_preregistration": {
+      "code": "4a088335da2ded619bef255358d8b963015670af7ac02f30fd10e6498da7e4cd",
+      "q1": "5d7e443a0ff8cec5ea5000387912e9f22166a6263f7d2872c03013e79f3bd1e0",
+      "stage3_hidden": "81ed6473b202cffdd7e76890c589e2a7aef246ab175db56fdef18f6cf0148f11",
+      "stage3_displayed_0.9": "070619b75ec0533ce075f39d674615536007962338c85127bfb4bddddcd3984f",
+      "family": "moderate",
+      "bundle": "4f01c905f2a15265115b46b34dd3e9fdafdda67a2e82f99b0f0307454c3e8afb"
+    },
+    "confidence_sentence": "The AI previously estimated a {displayed_confidence} probability that this frozen code will pass the independent hidden test suite.",
+    "display_format": "python format(number, '.12g')"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "task": "015_normative_robustness_audit",
+  "label": "POST_HOC_NORMATIVE_REANALYSIS",
+  "loss": "leakage + lambda * coverage",
+  "threshold": "VERIFY iff r(Z) > lambda",
+  "bootstrap": {
+    "seed": 20260928,
+    "resamples": 5000
+  },
+  "lambda_grid": [
+    0.001,
+    0.002,
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ]
+}

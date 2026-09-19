@@ -1,0 +1,42 @@
+{
+  "label": "POST_HOC_NORMATIVE_REANALYSIS",
+  "frozen_before_empirical_sections_5_to_10": true,
+  "created_at": "2026-09-19T06:20:00+00:00",
+  "task012_loss": "leakage + lambda * coverage",
+  "optimal_threshold_under_that_loss": "VERIFY iff r(Z) > lambda",
+  "do_not_use_threshold": "lambda / (1 + lambda)",
+  "lambda_grid": [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0],
+  "bootstrap": {"seed": 20260928, "resamples": 5000, "cluster": "question_id"},
+  "q1_baseline": {
+    "primary": "5-fold out-of-fold isotonic regression of error on q1",
+    "sensitivity": "5-fold out-of-fold logistic calibration of error on q1",
+    "seed": 20260928,
+    "no_routing_actions_in_fit": true
+  },
+  "materiality": {
+    "loss_spread": "max_delta L - min_delta L",
+    "spread_thresholds": [0.01, 0.02, 0.05, 0.10],
+    "invariance_material_if": "in at least one GPT cell, max spread >= 0.05 AND at least 3 consecutive frozen-lambda points have spread >= 0.02"
+  },
+  "claim_gate": {
+    "STRONG_NORMATIVE_CLAIM_SUPPORTED": {
+      "requires_all": [
+        "no-lambda statement is defined as: no observed Task-014 delta policy is loss-minimizing among the five observed deltas on any positive-lambda interval",
+        "that statement survives the rationalization audit",
+        "no threshold-notation error",
+        "rank-preserving shifts induce material positive regret vs the q1-only invariant baseline across a broad lambda interval",
+        "claim does not require a ground-truth oracle",
+        "wording avoids calling the model irrational",
+        "result is nontrivial beyond the Task-014 cost sweep"
+      ]
+    },
+    "NORMATIVE_RESCOPED_TO_INVARIANCE": "strong no-lambda wording fails or is ambiguous, BUT transformation-invariance is rigorous AND rank-preserving shifts produce material loss spread or pass-through regret under the frozen materiality rule",
+    "NO_NEW_NORMATIVE_UPGRADE": "spreads small, baseline adds little, or argument restates 012/014",
+    "CONTRADICTION_OR_ERROR": "inconsistent lambda threshold in existing analysis, unreproducible numbers, or mathematically invalid claims"
+  },
+  "two_rationalization_questions": {
+    "Q1_operating_point": "Is each observed delta policy best among the five for some lambda?",
+    "Q2_response_curve": "Does one fixed lambda make all five observed delta policies simultaneously loss-minimizing?",
+    "do_not_conflate": true
+  }
+}

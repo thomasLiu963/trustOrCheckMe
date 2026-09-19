@@ -1,12 +1,11 @@
-D1 PAPER DIRECTION — FINAL SCIENTIFIC DIRECTION AFTER TASK 016
+D1 PAPER DIRECTION — FINAL SCIENTIFIC DIRECTION AFTER TASK 015
 Working narrative / scientific source of truth
 Date: 2026-09-19
-Status: experimental program complete. Task 016 packages the frozen D1 traces, manifests, prompts, and analysis into a reusable reproduction artifact that regenerates the central 009/011/012/014/015 results without model calls. This strengthens reproducibility and reuse but does not change the scientific narrative. Public release remains contingent on resolving the package's licensing/redistribution questions. No further scientific experiments are justified.
+Status: experimental program complete. Task 014 is the final scientific experiment. Task 015 is a zero-call normative reanalysis of frozen 009–014. It rejects a strong “over-responsiveness / no λ rationalizes” upgrade and adds a narrower calibration-shift robustness claim: a delta-aware cost-sensitive policy that uses only q1 is invariant to rank-preserving level shifts, but the composed display+router map is not, and the resulting loss spread is material on GPT. No further scientific experiments are justified.
 
 ======================================================================
 0. PURPOSE OF THIS DOCUMENT
 ======================================================================
-
 
 This document supersedes all earlier D1 paperDirection files.
 
@@ -25,23 +24,23 @@ The final paper is about:
 
 The central systems question is:
 
-    How much causal leverage does confidence metadata have over external
-    verification behavior and downstream error leakage when the generated
-    output itself is held fixed?
+    How much causal leverage does the confidence metadata shown to an LLM
+    router have over external verification behavior and downstream error
+    leakage when the generated output itself is held fixed?
 
-The paper has two complementary causal intervention families:
+The paper now has TWO complementary causal intervention families:
 
 A. FIXED-SCORE STRESS TEST
    - same frozen output;
    - every item in a condition receives the same displayed confidence;
    - removes the scalar's within-condition item discrimination;
-   - measures the severity of a high-leverage confidence-routing failure.
+   - isolates the maximum behavioral leverage of displayed confidence level.
 
 B. RANK-PRESERVING LEVEL SHIFT
    - same frozen output;
-   - each item retains the ordering carried by its natural q1;
+   - each item keeps its own q1 ordering;
    - q1 is shifted monotonically in logit space;
-   - separates confidence LEVEL from loss of item discrimination.
+   - separates confidence LEVEL from the item ordering carried by q1.
 
 The fixed-score stress test produces the sharpest downstream effects:
 
@@ -55,8 +54,10 @@ GPT LiveCodeBench:
     leakage: 10.8% -> 32.9%
     +22.0 erroneous programs per 100 bypass the hidden-test verifier
 
-The rank-preserving intervention shows that the effect is not purely an
-artifact of replacing an informative score with a constant:
+The rank-preserving intervention then answers the obvious validity objection:
+does the effect survive if the scalar remains item-informative?
+
+Yes, but attenuated.
 
 GPT MMLU:
     coverage: 23.0% -> 6.8%
@@ -68,75 +69,60 @@ GPT code:
     leakage: 31.1% -> 35.7%
     +4.5pp leakage
 
-Claude MMLU:
-    coverage: 91.6% -> 60.4%
-    leakage: 0.0% -> 3.4%
+Thus:
 
-A final zero-call systems audit adds two useful facts:
-
-1. In the unmanipulated q1-visible GPT code condition, 55.6% of incorrect
-   programs are left unverified (95% CI [47.2%, 63.5%]).
-
-2. Rank-preserving confidence-level shifts can move normalized system loss by a
-   material amount under a fixed verification/error objective, even though q1
-   ordering is unchanged.
+    Item-level q1 information attenuates but does not remove
+    confidence-level sensitivity.
 
 The final scientific story is therefore:
 
-    Confidence metadata is not passive metadata. It is a causal control surface
-    for external oversight.
+    Confidence metadata is not passive metadata. It can act as a causal control
+    surface for LLM verification routing.
 
-    Confidence LEVEL, ITEM DISCRIMINATION, and DOWNSTREAM POLICY GAIN jointly
-    determine how much verification occurs and how many errors escape.
+    The largest oversight failures occur when the signal both shifts in level
+    and loses item-discriminative structure, but systematic level shifts alone
+    still move external verification and error leakage even when q1 ordering is
+    preserved.
 
 This is a behavioral systems paper, not a mechanism paper.
+
 ======================================================================
 1. THE FINAL PAPER IN ONE PARAGRAPH
 ======================================================================
 
 Large language models increasingly operate inside systems that selectively
-spend costly verification resources: human review, retrieval, stronger models,
-additional compute, tools, or executable tests. Confidence is a natural
-routing signal, but the downstream policy can itself give that signal large
-behavioral leverage. D1 isolates this leverage causally by freezing the
-generated output and manipulating only the confidence metadata shown before
-the model chooses USE_UNVERIFIED or VERIFY_FIRST.
+spend expensive verification resources: human review, retrieval, stronger
+models, additional computation, tools, executable tests, or other external
+checks. Confidence is a natural routing signal, but the downstream policy can
+itself give that signal large behavioral leverage. D1 isolates this leverage
+causally by freezing the generated output and manipulating only the confidence
+metadata shown before the model chooses USE_UNVERIFIED or VERIFY_FIRST.
 
 On preregistered MMLU-Pro data, a fixed-score intervention from 0.70 to 0.99
 changes verification coverage by 50.2 percentage points for GPT and 35.4
-points for Claude. A post-hoc consequence analysis shows that GPT's unverified
+points for Claude. Post-hoc consequence analysis shows that GPT's unverified
 error leakage rises from 2.0% to 13.8%.
 
 We then move to frozen LiveCodeBench programs, where VERIFY_FIRST requests an
 actual hidden test suite. GPT again shows a 38.8-point coverage shift, while
-erroneous programs left unverified rise from 10.8% to 32.9%. In the
-unmanipulated q1-visible GPT code condition, 55.6% of incorrect programs are
-already left unverified.
+erroneous programs left unverified rise from 10.8% to 32.9%. Claude remains
+near an always-verify ceiling.
 
-Because a constant score removes item discrimination, we run a final
-preregistered rank-preserving intervention that monotonically shifts each
-item's natural q1 while preserving q1 ordering. The effect attenuates but
-survives: GPT MMLU still shifts 16.2 points in coverage and 6.0 points in
-leakage; GPT code shifts 7.0 and 4.5 points respectively; Claude MMLU remains
-strongly level-sensitive.
+Because a constant score removes the scalar's item discrimination, we run a
+final preregistered rank-preserving intervention: each item's natural q1 is
+shifted monotonically in logit space while preserving q1 ordering. The effect
+attenuates but survives. GPT MMLU still shifts 16.2 points in coverage and 6.0
+points in leakage; GPT code shifts 7.0 and 4.5 points respectively. Claude MMLU
+also remains strongly level-sensitive, while Claude code stays near saturation.
 
-A zero-call systems robustness analysis then shows that these rank-preserving
-level shifts can move realized normalized system loss under the same fixed
-verification/error objective. The paper's design lesson is therefore broader
-than calibration alone:
+The resulting systems lesson is:
 
-    signal value quality,
-    item discrimination,
-    and confidence-to-policy gain
+    confidence quality, confidence item discrimination, and
+    confidence-to-policy gain are separate properties.
 
-are distinct properties of a confidence-routed oversight system.
-
-Alongside the experiments, D1 now has a packaged fixed-output reproduction
-artifact containing rights-safe frozen item-level routing traces, confidence
-interventions, correctness labels, preregistration/freeze manifests, prompt
-templates, and analysis code. The package reproduces the central results
-without new model calls. This is a secondary reproducibility/reuse contribution,
-not a new benchmark or a replacement for the scientific findings.
+A verification system should not only ask whether confidence is calibrated; it
+should also measure how much external oversight the routing policy allows that
+signal to control.
 
 ======================================================================
 2. ONE-SENTENCE MEMORY VERSION
@@ -150,45 +136,33 @@ preserving q1's item ordering reduces this effect but does not eliminate it.
 3. THE PAPER'S SPIKE
 ======================================================================
 
-
 The paper should remain sharp.
 
-The headline is NOT:
+Do NOT make the headline:
 
     “Rank-preserving confidence shifts cause 4.5 extra leaked code errors.”
+
+That is too narrow and undersells the program.
 
 The spike is conceptual:
 
     CONFIDENCE METADATA IS A CONTROL SURFACE FOR EXTERNAL OVERSIGHT.
 
-The strongest concrete stress-test demonstration is:
+The strongest concrete demonstration is the fixed-score stress test:
 
     +22 erroneous programs per 100 bypass a real hidden-test verifier
     when only displayed confidence changes.
 
-The strongest unmanipulated operational hook is:
+The crucial robustness result is:
 
-    in the natural q1-visible GPT code condition,
-    55.6% of incorrect programs are left unverified.
+    this is not purely an artifact of replacing an informative score with a
+    constant; when q1 ordering is preserved, confidence level still causally
+    moves routing and leakage.
 
-The crucial validity result is:
+Thus the large stress-test number stays in the headline, but it must be labeled
+as a controlled stress-test severity result rather than as a direct estimate of
+ordinary calibration drift.
 
-    preserving q1 ordering attenuates but does not eliminate confidence-level
-    sensitivity.
-
-The crucial systems-robustness result is:
-
-    under a fixed verification/error objective, rank-preserving level shifts
-    can move realized system loss even though the ordering carried by q1 stays
-    unchanged.
-
-Thus the paper combines:
-- a sharp stress-test severity result;
-- a natural-q1 operational escape statistic;
-- a rank-preserving causal control;
-- a fixed-objective systems robustness consequence.
-
-Do not let any one of these replace the others.
 ======================================================================
 4. WHAT TASK 014 CHANGED
 ======================================================================
@@ -706,7 +680,6 @@ Do NOT claim:
 19. TASK 011 + 012 — CODE STRESS-TEST CONSEQUENCE
 ======================================================================
 
-
 GPT CODE:
 
 displayed 0.70:
@@ -735,26 +708,6 @@ This is one of the paper's strongest concrete numbers.
 It must be called a STRESS-TEST effect, not an estimate of ordinary calibration
 drift.
 
-UNMANIPULATED q1-VISIBLE GPT CODE CONDITION:
-
-    error rate = 53.5%
-    leakage = 29.7%
-    conditional escape rate =
-        P(USE_UNVERIFIED | incorrect) = 55.6%
-    95% CI [47.2%, 63.5%]
-
-Preferred wording:
-
-    “In the unmanipulated q1-visible condition, about 55.6% of incorrect GPT
-     programs are left unverified.”
-
-This is a descriptive experimental operating-point statistic.
-
-Do NOT call it:
-- a real-world deployment failure rate;
-- an industry defect-escape rate;
-- a universal GPT property.
-
 CLAUDE CODE:
 
 displayed 0.70:
@@ -773,6 +726,7 @@ leakage:
     95% CI [+0.3, +2.8]
 
 Claude's hard-code policy is near VERIFY saturation.
+
 ======================================================================
 20. WHY TASK 014 WAS NECESSARY
 ======================================================================
@@ -966,43 +920,27 @@ The paper SHOULD say:
 26. THE NEW CENTRAL SYSTEMS DECOMPOSITION
 ======================================================================
 
-
 The final paper can now make a sharper conceptual claim:
 
-    External oversight depends on at least THREE distinct properties:
+    External oversight depends on BOTH:
+    (a) confidence LEVEL
+    and
+    (b) confidence ITEM DISCRIMINATION.
 
-    (a) CONFIDENCE LEVEL
-    (b) ITEM DISCRIMINATION
-    (c) DOWNSTREAM POLICY GAIN
-
-The fixed-score stress test changes both level and item discrimination.
+The fixed-score stress test changes both.
 
 The rank-preserving intervention changes level while preserving q1 ordering.
 
 Observed result:
 
 - confidence level has an independent causal effect;
-- preserving item discrimination attenuates the effect;
-- loss of item discrimination can magnify oversight leakage substantially;
-- magnitude is model/task/regime dependent.
-
-Task 015 adds one useful robustness layer:
-
-    rank-preserving confidence-level shifts can move realized normalized loss
-    under a fixed system objective.
-
-This is best described as TRANSFORMATION / CALIBRATION-SHIFT ROBUSTNESS of the
-composed display-plus-router system.
-
-Important qualification:
-
-A delta-aware scalar policy could undo the known monotone transform. The
-deployed router is not told delta. Therefore the result is a composed-system
-robustness fact, not a claim that the model is irrational.
+- loss of item discrimination can magnify that effect substantially;
+- magnitude is task/model dependent.
 
 This is more scientifically informative than simply saying:
 
     “confidence changes coverage.”
+
 ======================================================================
 27. NATURAL q1 OPERATING RANGE
 ======================================================================
@@ -1097,9 +1035,8 @@ The safe systems statement is:
     coexist unfavorably.
 
 ======================================================================
-29. COST / SYSTEM-ROBUSTNESS AXIS
+29. COST / NORMATIVE AXIS
 ======================================================================
-
 
 Use the Task-012 normalized loss:
 
@@ -1115,56 +1052,23 @@ where:
 
 No single lambda is declared realistic.
 
-The cost analysis has two roles.
+The cost sweep shows:
+- high-score / low-coverage policies can be costly when verification is cheap;
+- high-coverage policies can be costly when verification is expensive;
+- confidence-induced operating points therefore matter in both directions.
 
-ROLE 1 — OPERATING-POINT CONSEQUENCE
+Task 014 should also be plotted under the same loss function as a secondary
+robustness analysis.
 
-The fixed-score and rank-preserving conditions move the system across different
-coverage/leakage tradeoffs. Their desirability depends on the relative cost of
-verification and escaped errors.
+The paper is NOT:
 
-ROLE 2 — RANK-PRESERVING TRANSFORMATION ROBUSTNESS
+    “more verification is always better.”
 
-Holding lambda fixed, Task-014 confidence-level shifts can change realized
-normalized loss even though q1 ordering is preserved.
+It is:
 
-Observed maximum loss spread across tested deltas:
-
-GPT MMLU:
-    0.1020
-
-GPT code:
-    0.0594
-
-Claude MMLU:
-    0.2780
-
-Claude code:
-    0.0385
-    small / saturation-limited
-
-Mean spread:
-GPT MMLU 0.0542
-GPT code 0.0491
-Claude MMLU 0.0611
-Claude code 0.0181
-
-Interpretation:
-
-    the composed routing system is not invariant to rank-preserving
-    confidence-level shifts under a fixed system objective.
-
-Do NOT turn this into:
-- a claim that no lambda rationalizes an observed operating point;
-- a claim that the router is irrational;
-- a Bayes-optimality theorem.
-
-The paper is NOT saying:
-    more verification is always better.
-
-It is saying:
     confidence metadata can move the system to materially different operating
-    points and costs under the same objective.
+    points whose desirability depends on the verification/error tradeoff.
+
 ======================================================================
 30. MARGINAL VERIFICATION EFFICIENCY
 ======================================================================
@@ -1349,7 +1253,7 @@ Therefore D1 is NOT:
 Keep matched-budget routing compact.
 
 ======================================================================
-38. FINAL FOUR SCIENTIFIC CONTRIBUTIONS + SECONDARY ARTIFACT
+38. FINAL FOUR CONTRIBUTIONS
 ======================================================================
 
 CONTRIBUTION 1 — FIXED-OUTPUT CAUSAL INTERVENTION
@@ -1368,9 +1272,6 @@ On LiveCodeBench with an actual hidden-test verifier, GPT coverage shifts
 Post-hoc consequence analysis shows:
 - GPT MMLU leakage +11.8pp;
 - GPT code leakage +22.0pp.
-
-In the unmanipulated q1-visible GPT code condition:
-- 55.6% of incorrect programs are left unverified.
 
 CONTRIBUTION 3 — RANK-PRESERVING CAUSAL DECOMPOSITION
 
@@ -1391,54 +1292,26 @@ Claude MMLU:
     -31.2pp coverage
     +3.4pp leakage
 
-Thus confidence level has a causal effect beyond the loss of item
-discrimination.
+Thus both confidence level and item discrimination matter.
 
-CONTRIBUTION 4 — FIXED-OBJECTIVE SYSTEMS ROBUSTNESS
+CONTRIBUTION 4 — SYSTEMS CONSEQUENCE AND OPERATING-REGIME HETEROGENEITY
 
-A zero-call robustness analysis shows that rank-preserving confidence-level
-shifts can produce materially different realized normalized system losses under
-the same verification/error objective.
+Confidence-induced operating points produce materially different costs across
+verification/error tradeoffs.
+
+Sensitivity varies by model/task:
+- GPT high on MMLU and code stress test;
+- Claude high on MMLU;
+- Claude code near saturation.
 
 Design implication:
 
-    evaluate confidence value quality,
-    item discrimination,
-    and confidence-to-policy gain separately.
-
-This is a system-robustness contribution, not a claim of model irrationality.
-
-SECONDARY RELEASE — REUSABLE FIXED-OUTPUT EVALUATION ARTIFACT
-
-D1 also packages the rights-safe frozen traces and analysis needed to reproduce
-the central coverage, leakage, escape-rate, rank-preserving, and cost results
-without new model calls.
-
-The artifact includes:
-- item IDs and dataset pins;
-- natural and displayed confidence metadata;
-- routing actions;
-- correctness/pass-fail labels;
-- preregistration/freeze manifests;
-- prompt templates with benchmark content replaced by placeholders;
-- analysis and bootstrap code;
-- a reproduce_main.py script with assertions against the frozen headline values;
-- an offline example showing how alternative routing rules can be evaluated on
-  the same frozen labels.
-
-This is a secondary reproducibility/reuse contribution.
-
-Do NOT present it as:
-- a new benchmark;
-- a leaderboard;
-- a novel generic confidence-sensitivity metric;
-- an AI-control benchmark;
-- a reason to retitle the paper as a framework paper.
+    evaluate signal quality, item discrimination, and confidence-to-policy gain
+    separately.
 
 ======================================================================
 39. FINAL INTRODUCTION LOGIC
 ======================================================================
-
 
 Paragraph 1:
 AI systems increasingly route expensive external verification selectively.
@@ -1466,11 +1339,9 @@ Downstream consequence:
 
 Paragraph 7:
 Real verifier:
-- GPT code 38.8pp coverage shift;
+- GPT code 38.8pp coverage;
 - +22 leaked erroneous programs per 100;
-- in the unmanipulated q1-visible condition, 55.6% of incorrect GPT programs
-  are left unverified;
-- Claude code is near saturation.
+- Claude code saturation.
 
 Paragraph 8:
 Validity challenge:
@@ -1484,15 +1355,11 @@ Preregistered rank-preserving level shift:
 - Claude MMLU +3.4.
 
 Paragraph 10:
-Systems robustness:
-rank-preserving level shifts also move normalized system loss under a fixed
-verification/error objective.
-
-Paragraph 11:
 Conclusion:
-confidence metadata functions as a control surface;
-confidence level, item discrimination, and downstream policy gain are distinct
-system properties.
+both confidence level and item discrimination shape oversight behavior;
+confidence metadata functions as a control surface, not merely a passive
+probability report.
+
 ======================================================================
 40. ABSTRACT DIRECTION
 ======================================================================
@@ -1508,35 +1375,17 @@ whether to request independent verification. On a preregistered study of 500
 unseen MMLU-Pro questions, fixed displayed confidence from 0.70 to 0.99 changes
 verification coverage by 50.2 percentage points for GPT and 35.4 points for
 Claude. A post-hoc consequence analysis shows that GPT's erroneous outputs left
-unverified rise by 11.8 points.
-
-We then study frozen LiveCodeBench programs, where verification is an actual
-hidden test suite. GPT coverage shifts by 38.8 points and erroneous programs
-left unverified rise by 22.0 points under the fixed-score stress test. Even in
-the unmanipulated q1-visible condition, 55.6% of incorrect GPT programs are left
-unverified.
-
-Because fixed scores remove item-level discrimination, we run a final
-preregistered rank-preserving intervention that monotonically shifts each
-item's natural confidence while preserving q1 ordering. The effect attenuates
-but persists, with GPT leakage rising by 6.0 points on MMLU and 4.5 points on
-code. A fixed-objective systems analysis further shows that these
-rank-preserving shifts can induce materially different realized losses without
-changing the ordering carried by q1.
-
-Together, these results show that confidence level, item discrimination, and
-downstream policy gain are distinct determinants of LLM verification behavior,
-and that confidence metadata can act as a causal control surface for external
-oversight.
-
-OPTIONAL FINAL ABSTRACT CLAUSE — USE ONLY IF THE ARTIFACT IS PUBLICLY RELEASED
-BY SUBMISSION:
-
-    We also release the frozen routing traces, manifests, and analysis code
-    needed to reproduce the central results without new model calls.
-
-Do not spend abstract space on the artifact if licensing prevents public
-release by submission time.
+unverified rise by 11.8 points. We then study frozen LiveCodeBench programs,
+where verification is an actual hidden test suite: GPT coverage shifts by 38.8
+points and erroneous programs left unverified rise by 22.0 points, while
+Claude remains near an always-verify ceiling. Because fixed scores remove
+item-level discrimination, we run a final preregistered rank-preserving
+intervention that monotonically shifts each item's natural confidence while
+preserving q1 ordering. The effect attenuates but persists, with GPT leakage
+rising by 6.0 points on MMLU and 4.5 points on code. These results show that
+confidence level and item discrimination are distinct determinants of LLM
+verification behavior, and that confidence metadata can act as a high-leverage
+control surface for external oversight.
 
 ======================================================================
 41. TITLE FAMILY
@@ -1572,7 +1421,6 @@ Avoid:
 42. MAIN PAPER FIGURE PLAN
 ======================================================================
 
-
 FIGURE 1 — FIXED-OUTPUT CAUSAL DESIGN
 
 Show:
@@ -1586,7 +1434,7 @@ Include both:
 - QA idealized verifier;
 - code hidden-test verifier.
 
-FIGURE 2 — HEADLINE FIXED-SCORE STRESS TEST + ESCAPE
+FIGURE 2 — HEADLINE FIXED-SCORE STRESS TEST
 
 Panel A:
 coverage vs fixed displayed confidence
@@ -1594,9 +1442,11 @@ coverage vs fixed displayed confidence
 Panel B:
 unverified errors per 100 outputs
 
-Add a small callout for the unmanipulated q1-visible GPT code condition:
-
-    55.6% of incorrect programs left unverified.
+Highlight:
+- GPT MMLU
+- GPT code
+- Claude MMLU
+- Claude code saturation
 
 This is the spiky main result figure.
 
@@ -1612,27 +1462,25 @@ Reader takeaway:
     preserving q1 ordering attenuates but does not eliminate confidence-level
     sensitivity.
 
-FIGURE 4 — FIXED-OBJECTIVE ROBUSTNESS
-
-Show normalized loss vs lambda for selected rank-preserving deltas, or a compact
-loss-spread panel.
-
-Reader takeaway:
-
-    under the same system objective, rank-preserving confidence-level shifts
-    can move realized system cost.
-
-FIGURE 5 — NATURAL q1 / CALIBRATION CONTEXT
+FIGURE 4 — NATURAL q1 / CALIBRATION CONTEXT
 
 Show:
 - natural q1 distributions;
 - correct vs incorrect;
 - intervention range.
 
+FIGURE 5 — COST / REGRET SWEEP
+
+loss(lambda) =
+    leakage + lambda * coverage
+
+Optional compact appendix/main-text panel depending space.
+
 Allocation/ranking figure:
 appendix unless reviewers need it.
+
 ======================================================================
-43. MAIN TEXT VS APPENDIX VS ARTIFACT
+43. MAIN TEXT VS APPENDIX
 ======================================================================
 
 MAIN TEXT:
@@ -1642,17 +1490,14 @@ MAIN TEXT:
 - fixed-score MMLU result
 - Task-012 leakage consequence
 - code hidden-test result
-- unmanipulated GPT code escape statistic
 - Task-014 rank-preserving robustness/decomposition
-- fixed-objective transformation-robustness result
 - natural q1 context
 - cost sweep
 - Claude saturation boundary
 - compact allocation result
 - limitations
-- short reproducibility/artifact paragraph if the package is publicly released
 
-APPENDIX / SUPPLEMENT:
+APPENDIX:
 
 - Historical V2 full grid
 - authority framing
@@ -1671,31 +1516,8 @@ APPENDIX / SUPPLEMENT:
 - marginal efficiency
 - Task-014 transformation audit
 - exact endpoint/rounding details
-- full Task-015 robustness calculations
-- artifact data card / manifests / reproduction instructions as appropriate
-- Task 013 internal mitigation audit only if disclosure/reproducibility norms
-  require listing all internal analyses; otherwise keep in repo, not narrative.
-
-ARTIFACT:
-
-Preferred public package:
-    release/d1-oversight-eval/
-
-Core paper-facing files:
-- README.md
-- DATA_CARD.md
-- LICENSES.md
-- reproduce_main.py
-- rights-safe item-level routing / offset CSVs
-- freeze/preregistration manifests
-- placeholder prompt templates
-- trimmed analysis code
-- publication figures
-- offline threshold-router example
-
-The artifact should remain separate from the scientific narrative:
-use it to support reproducibility and reuse, not to create a fifth scientific
-claim.
+- Task 013 internal mitigation audit ONLY if disclosure/reproducibility norms
+  require listing all internal analyses; otherwise keep in repo, not manuscript.
 
 ======================================================================
 44. RELATED-WORK POSITIONING
@@ -1741,7 +1563,6 @@ Do not assert this without final literature verification.
 45. LIKELY REVIEWER ATTACKS AND RESPONSES
 ======================================================================
 
-
 ATTACK 1:
 “You fed the router artificial numbers.”
 
@@ -1760,63 +1581,52 @@ natural drift estimate. Task 014 quantifies the more constrained effect:
 +4.5pp leakage under an order-preserving confidence-level shift.
 
 ATTACK 3:
-“What makes this more than another abstention-sensitivity paper?”
+“So Task 014 weakens your headline.”
 
 RESPONSE:
-D1 freezes the output, manipulates an externally displayed routing signal,
-measures an external verification action, executes a real hidden-test verifier,
-tracks downstream error escape, and separately tests rank-preserving
-confidence-level shifts. The contribution is the end-to-end causal control
-surface and system consequence, not merely a confidence/abstention slope.
+It narrows the interpretation but strengthens validity. The central claim is
+not that ordinary calibration drift causes +22/100 leakage. It is that
+confidence metadata has causal oversight leverage, and that both signal level
+and item discrimination determine the magnitude.
 
 ATTACK 4:
 “Why is more verification better?”
 
 RESPONSE:
 We do not assume it is. The loss sweep varies verification cost relative to
-escaped-error cost.
+escaped error cost.
 
 ATTACK 5:
-“Does the rank-preserving transform actually matter normatively?”
-
-RESPONSE:
-Under a fixed verification/error objective, the tested rank-preserving level
-shifts produce materially different realized normalized losses in GPT MMLU,
-GPT code, and Claude MMLU. This is a composed-system robustness result, not a
-claim that the model is irrational.
-
-ATTACK 6:
 “Claude does not replicate on code.”
 
 RESPONSE:
 Claude's hard-code policy is near VERIFY saturation. This is reported as an
 operating-regime boundary.
 
-ATTACK 7:
+ATTACK 6:
 “These are closed models.”
 
 RESPONSE:
 The study is behavioral, not mechanistic. Closed-model status limits mechanism
 and universality, not the fixed-output causal estimand.
 
-ATTACK 8:
-“Task 012 and Task 015 are post-hoc.”
+ATTACK 7:
+“Task 012 is post-hoc.”
 
 RESPONSE:
-Correct. Coverage effects and Task 014 are prospective/preregistered.
-Task-012 consequence analyses and Task-015 systems-robustness analyses are
-transparently labeled post-hoc.
+Correct. Coverage effects are prospective/preregistered. Task-012 leakage/cost
+analyses are transparently post-hoc. Task 014 is separately preregistered.
 
-ATTACK 9:
+ATTACK 8:
 “You found no mitigation.”
 
 RESPONSE:
 The paper is a causal systems characterization/failure-mode paper, not a new
 router paper. We do not manufacture a mitigation after outcomes.
+
 ======================================================================
 46. CLAIMS SUPPORTED
 ======================================================================
-
 
 PREREGISTERED / PROSPECTIVE:
 
@@ -1846,7 +1656,7 @@ PREREGISTERED / PROSPECTIVE:
        coverage -31.2pp
        leakage +3.4pp
 
-6. Therefore preserving q1 ordering attenuates but does not remove
+6. Therefore item-level q1 ordering attenuates but does not remove
    confidence-level sensitivity.
 
 POST-HOC SYSTEMS CONSEQUENCE:
@@ -1857,24 +1667,14 @@ POST-HOC SYSTEMS CONSEQUENCE:
 8. GPT fixed-score code leakage:
    +22.0pp.
 
-9. In the unmanipulated q1-visible GPT code condition:
-   55.6% of incorrect programs are left unverified
-   (95% CI [47.2%, 63.5%]).
+9. Natural q1 overlaps the intervention range substantially.
 
-10. Natural q1 overlaps the intervention range substantially.
-
-11. Confidence-induced operating points have materially different normalized
+10. Confidence-induced operating points have materially different normalized
     costs across broad lambda intervals.
 
-12. Rank-preserving confidence-level shifts produce material fixed-objective
-    normalized-loss variation in GPT MMLU and GPT code (and Claude MMLU).
-
-13. Therefore the composed verification policy is not invariant to the tested
-    rank-preserving confidence-level shifts.
 ======================================================================
 47. CLAIMS NOT SUPPORTED
 ======================================================================
-
 
 Do NOT state:
 
@@ -1885,8 +1685,6 @@ Do NOT state:
 - all models generalize the effect
 - Claude is safer or more robust normatively
 - GPT is irrational
-- no cost ratio can rationalize the observed operating points
-- the router is Bayes-dominated for every lambda
 - provider guardrails cause Claude saturation
 - q1 contains all relevant uncertainty
 - rank-preserving transformation preserves all information
@@ -1895,9 +1693,9 @@ Do NOT state:
 - hidden confidence is a good mitigation
 - optimal coverage equals error prevalence
 - one lambda is realistic
-- the unmanipulated escape statistic is a real-world deployment failure rate
 - internal confidence states were identified
 - the paper establishes mechanism
+
 ======================================================================
 48. FINAL PAPER STRUCTURE
 ======================================================================
@@ -1941,7 +1739,6 @@ Do NOT state:
    - calibration context
    - cost sweep
    - marginal verification efficiency
-   - fixed-objective transformation robustness
 
 9. SECONDARY ALLOCATION ANALYSIS
    - richer score-specific model
@@ -1953,29 +1750,23 @@ Do NOT state:
     - level vs discrimination
     - model/task regimes
     - closed-model boundary
-    - short oversight-signal-robustness / AI-control connection, if useful
 
-11. REPRODUCIBILITY / ARTIFACT
-    - frozen routing traces
-    - manifests / prompt templates
-    - reproduce_main.py
-    - rights-safe release boundaries
-    - substitutable generator/router/verifier interface
+11. LIMITATIONS
 
-12. LIMITATIONS
-
-13. CONCLUSION
-
-If page limits are tight, Section 11 can be folded into Experimental Framework
-plus appendix/repository material. It should not displace scientific results.
+12. CONCLUSION
 
 ======================================================================
 49. ICLR-LEVEL SELLING POINT
 ======================================================================
 
-The final selling point is:
+The final selling point is NOT:
 
-    “We causally map a control surface in resource-bounded LLM systems.”
+    “We found a huge number and then another experiment made it smaller.”
+
+It is:
+
+    “We causally map a previously under-characterized control surface in
+     resource-bounded LLM systems.”
 
 The paper establishes:
 
@@ -1983,64 +1774,27 @@ The paper establishes:
    verification under a controlled fixed-score stress test;
 
 2. that leverage has concrete downstream consequences:
-   up to +22 erroneous programs per 100 bypass a real test-suite verifier;
+   up to +22 erroneous programs per 100 bypassing a real test-suite verifier;
 
-3. the problem is operationally visible even without manipulation:
-   in the unmanipulated q1-visible GPT code condition, 55.6% of incorrect
-   programs are left unverified;
-
-4. the result is not purely an artifact of replacing an informative score with
+3. the result is not purely an artifact of replacing an informative score with
    a constant:
    rank-preserving shifts still move routing and leakage;
 
-5. preserving item discrimination substantially attenuates the effect,
+4. preserving item discrimination substantially attenuates the effect,
    especially on code;
 
-6. under a fixed verification/error objective, those rank-preserving shifts
-   can still move realized system loss materially;
+5. therefore confidence LEVEL and confidence DISCRIMINATION are distinct system
+   properties that jointly determine oversight behavior;
 
-7. therefore confidence LEVEL, ITEM DISCRIMINATION, and DOWNSTREAM POLICY GAIN
-   are distinct system properties that jointly determine oversight behavior;
+6. sensitivity is model/task/regime dependent.
 
-8. sensitivity is model/task/regime dependent.
-
-This is stronger than a generic confidence-abstention characterization because
-the contribution is end-to-end:
-
-    external displayed signal
-        ->
-    routing action
-        ->
-    executed verifier
-        ->
-    escaped errors
-        ->
-    fixed-objective system cost.
-
-SECONDARY SUBMISSION STRENGTH:
-
-The reusable artifact strengthens reviewer confidence that D1 is not a
-one-off opaque evaluation:
-- central results regenerate without APIs;
-- preregistration/freeze provenance is packaged;
-- others can recompute cost curves and test offline routing rules;
-- the generator/router/verifier interface is documented.
-
-But the artifact is NOT the ICLR selling point by itself.
-
-Correct reviewer impression:
-
-    “careful causal systems study with a usable reproducibility/evaluation
-     package”
-
-not:
-
-    “new benchmark/framework paper.”
+This is a stronger scientific package than the pre-014 version because the
+sharp stress-test result now survives the obvious validity control in
+attenuated form.
 
 ======================================================================
 50. FINAL PRACTICAL DESIGN MESSAGE
 ======================================================================
-
 
 Do not ask only:
 
@@ -2055,26 +1809,20 @@ And:
     “How much external oversight does the downstream router allow this signal
      to control?”
 
-And:
-
-    “If the confidence representation shifts while its item ordering stays the
-     same, does the composed verification system remain stable under the same
-     objective?”
-
-Four separate system properties:
+Three separate system properties:
 
 1. VALUE QUALITY
 2. ITEM DISCRIMINATION
 3. POLICY GAIN
-4. TRANSFORMATION ROBUSTNESS
 
-The same nominally informative confidence signal can produce different system
-behavior under different downstream routing policies.
+The same nominally “good” confidence signal can behave very differently under
+different downstream routing policies.
 
-Conversely, a high-gain router is most consequential when signal quality,
-discrimination, or representation stability degrades.
+Conversely, a high-gain router is most dangerous when signal quality or
+discrimination degrades.
 
 This is the final design lesson.
+
 ======================================================================
 51. FINAL TITLE RECOMMENDATION
 ======================================================================
@@ -2128,46 +1876,8 @@ TASK 013:
 
 TASK 014:
     LEVEL_SENSITIVITY_PARTIAL.
+    MODERATE SCIENTIFIC UPGRADE.
     MAIN-TEXT VALIDITY CONTROL.
-
-TASK 015:
-    ZERO-CALL SYSTEMS-ROBUSTNESS UPGRADE.
-    KEEP:
-    - unmanipulated q1-visible escape statistic;
-    - rank-preserving fixed-objective loss non-invariance.
-    DO NOT BUILD THE PAPER AROUND ANY “NO-LAMBDA” OR IRRATIONALITY CLAIM.
-
-TASK 016:
-    USEFUL RELEASE.
-    PUBLIC REPRODUCTION ARTIFACT BUILT.
-    NO SCIENTIFIC CLAIM CHANGE.
-
-    PACKAGE:
-        release/d1-oversight-eval/
-
-    REPRODUCTION:
-        PASS.
-        Central 009/011/012/014/015 headline numbers regenerate from released
-        CSVs without new model calls, benchmark text, hidden tests, or raw
-        SQLite.
-
-    KEEP IN PAPER:
-        - one secondary reproducibility/artifact contribution;
-        - short reproducibility section or paragraph;
-        - optional final abstract clause only if public release is live.
-
-    DO NOT CLAIM:
-        - new benchmark;
-        - new leaderboard;
-        - novel generic confidence-sensitivity metric;
-        - framework-paper identity;
-        - AI-control benchmark.
-
-    PUBLIC RELEASE BLOCKER:
-        licensing/redistribution review.
-        The conservative package is already rights-minimized, but publication
-        should wait until the D1 code/data license is chosen and unresolved
-        upstream/provider questions are cleared or explicitly accepted.
 
 MORE BENCHMARKS:
     NO.
@@ -2190,17 +1900,53 @@ MORE MITIGATION SEARCH:
 NEXT:
 
 1. verify final related-work/novelty claims against primary sources;
-2. finalize publication figures;
-3. resolve artifact licensing/redistribution questions;
-4. make the rights-safe artifact public if cleared;
-5. write the manuscript around confidence metadata as a control surface;
-6. keep fixed-score effects sharp but explicitly label them stress-test effects;
-7. present Task 014 as the rank-preserving validity control;
-8. present Task 015 only as fixed-objective robustness + unmanipulated escape;
-9. mention Task 016 only as a secondary reproducibility/reuse contribution;
-10. preserve preregistered vs post-hoc labels exactly;
-11. run adversarial reviewer pass;
-12. fix only real statistical/reproducibility problems.
+2. build final figures;
+3. write the manuscript around confidence metadata as a control surface;
+4. keep fixed-score effects sharp but explicitly label them stress-test effects;
+5. present Task 014 as the rank-preserving validity control;
+5a. add one Task-015 calibration-shift / invariance section; do not promote Candidate 2;
+6. preserve preregistered vs post-hoc labels exactly;
+7. run adversarial reviewer pass;
+8. fix only real statistical/reproducibility problems.
+
+
+======================================================================
+52A. TASK 015 — CALIBRATION-SHIFT ROBUSTNESS (POST HOC)
+======================================================================
+
+Label: POST_HOC_NORMATIVE_REANALYSIS. No new model calls.
+
+Decision-theory fact (Task-012 loss leakage + λ·coverage):
+
+    VERIFY iff r(Z) > λ.
+
+Do not write λ/(1+λ) under that convention.
+
+A known monotone reparameterization of q1 does not change a delta-aware
+scalar decision problem. The deployed router is not told δ, so the composed
+policy can still move.
+
+Claim gate: NORMATIVE_RESCOPED_TO_INVARIANCE.
+
+ALLOWED:
+
+    The composed verification policy is not invariant to rank-preserving
+    confidence-level shifts; the same scalar information can induce
+    materially different oversight costs under fixed system objectives.
+
+FORBIDDEN:
+
+    over-responsive / no λ rationalizes the observed operating point;
+    the model is irrational;
+    Bayes-dominated for every λ;
+    the q1-only baseline is the Bayes-optimal router;
+    ground-truth oracles as attainable policies.
+
+Unmanipulated q1-visible descriptive fact (not a deployment rate):
+about 56% of incorrect GPT programs are left unverified.
+
+Use as one main-text section, not a replacement for the control-surface
+spine (012 stress test + 014 rank-preserving attenuation).
 
 ======================================================================
 53. ABSOLUTE STOP RULE
@@ -2259,7 +2005,11 @@ OUTDATED STORY:
 
     “confidence mainly changes coverage rather than allocation.”
 
-CURRENT FINAL STORY:
+TASK-012-ONLY STORY:
+
+    “confidence metadata can produce huge oversight/leakage changes.”
+
+FINAL POST-TASK-014 STORY:
 
     Confidence metadata is a causal control surface for LLM verification
     routing.
@@ -2270,11 +2020,11 @@ CURRENT FINAL STORY:
     per 100 on GPT code bypass independent checking.
 
     Those fixed-score conditions intentionally remove the scalar's within-
-    condition item discrimination, so the magnitude should be read as
+    condition item discrimination, so the resulting magnitude should be read as
     stress-test severity, not ordinary calibration drift.
 
-    A preregistered rank-preserving intervention shifts each item's natural q1
-    monotonically while preserving q1 ordering.
+    A final preregistered rank-preserving intervention shifts each item's
+    natural q1 monotonically while preserving q1 ordering.
 
     The effect becomes smaller but remains causal and measurable:
 
@@ -2290,71 +2040,36 @@ CURRENT FINAL STORY:
             -31.2pp coverage
             +3.4pp leakage
 
-    Therefore preserving q1 ordering attenuates but does not eliminate
+    Therefore item-level q1 information attenuates but does not eliminate
     confidence-level sensitivity.
 
-    The paper also has a strong unmanipulated operational hook:
+    The final scientific contribution is a decomposition:
 
-        in the natural q1-visible GPT code condition,
-        55.6% of incorrect programs are left unverified.
-
-    A post-hoc fixed-objective robustness analysis shows that tested
-    rank-preserving confidence-level shifts can materially change realized
-    normalized system loss even though the ordering carried by q1 is unchanged.
-
-    The final scientific decomposition is:
-
-        CONFIDENCE VALUE QUALITY
+        CONFIDENCE LEVEL
         +
         ITEM DISCRIMINATION
         +
         DOWNSTREAM POLICY GAIN
-        +
-        TRANSFORMATION ROBUSTNESS
 
     jointly determine how much independent oversight an LLM system requests and
     how many errors escape checking.
 
     Magnitude depends strongly on model, task, and operating regime.
 
-SECONDARY ARTIFACT STORY:
+POST-TASK-015 ADDENDUM:
 
-    D1 now includes a packaged, rights-minimized fixed-output evaluation
-    artifact that reproduces the central headline numbers without new model
-    calls.
-
-    The artifact contains frozen routing traces, confidence interventions,
-    correctness labels, manifests, prompt templates, and analysis code, plus a
-    documented interface for offline alternative routing rules.
-
-    This improves reproducibility and reuse.
-
-    It does NOT change the scientific headline and should not be used to
-    relabel D1 as a benchmark/framework paper.
-
-    Public release is conditional on resolving the package's code/data
-    licensing and upstream/provider redistribution questions.
+    Reject “over-responsiveness / no λ rationalizes.” Add one main-text section:
+    the composed verification policy is not invariant to rank-preserving
+    confidence-level shifts; the same scalar information can induce materially
+    different oversight costs under fixed system objectives.
 
 FINAL WRITING RULE:
 
     keep the fixed-score stress-test result sharp;
     never imply it equals ordinary deployment drift;
-    use Task 014 as the rank-preserving validity control;
-    use Task 015 only for the unmanipulated escape hook and fixed-objective
-    transformation-robustness result;
-    use Task 016 only as a secondary reproducibility/reuse contribution;
-    do not mention failed “no-lambda” / over-responsiveness framing;
+    use Task 014 as the validity control that preserves q1 ordering;
     lead with the control-surface concept;
     keep allocation secondary;
     keep mechanism claims out;
     omit Task 013 from the narrative;
     stop experimenting.
-
-FINAL EXECUTION PRIORITY:
-
-    1. finish literature verification;
-    2. finalize figures;
-    3. clear artifact licensing;
-    4. write the manuscript;
-    5. run adversarial review;
-    6. submit.

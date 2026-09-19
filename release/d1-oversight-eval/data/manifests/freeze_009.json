@@ -1,0 +1,39 @@
+{
+  "task": "009_prospective_ranking_invariance_confirmation",
+  "label": "confirmatory / preregistered",
+  "created_at": "2026-09-18T12:58:03.563552+00:00",
+  "code_commit": "9d377506df3cd2890071e22aa94e5460cb6d91d4",
+  "dataset": {
+    "name": "TIGER-Lab/MMLU-Pro",
+    "split": "test",
+    "revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be"
+  },
+  "sample": {
+    "primary_n": 500,
+    "primary_seed": 20260918,
+    "primary_id_list_sha256": "4cc2f1dce283499fe40049b73900fb7862d7e153d76d8b75590109c0ce12d99f"
+  },
+  "models": {
+    "openai_gpt56_sol": "gpt-5.6-sol",
+    "anthropic_sonnet5": "claude-sonnet-5"
+  },
+  "conditions": [
+    "hidden",
+    "true_q_visible",
+    "displayed_0.70",
+    "displayed_0.85",
+    "displayed_0.90",
+    "displayed_0.95",
+    "displayed_0.99"
+  ],
+  "bootstrap": {
+    "note": "Task 012 leakage reanalysis uses seed 20260925, 5000 item-clustered resamples"
+  },
+  "excluded_from_release": [
+    "question stems",
+    "answer options",
+    "official answer keys",
+    "raw Stage-3 prompts",
+    "Gemini/Grok secondary roster"
+  ]
+}
