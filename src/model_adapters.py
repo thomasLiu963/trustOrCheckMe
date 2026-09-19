@@ -37,8 +37,19 @@ class AdapterError(RuntimeError):
         self.transient = transient
 
 
-def output_schema(stage: str) -> dict[str, Any]:
+CODE_STAGE_MAX_OUTPUT_TOKENS = 4096
+
+
+def tokens_for_stage(stage: str, default: int) -> int:
+    if stage == "code":
+        return CODE_STAGE_MAX_OUTPUT_TOKENS
+    return default
+
+
+def output_schema(stage: str) -> dict[str, Any] | None:
     """Return the common provider-neutral JSON schema for one stage."""
+    if stage == "code":
+        return None
     properties: dict[str, Any]
     required: list[str]
     if stage == "answer":
@@ -197,6 +208,7 @@ def _model_response(
         "latency": latency_seconds,
         "finish_reason": finish_reason,
         "stop_reason": finish_reason,
+        "refused": refusal,
         "refusal": refusal,
         "is_refusal": refusal,
         "timestamp": timestamp,
@@ -336,20 +348,22 @@ class OpenAIAdapter(ModelAdapter):
     api_style = "responses"
 
     def prepare_request(self, *, stage: str, prompt: str) -> PreparedRequest:
-        payload = {
+        payload: dict[str, Any] = {
             "model": self.api_model,
             "reasoning": {"effort": "none"},
             "input": prompt,
-            "max_output_tokens": self.max_output_tokens,
-            "text": {
+            "max_output_tokens": tokens_for_stage(stage, self.max_output_tokens),
+        }
+        schema = output_schema(stage)
+        if schema is not None:
+            payload["text"] = {
                 "format": {
                     "type": "json_schema",
                     "name": f"{stage}_output",
                     "strict": True,
-                    "schema": output_schema(stage),
+                    "schema": schema,
                 }
-            },
-        }
+            }
         return PreparedRequest(
             provider=self.provider,
             api_style=self.api_style,
@@ -420,18 +434,20 @@ class AnthropicAdapter(ModelAdapter):
     api_style = "messages"
 
     def prepare_request(self, *, stage: str, prompt: str) -> PreparedRequest:
-        payload = {
+        payload: dict[str, Any] = {
             "model": self.api_model,
             "thinking": {"type": "disabled"},
-            "max_tokens": self.max_output_tokens,
+            "max_tokens": tokens_for_stage(stage, self.max_output_tokens),
             "messages": [{"role": "user", "content": prompt}],
-            "output_config": {
+        }
+        schema = output_schema(stage)
+        if schema is not None:
+            payload["output_config"] = {
                 "format": {
                     "type": "json_schema",
-                    "schema": output_schema(stage),
+                    "schema": schema,
                 }
-            },
-        }
+            }
         return PreparedRequest(
             provider=self.provider,
             api_style=self.api_style,

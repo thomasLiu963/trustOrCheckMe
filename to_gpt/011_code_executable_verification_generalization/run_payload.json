@@ -1,0 +1,9 @@
+{
+  "phase": "confirmatory",
+  "pairs": 572,
+  "failed": 0,
+  "ok": true,
+  "scientific_used": 7948,
+  "provider_attempts": 7150,
+  "paperDirection_sha256": "8546e2e8002d9c96c6be7c946a4d63705068adda133b7a7c0c10bee2b8542b36"
+}

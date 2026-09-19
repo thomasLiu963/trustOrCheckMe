@@ -1,0 +1,1056 @@
+question_id,question_title,platform,contest_id,contest_date,difficulty,starter_code_present,n_public_tests,n_private_tests,source_file,eligible,exclusion_reason,errata,python_compatible,release
+1873_A,A. Short Sort,codeforces,1873,2023-08-21T00:00:00,easy,False,1,4,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+1873_B,B. Good Kid,codeforces,1873,2023-08-21T00:00:00,easy,False,1,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+1873_D,D. 1D Eraser,codeforces,1873,2023-08-21T00:00:00,easy,False,1,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+1883_B,B. Chemistry,codeforces,1883,2023-09-22T00:00:00,medium,False,1,3,test.jsonl,1,,0,1,release_v6
+1883_C,C. Raspberries,codeforces,1883,2023-09-22T00:00:00,medium,False,1,12,test.jsonl,1,,0,1,release_v6
+1899_A,A. Game with Integers,codeforces,1899,2023-10-17T00:00:00,easy,False,1,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+1899_B,B. 250 Thousand Tons of TNT,codeforces,1899,2023-10-17T00:00:00,hard,False,1,12,test.jsonl,1,,0,1,release_v6
+1899_C,C. Yarik and Array,codeforces,1899,2023-10-17T00:00:00,hard,False,1,12,test.jsonl,1,,0,1,release_v6
+1899_D,D. Yarik and Musical Notes,codeforces,1899,2023-10-17T00:00:00,hard,False,1,12,test.jsonl,1,,0,1,release_v6
+2727,number-of-senior-citizens,leetcode,biweekly-contest-104,2023-05-13T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2728,sum-in-a-matrix,leetcode,biweekly-contest-104,2023-05-13T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2730,maximum-or,leetcode,biweekly-contest-104,2023-05-13T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2754,maximum-strength-of-a-group,leetcode,biweekly-contest-105,2023-05-27T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2755,extra-characters-in-a-string,leetcode,biweekly-contest-105,2023-05-27T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2756,buy-two-chocolates,leetcode,biweekly-contest-105,2023-05-27T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2757,count-of-integers,leetcode,weekly-contest-348,2023-06-04T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+2777,find-the-distinct-difference-array,leetcode,weekly-contest-344,2023-05-07T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2779,number-of-adjacent-elements-with-the-same-color,leetcode,weekly-contest-344,2023-05-07T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2784,power-of-heroes,leetcode,biweekly-contest-104,2023-05-13T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+2785,semi-ordered-permutation,leetcode,weekly-contest-348,2023-06-04T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2786,find-the-longest-semi-repetitive-substring,leetcode,biweekly-contest-106,2023-06-10T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2791,find-the-losers-of-the-circular-game,leetcode,weekly-contest-345,2023-05-14T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2792,neighboring-bitwise-xor,leetcode,weekly-contest-345,2023-05-14T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2800,minimum-string-length-after-removing-substrings,leetcode,weekly-contest-346,2023-05-21T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2802,find-the-punishment-number-of-an-integer,leetcode,weekly-contest-346,2023-05-21T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2808,painting-the-walls,leetcode,weekly-contest-350,2023-06-18T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+2810,collecting-chocolates,leetcode,weekly-contest-349,2023-06-11T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2811,determine-the-minimum-sum-of-a-k-avoiding-array,leetcode,weekly-contest-359,2023-08-20T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2812,find-the-maximum-achievable-number,leetcode,weekly-contest-353,2023-07-09T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2816,lexicographically-smallest-palindrome,leetcode,weekly-contest-346,2023-05-21T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2817,minimum-cost-to-make-all-characters-equal,leetcode,weekly-contest-347,2023-05-28T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2819,remove-trailing-zeros-from-a-string,leetcode,weekly-contest-347,2023-05-28T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2824,check-if-the-number-is-fascinating,leetcode,biweekly-contest-106,2023-06-10T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2825,minimize-string-length,leetcode,weekly-contest-348,2023-06-04T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2827,greatest-common-divisor-traversal,leetcode,biweekly-contest-105,2023-05-27T00:00:00,hard,True,3,80,test.jsonl,1,,0,1,release_v6
+2828,lexicographically-smallest-string-after-substring-operation,leetcode,weekly-contest-349,2023-06-11T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2831,number-of-beautiful-pairs,leetcode,weekly-contest-351,2023-06-25T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2832,find-the-longest-equal-subarray,leetcode,weekly-contest-359,2023-08-20T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2833,count-zero-request-servers,leetcode,biweekly-contest-107,2023-06-24T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2834,relocate-marbles,leetcode,biweekly-contest-108,2023-07-08T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2837,minimum-operations-to-make-the-integer-zero,leetcode,weekly-contest-351,2023-06-25T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2839,maximum-sum-queries,leetcode,weekly-contest-349,2023-06-11T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+2844,sum-of-squares-of-special-elements,leetcode,weekly-contest-354,2023-07-16T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2845,find-the-value-of-the-partition,leetcode,weekly-contest-350,2023-06-18T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2847,find-maximum-number-of-string-pairs,leetcode,biweekly-contest-107,2023-06-24T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2848,special-permutations,leetcode,weekly-contest-350,2023-06-18T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2849,sum-of-imbalance-numbers-of-all-subarrays,leetcode,weekly-contest-352,2023-07-02T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+2850,construct-the-longest-new-string,leetcode,biweekly-contest-107,2023-06-24T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2854,decremental-string-concatenation,leetcode,biweekly-contest-107,2023-06-24T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2855,maximum-number-of-jumps-to-reach-the-last-index,leetcode,weekly-contest-353,2023-07-09T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2856,count-complete-subarrays-in-an-array,leetcode,weekly-contest-356,2023-07-30T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2857,total-distance-traveled,leetcode,weekly-contest-350,2023-06-18T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2866,longest-even-odd-subarray-with-threshold,leetcode,weekly-contest-352,2023-07-02T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2867,ways-to-split-array-into-good-subarrays,leetcode,weekly-contest-351,2023-06-25T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2868,continuous-subarrays,leetcode,weekly-contest-352,2023-07-02T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2869,longest-non-decreasing-subarray-from-two-arrays,leetcode,weekly-contest-353,2023-07-09T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2870,longest-alternating-subarray,leetcode,biweekly-contest-108,2023-07-08T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2872,largest-element-in-an-array-after-merge-operations,leetcode,weekly-contest-355,2023-07-23T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2873,prime-pairs-with-target-sum,leetcode,weekly-contest-352,2023-07-02T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2876,number-of-employees-who-met-the-target,leetcode,weekly-contest-356,2023-07-30T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2877,shortest-string-that-contains-three-strings,leetcode,weekly-contest-356,2023-07-30T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2878,apply-operations-to-make-all-array-elements-equal-to-zero,leetcode,weekly-contest-353,2023-07-09T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2879,minimum-changes-to-make-k-semi-palindromes,leetcode,weekly-contest-368,2023-10-22T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+2881,split-strings-by-separator,leetcode,weekly-contest-355,2023-07-23T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2882,ways-to-express-an-integer-as-sum-of-powers,leetcode,biweekly-contest-109,2023-07-22T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2883,partition-string-into-minimum-beautiful-substrings,leetcode,biweekly-contest-108,2023-07-08T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2884,length-of-the-longest-valid-substring,leetcode,weekly-contest-354,2023-07-16T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+2886,faulty-keyboard,leetcode,weekly-contest-357,2023-08-06T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2887,sort-vowels-in-a-string,leetcode,biweekly-contest-109,2023-07-22T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2888,minimum-index-of-a-valid-split,leetcode,weekly-contest-354,2023-07-16T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2891,maximum-beauty-of-an-array-after-applying-operation,leetcode,weekly-contest-354,2023-07-16T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2892,check-if-array-is-good,leetcode,biweekly-contest-109,2023-07-22T00:00:00,easy,True,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2893,visit-array-positions-to-maximize-score,leetcode,biweekly-contest-109,2023-07-22T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2902,max-pair-sum-in-an-array,leetcode,weekly-contest-358,2023-08-13T00:00:00,easy,True,2,69,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2915,count-of-interesting-subarrays,leetcode,weekly-contest-361,2023-09-03T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2916,check-if-it-is-possible-to-split-array,leetcode,weekly-contest-357,2023-08-06T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2917,count-pairs-whose-sum-is-less-than-target,leetcode,biweekly-contest-111,2023-08-19T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2919,maximum-number-of-groups-with-increasing-length,leetcode,weekly-contest-355,2023-07-23T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+2920,minimum-seconds-to-equalize-a-circular-array,leetcode,biweekly-contest-110,2023-08-05T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2921,count-stepping-numbers-in-range,leetcode,weekly-contest-356,2023-07-30T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+2952,minimum-time-to-make-array-sum-at-most-x,leetcode,biweekly-contest-110,2023-08-05T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+2953,count-pairs-of-points-with-distance-k,leetcode,biweekly-contest-113,2023-09-16T00:00:00,medium,True,2,100,test.jsonl,1,,0,1,release_v6
+2954,maximum-sum-of-almost-unique-subarray,leetcode,biweekly-contest-112,2023-09-02T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+2955,account-balance-after-rounded-purchase,leetcode,biweekly-contest-110,2023-08-05T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2977,check-if-a-string-is-an-acronym-of-words,leetcode,weekly-contest-359,2023-08-20T00:00:00,easy,True,3,11,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2979,maximize-the-profit-as-the-salesman,leetcode,weekly-contest-359,2023-08-20T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+2998,count-symmetric-integers,leetcode,weekly-contest-361,2023-09-03T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+2999,check-if-strings-can-be-made-equal-with-operations-i,leetcode,biweekly-contest-112,2023-09-02T00:00:00,easy,True,2,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3000,minimum-absolute-difference-between-elements-with-constraint,leetcode,weekly-contest-358,2023-08-13T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3017,number-of-beautiful-integers-in-the-range,leetcode,biweekly-contest-111,2023-08-19T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3018,make-string-a-subsequence-using-cyclic-increments,leetcode,biweekly-contest-111,2023-08-19T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3019,furthest-point-from-origin,leetcode,weekly-contest-360,2023-08-27T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3024,string-transformation,leetcode,weekly-contest-362,2023-09-10T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+3025,minimum-operations-to-form-subsequence-with-target-sum,leetcode,weekly-contest-360,2023-08-27T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3031,construct-product-matrix,leetcode,weekly-contest-367,2023-10-15T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3032,maximize-value-of-function-in-a-ball-passing-game,leetcode,weekly-contest-360,2023-08-27T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+3033,apply-operations-to-make-two-strings-equal,leetcode,weekly-contest-366,2023-10-08T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3034,points-that-intersect-with-cars,leetcode,weekly-contest-362,2023-09-10T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3044,minimum-operations-to-collect-elements,leetcode,biweekly-contest-114,2023-09-30T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3045,minimum-right-shifts-to-sort-the-array,leetcode,biweekly-contest-113,2023-09-16T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3046,minimum-operations-to-make-a-special-number,leetcode,weekly-contest-361,2023-09-03T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3047,maximum-element-sum-of-a-complete-subset-of-indices,leetcode,weekly-contest-363,2023-09-17T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+3055,maximum-odd-binary-number,leetcode,weekly-contest-364,2023-09-24T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3080,split-array-into-maximum-number-of-subarrays,leetcode,biweekly-contest-114,2023-09-30T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3081,minimum-array-length-after-pair-removals,leetcode,biweekly-contest-113,2023-09-16T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3091,count-of-sub-multisets-with-bounded-sum,leetcode,biweekly-contest-115,2023-10-14T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3093,sum-of-values-at-indices-with-k-set-bits,leetcode,weekly-contest-363,2023-09-17T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3094,minimum-number-of-operations-to-make-array-empty,leetcode,biweekly-contest-114,2023-09-30T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3104,happy-students,leetcode,weekly-contest-363,2023-09-17T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3106,length-of-the-longest-subsequence-that-sums-to-target,leetcode,biweekly-contest-116,2023-10-28T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3114,beautiful-towers-i,leetcode,weekly-contest-364,2023-09-24T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3141,minimum-size-subarray-in-infinite-array,leetcode,weekly-contest-365,2023-10-01T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3150,shortest-and-lexicographically-smallest-beautiful-string,leetcode,weekly-contest-367,2023-10-15T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3151,minimum-processing-time,leetcode,weekly-contest-366,2023-10-08T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3153,apply-operations-on-array-to-maximize-sum-of-squares,leetcode,weekly-contest-366,2023-10-08T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+3154,maximum-value-of-an-ordered-triplet-i,leetcode,weekly-contest-365,2023-10-01T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3163,subarrays-distinct-element-sum-of-squares-i,leetcode,biweekly-contest-116,2023-10-28T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3164,last-visited-integers,leetcode,biweekly-contest-115,2023-10-14T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3166,minimum-number-of-groups-to-create-a-valid-assignment,leetcode,weekly-contest-368,2023-10-22T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3171,minimum-equal-sum-of-two-arrays-after-replacing-zeros,leetcode,weekly-contest-369,2023-10-29T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3172,divisible-and-non-divisible-sums-difference,leetcode,weekly-contest-366,2023-10-08T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3174,minimum-number-of-changes-to-make-binary-string-beautiful,leetcode,biweekly-contest-116,2023-10-28T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3176,minimum-sum-of-mountain-triplets-i,leetcode,weekly-contest-368,2023-10-22T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3183,find-the-k-or-of-an-array,leetcode,weekly-contest-369,2023-10-29T00:00:00,easy,True,3,100,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3184,maximum-balanced-subsequence-sum,leetcode,weekly-contest-370,2023-11-05T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3188,find-champion-i,leetcode,weekly-contest-370,2023-11-05T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3190,minimum-operations-to-maximize-last-elements-in-arrays,leetcode,weekly-contest-371,2023-11-12T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3192,maximum-xor-product,leetcode,weekly-contest-372,2023-11-18T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3193,maximum-strong-pair-xor-i,leetcode,weekly-contest-371,2023-11-12T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3194,find-words-containing-character,leetcode,biweekly-contest-118,2023-11-25T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3195,separate-black-and-white-balls,leetcode,weekly-contest-372,2023-11-18T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3196,apply-operations-to-maximize-frequency-score,leetcode,weekly-contest-376,2023-12-16T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+3199,distribute-candies-among-children-i,leetcode,biweekly-contest-117,2023-11-11T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3200,number-of-strings-which-can-be-rearranged-to-contain-substring,leetcode,biweekly-contest-117,2023-11-11T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3203,palindrome-rearrangement-queries,leetcode,weekly-contest-378,2023-12-30T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3206,find-common-elements-between-two-arrays,leetcode,biweekly-contest-119,2023-12-09T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3207,make-three-strings-equal,leetcode,weekly-contest-372,2023-11-18T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3209,minimum-number-of-coins-for-fruits,leetcode,biweekly-contest-118,2023-11-25T00:00:00,medium,True,2,100,test.jsonl,1,,0,1,release_v6
+3210,count-beautiful-substrings-i,leetcode,weekly-contest-373,2023-11-25T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3211,find-maximum-non-decreasing-array-length,leetcode,biweekly-contest-118,2023-11-25T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3212,count-the-number-of-good-partitions,leetcode,weekly-contest-375,2023-12-09T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3213,count-subarrays-where-max-element-appears-at-least-k-times,leetcode,weekly-contest-375,2023-12-09T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3219,make-lexicographically-smallest-array-by-swapping-elements,leetcode,weekly-contest-373,2023-11-25T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3220,count-tested-devices-after-test-operations,leetcode,weekly-contest-375,2023-12-09T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3221,find-the-peaks,leetcode,weekly-contest-374,2023-12-02T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3223,count-complete-substrings,leetcode,weekly-contest-374,2023-12-02T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+3224,count-the-number-of-infection-sequences,leetcode,weekly-contest-374,2023-12-02T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+3225,length-of-longest-subarray-with-at-most-k-frequency,leetcode,biweekly-contest-119,2023-12-09T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3226,minimum-number-game,leetcode,weekly-contest-377,2023-12-23T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3227,find-missing-and-repeated-values,leetcode,weekly-contest-376,2023-12-16T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3228,maximum-size-of-a-set-after-removals,leetcode,weekly-contest-379,2024-01-06T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3229,minimum-cost-to-make-array-equalindromic,leetcode,weekly-contest-376,2023-12-16T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3230,remove-adjacent-almost-equal-characters,leetcode,biweekly-contest-119,2023-12-09T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3231,minimum-number-of-coins-to-be-added,leetcode,weekly-contest-374,2023-12-02T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3233,maximize-the-number-of-partitions-after-operations,leetcode,weekly-contest-379,2024-01-06T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3234,double-modular-exponentiation,leetcode,weekly-contest-375,2023-12-09T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3235,minimum-cost-to-convert-string-i,leetcode,weekly-contest-377,2023-12-23T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3236,smallest-missing-integer-greater-than-sequential-prefix-sum,leetcode,biweekly-contest-121,2024-01-06T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3239,minimum-number-of-operations-to-make-x-and-y-equal,leetcode,biweekly-contest-121,2024-01-06T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3240,maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k,leetcode,weekly-contest-380,2024-01-13T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3242,count-elements-with-maximum-frequency,leetcode,weekly-contest-380,2024-01-13T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3243,count-the-number-of-powerful-integers,leetcode,biweekly-contest-121,2024-01-06T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3244,minimize-length-of-array-using-operations,leetcode,biweekly-contest-122,2024-01-20T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3245,find-beautiful-indices-in-the-given-array-i,leetcode,weekly-contest-380,2024-01-13T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3246,check-if-bitwise-or-has-trailing-zeros,leetcode,weekly-contest-378,2023-12-30T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3249,minimum-number-of-operations-to-make-array-xor-equal-to-k,leetcode,biweekly-contest-121,2024-01-06T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3251,maximum-area-of-longest-diagonal-rectangle,leetcode,weekly-contest-379,2024-01-06T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3252,count-the-number-of-incremovable-subarrays-i,leetcode,biweekly-contest-120,2023-12-23T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3261,minimize-or-of-remaining-elements-using-operations,leetcode,weekly-contest-382,2024-01-27T00:00:00,hard,True,3,12,test.jsonl,1,,0,1,release_v6
+3262,find-polygon-with-the-largest-perimeter,leetcode,biweekly-contest-120,2023-12-23T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3263,divide-an-array-into-subarrays-with-minimum-cost-i,leetcode,biweekly-contest-122,2024-01-20T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3265,maximum-good-subarray-sum,leetcode,biweekly-contest-123,2024-02-03T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3267,find-longest-special-substring-that-occurs-thrice-i,leetcode,weekly-contest-378,2023-12-30T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3269,number-of-subarrays-that-match-a-pattern-i,leetcode,weekly-contest-384,2024-02-10T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3279,alice-and-bob-playing-flower-game,leetcode,weekly-contest-382,2024-01-27T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3291,find-if-array-can-be-sorted,leetcode,biweekly-contest-122,2024-01-20T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3292,earliest-second-to-mark-indices-i,leetcode,weekly-contest-386,2024-02-24T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3297,minimum-time-to-revert-word-to-initial-state-i,leetcode,weekly-contest-383,2024-02-03T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3298,maximize-consecutive-elements-in-an-array-after-modification,leetcode,biweekly-contest-124,2024-02-17T00:00:00,hard,True,2,12,test.jsonl,1,,0,1,release_v6
+3299,find-the-maximum-number-of-elements-in-subset,leetcode,weekly-contest-382,2024-01-27T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3308,apply-operations-to-make-string-empty,leetcode,biweekly-contest-124,2024-02-17T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3309,count-prefix-and-suffix-pairs-i,leetcode,weekly-contest-385,2024-02-17T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3311,ant-on-the-boundary,leetcode,weekly-contest-383,2024-02-03T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3312,number-of-changing-keys,leetcode,weekly-contest-382,2024-01-27T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3317,maximum-palindromes-after-operations,leetcode,weekly-contest-384,2024-02-10T00:00:00,medium,True,3,12,test.jsonl,1,,0,1,release_v6
+3320,maximum-number-of-operations-with-the-same-score-i,leetcode,biweekly-contest-124,2024-02-17T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3324,split-the-array,leetcode,weekly-contest-386,2024-02-24T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3329,find-the-length-of-the-longest-common-prefix,leetcode,weekly-contest-385,2024-02-17T00:00:00,medium,True,2,12,test.jsonl,1,,0,1,release_v6
+3331,minimum-operations-to-exceed-threshold-value-i,leetcode,biweekly-contest-125,2024-03-02T00:00:00,easy,True,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+3347,distribute-elements-into-two-arrays-i,leetcode,weekly-contest-387,2024-03-02T00:00:00,easy,True,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc301_a,Overall Winner,atcoder,abc301,2023-05-13T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc301_b,Fill the Gaps,atcoder,abc301,2023-05-13T00:00:00,easy,False,2,8,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc301_c,AtCoder Cards,atcoder,abc301,2023-05-13T00:00:00,medium,False,4,12,test.jsonl,1,,0,1,release_v6
+abc301_d,Bitmask,atcoder,abc301,2023-05-13T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc301_e,Pac,atcoder,abc301,2023-05-13T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc301_f,Anti,atcoder,abc301,2023-05-13T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc302_a,Attack,atcoder,abc302,2023-05-20T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc302_b,Find snuke,atcoder,abc302,2023-05-20T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc302_c,Almost Equal,atcoder,abc302,2023-05-20T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc302_d,Impartial Gift,atcoder,abc302,2023-05-20T00:00:00,medium,False,4,12,test.jsonl,1,,0,1,release_v6
+abc302_e,Isolation,atcoder,abc302,2023-05-20T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc302_f,Merge Set,atcoder,abc302,2023-05-20T00:00:00,hard,False,4,12,test.jsonl,1,,0,1,release_v6
+abc303_a,Similar String,atcoder,abc303,2023-05-27T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc303_b,Discord,atcoder,abc303,2023-05-27T00:00:00,easy,False,3,11,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc303_c,Dash,atcoder,abc303,2023-05-27T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc303_d,Shift vs. CapsLock,atcoder,abc303,2023-05-27T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc303_e,A Gift From the Stars,atcoder,abc303,2023-05-27T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc304_a,First Player,atcoder,abc304,2023-06-03T00:00:00,easy,False,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc304_b,Subscribers,atcoder,abc304,2023-06-03T00:00:00,easy,False,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc304_c,Virus,atcoder,abc304,2023-06-03T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc304_d,A Piece of Cake,atcoder,abc304,2023-06-03T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc304_e,Good Graph,atcoder,abc304,2023-06-03T00:00:00,hard,False,1,12,test.jsonl,1,,0,1,release_v6
+abc305_a,Water Station,atcoder,abc305,2023-06-10T00:00:00,easy,False,3,7,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc305_b,ABCDEFG,atcoder,abc305,2023-06-10T00:00:00,easy,False,3,11,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc305_c,Snuke the Cookie Picker,atcoder,abc305,2023-06-10T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc305_d,Sleep Log,atcoder,abc305,2023-06-10T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc305_e,Art Gallery on Graph,atcoder,abc305,2023-06-10T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc306_a,Echo,atcoder,abc306,2023-06-17T00:00:00,easy,False,2,6,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc306_b,Base 2,atcoder,abc306,2023-06-17T00:00:00,easy,False,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc306_c,Centers,atcoder,abc306,2023-06-17T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc306_d,Poisonous Full,atcoder,abc306,2023-06-17T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc306_e,Best Performances,atcoder,abc306,2023-06-17T00:00:00,hard,False,1,12,test.jsonl,1,,0,1,release_v6
+abc307_a,Weekly Records,atcoder,abc307,2023-06-24T00:00:00,easy,False,2,8,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc307_b,racecar,atcoder,abc307,2023-06-24T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc307_c,Ideal Sheet,atcoder,abc307,2023-06-24T00:00:00,medium,False,4,12,test.jsonl,1,,0,1,release_v6
+abc307_d,Mismatched Parentheses,atcoder,abc307,2023-06-24T00:00:00,medium,False,4,12,test.jsonl,1,,0,1,release_v6
+abc307_e,Distinct Adjacent,atcoder,abc307,2023-06-24T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc308_a,New Scheme,atcoder,abc308,2023-07-01T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc308_b,Default Price,atcoder,abc308,2023-07-01T00:00:00,easy,False,2,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc308_c,Standings,atcoder,abc308,2023-07-01T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc308_d,Snuke Maze,atcoder,abc308,2023-07-01T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc308_e,MEX,atcoder,abc308,2023-07-01T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc308_f,Vouchers,atcoder,abc308,2023-07-01T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc309_a,Nine,atcoder,abc309,2023-07-08T00:00:00,easy,False,3,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc309_b,Rotate,atcoder,abc309,2023-07-08T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc309_c,Medicine,atcoder,abc309,2023-07-08T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc309_d,Add One Edge,atcoder,abc309,2023-07-08T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc309_e,Family and Insurance,atcoder,abc309,2023-07-08T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc310_a,Order Something Else,atcoder,abc310,2023-07-15T00:00:00,easy,False,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc310_b,Strictly Superior,atcoder,abc310,2023-07-15T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc310_c,Reversible,atcoder,abc310,2023-07-15T00:00:00,medium,False,1,12,test.jsonl,1,,0,1,release_v6
+abc310_d,Peaceful Teams,atcoder,abc310,2023-07-15T00:00:00,medium,False,4,12,test.jsonl,1,,0,1,release_v6
+abc310_e,NAND repeatedly,atcoder,abc310,2023-07-15T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc310_f,Make 10 Again,atcoder,abc310,2023-07-15T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc311_a,First ABC,atcoder,abc311,2023-07-22T00:00:00,easy,False,3,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc311_b,Vacation Together,atcoder,abc311,2023-07-22T00:00:00,easy,False,5,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc311_c,Find it!,atcoder,abc311,2023-07-22T00:00:00,medium,False,3,12,test.jsonl,0,official_errata,1,1,release_v6
+abc311_d,Grid Ice Floor,atcoder,abc311,2023-07-22T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc311_e,Defect,atcoder,abc311,2023-07-22T00:00:00,hard,False,4,12,test.jsonl,1,,0,1,release_v6
+abc312_a,Chord,atcoder,abc312,2023-07-29T00:00:00,easy,False,3,11,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc312_b,TaK Code,atcoder,abc312,2023-07-29T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc312_c,Invisible Hand,atcoder,abc312,2023-07-29T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc312_d,Count Bracket Sequences,atcoder,abc312,2023-07-29T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc312_e,Tangency of Cuboids,atcoder,abc312,2023-07-29T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc312_f,Cans and Openers,atcoder,abc312,2023-07-29T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc313_a,To Be Saikyo,atcoder,abc313,2023-08-05T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc313_b,Who is Saikyo?,atcoder,abc313,2023-08-05T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc313_c,Approximate Equalization 2,atcoder,abc313,2023-08-05T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc314_a,3.14,atcoder,abc314,2023-08-12T00:00:00,easy,False,3,5,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc314_b,Roulette,atcoder,abc314,2023-08-12T00:00:00,easy,False,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc314_c,Rotate Colored Subsequence,atcoder,abc314,2023-08-12T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc314_d,LOWER,atcoder,abc314,2023-08-12T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc314_e,Roulettes,atcoder,abc314,2023-08-12T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc314_f,A Certain Game,atcoder,abc314,2023-08-12T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc315_a,tcdr,atcoder,abc315,2023-08-19T00:00:00,easy,False,3,9,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc315_b,The Middle Day,atcoder,abc315,2023-08-19T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc315_c,Flavors,atcoder,abc315,2023-08-19T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc315_d,Magical Cookies,atcoder,abc315,2023-08-19T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc315_e,Prerequisites,atcoder,abc315,2023-08-19T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc315_f,Shortcuts,atcoder,abc315,2023-08-19T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc318_a,Full Moon,atcoder,abc318,2023-09-02T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc318_b,Overlapping sheets,atcoder,abc318,2023-09-02T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc318_c,Blue Spring,atcoder,abc318,2023-09-02T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc318_d,General Weighted Max Matching,atcoder,abc318,2023-09-02T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc318_e,Sandwiches,atcoder,abc318,2023-09-02T00:00:00,hard,False,3,11,test.jsonl,1,,0,1,release_v6
+abc319_b,Measure,atcoder,abc319,2023-09-09T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc319_c,False Hope,atcoder,abc319,2023-09-09T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc319_d,Minimum Width,atcoder,abc319,2023-09-09T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc319_e,Bus Stops,atcoder,abc319,2023-09-09T00:00:00,hard,False,1,12,test.jsonl,1,,0,1,release_v6
+abc320_a,Leyland Number,atcoder,abc320,2023-09-16T00:00:00,easy,False,3,6,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc320_b,Longest Palindrome,atcoder,abc320,2023-09-16T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc320_c,Slot Strategy 2 (Easy),atcoder,abc320,2023-09-16T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc320_d,Relative Position,atcoder,abc320,2023-09-16T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc320_e,Somen Nagashi,atcoder,abc320,2023-09-16T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc321_a,321,atcoder,abc321,2023-09-23T00:00:00,easy,False,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc321_b,Cutoff,atcoder,abc321,2023-09-23T00:00:00,easy,False,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc321_c,321,atcoder,abc321,2023-09-23T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc321_d,Set Menu,atcoder,abc321,2023-09-23T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc321_e,Complete Binary Tree,atcoder,abc321,2023-09-23T00:00:00,hard,False,2,6,test.jsonl,1,,0,1,release_v6
+abc322_a,First ABC 2,atcoder,abc322,2023-09-30T00:00:00,easy,False,3,8,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc322_b,Prefix and Suffix,atcoder,abc322,2023-09-30T00:00:00,easy,False,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc322_c,Festival,atcoder,abc322,2023-09-30T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc322_d,Polyomino,atcoder,abc322,2023-09-30T00:00:00,medium,False,6,12,test.jsonl,1,,0,1,release_v6
+abc322_e,Product Development,atcoder,abc322,2023-09-30T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc323_a,Weak Beats,atcoder,abc323,2023-10-07T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc323_b,Round,atcoder,abc323,2023-10-07T00:00:00,easy,False,2,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc323_c,World Tour Finals,atcoder,abc323,2023-10-07T00:00:00,medium,False,3,11,test.jsonl,1,,0,1,release_v6
+abc323_d,Merge Slimes,atcoder,abc323,2023-10-07T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc323_e,Playlist,atcoder,abc323,2023-10-07T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc324_a,Same,atcoder,abc324,2023-10-14T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc324_b,3,atcoder,abc324,2023-10-14T00:00:00,easy,False,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc324_c,Error Correction,atcoder,abc324,2023-10-14T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc324_d,Square Permutation,atcoder,abc324,2023-10-14T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc324_e,Joint Two Strings,atcoder,abc324,2023-10-14T00:00:00,hard,False,4,12,test.jsonl,1,,0,1,release_v6
+abc324_f,Beautiful Path,atcoder,abc324,2023-10-14T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc325_a,Takahashi san,atcoder,abc325,2023-10-21T00:00:00,easy,False,2,9,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc325_b,World Meeting,atcoder,abc325,2023-10-21T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc325_c,Sensors,atcoder,abc325,2023-10-21T00:00:00,medium,False,4,12,test.jsonl,1,,0,1,release_v6
+abc325_d,Printing Machine,atcoder,abc325,2023-10-21T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc325_e,"Our clients, please wait a moment",atcoder,abc325,2023-10-21T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc325_f,Sensor Optimization Dilemma,atcoder,abc325,2023-10-21T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc326_a,2UP3DOWN,atcoder,abc326,2023-10-28T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc326_b,326,atcoder,abc326,2023-10-28T00:00:00,easy,False,3,11,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc326_c,Peak,atcoder,abc326,2023-10-28T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc326_d,ABC Puzzle,atcoder,abc326,2023-10-28T00:00:00,hard,False,2,12,test.jsonl,0,official_errata,1,1,release_v6
+abc326_e,"Revenge of ""The Salary of AtCoder Inc.""",atcoder,abc326,2023-10-28T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc327_a,ab,atcoder,abc327,2023-11-04T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc327_b,A^A,atcoder,abc327,2023-11-04T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,1,1,release_v6
+abc327_c,Number Place,atcoder,abc327,2023-11-04T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc327_d,Good Tuple Problem,atcoder,abc327,2023-11-04T00:00:00,medium,False,4,12,test.jsonl,1,,0,1,release_v6
+abc327_e,Maximize Rating,atcoder,abc327,2023-11-04T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc328_a,Not Too Hard,atcoder,abc328,2023-11-11T00:00:00,easy,False,3,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc328_b,11/11,atcoder,abc328,2023-11-11T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc328_c,Consecutive,atcoder,abc328,2023-11-11T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc328_d,Take ABC,atcoder,abc328,2023-11-11T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc328_e,Modulo MST,atcoder,abc328,2023-11-11T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc329_a,Spread,atcoder,abc329,2023-11-18T00:00:00,easy,False,3,6,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc329_b,Next,atcoder,abc329,2023-11-18T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc329_c,Count xxx,atcoder,abc329,2023-11-18T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc329_d,Election Quick Report,atcoder,abc329,2023-11-18T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc329_e,Stamp,atcoder,abc329,2023-11-18T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc329_f,Colored Ball,atcoder,abc329,2023-11-18T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc330_a,Counting Passes,atcoder,abc330,2023-11-25T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc330_b,Minimize Abs 1,atcoder,abc330,2023-11-25T00:00:00,easy,False,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc330_c,Minimize Abs 2,atcoder,abc330,2023-11-25T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc330_d,Counting Ls,atcoder,abc330,2023-11-25T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc330_e,Mex and Update,atcoder,abc330,2023-11-25T00:00:00,hard,False,1,12,test.jsonl,1,,0,1,release_v6
+abc331_a,Tomorrow,atcoder,abc331,2023-12-02T00:00:00,easy,False,3,8,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc331_b,Buy One Carton of Milk,atcoder,abc331,2023-12-02T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc331_c,Sum of Numbers Greater Than Me,atcoder,abc331,2023-12-02T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc331_d,Tile Pattern,atcoder,abc331,2023-12-02T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc331_e,Set Meal,atcoder,abc331,2023-12-02T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc332_a,Online Shopping,atcoder,abc332,2023-12-10T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc332_b,Glass and Mug,atcoder,abc332,2023-12-10T00:00:00,easy,False,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc332_c,T,atcoder,abc332,2023-12-10T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc332_d,Swapping Puzzle,atcoder,abc332,2023-12-10T00:00:00,hard,False,4,12,test.jsonl,1,,0,1,release_v6
+abc333_a,Three Threes,atcoder,abc333,2023-12-16T00:00:00,easy,False,2,7,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc333_b,Pentagon,atcoder,abc333,2023-12-16T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc333_c,Repunit Trio,atcoder,abc333,2023-12-16T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc333_d,Erase Leaves,atcoder,abc333,2023-12-16T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc333_e,Takahashi Quest,atcoder,abc333,2023-12-16T00:00:00,hard,False,3,12,test.jsonl,0,official_errata,1,1,release_v6
+abc334_a,Christmas Present,atcoder,abc334,2023-12-23T00:00:00,easy,False,2,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc334_b,Christmas Trees,atcoder,abc334,2023-12-23T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc334_c,Socks 2,atcoder,abc334,2023-12-23T00:00:00,medium,False,3,11,test.jsonl,1,,0,1,release_v6
+abc334_d,Reindeer and Sleigh,atcoder,abc334,2023-12-23T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc334_e,Christmas Color Grid 1,atcoder,abc334,2023-12-23T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc335_a,202<s>3</s>,atcoder,abc335,2024-01-06T00:00:00,easy,False,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc335_b,Tetrahedral Number,atcoder,abc335,2024-01-06T00:00:00,easy,False,2,11,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc335_c,Loong Tracking,atcoder,abc335,2024-01-06T00:00:00,medium,False,1,12,test.jsonl,1,,0,1,release_v6
+abc335_d,Loong and Takahashi,atcoder,abc335,2024-01-06T00:00:00,medium,False,1,12,test.jsonl,1,,0,1,release_v6
+abc336_a,Long Loong,atcoder,abc336,2024-01-14T00:00:00,easy,False,2,8,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc336_b,CTZ,atcoder,abc336,2024-01-14T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc336_c,Even Digits,atcoder,abc336,2024-01-14T00:00:00,medium,False,3,10,test.jsonl,1,,0,1,release_v6
+abc336_d,Pyramid,atcoder,abc336,2024-01-14T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc337_a,Scoreboard,atcoder,abc337,2024-01-20T00:00:00,easy,False,3,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc337_b,Extended ABC,atcoder,abc337,2024-01-20T00:00:00,easy,False,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc337_c,Lining Up 2,atcoder,abc337,2024-01-20T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc337_d,Cheating Gomoku Narabe,atcoder,abc337,2024-01-20T00:00:00,medium,False,4,12,test.jsonl,1,,0,1,release_v6
+abc337_e,Bad Juice,atcoder,abc337,2024-01-20T00:00:00,hard,False,1,12,test.jsonl,0,official_errata,1,1,release_v6
+abc338_a,Capitalized?,atcoder,abc338,2024-01-27T00:00:00,easy,False,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc338_b,Frequency,atcoder,abc338,2024-01-27T00:00:00,easy,False,3,8,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc338_c,Leftover Recipes,atcoder,abc338,2024-01-27T00:00:00,medium,False,4,12,test.jsonl,1,,0,1,release_v6
+abc338_d,Island Tour,atcoder,abc338,2024-01-27T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc338_e,Chords,atcoder,abc338,2024-01-27T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc338_f,Negative Traveling Salesman,atcoder,abc338,2024-01-27T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc339_a,TLD,atcoder,abc339,2024-02-03T00:00:00,easy,False,4,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc339_b,Langton's Takahashi,atcoder,abc339,2024-02-03T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc339_c,Perfect Bus,atcoder,abc339,2024-02-03T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc339_d,Synchronized Players,atcoder,abc339,2024-02-03T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc340_a,Arithmetic Progression,atcoder,abc340,2024-02-10T00:00:00,easy,False,2,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc340_b,Append,atcoder,abc340,2024-02-10T00:00:00,easy,False,1,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc340_c,Divide and Divide,atcoder,abc340,2024-02-10T00:00:00,medium,False,3,8,test.jsonl,1,,0,1,release_v6
+abc340_d,Super Takahashi Bros.,atcoder,abc340,2024-02-10T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc340_e,Mancala 2,atcoder,abc340,2024-02-10T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc341_a,Print 341,atcoder,abc341,2024-02-17T00:00:00,easy,False,3,9,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc341_b,Foreign Exchange,atcoder,abc341,2024-02-17T00:00:00,easy,False,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc341_c,Takahashi Gets Lost,atcoder,abc341,2024-02-17T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc341_d,Only one of two,atcoder,abc341,2024-02-17T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc341_e,Alternating String,atcoder,abc341,2024-02-17T00:00:00,hard,False,2,12,test.jsonl,1,,0,1,release_v6
+abc341_f,Breakdown,atcoder,abc341,2024-02-17T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc342_a,Yay!,atcoder,abc342,2024-02-24T00:00:00,easy,False,3,10,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc342_b,Which is ahead?,atcoder,abc342,2024-02-24T00:00:00,easy,False,2,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc342_c,Many Replacement,atcoder,abc342,2024-02-24T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc342_d,Square Pair,atcoder,abc342,2024-02-24T00:00:00,medium,False,2,12,test.jsonl,1,,0,1,release_v6
+abc342_e,Last Train,atcoder,abc342,2024-02-24T00:00:00,hard,False,3,12,test.jsonl,1,,0,1,release_v6
+abc343_a,Wrong Answer,atcoder,abc343,2024-03-02T00:00:00,easy,False,3,9,test.jsonl,0,not_medium_or_hard,1,1,release_v6
+abc343_b,Adjacency Matrix,atcoder,abc343,2024-03-02T00:00:00,easy,False,3,12,test.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc343_c,343,atcoder,abc343,2024-03-02T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc343_d,Diversity of Scores,atcoder,abc343,2024-03-02T00:00:00,medium,False,3,12,test.jsonl,1,,0,1,release_v6
+abc343_e,7x7x7,atcoder,abc343,2024-03-02T00:00:00,hard,False,2,12,test.jsonl,0,official_errata,1,1,release_v6
+abc344_d,String Bags,atcoder,abc344,2024-03-09T00:00:00,hard,False,3,25,test2.jsonl,1,,0,1,release_v6
+abc344_a,Spoiler,atcoder,abc344,2024-03-09T00:00:00,easy,False,3,11,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc344_c,A+B+C,atcoder,abc344,2024-03-09T00:00:00,medium,False,1,20,test2.jsonl,1,,0,1,release_v6
+abc344_b,Delimiter,atcoder,abc344,2024-03-09T00:00:00,easy,False,3,12,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc344_e,Insert or Erase,atcoder,abc344,2024-03-09T00:00:00,hard,False,2,20,test2.jsonl,1,,0,1,release_v6
+abc345_d,Tiling,atcoder,abc345,2024-03-16T00:00:00,hard,False,4,25,test2.jsonl,1,,0,1,release_v6
+abc345_b,Integer Division Returns,atcoder,abc345,2024-03-16T00:00:00,easy,False,5,17,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc346_d,Gomamayo Sequence,atcoder,abc346,2024-03-23T00:00:00,medium,False,3,20,test2.jsonl,1,,0,1,release_v6
+abc346_b,Piano,atcoder,abc346,2024-03-23T00:00:00,easy,False,3,19,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc346_e,Paint,atcoder,abc346,2024-03-23T00:00:00,hard,False,3,25,test2.jsonl,1,,0,1,release_v6
+abc346_a,Adjacent Product,atcoder,abc346,2024-03-23T00:00:00,easy,False,2,9,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc346_c,Σ,atcoder,abc346,2024-03-23T00:00:00,medium,False,3,19,test2.jsonl,1,,0,1,release_v6
+abc347_c,Ideal Holidays,atcoder,abc347,2024-03-30T00:00:00,medium,False,3,25,test2.jsonl,1,,0,1,release_v6
+abc347_a,Divisible,atcoder,abc347,2024-03-30T00:00:00,easy,False,3,12,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc347_e,Set Add Query,atcoder,abc347,2024-03-30T00:00:00,hard,False,2,20,test2.jsonl,1,,0,1,release_v6
+abc347_b,Substring,atcoder,abc347,2024-03-30T00:00:00,easy,False,3,10,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc348_c,Colorful Beans,atcoder,abc348,2024-04-06T00:00:00,medium,False,2,20,test2.jsonl,1,,0,1,release_v6
+abc348_b,Farthest Point,atcoder,abc348,2024-04-06T00:00:00,easy,False,2,20,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc348_a,Penalty Kick,atcoder,abc348,2024-04-06T00:00:00,easy,False,2,13,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc348_d,Medicines on Grid,atcoder,abc348,2024-04-06T00:00:00,hard,False,3,25,test2.jsonl,1,,0,1,release_v6
+abc348_e,Minimize Sum of Distances,atcoder,abc348,2024-04-06T00:00:00,hard,False,3,20,test2.jsonl,1,,0,1,release_v6
+abc349_c,Airport Code,atcoder,abc349,2024-04-13T00:00:00,medium,False,3,25,test2.jsonl,1,,0,1,release_v6
+abc349_a,Zero Sum Game,atcoder,abc349,2024-04-13T00:00:00,easy,False,3,7,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc349_b,Commencement,atcoder,abc349,2024-04-13T00:00:00,easy,False,3,14,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc349_d,Divide Interval,atcoder,abc349,2024-04-13T00:00:00,hard,False,3,20,test2.jsonl,1,,0,1,release_v6
+abc349_e,Weighted Tic,atcoder,abc349,2024-04-13T00:00:00,hard,False,2,20,test2.jsonl,1,,0,1,release_v6
+abc350_a,Past ABCs,atcoder,abc350,2024-04-20T00:00:00,easy,False,3,7,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc350_e,Toward 0,atcoder,abc350,2024-04-20T00:00:00,hard,False,3,20,test2.jsonl,1,,0,1,release_v6
+abc350_b,Dentist Aoki,atcoder,abc350,2024-04-20T00:00:00,easy,False,3,17,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc350_c,Sort,atcoder,abc350,2024-04-20T00:00:00,medium,False,0,3,test2.jsonl,0,official_errata,1,1,release_v6
+abc350_d,New Friends,atcoder,abc350,2024-04-20T00:00:00,medium,False,3,25,test2.jsonl,1,,0,1,release_v6
+abc351_a,The bottom of the ninth,atcoder,abc351,2024-04-27T00:00:00,easy,False,2,10,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc351_b,Spot the Difference,atcoder,abc351,2024-04-27T00:00:00,easy,False,3,8,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc351_e,Jump Distance Sum,atcoder,abc351,2024-04-27T00:00:00,hard,False,2,20,test2.jsonl,1,,0,1,release_v6
+abc351_f,Double Sum,atcoder,abc351,2024-04-27T00:00:00,hard,False,2,9,test2.jsonl,1,,0,1,release_v6
+abc351_c,Merge the balls,atcoder,abc351,2024-04-27T00:00:00,medium,False,2,25,test2.jsonl,1,,0,1,release_v6
+abc351_d,Grid and Magnet,atcoder,abc351,2024-04-27T00:00:00,hard,False,2,25,test2.jsonl,1,,0,1,release_v6
+abc352_e,Clique Connect,atcoder,abc352,2024-05-04T00:00:00,hard,False,3,25,test2.jsonl,1,,0,1,release_v6
+abc352_a,AtCoder Line,atcoder,abc352,2024-05-04T00:00:00,easy,False,3,9,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc352_c,Standing On The Shoulders,atcoder,abc352,2024-05-04T00:00:00,medium,False,3,20,test2.jsonl,1,,0,1,release_v6
+abc352_b,Typing,atcoder,abc352,2024-05-04T00:00:00,easy,False,3,19,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc352_d,Permutation Subsequence,atcoder,abc352,2024-05-04T00:00:00,hard,False,3,20,test2.jsonl,1,,0,1,release_v6
+abc353_c,Sigma Problem,atcoder,abc353,2024-05-11T00:00:00,medium,False,2,20,test2.jsonl,1,,0,1,release_v6
+abc353_b,AtCoder Amusement Park,atcoder,abc353,2024-05-11T00:00:00,easy,False,3,12,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc353_a,Buildings,atcoder,abc353,2024-05-11T00:00:00,easy,False,3,12,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc353_e,Yet Another Sigma Problem,atcoder,abc353,2024-05-11T00:00:00,hard,False,2,25,test2.jsonl,1,,0,1,release_v6
+abc353_d,Another Sigma Problem,atcoder,abc353,2024-05-11T00:00:00,medium,False,2,20,test2.jsonl,1,,0,1,release_v6
+abc354_b,AtCoder Janken 2,atcoder,abc354,2024-05-18T00:00:00,easy,False,2,12,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc354_a,Exponential Plant,atcoder,abc354,2024-05-18T00:00:00,easy,False,3,20,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc354_e,Remove Pairs,atcoder,abc354,2024-05-18T00:00:00,hard,False,2,20,test2.jsonl,1,,0,1,release_v6
+abc354_c,AtCoder Magics,atcoder,abc354,2024-05-18T00:00:00,medium,False,3,14,test2.jsonl,1,,0,1,release_v6
+abc354_d,AtCoder Wallpaper,atcoder,abc354,2024-05-18T00:00:00,hard,False,3,25,test2.jsonl,1,,0,1,release_v6
+abc355_e,Guess the Sum,atcoder,abc355,2024-05-25T00:00:00,hard,False,1,25,test2.jsonl,0,official_errata,1,1,release_v6
+abc355_b,Piano 2,atcoder,abc355,2024-05-25T00:00:00,easy,False,3,17,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc355_c,Bingo 2,atcoder,abc355,2024-05-25T00:00:00,medium,False,3,25,test2.jsonl,1,,0,1,release_v6
+abc355_a,Who Ate the Cake?,atcoder,abc355,2024-05-25T00:00:00,easy,False,3,9,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc355_d,Intersecting Intervals,atcoder,abc355,2024-05-25T00:00:00,medium,False,3,19,test2.jsonl,1,,0,1,release_v6
+3334,apple-redistribution-into-boxes,leetcode,weekly-contest-388,2024-03-09T00:00:00,easy,True,2,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3351,maximize-happiness-of-selected-children,leetcode,weekly-contest-388,2024-03-09T00:00:00,medium,True,3,25,test2.jsonl,1,,0,1,release_v6
+3356,shortest-uncommon-substring-in-an-array,leetcode,weekly-contest-388,2024-03-09T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3313,maximum-strength-of-k-disjoint-subarrays,leetcode,weekly-contest-388,2024-03-09T00:00:00,hard,True,3,25,test2.jsonl,1,,0,1,release_v6
+3353,existence-of-a-substring-in-a-string-and-its-reverse,leetcode,weekly-contest-389,2024-03-16T00:00:00,easy,True,3,11,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3337,count-substrings-starting-and-ending-with-given-character,leetcode,weekly-contest-389,2024-03-16T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3360,minimum-deletions-to-make-string-k-special,leetcode,weekly-contest-389,2024-03-16T00:00:00,medium,True,3,25,test2.jsonl,1,,0,1,release_v6
+3327,minimum-moves-to-pick-k-ones,leetcode,weekly-contest-389,2024-03-16T00:00:00,hard,True,2,25,test2.jsonl,1,,0,1,release_v6
+3349,maximum-length-substring-with-two-occurrences,leetcode,weekly-contest-390,2024-03-23T00:00:00,easy,True,2,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3328,apply-operations-to-make-sum-of-array-greater-than-or-equal-to-k,leetcode,weekly-contest-390,2024-03-23T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3363,most-frequent-ids,leetcode,weekly-contest-390,2024-03-23T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3376,longest-common-suffix-queries,leetcode,weekly-contest-390,2024-03-23T00:00:00,hard,True,2,25,test2.jsonl,1,,0,1,release_v6
+3371,harshad-number,leetcode,weekly-contest-391,2024-03-30T00:00:00,easy,True,2,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3374,count-alternating-subarrays,leetcode,weekly-contest-391,2024-03-30T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3344,minimize-manhattan-distances,leetcode,weekly-contest-391,2024-03-30T00:00:00,hard,True,2,25,test2.jsonl,1,,0,1,release_v6
+3372,longest-strictly-increasing-or-strictly-decreasing-subarray,leetcode,weekly-contest-392,2024-04-06T00:00:00,easy,True,3,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3346,lexicographically-smallest-string-after-operations-with-constraint,leetcode,weekly-contest-392,2024-04-06T00:00:00,medium,True,3,25,test2.jsonl,1,,0,1,release_v6
+3387,minimum-operations-to-make-median-of-array-equal-to-k,leetcode,weekly-contest-392,2024-04-06T00:00:00,medium,True,3,25,test2.jsonl,1,,0,1,release_v6
+3361,latest-time-you-can-obtain-after-replacing-characters,leetcode,weekly-contest-393,2024-04-13T00:00:00,easy,True,2,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3373,maximum-prime-difference,leetcode,weekly-contest-393,2024-04-13T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3375,kth-smallest-amount-with-single-denomination-combination,leetcode,weekly-contest-393,2024-04-13T00:00:00,hard,True,2,25,test2.jsonl,1,,0,1,release_v6
+3364,minimum-sum-of-values-by-dividing-array,leetcode,weekly-contest-393,2024-04-13T00:00:00,hard,True,3,25,test2.jsonl,1,,0,1,release_v6
+3367,find-the-sum-of-encrypted-integers,leetcode,biweekly-contest-126,2024-03-16T00:00:00,easy,True,2,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3306,mark-elements-on-array-by-performing-queries,leetcode,biweekly-contest-126,2024-03-16T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3354,replace-question-marks-in-string-to-minimize-its-value,leetcode,biweekly-contest-126,2024-03-16T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3345,find-the-sum-of-the-power-of-all-subsequences,leetcode,biweekly-contest-126,2024-03-16T00:00:00,hard,True,3,25,test2.jsonl,1,,0,1,release_v6
+3381,shortest-subarray-with-or-at-least-k-i,leetcode,biweekly-contest-127,2024-03-30T00:00:00,easy,True,3,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3355,minimum-levels-to-gain-more-points,leetcode,biweekly-contest-127,2024-03-30T00:00:00,medium,True,3,25,test2.jsonl,1,,0,1,release_v6
+3316,find-the-sum-of-subsequence-powers,leetcode,biweekly-contest-127,2024-03-30T00:00:00,hard,True,3,25,test2.jsonl,1,,0,1,release_v6
+3379,score-of-a-string,leetcode,biweekly-contest-128,2024-04-13T00:00:00,easy,True,2,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3382,find-the-number-of-subarrays-where-boundary-elements-are-maximum,leetcode,biweekly-contest-128,2024-04-13T00:00:00,hard,True,3,25,test2.jsonl,1,,0,1,release_v6
+3408,count-the-number-of-special-characters-i,leetcode,weekly-contest-394,2024-04-20T00:00:00,easy,True,3,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3397,find-the-integer-added-to-array-i,leetcode,weekly-contest-395,2024-04-27T00:00:00,easy,True,3,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3394,minimum-array-end,leetcode,weekly-contest-395,2024-04-27T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3362,find-the-median-of-the-uniqueness-array,leetcode,weekly-contest-395,2024-04-27T00:00:00,hard,True,3,25,test2.jsonl,1,,0,1,release_v6
+3396,valid-word,leetcode,weekly-contest-396,2024-05-04T00:00:00,easy,True,3,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3384,minimum-number-of-operations-to-make-word-k-periodic,leetcode,weekly-contest-396,2024-05-04T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3395,minimum-length-of-anagram-concatenation,leetcode,weekly-contest-396,2024-05-04T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3402,minimum-cost-to-equalize-array,leetcode,weekly-contest-396,2024-05-04T00:00:00,hard,True,3,25,test2.jsonl,1,,0,1,release_v6
+3398,make-a-square-with-the-same-color,leetcode,biweekly-contest-129,2024-04-27T00:00:00,easy,True,3,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3388,right-triangles,leetcode,biweekly-contest-129,2024-04-27T00:00:00,medium,True,3,25,test2.jsonl,1,,0,1,release_v6
+3406,find-all-possible-stable-binary-arrays-i,leetcode,biweekly-contest-129,2024-04-27T00:00:00,medium,True,3,25,test2.jsonl,1,,0,1,release_v6
+3412,permutation-difference-between-two-strings,leetcode,weekly-contest-397,2024-05-11T00:00:00,easy,True,2,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3383,taking-maximum-energy-from-the-mystic-dungeon,leetcode,weekly-contest-397,2024-05-11T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3429,special-array-i,leetcode,weekly-contest-398,2024-05-18T00:00:00,easy,True,3,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3416,sum-of-digit-differences-of-all-pairs,leetcode,weekly-contest-398,2024-05-18T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3414,find-number-of-ways-to-reach-the-k-th-stair,leetcode,weekly-contest-398,2024-05-18T00:00:00,hard,True,2,25,test2.jsonl,1,,0,1,release_v6
+3446,find-the-number-of-good-pairs-i,leetcode,weekly-contest-399,2024-05-25T00:00:00,easy,True,2,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3451,string-compression-iii,leetcode,weekly-contest-399,2024-05-25T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3423,maximum-sum-of-subsequence-with-non-adjacent-elements,leetcode,weekly-contest-399,2024-05-25T00:00:00,hard,True,2,25,test2.jsonl,1,,0,1,release_v6
+3403,minimum-substring-partition-of-equal-character-frequency,leetcode,biweekly-contest-130,2024-05-11T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+3411,find-products-of-elements-of-big-array,leetcode,biweekly-contest-130,2024-05-11T00:00:00,hard,True,2,16,test2.jsonl,1,,0,1,release_v6
+3428,find-the-xor-of-numbers-which-appear-twice,leetcode,biweekly-contest-131,2024-05-25T00:00:00,easy,True,3,25,test2.jsonl,0,not_medium_or_hard,0,1,release_v6
+3420,find-occurrences-of-an-element-in-an-array,leetcode,biweekly-contest-131,2024-05-25T00:00:00,medium,True,2,25,test2.jsonl,1,,0,1,release_v6
+abc356_a,Subsegment Reverse,atcoder,abc356,2024-06-01T00:00:00,easy,False,3,15,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc356_d,Masked Popcount,atcoder,abc356,2024-06-01T00:00:00,medium,False,3,28,test3.jsonl,1,,0,1,release_v6
+abc356_e,Max/Min,atcoder,abc356,2024-06-01T00:00:00,hard,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc356_c,Keys,atcoder,abc356,2024-06-01T00:00:00,medium,False,3,28,test3.jsonl,1,,0,1,release_v6
+abc356_b,Nutrients,atcoder,abc356,2024-06-01T00:00:00,easy,False,2,20,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc357_c,Sierpinski carpet,atcoder,abc357,2024-06-08T00:00:00,medium,False,2,7,test3.jsonl,1,,0,1,release_v6
+abc357_a,Sanitize Hands,atcoder,abc357,2024-06-08T00:00:00,easy,False,3,16,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc357_d,88888888,atcoder,abc357,2024-06-08T00:00:00,medium,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc357_b,Uppercase and Lowercase,atcoder,abc357,2024-06-08T00:00:00,easy,False,3,10,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc357_e,Reachability in Functional Graph,atcoder,abc357,2024-06-08T00:00:00,hard,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc358_e,Alphabet Tiles,atcoder,abc358,2024-06-15T00:00:00,hard,False,3,19,test3.jsonl,1,,0,1,release_v6
+abc358_c,Popcorn,atcoder,abc358,2024-06-15T00:00:00,medium,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc358_b,Ticket Counter,atcoder,abc358,2024-06-15T00:00:00,easy,False,3,20,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc358_d,Souvenirs,atcoder,abc358,2024-06-15T00:00:00,medium,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc358_a,Welcome to AtCoder Land,atcoder,abc358,2024-06-15T00:00:00,easy,False,3,8,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc359_c,Tile Distance 2,atcoder,abc359,2024-06-22T00:00:00,medium,False,3,28,test3.jsonl,1,,0,1,release_v6
+abc359_b,Couples,atcoder,abc359,2024-06-22T00:00:00,easy,False,3,10,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc359_e,Water Tank,atcoder,abc359,2024-06-22T00:00:00,hard,False,3,28,test3.jsonl,1,,0,1,release_v6
+abc359_a,Count Takahashi,atcoder,abc359,2024-06-22T00:00:00,easy,False,3,11,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc359_d,Avoid K Palindrome,atcoder,abc359,2024-06-22T00:00:00,hard,False,4,28,test3.jsonl,1,,0,1,release_v6
+abc360_c,Move It,atcoder,abc360,2024-06-30T00:00:00,medium,False,2,20,test3.jsonl,1,,0,1,release_v6
+abc360_b,Vertical Reading,atcoder,abc360,2024-06-30T00:00:00,easy,False,3,20,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc360_e,Random Swaps of Balls,atcoder,abc360,2024-06-30T00:00:00,hard,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc360_a,A Healthy Breakfast,atcoder,abc360,2024-06-30T00:00:00,easy,False,2,4,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc360_d,Ghost Ants,atcoder,abc360,2024-06-30T00:00:00,medium,False,2,20,test3.jsonl,1,,0,1,release_v6
+abc361_d,Go Stone Puzzle,atcoder,abc361,2024-07-06T00:00:00,hard,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc361_b,Intersection of Cuboids,atcoder,abc361,2024-07-06T00:00:00,medium,False,3,19,test3.jsonl,1,,0,1,release_v6
+abc361_a,Insert,atcoder,abc361,2024-07-06T00:00:00,easy,False,3,15,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc361_f,x = a^b,atcoder,abc361,2024-07-06T00:00:00,hard,False,2,28,test3.jsonl,1,,0,1,release_v6
+abc361_c,Make Them Narrow,atcoder,abc361,2024-07-06T00:00:00,medium,False,3,28,test3.jsonl,1,,0,1,release_v6
+abc361_e,Tree and Hamilton Path 2,atcoder,abc361,2024-07-06T00:00:00,hard,False,2,20,test3.jsonl,1,,0,1,release_v6
+abc362_d,Shortest Path 3,atcoder,abc362,2024-07-13T00:00:00,hard,False,3,28,test3.jsonl,1,,0,1,release_v6
+abc362_e,Count Arithmetic Subsequences,atcoder,abc362,2024-07-13T00:00:00,hard,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc362_c,Sum = 0,atcoder,abc362,2024-07-13T00:00:00,medium,False,3,28,test3.jsonl,0,official_errata,1,1,release_v6
+abc362_a,Buy a Pen,atcoder,abc362,2024-07-13T00:00:00,easy,False,3,13,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc362_b,Right Triangle,atcoder,abc362,2024-07-13T00:00:00,easy,False,3,20,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc363_a,Piling Up,atcoder,abc363,2024-07-20T00:00:00,easy,False,2,12,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc363_f,Palindromic Expression,atcoder,abc363,2024-07-20T00:00:00,hard,False,3,28,test3.jsonl,1,,0,1,release_v6
+abc363_b,Japanese Cursed Doll,atcoder,abc363,2024-07-20T00:00:00,easy,False,3,20,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc363_c,Avoid K Palindrome 2,atcoder,abc363,2024-07-20T00:00:00,medium,False,3,28,test3.jsonl,1,,0,1,release_v6
+abc363_d,Palindromic Number,atcoder,abc363,2024-07-20T00:00:00,medium,False,3,17,test3.jsonl,1,,0,1,release_v6
+abc363_e,Sinking Land,atcoder,abc363,2024-07-20T00:00:00,hard,False,2,28,test3.jsonl,1,,0,1,release_v6
+abc364_b,Grid Walk,atcoder,abc364,2024-07-27T00:00:00,easy,False,3,18,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc364_e,Maximum Glutton,atcoder,abc364,2024-07-27T00:00:00,hard,False,4,28,test3.jsonl,1,,0,1,release_v6
+abc364_f,Range Connect MST,atcoder,abc364,2024-07-27T00:00:00,hard,False,3,28,test3.jsonl,1,,0,1,release_v6
+abc364_d,K,atcoder,abc364,2024-07-27T00:00:00,hard,False,3,18,test3.jsonl,1,,0,1,release_v6
+abc364_c,Minimum Glutton,atcoder,abc364,2024-07-27T00:00:00,medium,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc364_a,Glutton Takahashi,atcoder,abc364,2024-07-27T00:00:00,easy,False,3,16,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc365_b,Second Best,atcoder,abc365,2024-08-03T00:00:00,easy,False,2,13,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc365_a,Leap Year,atcoder,abc365,2024-08-03T00:00:00,easy,False,4,10,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc365_e,Xor Sigma Problem,atcoder,abc365,2024-08-03T00:00:00,hard,False,2,20,test3.jsonl,1,,0,1,release_v6
+abc365_d,AtCoder Janken 3,atcoder,abc365,2024-08-03T00:00:00,medium,False,3,20,test3.jsonl,1,,0,1,release_v6
+abc365_c,Transportation Expenses,atcoder,abc365,2024-08-03T00:00:00,medium,False,3,20,test3.jsonl,1,,0,1,release_v6
+3426,minimum-number-of-chairs-in-a-waiting-room,leetcode,weekly-contest-400,2024-06-01T00:00:00,easy,True,3,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3430,count-days-without-meetings,leetcode,weekly-contest-400,2024-06-01T00:00:00,medium,True,3,35,test3.jsonl,1,,0,1,release_v6
+3436,find-subarray-with-bitwise-or-closest-to-k,leetcode,weekly-contest-400,2024-06-01T00:00:00,hard,True,3,26,test3.jsonl,1,,0,1,release_v6
+3450,find-the-child-who-has-the-ball-after-k-seconds,leetcode,weekly-contest-401,2024-06-08T00:00:00,easy,True,3,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3422,find-the-n-th-value-after-k-seconds,leetcode,weekly-contest-401,2024-06-08T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3442,maximum-total-reward-using-operations-i,leetcode,weekly-contest-401,2024-06-08T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3421,count-pairs-that-form-a-complete-day-i,leetcode,weekly-contest-402,2024-06-15T00:00:00,easy,True,2,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3437,maximum-total-damage-with-spell-casting,leetcode,weekly-contest-402,2024-06-15T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3438,peaks-in-array,leetcode,weekly-contest-402,2024-06-15T00:00:00,hard,True,2,35,test3.jsonl,1,,0,1,release_v6
+3471,minimum-average-of-smallest-and-largest-elements,leetcode,weekly-contest-403,2024-06-22T00:00:00,easy,True,3,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3461,find-the-minimum-area-to-cover-all-ones-i,leetcode,weekly-contest-403,2024-06-22T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3464,maximize-total-cost-of-alternating-subarrays,leetcode,weekly-contest-403,2024-06-22T00:00:00,medium,True,4,35,test3.jsonl,1,,0,1,release_v6
+3469,maximum-height-of-a-triangle,leetcode,weekly-contest-404,2024-06-29T00:00:00,easy,True,4,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3490,find-the-maximum-length-of-valid-subsequence-i,leetcode,weekly-contest-404,2024-06-29T00:00:00,medium,True,3,35,test3.jsonl,1,,0,1,release_v6
+3439,find-minimum-diameter-after-merging-two-trees,leetcode,weekly-contest-404,2024-06-29T00:00:00,hard,True,2,35,test3.jsonl,1,,0,1,release_v6
+3468,find-the-encrypted-string,leetcode,weekly-contest-405,2024-07-06T00:00:00,easy,True,2,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3453,generate-binary-strings-without-adjacent-zeros,leetcode,weekly-contest-405,2024-07-06T00:00:00,medium,True,2,31,test3.jsonl,1,,0,1,release_v6
+3492,count-submatrices-with-equal-frequency-of-x-and-y,leetcode,weekly-contest-405,2024-07-06T00:00:00,medium,True,3,35,test3.jsonl,1,,0,1,release_v6
+3482,construct-string-with-minimum-cost,leetcode,weekly-contest-405,2024-07-06T00:00:00,hard,True,2,35,test3.jsonl,1,,0,1,release_v6
+3484,lexicographically-smallest-string-after-a-swap,leetcode,weekly-contest-406,2024-07-13T00:00:00,easy,True,2,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3494,minimum-cost-for-cutting-cake-i,leetcode,weekly-contest-406,2024-07-13T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3508,number-of-bit-changes-to-make-two-integers-equal,leetcode,weekly-contest-407,2024-07-20T00:00:00,easy,True,3,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3462,vowels-game-in-a-string,leetcode,weekly-contest-407,2024-07-20T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3493,maximum-number-of-operations-to-move-ones-to-the-end,leetcode,weekly-contest-407,2024-07-20T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3454,minimum-operations-to-make-array-equal-to-target,leetcode,weekly-contest-407,2024-07-20T00:00:00,hard,True,2,35,test3.jsonl,1,,0,1,release_v6
+3515,find-if-digit-game-can-be-won,leetcode,weekly-contest-408,2024-07-27T00:00:00,easy,True,3,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3507,find-the-count-of-numbers-which-are-not-special,leetcode,weekly-contest-408,2024-07-27T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3479,count-the-number-of-substrings-with-dominant-ones,leetcode,weekly-contest-408,2024-07-27T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3478,check-if-the-rectangle-corner-is-reachable,leetcode,weekly-contest-408,2024-07-27T00:00:00,hard,True,4,35,test3.jsonl,1,,0,1,release_v6
+3517,shortest-distance-after-road-addition-queries-i,leetcode,weekly-contest-409,2024-08-03T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3527,alternating-groups-iii,leetcode,weekly-contest-409,2024-08-03T00:00:00,hard,True,2,35,test3.jsonl,1,,0,1,release_v6
+3533,snake-in-matrix,leetcode,weekly-contest-410,2024-08-10T00:00:00,easy,True,2,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3535,find-the-count-of-monotonic-pairs-i,leetcode,weekly-contest-410,2024-08-10T00:00:00,hard,True,2,35,test3.jsonl,1,,0,1,release_v6
+3447,clear-digits,leetcode,biweekly-contest-132,2024-06-08T00:00:00,easy,True,2,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3413,find-the-first-player-to-win-k-games-in-a-row,leetcode,biweekly-contest-132,2024-06-08T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3456,find-the-maximum-length-of-a-good-subsequence-i,leetcode,biweekly-contest-132,2024-06-08T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3476,find-minimum-operations-to-make-all-elements-divisible-by-three,leetcode,biweekly-contest-133,2024-06-22T00:00:00,easy,True,2,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3475,minimum-operations-to-make-binary-array-elements-equal-to-one-i,leetcode,biweekly-contest-133,2024-06-22T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3460,count-the-number-of-inversions,leetcode,biweekly-contest-133,2024-06-22T00:00:00,hard,True,3,35,test3.jsonl,1,,0,1,release_v6
+3463,alternating-groups-i,leetcode,biweekly-contest-134,2024-07-06T00:00:00,easy,True,2,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3264,maximum-points-after-enemy-battles,leetcode,biweekly-contest-134,2024-07-06T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3466,number-of-subarrays-with-and-value-of-k,leetcode,biweekly-contest-134,2024-07-06T00:00:00,hard,True,3,26,test3.jsonl,1,,0,1,release_v6
+3511,find-the-winning-player-in-coin-game,leetcode,biweekly-contest-135,2024-07-20T00:00:00,easy,True,2,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3455,minimum-length-of-string-after-operations,leetcode,biweekly-contest-135,2024-07-20T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3498,minimum-array-changes-to-make-differences-equal,leetcode,biweekly-contest-135,2024-07-20T00:00:00,medium,True,2,35,test3.jsonl,1,,0,1,release_v6
+3519,find-the-number-of-winning-players,leetcode,biweekly-contest-136,2024-08-03T00:00:00,easy,True,3,35,test3.jsonl,0,not_medium_or_hard,0,1,release_v6
+3526,minimum-number-of-flips-to-make-binary-grid-palindromic-i,leetcode,biweekly-contest-136,2024-08-03T00:00:00,medium,True,3,35,test3.jsonl,1,,0,1,release_v6
+3532,time-taken-to-mark-all-nodes,leetcode,biweekly-contest-136,2024-08-03T00:00:00,hard,True,3,35,test3.jsonl,1,,0,1,release_v6
+abc366_f,Maximum Composition,atcoder,abc366,2024-08-10T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+abc366_b,Vertical Writing,atcoder,abc366,2024-08-10T00:00:00,easy,False,2,18,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc366_e,Manhattan Multifocal Ellipse,atcoder,abc366,2024-08-10T00:00:00,hard,False,3,18,test4.jsonl,1,,0,1,release_v6
+abc366_d,Cuboid Sum Query,atcoder,abc366,2024-08-10T00:00:00,medium,False,2,18,test4.jsonl,1,,0,1,release_v6
+abc366_a,Election 2,atcoder,abc366,2024-08-10T00:00:00,easy,False,3,18,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc366_c,Balls and Bag Query,atcoder,abc366,2024-08-10T00:00:00,medium,False,2,18,test4.jsonl,1,,0,1,release_v6
+abc366_g,XOR Neighbors,atcoder,abc366,2024-08-10T00:00:00,hard,False,4,25,test4.jsonl,1,,0,1,release_v6
+abc367_e,Permute K times,atcoder,abc367,2024-08-17T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc367_f,Rearrange Query,atcoder,abc367,2024-08-17T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+abc367_a,Shout Everyday,atcoder,abc367,2024-08-17T00:00:00,easy,False,3,11,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc367_g,Sum of (XOR^K or 0),atcoder,abc367,2024-08-17T00:00:00,hard,False,3,18,test4.jsonl,1,,0,1,release_v6
+abc367_b,Cut .0,atcoder,abc367,2024-08-17T00:00:00,easy,False,4,18,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc367_d,Pedometer,atcoder,abc367,2024-08-17T00:00:00,medium,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc367_c,Enumerate Sequences,atcoder,abc367,2024-08-17T00:00:00,medium,False,3,18,test4.jsonl,1,,0,1,release_v6
+abc368_g,Add and Multiply Queries,atcoder,abc368,2024-08-24T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+abc368_a,Cut,atcoder,abc368,2024-08-24T00:00:00,easy,False,2,8,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc368_b,Decrease 2 max elements,atcoder,abc368,2024-08-24T00:00:00,easy,False,2,13,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc368_f,Dividing Game,atcoder,abc368,2024-08-24T00:00:00,hard,False,2,18,test4.jsonl,1,,0,1,release_v6
+abc368_c,Triple Attack,atcoder,abc368,2024-08-24T00:00:00,medium,False,3,18,test4.jsonl,1,,0,1,release_v6
+abc368_d,Minimum Steiner Tree,atcoder,abc368,2024-08-24T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc368_e,Train Delay,atcoder,abc368,2024-08-24T00:00:00,hard,False,3,18,test4.jsonl,1,,0,1,release_v6
+abc369_d,Bonus EXP,atcoder,abc369,2024-08-31T00:00:00,medium,False,2,25,test4.jsonl,1,,0,1,release_v6
+abc369_g,As far as possible,atcoder,abc369,2024-08-31T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+abc369_c,Count Arithmetic Subarrays,atcoder,abc369,2024-08-31T00:00:00,medium,False,3,18,test4.jsonl,1,,0,1,release_v6
+abc369_a,369,atcoder,abc369,2024-08-31T00:00:00,easy,False,3,9,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc369_b,Piano 3,atcoder,abc369,2024-08-31T00:00:00,easy,False,3,17,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc369_e,Sightseeing Tour,atcoder,abc369,2024-08-31T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc370_a,Raise Both Hands,atcoder,abc370,2024-09-07T00:00:00,easy,False,2,2,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc370_g,Divisible by 3,atcoder,abc370,2024-09-07T00:00:00,hard,False,4,25,test4.jsonl,1,,0,1,release_v6
+abc370_c,Word Ladder,atcoder,abc370,2024-09-07T00:00:00,medium,False,3,18,test4.jsonl,1,,0,1,release_v6
+abc370_d,Cross Explosion,atcoder,abc370,2024-09-07T00:00:00,medium,False,3,18,test4.jsonl,1,,0,1,release_v6
+abc370_e,Avoid K Partition,atcoder,abc370,2024-09-07T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc370_b,Binary Alchemy,atcoder,abc370,2024-09-07T00:00:00,easy,False,3,13,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc370_f,Cake Division,atcoder,abc370,2024-09-07T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc371_b,Taro,atcoder,abc371,2024-09-14T00:00:00,easy,False,2,14,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc371_d,1D Country,atcoder,abc371,2024-09-14T00:00:00,medium,False,2,18,test4.jsonl,1,,0,1,release_v6
+abc371_g,Lexicographically Smallest Permutation,atcoder,abc371,2024-09-14T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc371_f,Takahashi in Narrow Road,atcoder,abc371,2024-09-14T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc371_c,Make Isomorphic,atcoder,abc371,2024-09-14T00:00:00,medium,False,5,25,test4.jsonl,1,,0,1,release_v6
+abc371_e,I Hate Sigma Problems,atcoder,abc371,2024-09-14T00:00:00,hard,False,2,18,test4.jsonl,1,,0,1,release_v6
+abc371_a,Jiro,atcoder,abc371,2024-09-14T00:00:00,easy,False,2,4,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc372_e,K,atcoder,abc372,2024-09-21T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+abc372_c,Count ABC Again,atcoder,abc372,2024-09-21T00:00:00,medium,False,3,14,test4.jsonl,1,,0,1,release_v6
+abc372_d,Buildings,atcoder,abc372,2024-09-21T00:00:00,medium,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc372_g,Ax + By < C,atcoder,abc372,2024-09-21T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+abc372_f,Teleporting Takahashi 2,atcoder,abc372,2024-09-21T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc372_a,delete .,atcoder,abc372,2024-09-21T00:00:00,easy,False,3,16,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc373_a,September,atcoder,abc373,2024-09-28T00:00:00,easy,False,2,18,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc373_b,1D Keyboard,atcoder,abc373,2024-09-28T00:00:00,easy,False,2,18,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc373_f,Knapsack with Diminishing Values,atcoder,abc373,2024-09-28T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+abc373_g,No Cross Matching,atcoder,abc373,2024-09-28T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+abc373_c,Max Ai+Bj,atcoder,abc373,2024-09-28T00:00:00,medium,False,2,18,test4.jsonl,1,,0,1,release_v6
+abc373_e,How to Win the Election,atcoder,abc373,2024-09-28T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+arc181_d,Prefix Bubble Sort,atcoder,arc181,2024-08-04T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+arc181_c,Row and Column Order,atcoder,arc181,2024-08-04T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+arc181_b,Annoying String Problem,atcoder,arc181,2024-08-04T00:00:00,hard,False,2,25,test4.jsonl,1,,0,1,release_v6
+arc181_a,Sort Left and Right,atcoder,arc181,2024-08-04T00:00:00,medium,False,1,18,test4.jsonl,1,,0,1,release_v6
+arc182_d,Increment Decrement Again,atcoder,arc182,2024-08-11T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+arc182_e,Sum of Min of Mod of Linear,atcoder,arc182,2024-08-11T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+arc182_a,Chmax Rush!,atcoder,arc182,2024-08-11T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+arc182_c,Sum of Number of Divisors of Product,atcoder,arc182,2024-08-11T00:00:00,hard,False,3,25,test4.jsonl,1,,0,1,release_v6
+arc183_b,Near Assignment,atcoder,arc183,2024-08-25T00:00:00,hard,False,1,25,test4.jsonl,1,,0,1,release_v6
+arc183_c,Not Argmax,atcoder,arc183,2024-08-25T00:00:00,hard,False,4,18,test4.jsonl,1,,0,1,release_v6
+arc183_a,Median of Good Sequences,atcoder,arc183,2024-08-25T00:00:00,medium,False,4,25,test4.jsonl,1,,0,1,release_v6
+arc183_d,Keep Perfectly Matched,atcoder,arc183,2024-08-25T00:00:00,hard,False,4,25,test4.jsonl,1,,0,1,release_v6
+3026,find-the-minimum-possible-sum-of-a-beautiful-array,leetcode,weekly-contest-360,2023-08-26T19:30:00,medium,True,3,38,test4.jsonl,1,,0,1,release_v6
+3543,count-substrings-that-satisfy-k-constraint-i,leetcode,weekly-contest-411,2024-08-17T19:30:00,easy,True,3,40,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+3525,maximum-energy-boost-from-two-drinks,leetcode,weekly-contest-411,2024-08-17T19:30:00,medium,True,2,40,test4.jsonl,1,,0,1,release_v6
+3552,find-the-largest-palindrome-divisible-by-k,leetcode,weekly-contest-411,2024-08-17T19:30:00,hard,True,3,40,test4.jsonl,1,,0,1,release_v6
+3555,final-array-state-after-k-multiplication-operations-i,leetcode,weekly-contest-412,2024-08-24T19:30:00,easy,True,2,40,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+3534,count-almost-equal-pairs-i,leetcode,weekly-contest-412,2024-08-24T19:30:00,medium,True,3,40,test4.jsonl,1,,0,1,release_v6
+3553,check-if-two-chessboard-squares-have-the-same-color,leetcode,weekly-contest-413,2024-08-31T19:30:00,easy,True,2,40,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+3495,k-th-nearest-obstacle-queries,leetcode,weekly-contest-413,2024-08-31T19:30:00,medium,True,2,40,test4.jsonl,1,,0,1,release_v6
+3563,select-cells-in-grid-with-maximum-score,leetcode,weekly-contest-413,2024-08-31T19:30:00,hard,True,2,40,test4.jsonl,1,,0,1,release_v6
+3551,maximum-xor-score-subarray-queries,leetcode,weekly-contest-413,2024-08-31T19:30:00,hard,True,2,40,test4.jsonl,1,,0,1,release_v6
+3567,convert-date-to-binary,leetcode,weekly-contest-414,2024-09-07T19:30:00,easy,True,2,40,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+3485,maximize-score-of-numbers-in-ranges,leetcode,weekly-contest-414,2024-09-07T19:30:00,medium,True,2,40,test4.jsonl,1,,0,1,release_v6
+3528,reach-end-of-array-with-max-score,leetcode,weekly-contest-414,2024-09-07T19:30:00,medium,True,2,40,test4.jsonl,1,,0,1,release_v6
+3560,maximum-number-of-moves-to-kill-all-pawns,leetcode,weekly-contest-414,2024-09-07T19:30:00,hard,True,3,40,test4.jsonl,1,,0,1,release_v6
+3518,maximum-multiplication-score,leetcode,weekly-contest-415,2024-09-14T19:30:00,medium,True,2,40,test4.jsonl,1,,0,1,release_v6
+3559,minimum-number-of-valid-strings-to-form-target-i,leetcode,weekly-contest-415,2024-09-14T19:30:00,medium,True,3,40,test4.jsonl,1,,0,1,release_v6
+3522,find-the-power-of-k-size-subarrays-i,leetcode,biweekly-contest-137,2024-08-17T07:30:00,medium,True,3,40,test4.jsonl,1,,0,1,release_v6
+3550,maximum-value-sum-by-placing-three-rooks-i,leetcode,biweekly-contest-137,2024-08-17T07:30:00,hard,True,3,40,test4.jsonl,1,,0,1,release_v6
+3568,find-the-key-of-the-numbers,leetcode,biweekly-contest-138,2024-08-31T07:30:00,easy,True,3,40,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+3540,hash-divided-string,leetcode,biweekly-contest-138,2024-08-31T07:30:00,medium,True,2,40,test4.jsonl,1,,0,1,release_v6
+3548,find-the-count-of-good-integers,leetcode,biweekly-contest-138,2024-08-31T07:30:00,hard,True,3,40,test4.jsonl,1,,0,1,release_v6
+3531,minimum-amount-of-damage-dealt-to-bob,leetcode,biweekly-contest-138,2024-08-31T07:30:00,hard,True,3,40,test4.jsonl,1,,0,1,release_v6
+3558,find-a-safe-walk-through-a-grid,leetcode,biweekly-contest-139,2024-09-14T07:30:00,medium,True,3,40,test4.jsonl,1,,0,1,release_v6
+3575,find-the-maximum-sequence-value-of-array,leetcode,biweekly-contest-139,2024-09-14T07:30:00,hard,True,2,40,test4.jsonl,1,,0,1,release_v6
+3571,length-of-the-longest-increasing-path,leetcode,biweekly-contest-139,2024-09-14T07:30:00,hard,True,2,40,test4.jsonl,1,,0,1,release_v6
+3541,report-spam-message,leetcode,weekly-contest-416,2024-09-21T19:30:00,medium,True,2,40,test4.jsonl,1,,0,1,release_v6
+3496,minimum-number-of-seconds-to-make-mountain-height-zero,leetcode,weekly-contest-416,2024-09-21T19:30:00,medium,True,3,40,test4.jsonl,1,,0,1,release_v6
+3573,count-substrings-that-can-be-rearranged-to-contain-a-string-i,leetcode,weekly-contest-416,2024-09-21T19:30:00,medium,True,3,40,test4.jsonl,1,,0,1,release_v6
+3600,find-the-k-th-character-in-string-game-i,leetcode,weekly-contest-417,2024-09-28T19:30:00,easy,True,2,40,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+3570,count-of-substrings-containing-every-vowel-and-k-consonants-i,leetcode,weekly-contest-417,2024-09-28T19:30:00,medium,True,3,40,test4.jsonl,1,,0,1,release_v6
+3579,maximum-possible-number-by-binary-concatenation,leetcode,weekly-contest-418,2024-10-05T19:30:00,medium,True,2,40,test4.jsonl,1,,0,1,release_v6
+3583,sorted-gcd-pair-queries,leetcode,weekly-contest-418,2024-10-05T19:30:00,hard,True,3,36,test4.jsonl,1,,0,1,release_v6
+3606,minimum-element-after-replacement-with-digit-sum,leetcode,biweekly-contest-140,2024-09-28T07:30:00,easy,True,3,40,test4.jsonl,0,not_medium_or_hard,0,1,release_v6
+3510,maximize-the-total-height-of-unique-towers,leetcode,biweekly-contest-140,2024-09-28T07:30:00,medium,True,3,40,test4.jsonl,1,,0,1,release_v6
+3584,find-the-lexicographically-smallest-valid-sequence,leetcode,biweekly-contest-140,2024-09-28T07:30:00,medium,True,4,40,test4.jsonl,1,,0,1,release_v6
+3580,find-the-occurrence-of-first-almost-equal-substring,leetcode,biweekly-contest-140,2024-09-28T07:30:00,hard,True,4,40,test4.jsonl,1,,0,1,release_v6
+abc374_c,Separated Lunch,atcoder,abc374,2024-10-05T00:00:00,medium,False,3,27,test5.jsonl,1,,0,1,release_v6
+abc374_f,Shipping,atcoder,abc374,2024-10-05T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc374_b,Unvarnished Report,atcoder,abc374,2024-10-05T00:00:00,easy,False,3,22,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc374_d,Laser Marking,atcoder,abc374,2024-10-05T00:00:00,medium,False,4,40,test5.jsonl,1,,0,1,release_v6
+abc374_g,Only One Product Name,atcoder,abc374,2024-10-05T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc374_a,Takahashi san 2,atcoder,abc374,2024-10-05T00:00:00,easy,False,2,17,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc374_e,Sensor Optimization Dilemma 2,atcoder,abc374,2024-10-05T00:00:00,hard,False,4,40,test5.jsonl,1,,0,1,release_v6
+abc375_e,3 Team Division,atcoder,abc375,2024-10-12T00:00:00,hard,False,4,48,test5.jsonl,1,,0,1,release_v6
+abc375_b,Traveling Takahashi Problem,atcoder,abc375,2024-10-12T00:00:00,easy,False,3,11,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc375_c,Spiral Rotation,atcoder,abc375,2024-10-12T00:00:00,medium,False,3,33,test5.jsonl,1,,0,1,release_v6
+abc375_a,Seats,atcoder,abc375,2024-10-12T00:00:00,easy,False,3,20,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc375_d,ABA,atcoder,abc375,2024-10-12T00:00:00,medium,False,3,31,test5.jsonl,1,,0,1,release_v6
+abc375_g,Road Blocked 2,atcoder,abc375,2024-10-12T00:00:00,hard,False,3,42,test5.jsonl,1,,0,1,release_v6
+abc375_f,Road Blocked,atcoder,abc375,2024-10-12T00:00:00,hard,False,2,27,test5.jsonl,1,,0,1,release_v6
+abc376_b,Hands on Ring (Easy),atcoder,abc376,2024-10-19T00:00:00,medium,False,3,21,test5.jsonl,1,,0,1,release_v6
+abc376_d,Cycle,atcoder,abc376,2024-10-19T00:00:00,medium,False,3,36,test5.jsonl,1,,0,1,release_v6
+abc376_g,Treasure Hunting,atcoder,abc376,2024-10-19T00:00:00,hard,False,1,38,test5.jsonl,1,,0,1,release_v6
+abc376_a,Candy Button,atcoder,abc376,2024-10-19T00:00:00,easy,False,3,14,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc376_f,Hands on Ring (Hard),atcoder,abc376,2024-10-19T00:00:00,hard,False,3,34,test5.jsonl,1,,0,1,release_v6
+abc376_c,Prepare Another Box,atcoder,abc376,2024-10-19T00:00:00,medium,False,3,27,test5.jsonl,1,,0,1,release_v6
+abc376_e,Max × Sum,atcoder,abc376,2024-10-19T00:00:00,hard,False,1,37,test5.jsonl,1,,0,1,release_v6
+abc377_c,Avoid Knight Attack,atcoder,abc377,2024-10-26T00:00:00,medium,False,3,32,test5.jsonl,1,,0,1,release_v6
+abc377_b,Avoid Rook Attack,atcoder,abc377,2024-10-26T00:00:00,easy,False,3,14,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc377_a,Rearranging ABC,atcoder,abc377,2024-10-26T00:00:00,easy,False,4,14,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc377_g,Edit to Match,atcoder,abc377,2024-10-26T00:00:00,hard,False,3,37,test5.jsonl,1,,0,1,release_v6
+abc377_f,Avoid Queen Attack,atcoder,abc377,2024-10-26T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc377_e,Permute K times 2,atcoder,abc377,2024-10-26T00:00:00,hard,False,3,47,test5.jsonl,1,,0,1,release_v6
+abc377_d,Many Segments 2,atcoder,abc377,2024-10-26T00:00:00,medium,False,3,29,test5.jsonl,1,,0,1,release_v6
+abc378_e,Mod Sigma Problem,atcoder,abc378,2024-11-02T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc378_d,Count Simple Paths,atcoder,abc378,2024-11-02T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc378_b,Garbage Collection,atcoder,abc378,2024-11-02T00:00:00,easy,False,1,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc378_f,Add One Edge 2,atcoder,abc378,2024-11-02T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc378_g,Everlasting LIDS,atcoder,abc378,2024-11-02T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc378_a,Pairing,atcoder,abc378,2024-11-02T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc378_c,Repeating,atcoder,abc378,2024-11-02T00:00:00,medium,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc379_b,Strawberries,atcoder,abc379,2024-11-09T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc379_e,Sum of All Substrings,atcoder,abc379,2024-11-09T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc379_c,Sowing Stones,atcoder,abc379,2024-11-09T00:00:00,medium,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc379_d,Home Garden,atcoder,abc379,2024-11-09T00:00:00,medium,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc379_g,Count Grid 3,atcoder,abc379,2024-11-09T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc379_f,Buildings 2,atcoder,abc379,2024-11-09T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc379_a,Cyclic,atcoder,abc379,2024-11-09T00:00:00,easy,False,2,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc380_e,1D Bucket Tool,atcoder,abc380,2024-11-16T00:00:00,hard,False,1,40,test5.jsonl,1,,0,1,release_v6
+abc380_f,Exchange Game,atcoder,abc380,2024-11-16T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc380_c,Move Segment,atcoder,abc380,2024-11-16T00:00:00,medium,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc380_d,Strange Mirroring,atcoder,abc380,2024-11-16T00:00:00,medium,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc380_a,123233,atcoder,abc380,2024-11-16T00:00:00,easy,False,4,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc380_g,Another Shuffle Window,atcoder,abc380,2024-11-16T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc380_b,Hurdle Parsing,atcoder,abc380,2024-11-16T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc381_a,11/22 String,atcoder,abc381,2024-11-22T00:00:00,easy,False,4,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc381_e,11/22 Subsequence,atcoder,abc381,2024-11-22T00:00:00,hard,False,1,40,test5.jsonl,1,,0,1,release_v6
+abc381_b,1122 String,atcoder,abc381,2024-11-22T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc381_c,11/22 Substring,atcoder,abc381,2024-11-22T00:00:00,medium,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc381_d,1122 Substring,atcoder,abc381,2024-11-22T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc382_d,Keep Distance,atcoder,abc382,2024-11-30T00:00:00,hard,False,1,40,test5.jsonl,1,,0,1,release_v6
+abc382_a,Daily Cookie,atcoder,abc382,2024-11-30T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc382_b,Daily Cookie 2,atcoder,abc382,2024-11-30T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc382_f,Falling Bars,atcoder,abc382,2024-11-30T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc382_g,Tile Distance 3,atcoder,abc382,2024-11-30T00:00:00,hard,False,1,1,test5.jsonl,1,,0,1,release_v6
+abc382_c,Kaiten Sushi,atcoder,abc382,2024-11-30T00:00:00,medium,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc383_c,Humidifier 3,atcoder,abc383,2024-12-07T00:00:00,medium,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc383_a,Humidifier 1,atcoder,abc383,2024-12-07T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc383_e,Sum of Max Matching,atcoder,abc383,2024-12-07T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc383_b,Humidifier 2,atcoder,abc383,2024-12-07T00:00:00,medium,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc383_d,9 Divisors,atcoder,abc383,2024-12-07T00:00:00,medium,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc384_b,ARC Division,atcoder,abc384,2024-12-14T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc384_d,Repeated Sequence,atcoder,abc384,2024-12-14T00:00:00,medium,False,4,40,test5.jsonl,1,,0,1,release_v6
+abc384_g,Abs Sum,atcoder,abc384,2024-12-14T00:00:00,hard,False,2,30,test5.jsonl,1,,0,1,release_v6
+abc384_a,aaaadaa,atcoder,abc384,2024-12-14T00:00:00,easy,False,4,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc384_e,Takahashi is Slime 2,atcoder,abc384,2024-12-14T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc384_f,Double Sum 2,atcoder,abc384,2024-12-14T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc384_c,Perfect Standings,atcoder,abc384,2024-12-14T00:00:00,medium,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc385_f,Visible Buildings,atcoder,abc385,2024-12-21T00:00:00,hard,False,4,40,test5.jsonl,1,,0,1,release_v6
+abc385_a,Equally,atcoder,abc385,2024-12-21T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc385_c,Illuminate Buildings,atcoder,abc385,2024-12-21T00:00:00,medium,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc385_d,Santa Claus 2,atcoder,abc385,2024-12-21T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc385_e,Snowflake Tree,atcoder,abc385,2024-12-21T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+abc385_b,Santa Claus 1,atcoder,abc385,2024-12-21T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc386_e,Maximize XOR,atcoder,abc386,2024-12-28T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+abc386_a,Full House 2,atcoder,abc386,2024-12-28T00:00:00,easy,False,5,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc386_d,Diagonal Separation,atcoder,abc386,2024-12-28T00:00:00,hard,False,4,40,test5.jsonl,1,,0,1,release_v6
+abc386_c,Operate 1,atcoder,abc386,2024-12-28T00:00:00,medium,False,6,40,test5.jsonl,1,,0,1,release_v6
+abc386_b,Calculator,atcoder,abc386,2024-12-28T00:00:00,easy,False,3,40,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc386_f,Operate K,atcoder,abc386,2024-12-28T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+arc184_d,Erase Balls 2D,atcoder,arc184,2024-09-22T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+arc184_c,Mountain and Valley Folds,atcoder,arc184,2024-09-22T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+arc184_e,Accumulating Many Times,atcoder,arc184,2024-09-22T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+arc185_c,Sum of Three Integers,atcoder,arc185,2024-10-13T00:00:00,hard,False,3,40,test5.jsonl,0,official_errata,1,1,release_v6
+arc185_e,Adjacent GCD,atcoder,arc185,2024-10-13T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+arc185_b,+1 and,atcoder,arc185,2024-10-13T00:00:00,hard,False,1,1,test5.jsonl,1,,0,1,release_v6
+arc185_d,Random Walk on Tree,atcoder,arc185,2024-10-13T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+arc186_a,Underclued,atcoder,arc186,2024-10-27T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+arc186_d,Polish Mania,atcoder,arc186,2024-10-27T00:00:00,hard,False,4,40,test5.jsonl,1,,0,1,release_v6
+arc186_b,Typical Permutation Descriptor,atcoder,arc186,2024-10-27T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+arc186_e,Missing Subsequence,atcoder,arc186,2024-10-27T00:00:00,hard,False,4,40,test5.jsonl,1,,0,1,release_v6
+arc186_c,Ball and Box,atcoder,arc186,2024-10-27T00:00:00,hard,False,1,1,test5.jsonl,1,,0,1,release_v6
+arc187_b,Sum of CC,atcoder,arc187,2024-11-17T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+arc188_c,Honest or Liar or Confused,atcoder,arc188,2024-11-23T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+arc188_b,Symmetric Painting,atcoder,arc188,2024-11-23T00:00:00,hard,False,1,1,test5.jsonl,1,,0,1,release_v6
+arc188_d,Mirror and Order,atcoder,arc188,2024-11-23T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+arc188_a,ABC Symmetry,atcoder,arc188,2024-11-23T00:00:00,hard,False,3,40,test5.jsonl,1,,0,1,release_v6
+arc189_a,Reversi 2,atcoder,arc189,2024-12-08T00:00:00,medium,False,2,40,test5.jsonl,0,official_errata,1,1,release_v6
+arc189_c,Balls and Boxes,atcoder,arc189,2024-12-08T00:00:00,hard,False,4,40,test5.jsonl,1,,0,1,release_v6
+arc189_d,Takahashi is Slime,atcoder,arc189,2024-12-08T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+arc189_b,Minimize Sum,atcoder,arc189,2024-12-08T00:00:00,hard,False,2,40,test5.jsonl,1,,0,1,release_v6
+3610,find-x-sum-of-all-k-long-subarrays-i,leetcode,weekly-contest-419,2024-10-12T19:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3588,count-the-number-of-winning-sequences,leetcode,weekly-contest-419,2024-10-12T19:30:00,hard,True,2,40,test5.jsonl,1,,0,1,release_v6
+3566,find-the-sequence-of-strings-appeared-on-the-screen,leetcode,weekly-contest-420,2024-10-19T19:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3502,count-substrings-with-k-frequency-characters-i,leetcode,weekly-contest-420,2024-10-19T19:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3607,minimum-division-operations-to-make-array-non-decreasing,leetcode,weekly-contest-420,2024-10-19T19:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3603,check-if-dfs-strings-are-palindromes,leetcode,weekly-contest-420,2024-10-19T19:30:00,hard,True,2,40,test5.jsonl,1,,0,1,release_v6
+3593,find-the-maximum-factor-score-of-array,leetcode,weekly-contest-421,2024-10-26T19:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3629,total-characters-in-string-after-transformations-i,leetcode,weekly-contest-421,2024-10-26T19:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3608,find-the-number-of-subsequences-with-equal-gcd,leetcode,weekly-contest-421,2024-10-26T19:30:00,hard,True,3,40,test5.jsonl,1,,0,1,release_v6
+3636,check-balanced-string,leetcode,weekly-contest-422,2024-11-02T19:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3627,find-minimum-time-to-reach-last-room-i,leetcode,weekly-contest-422,2024-11-02T19:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3637,count-number-of-balanced-permutations,leetcode,weekly-contest-422,2024-11-02T19:30:00,hard,True,3,40,test5.jsonl,1,,0,1,release_v6
+3612,adjacent-increasing-subarrays-detection-i,leetcode,weekly-contest-423,2024-11-09T18:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3646,sum-of-good-subsequences,leetcode,weekly-contest-423,2024-11-09T18:30:00,hard,True,2,40,test5.jsonl,1,,0,1,release_v6
+3631,count-k-reducible-numbers-less-than-n,leetcode,weekly-contest-423,2024-11-09T18:30:00,hard,True,3,40,test5.jsonl,1,,0,1,release_v6
+3616,make-array-elements-equal-to-zero,leetcode,weekly-contest-424,2024-11-16T18:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3639,zero-array-transformation-i,leetcode,weekly-contest-424,2024-11-16T18:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3658,minimize-the-maximum-adjacent-element-difference,leetcode,weekly-contest-424,2024-11-16T18:30:00,hard,True,3,40,test5.jsonl,1,,0,1,release_v6
+3644,minimum-positive-sum-subarray,leetcode,weekly-contest-425,2024-11-23T18:30:00,easy,True,3,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3654,minimum-array-sum,leetcode,weekly-contest-425,2024-11-23T18:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3675,maximize-sum-of-weights-after-edge-removals,leetcode,weekly-contest-425,2024-11-23T18:30:00,hard,True,2,40,test5.jsonl,1,,0,1,release_v6
+3605,construct-the-minimum-bitwise-array-i,leetcode,biweekly-contest-141,2024-10-12T07:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3487,find-maximum-removals-from-source-string,leetcode,biweekly-contest-141,2024-10-12T07:30:00,medium,True,4,40,test5.jsonl,1,,0,1,release_v6
+3604,find-the-number-of-possible-ways-for-an-event,leetcode,biweekly-contest-141,2024-10-12T07:30:00,hard,True,3,40,test5.jsonl,1,,0,1,release_v6
+3617,find-the-original-typed-string-i,leetcode,biweekly-contest-142,2024-10-26T07:30:00,easy,True,3,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3587,maximum-points-tourist-can-earn,leetcode,biweekly-contest-142,2024-10-26T07:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3626,smallest-divisible-digit-product-i,leetcode,biweekly-contest-143,2024-11-09T06:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3622,maximum-frequency-of-an-element-after-performing-operations-i,leetcode,biweekly-contest-143,2024-11-09T06:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3625,stone-removal-game,leetcode,biweekly-contest-144,2024-11-23T06:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3591,shift-distance-between-two-strings,leetcode,biweekly-contest-144,2024-11-23T06:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3647,zero-array-transformation-iii,leetcode,biweekly-contest-144,2024-11-23T06:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3648,find-the-maximum-number-of-fruits-collected,leetcode,biweekly-contest-144,2024-11-23T06:30:00,hard,True,2,40,test5.jsonl,1,,0,1,release_v6
+3676,smallest-number-with-all-set-bits,leetcode,weekly-contest-426,2024-11-30T18:30:00,easy,True,3,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3594,identify-the-largest-outlier-in-an-array,leetcode,weekly-contest-426,2024-11-30T18:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3651,transformed-array,leetcode,weekly-contest-427,2024-12-07T18:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3681,maximum-area-rectangle-with-point-constraints-i,leetcode,weekly-contest-427,2024-12-07T18:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3653,maximum-subarray-sum-with-length-divisible-by-k,leetcode,weekly-contest-427,2024-12-07T18:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3621,minimum-operations-to-make-array-values-equal-to-k,leetcode,biweekly-contest-145,2024-12-07T06:30:00,easy,True,3,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3649,minimum-time-to-break-locks-i,leetcode,biweekly-contest-145,2024-12-07T06:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3655,digit-operations-to-make-two-integers-equal,leetcode,biweekly-contest-145,2024-12-07T06:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3680,count-connected-components-in-lcm-graph,leetcode,biweekly-contest-145,2024-12-07T06:30:00,hard,True,2,40,test5.jsonl,1,,0,1,release_v6
+3632,button-with-longest-push-time,leetcode,weekly-contest-428,2024-12-14T18:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3613,maximize-amount-after-two-days-of-conversions,leetcode,weekly-contest-428,2024-12-14T18:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3686,count-beautiful-splits-in-an-array,leetcode,weekly-contest-428,2024-12-14T18:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3638,minimum-operations-to-make-character-frequencies-equal,leetcode,weekly-contest-428,2024-12-14T18:30:00,hard,True,3,40,test5.jsonl,1,,0,1,release_v6
+3656,minimum-number-of-operations-to-make-elements-in-array-distinct,leetcode,weekly-contest-429,2024-12-21T18:30:00,easy,True,3,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3620,maximum-number-of-distinct-elements-after-operations,leetcode,weekly-contest-429,2024-12-21T18:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3690,smallest-substring-with-identical-characters-i,leetcode,weekly-contest-429,2024-12-21T18:30:00,hard,True,3,40,test5.jsonl,1,,0,1,release_v6
+3683,find-the-lexicographically-largest-string-from-the-box-i,leetcode,weekly-contest-430,2024-12-28T18:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3699,count-special-subsequences,leetcode,weekly-contest-430,2024-12-28T18:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3682,count-the-number-of-arrays-with-k-matching-adjacent-elements,leetcode,weekly-contest-430,2024-12-28T18:30:00,hard,True,3,40,test5.jsonl,1,,0,1,release_v6
+3685,count-subarrays-of-length-three-with-a-condition,leetcode,biweekly-contest-146,2024-12-21T06:30:00,easy,True,2,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3659,count-paths-with-the-given-xor-value,leetcode,biweekly-contest-146,2024-12-21T06:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3657,check-if-grid-can-be-cut-into-sections,leetcode,biweekly-contest-146,2024-12-21T06:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3700,subsequences-with-a-unique-middle-mode-i,leetcode,biweekly-contest-146,2024-12-21T06:30:00,hard,True,3,40,test5.jsonl,1,,0,1,release_v6
+3702,maximum-subarray-with-equal-products,leetcode,weekly-contest-431,2025-01-04T18:30:00,easy,True,3,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3634,find-mirror-score-of-a-string,leetcode,weekly-contest-431,2025-01-04T18:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3715,maximum-coins-from-k-consecutive-bags,leetcode,weekly-contest-431,2025-01-04T18:30:00,medium,True,2,40,test5.jsonl,1,,0,1,release_v6
+3562,maximum-score-of-non-overlapping-intervals,leetcode,weekly-contest-431,2025-01-04T18:30:00,hard,True,2,40,test5.jsonl,1,,0,1,release_v6
+3684,substring-matching-pattern,leetcode,biweekly-contest-147,2025-01-04T06:30:00,easy,True,3,31,test5.jsonl,0,not_medium_or_hard,0,1,release_v6
+3716,longest-subsequence-with-decreasing-adjacent-difference,leetcode,biweekly-contest-147,2025-01-04T06:30:00,medium,True,3,40,test5.jsonl,1,,0,1,release_v6
+3688,maximize-subarray-sum-after-removing-all-occurrences-of-one-element,leetcode,biweekly-contest-147,2025-01-04T06:30:00,hard,True,2,40,test5.jsonl,1,,0,1,release_v6
+abc387_b,9x9 Sum,atcoder,abc387,2025-01-04T00:00:00,easy,False,3,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc387_f,Count Arrays,atcoder,abc387,2025-01-04T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc387_a,Happy New Year 2025,atcoder,abc387,2025-01-04T00:00:00,easy,False,4,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc387_c,Snake Numbers,atcoder,abc387,2025-01-04T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc388_d,Coming of Age Celebration,atcoder,abc388,2025-01-11T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc388_b,Heavy Snake,atcoder,abc388,2025-01-11T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc388_g,Simultaneous Kagamimochi 2,atcoder,abc388,2025-01-11T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc388_c,Various Kagamimochi,atcoder,abc388,2025-01-11T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc388_a,?UPC,atcoder,abc388,2025-01-11T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc388_f,Dangerous Sugoroku,atcoder,abc388,2025-01-11T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc388_e,Simultaneous Kagamimochi,atcoder,abc388,2025-01-11T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc389_d,Squares in Circle,atcoder,abc389,2025-01-18T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc389_b,tcaF,atcoder,abc389,2025-01-18T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc389_a,9x9,atcoder,abc389,2025-01-18T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc389_g,Odd Even Graph,atcoder,abc389,2025-01-18T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc389_f,Rated Range,atcoder,abc389,2025-01-18T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc389_e,Square Price,atcoder,abc389,2025-01-18T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc390_e,Vitamin Balance,atcoder,abc390,2025-01-25T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc390_g,Permutation Concatenation,atcoder,abc390,2025-01-25T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc390_a,12435,atcoder,abc390,2025-01-25T00:00:00,easy,False,4,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc390_b,Geometric Sequence,atcoder,abc390,2025-01-25T00:00:00,easy,False,3,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc390_d,Stone XOR,atcoder,abc390,2025-01-25T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc390_f,Double Sum 3,atcoder,abc390,2025-01-25T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc390_c,Paint to make a rectangle,atcoder,abc390,2025-01-25T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc391_d,Gravity,atcoder,abc391,2025-02-01T00:00:00,medium,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc391_f,K,atcoder,abc391,2025-02-01T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc391_a,Lucky Direction,atcoder,abc391,2025-02-01T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc391_e,Hierarchical Majority Vote,atcoder,abc391,2025-02-01T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc391_g,Many LCS,atcoder,abc391,2025-02-01T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc391_b,Seek Grid,atcoder,abc391,2025-02-01T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc392_a,Shuffled Equation,atcoder,abc392,2025-02-08T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc392_g,Fine Triplets,atcoder,abc392,2025-02-08T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc392_b,Who is Missing?,atcoder,abc392,2025-02-08T00:00:00,easy,False,3,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc392_d,Doubles,atcoder,abc392,2025-02-08T00:00:00,medium,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc392_f,Insert,atcoder,abc392,2025-02-08T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc392_c,Bib,atcoder,abc392,2025-02-08T00:00:00,medium,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc393_a,Poisonous Oyster,atcoder,abc393,2025-02-15T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc393_f,Prefix LIS Query,atcoder,abc393,2025-02-15T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc393_e,GCD of Subset,atcoder,abc393,2025-02-15T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc393_d,Swap to Gather,atcoder,abc393,2025-02-15T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc393_b,A..B..C,atcoder,abc393,2025-02-15T00:00:00,easy,False,3,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc394_c,Debug,atcoder,abc394,2025-02-22T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc394_b,cat,atcoder,abc394,2025-02-22T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc394_f,Alkane,atcoder,abc394,2025-02-22T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc394_a,22222,atcoder,abc394,2025-02-22T00:00:00,easy,False,3,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc394_g,Dense Buildings,atcoder,abc394,2025-02-22T00:00:00,hard,False,1,40,test6.jsonl,1,,0,1,release_v6
+abc394_d,Colorful Bracket Sequence,atcoder,abc394,2025-02-22T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc394_e,Palindromic Shortest Path,atcoder,abc394,2025-02-22T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc395_c,Shortest Duplicate Subarray,atcoder,abc395,2025-03-01T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc395_f,Smooth Occlusion,atcoder,abc395,2025-03-01T00:00:00,hard,False,4,40,test6.jsonl,1,,0,1,release_v6
+abc395_b,Make Target,atcoder,abc395,2025-03-01T00:00:00,easy,False,4,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc395_a,Strictly Increasing?,atcoder,abc395,2025-03-01T00:00:00,easy,False,3,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc395_e,Flip Edge,atcoder,abc395,2025-03-01T00:00:00,hard,False,4,40,test6.jsonl,1,,0,1,release_v6
+abc396_g,Flip Row or Col,atcoder,abc396,2025-03-08T00:00:00,hard,False,3,33,test6.jsonl,1,,0,1,release_v6
+abc396_c,Buy Balls,atcoder,abc396,2025-03-08T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc396_f,Rotated Inversions,atcoder,abc396,2025-03-08T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc396_b,Card Pile,atcoder,abc396,2025-03-08T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc396_e,Min of Restricted Sum,atcoder,abc396,2025-03-08T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc396_d,Minimum XOR Path,atcoder,abc396,2025-03-08T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc396_a,Triple Four,atcoder,abc396,2025-03-08T00:00:00,easy,False,5,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc397_d,Cubes,atcoder,abc397,2025-03-15T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc397_f,Variety Split Hard,atcoder,abc397,2025-03-15T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc397_c,Variety Split Easy,atcoder,abc397,2025-03-15T00:00:00,medium,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc397_g,Maximize Distance,atcoder,abc397,2025-03-15T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc397_e,Path Decomposition of a Tree,atcoder,abc397,2025-03-15T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc397_a,Thermometer,atcoder,abc397,2025-03-15T00:00:00,easy,False,3,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc397_b,Ticket Gate Log,atcoder,abc397,2025-03-15T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc398_f,ABCBA,atcoder,abc398,2025-03-22T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc398_b,Full House 3,atcoder,abc398,2025-03-22T00:00:00,medium,False,4,40,test6.jsonl,1,,0,1,release_v6
+abc398_d,Bonfire,atcoder,abc398,2025-03-22T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc398_a,Doors in the Center,atcoder,abc398,2025-03-22T00:00:00,easy,False,2,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc398_c,Uniqueness,atcoder,abc398,2025-03-22T00:00:00,medium,False,2,40,test6.jsonl,1,,0,1,release_v6
+abc398_g,Not Only Tree Game,atcoder,abc398,2025-03-22T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc399_e,Replace,atcoder,abc399,2025-03-29T00:00:00,hard,False,4,40,test6.jsonl,1,,0,1,release_v6
+abc399_d,Switch Seats,atcoder,abc399,2025-03-29T00:00:00,medium,False,1,1,test6.jsonl,1,,0,1,release_v6
+abc399_a,Hamming Distance,atcoder,abc399,2025-03-29T00:00:00,easy,False,4,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc399_c,Make it Forest,atcoder,abc399,2025-03-29T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc399_f,Range Power Sum,atcoder,abc399,2025-03-29T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc399_b,Ranking with Ties,atcoder,abc399,2025-03-29T00:00:00,easy,False,4,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc400_c,2^a b^2,atcoder,abc400,2025-04-05T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+abc400_d,Takahashi the Wall Breaker,atcoder,abc400,2025-04-05T00:00:00,medium,False,4,40,test6.jsonl,1,,0,1,release_v6
+abc400_a,ABC400 Party,atcoder,abc400,2025-04-05T00:00:00,easy,False,3,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc400_b,Sum of Geometric Series,atcoder,abc400,2025-04-05T00:00:00,easy,False,4,40,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+abc400_e,Ringo's Favorite Numbers 3,atcoder,abc400,2025-04-05T00:00:00,hard,False,1,4,test6.jsonl,1,,0,1,release_v6
+abc400_g,Patisserie ABC 3,atcoder,abc400,2025-04-05T00:00:00,hard,False,2,4,test6.jsonl,1,,0,1,release_v6
+arc190_c,Basic Grid Problem with Updates,atcoder,arc190,2025-01-12T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+arc190_a,Inside or Outside,atcoder,arc190,2025-01-12T00:00:00,hard,False,4,40,test6.jsonl,1,,0,1,release_v6
+arc190_d,Matrix Pow Sum,atcoder,arc190,2025-01-12T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc191_d,Moving Pieces on Graph,atcoder,arc191,2025-01-26T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc191_c,A^n,atcoder,arc191,2025-01-26T00:00:00,hard,False,1,1,test6.jsonl,1,,0,1,release_v6
+arc191_a,Replace Digits,atcoder,arc191,2025-01-26T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc192_e,Snuke's Kyoto Trip,atcoder,arc192,2025-02-09T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc192_b,Fennec VS. Snuke 2,atcoder,arc192,2025-02-09T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc192_d,Fraction Line,atcoder,arc192,2025-02-09T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc192_a,ARC Arc,atcoder,arc192,2025-02-09T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc193_b,Broken Wheel,atcoder,arc193,2025-02-23T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+arc193_a,Complement Interval Graph,atcoder,arc193,2025-02-23T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+arc193_d,Magnets,atcoder,arc193,2025-02-23T00:00:00,hard,False,1,1,test6.jsonl,1,,0,1,release_v6
+arc194_c,Cost to Flip,atcoder,arc194,2025-03-09T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc194_b,Minimum Cost Sort,atcoder,arc194,2025-03-09T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc194_e,Swap 0^X and 1^Y,atcoder,arc194,2025-03-09T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+arc194_a,Operations on a Stack,atcoder,arc194,2025-03-09T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc194_d,Reverse Brackets,atcoder,arc194,2025-03-09T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+arc195_e,Random Tree Distance,atcoder,arc195,2025-03-23T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc195_b,Uniform Sum,atcoder,arc195,2025-03-23T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc195_c,Hamiltonian Pieces,atcoder,arc195,2025-03-23T00:00:00,hard,False,1,4,test6.jsonl,1,,0,1,release_v6
+arc195_d,Swap and Erase,atcoder,arc195,2025-03-23T00:00:00,hard,False,1,1,test6.jsonl,1,,0,1,release_v6
+arc195_a,Twice Subsequence,atcoder,arc195,2025-03-23T00:00:00,medium,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc196_b,Torus Loop,atcoder,arc196,2025-04-06T00:00:00,hard,False,1,1,test6.jsonl,1,,0,1,release_v6
+arc196_c,Strongly Connected,atcoder,arc196,2025-04-06T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc196_a,Adjacent Delete,atcoder,arc196,2025-04-06T00:00:00,hard,False,3,40,test6.jsonl,1,,0,1,release_v6
+arc196_d,Roadway,atcoder,arc196,2025-04-06T00:00:00,hard,False,2,40,test6.jsonl,1,,0,1,release_v6
+3708,zigzag-grid-traversal-with-skip,leetcode,weekly-contest-432,2025-01-11T18:30:00,easy,True,3,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3677,maximum-amount-of-money-robot-can-earn,leetcode,weekly-contest-432,2025-01-11T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3720,minimize-the-maximum-edge-weight-of-graph,leetcode,weekly-contest-432,2025-01-11T18:30:00,medium,True,4,40,test6.jsonl,1,,0,1,release_v6
+3674,count-non-decreasing-subarrays-after-k-operations,leetcode,weekly-contest-432,2025-01-11T18:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3731,sum-of-variable-length-subarrays,leetcode,weekly-contest-433,2025-01-18T18:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3714,maximum-and-minimum-sums-of-at-most-size-k-subsequences,leetcode,weekly-contest-433,2025-01-18T18:30:00,medium,True,3,40,test6.jsonl,1,,0,1,release_v6
+3737,paint-house-iv,leetcode,weekly-contest-433,2025-01-18T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3725,maximum-and-minimum-sums-of-at-most-size-k-subarrays,leetcode,weekly-contest-433,2025-01-18T18:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3704,count-partitions-with-even-sum-difference,leetcode,weekly-contest-434,2025-01-25T18:30:00,easy,True,3,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3721,count-mentions-per-user,leetcode,weekly-contest-434,2025-01-25T18:30:00,medium,True,3,40,test6.jsonl,1,,0,1,release_v6
+3751,maximum-frequency-after-subarray-operation,leetcode,weekly-contest-434,2025-01-25T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3753,maximum-difference-between-even-and-odd-frequency-i,leetcode,weekly-contest-435,2025-02-01T18:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3754,maximum-manhattan-distance-after-k-changes,leetcode,weekly-contest-435,2025-02-01T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3697,minimum-increments-for-target-multiples-in-an-array,leetcode,weekly-contest-435,2025-02-01T18:30:00,hard,True,3,40,test6.jsonl,1,,0,1,release_v6
+3748,sort-matrix-by-diagonals,leetcode,weekly-contest-436,2025-02-08T18:30:00,medium,True,3,40,test6.jsonl,1,,0,1,release_v6
+3760,assign-elements-to-groups-with-constraints,leetcode,weekly-contest-436,2025-02-08T18:30:00,medium,True,3,40,test6.jsonl,1,,0,1,release_v6
+3696,count-substrings-divisible-by-last-digit,leetcode,weekly-contest-436,2025-02-08T18:30:00,hard,True,3,40,test6.jsonl,1,,0,1,release_v6
+3762,maximize-the-minimum-game-score,leetcode,weekly-contest-436,2025-02-08T18:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3709,find-special-substring-of-length-k,leetcode,weekly-contest-437,2025-02-15T18:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3779,eat-pizzas,leetcode,weekly-contest-437,2025-02-15T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3771,select-k-disjoint-special-substrings,leetcode,weekly-contest-437,2025-02-15T18:30:00,medium,True,3,40,test6.jsonl,1,,0,1,release_v6
+3733,length-of-longest-v-shaped-diagonal-segment,leetcode,weekly-contest-437,2025-02-15T18:30:00,hard,True,4,40,test6.jsonl,1,,0,1,release_v6
+3768,check-if-digits-are-equal-in-string-after-operations-i,leetcode,weekly-contest-438,2025-02-22T18:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3764,maximum-sum-with-at-most-k-elements,leetcode,weekly-contest-438,2025-02-22T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3781,maximize-the-distance-between-points-on-a-square,leetcode,weekly-contest-438,2025-02-22T18:30:00,hard,True,3,40,test6.jsonl,1,,0,1,release_v6
+3705,find-the-largest-almost-missing-integer,leetcode,weekly-contest-439,2025-03-01T18:30:00,easy,True,3,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3786,longest-palindromic-subsequence-after-at-most-k-operations,leetcode,weekly-contest-439,2025-03-01T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3722,sum-of-k-subarrays-with-length-at-least-m,leetcode,weekly-contest-439,2025-03-01T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3770,lexicographically-smallest-generated-string,leetcode,weekly-contest-439,2025-03-01T18:30:00,hard,True,3,40,test6.jsonl,1,,0,1,release_v6
+3759,choose-k-elements-with-maximum-sum,leetcode,weekly-contest-440,2025-03-08T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3791,fruits-into-baskets-iii,leetcode,weekly-contest-440,2025-03-08T18:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3789,maximize-subarrays-after-removing-one-conflicting-pair,leetcode,weekly-contest-440,2025-03-08T18:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3788,maximum-unique-subarray-sum-after-deletion,leetcode,weekly-contest-441,2025-03-15T19:30:00,easy,True,3,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3750,closest-equal-element-queries,leetcode,weekly-contest-441,2025-03-15T19:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3795,zero-array-transformation-iv,leetcode,weekly-contest-441,2025-03-15T19:30:00,medium,True,4,40,test6.jsonl,1,,0,1,release_v6
+3801,count-beautiful-numbers,leetcode,weekly-contest-441,2025-03-15T19:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3817,maximum-containers-on-a-ship,leetcode,weekly-contest-442,2025-03-22T19:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3809,properties-graph,leetcode,weekly-contest-442,2025-03-22T19:30:00,medium,True,3,40,test6.jsonl,1,,0,1,release_v6
+3794,find-the-minimum-amount-of-time-to-brew-potions,leetcode,weekly-contest-442,2025-03-22T19:30:00,medium,True,3,40,test6.jsonl,1,,0,1,release_v6
+3744,minimum-operations-to-make-array-elements-zero,leetcode,weekly-contest-442,2025-03-22T19:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3832,minimum-cost-to-reach-every-position,leetcode,weekly-contest-443,2025-03-29T19:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3793,longest-palindrome-after-substring-concatenation-i,leetcode,weekly-contest-443,2025-03-29T19:30:00,medium,True,4,40,test6.jsonl,1,,0,1,release_v6
+3717,minimum-operations-to-make-elements-within-k-subarrays-equal,leetcode,weekly-contest-443,2025-03-29T19:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3773,minimum-pair-removal-to-sort-array-i,leetcode,weekly-contest-444,2025-04-05T19:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3777,maximum-product-of-subsequences-with-an-alternating-sum-equal-to-k,leetcode,weekly-contest-444,2025-04-05T19:30:00,hard,True,3,40,test6.jsonl,1,,0,1,release_v6
+3747,maximum-difference-between-adjacent-elements-in-a-circular-array,leetcode,biweekly-contest-148,2025-01-18T06:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3687,longest-special-path,leetcode,biweekly-contest-148,2025-01-18T06:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3739,manhattan-distances-of-all-arrangements-of-pieces,leetcode,biweekly-contest-148,2025-01-18T06:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3736,find-valid-pair-of-adjacent-digits-in-string,leetcode,biweekly-contest-149,2025-02-01T06:30:00,easy,True,3,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3743,reschedule-meetings-for-maximum-free-time-i,leetcode,biweekly-contest-149,2025-02-01T06:30:00,medium,True,3,40,test6.jsonl,1,,0,1,release_v6
+3701,minimum-cost-good-caption,leetcode,biweekly-contest-149,2025-02-01T06:30:00,hard,True,3,40,test6.jsonl,1,,0,1,release_v6
+3723,sum-of-good-numbers,leetcode,biweekly-contest-150,2025-02-15T06:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3763,separate-squares-i,leetcode,biweekly-contest-150,2025-02-15T06:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3692,shortest-matching-substring,leetcode,biweekly-contest-150,2025-02-15T06:30:00,hard,True,4,40,test6.jsonl,1,,0,1,release_v6
+3778,transform-array-by-parity,leetcode,biweekly-contest-151,2025-03-01T06:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3785,find-the-number-of-copy-arrays,leetcode,biweekly-contest-151,2025-03-01T06:30:00,medium,True,3,40,test6.jsonl,1,,0,1,release_v6
+3776,find-minimum-cost-to-remove-array-elements,leetcode,biweekly-contest-151,2025-03-01T06:30:00,medium,True,2,40,test6.jsonl,1,,0,1,release_v6
+3783,permutations-iv,leetcode,biweekly-contest-151,2025-03-01T06:30:00,hard,True,3,40,test6.jsonl,1,,0,1,release_v6
+3799,unique-3-digit-even-numbers,leetcode,biweekly-contest-152,2025-03-15T07:30:00,easy,True,4,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3784,longest-common-prefix-of-k-strings-after-removal,leetcode,biweekly-contest-152,2025-03-15T07:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6
+3811,reverse-degree-of-a-string,leetcode,biweekly-contest-153,2025-03-29T07:30:00,easy,True,2,31,test6.jsonl,0,not_medium_or_hard,0,1,release_v6
+3805,maximize-active-section-with-trade-i,leetcode,biweekly-contest-153,2025-03-29T07:30:00,medium,True,4,40,test6.jsonl,1,,0,1,release_v6
+3765,minimum-cost-to-divide-array-into-subarrays,leetcode,biweekly-contest-153,2025-03-29T07:30:00,hard,True,2,40,test6.jsonl,1,,0,1,release_v6

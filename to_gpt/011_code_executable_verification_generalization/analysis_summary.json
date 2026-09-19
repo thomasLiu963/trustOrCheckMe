@@ -1,0 +1,56 @@
+{
+  "decision": {
+    "world": "MODEL_SPECIFIC",
+    "coverage_gen": "MODEL_SPECIFIC_GENERALIZATION",
+    "routing": "ROUTING_NULL_OR_SMALL",
+    "per_model": {
+      "openai_gpt56_sol": {
+        "effect": 0.3881118881118881,
+        "label": "large_replication",
+        "large": true,
+        "moderate": true,
+        "reverse": false,
+        "dll": -0.0005151968009201591,
+        "reshape": false,
+        "lo": 0.3321678321678322
+      },
+      "anthropic_sonnet5": {
+        "effect": 0.04895104895104895,
+        "label": "weak_or_none",
+        "large": false,
+        "moderate": false,
+        "reverse": false,
+        "dll": -0.0005023370525949339,
+        "reshape": false,
+        "lo": 0.024475524475524476
+      }
+    },
+    "routing_flags": {
+      "openai_gpt56_sol": false,
+      "anthropic_sonnet5": false
+    }
+  },
+  "n_requests": 7948,
+  "n_attempts": 8109,
+  "n_fail": 0,
+  "usd": 39.614104,
+  "main_n": 286,
+  "main_hash": "254d4a628415fd790b8d883a186ddb92c702854da3cdf30c3baca8cf9babf955",
+  "repeat_hash": "ddd080a66f8474d6fb6339accdec1b7ca3605945869f7bea82a39892448b8b99",
+  "ladder": "hard_only",
+  "lcb_commit": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+  "paper_sha": "8546e2e8002d9c96c6be7c946a4d63705068adda133b7a7c0c10bee2b8542b36",
+  "accuracy": {
+    "openai_gpt56_sol": 0.46503496503496505,
+    "anthropic_sonnet5": 0.43006993006993005
+  },
+  "accuracy_text": "- GPT: 46.5% of 286 frozen programs passed all hidden tests\n- Claude: 43.0% of 286 frozen programs passed all hidden tests",
+  "gpt_ci": "33.2, 44.8",
+  "claude_ci": "2.4, 7.7",
+  "pilot_acc": {
+    "anthropic_sonnet5": 0.775,
+    "openai_gpt56_sol": 0.875
+  },
+  "planned_confirmatory_calls": 7148,
+  "against": "Claude is near-saturated on VERIFY_FIRST for hard code (~95\u2013100%), so the two-model MMLU coverage-control story does not transfer intact. GPT still shows a large 0.70\u21920.99 coverage shift. Allocation \u0394LL is null."
+}

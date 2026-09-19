@@ -1,0 +1,10 @@
+{
+  "task": "013_hidden_confidence_policy_audit",
+  "label": "POST_HOC_POLICY_REANALYSIS",
+  "finished_at": "2026-09-19T01:06:42.420762+00:00",
+  "decision": "DIAGNOSTIC_ONLY",
+  "robustness_class": "HIDDEN_NOT_ROBUST",
+  "api_calls": 0,
+  "paper_sha_before": "cc554e0502c960f2e51252e0fb511892c6c1f04afef43eb1bc9d90946ba3c452",
+  "paper_sha_after": "cc554e0502c960f2e51252e0fb511892c6c1f04afef43eb1bc9d90946ba3c452"
+}

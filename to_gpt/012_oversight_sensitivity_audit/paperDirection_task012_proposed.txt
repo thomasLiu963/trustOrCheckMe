@@ -1,0 +1,1872 @@
+D1 PAPER DIRECTION — PROPOSED AFTER TASK 012
+Working narrative / scientific source of truth (PROPOSED REPLACEMENT)
+Date: 2026-09-19
+Status: PROPOSED by Task 012 (POST_HOC_SYSTEMS_REANALYSIS). Not live until accepted.
+The live source of truth remains paperDirection.txt. No new-data experiments.
+Core experiments are complete. Next phase is manuscript writing.
+
+======================================================================
+0. PURPOSE OF THIS DOCUMENT
+======================================================================
+
+This file is a PROPOSED full replacement for paperDirection.txt after Task 012.
+Until it is accepted, paperDirection.txt remains the live source of truth.
+
+It supersedes the Task-009-era ranking-invariance frame AND upgrades the
+post-011 coverage-control frame.
+
+Why the upgrade:
+
+1. Task 010 showed that the MMLU H2 analysis is not sensitive enough to support
+   a strong global claim that ranking is invariant or that small/moderate
+   reranking is ruled out.
+
+2. Task 011 completed the final prospective generalization study on executable
+   code with a real external verifier, with a model-specific boundary:
+   GPT retains a large coverage response; Claude is near-saturated VERIFY.
+
+3. Task 012, a zero-call POST_HOC_SYSTEMS_REANALYSIS of frozen 009+011,
+   showed that those coverage shifts change the number of frozen incorrect
+   outputs that escape independent checking. The 0.70–0.99 grid overlaps
+   naturally reported q1. Choosing the wrong confidence-induced operating
+   point changes normalized loss across a nontrivial interval of verify-vs-
+   escaped-error cost ratios.
+
+Therefore the final paper should NOT be built around:
+
+    “confidence leaves the ranking invariant.”
+
+And should NOT stop at:
+
+    “displayed confidence can change verification coverage.”
+
+The final paper SHOULD be built around:
+
+    CONFIDENCE-METADATA SENSITIVITY / OVERSIGHT LEVERAGE
+
+    A counterfactual confidence value with no item-discriminative information
+    within a condition can move how much independent verification a deployed
+    LLM requests, and therefore how many frozen incorrect outputs escape
+    checking, while the underlying output population stays fixed.
+
+Supporting facts that remain:
+
+    Across the prospective MMLU and code studies, the preregistered
+    score-specific prioritization models provide little held-out predictive
+    benefit, so allocation is secondary. The data are NOT strong enough to
+    prove exact ranking invariance or to rule out smaller/generic reranking.
+
+This is a behavioral systems paper about oversight intensity, not a mechanism
+paper about hidden confidence states.
+
+======================================================================
+1. THE FINAL PAPER IN ONE PARAGRAPH
+======================================================================
+
+Large language models increasingly operate inside systems that cannot afford
+to independently verify every output. They must decide when to spend an
+external verification resource: a human reviewer, a stronger model, retrieval,
+additional compute, a specialized checker, or an executable test suite.
+Confidence is a natural control signal for such routing decisions, but its
+causal role is unclear when the signal is fed back into an adaptive model:
+does changing the confidence shown to the model alter which outputs receive
+scrutiny, or mainly how often scrutiny is requested?
+
+D1 isolates this question with a fixed-output counterfactual intervention.
+After an LLM generates an answer, the answer is frozen. We then vary only the
+confidence value displayed back to the model before it decides whether to use
+the output directly or request independent verification.
+
+On a fresh preregistered MMLU-Pro study, changing displayed confidence from
+0.70 to 0.99 shifts verification coverage by 50.2 percentage points for GPT
+and 35.4 points for Claude. A preregistered richer model that allows
+score-dependent reprioritization provides essentially no held-out predictive
+gain over the shared-prioritization baseline.
+
+We then repeat the intervention in a more realistic executable setting:
+frozen code solutions from LiveCodeBench can be sent to an independent hidden
+test suite. GPT again shows a large 38.8-point confidence-driven coverage
+shift. Claude, however, remains near-always VERIFY_FIRST and moves only
+4.9 points, revealing a model/task boundary condition rather than a universal
+law.
+
+Those same coverage shifts change error leakage
+(P(incorrect AND USE_UNVERIFIED | displayed q)) on an unchanged incorrect-
+output population. POST_HOC_SYSTEMS_REANALYSIS: MMLU GPT 2.0% → 13.8%
+(+11.8 pp); MMLU Claude 0.0% → 3.8% (+3.8 pp); code GPT 10.8% → 32.9%
+(+22.0 pp); code Claude 0.0% → 1.4% (+1.4 pp). The manipulated 0.70–0.99
+range overlaps naturally reported q1 (GPT MMLU 92%; GPT code 71%). The
+normalized-loss cost of the wrong operating point depends on λ.
+
+The final conclusion is therefore behavioral and systems-oriented:
+counterfactual confidence is a high-leverage metadata actuator for oversight
+intensity and escaped-error leakage. Leverage is model- and task-dependent.
+Changing the scalar alone is not established as a reliable way to improve
+allocation quality, and the constant overwrite is not a calibration or
+natural-q1-drift intervention.
+
+======================================================================
+2. TERMINOLOGY — USE THESE WORDS CONSISTENTLY
+======================================================================
+
+RETIRE:
+- self-verification, unless carefully defined in a historical appendix;
+- ranking invariance as a headline term;
+- hidden uncertainty;
+- the model “knows” it is wrong;
+- confidence harms reasoning;
+- confidence is a bad router;
+- confidence controls the ranking.
+
+PREFER:
+- verification routing;
+- independent verification;
+- verification coverage;
+- verification-request rate;
+- error leakage / unverified-error rate;
+- oversight leverage;
+- confidence-metadata sensitivity;
+- no item-discriminative information within the condition;
+- allocation quality;
+- routing policy;
+- operating regime;
+- counterfactual displayed-confidence intervention;
+- fixed-output intervention;
+- coverage-dominant response;
+- score-specific reprioritization model;
+- contextual verification judgment.
+
+The target model is the ROUTER.
+
+The target model is NOT the verifier.
+
+VERIFY_FIRST means:
+    request independent external verification before use.
+
+USE_UNVERIFIED means:
+    use/deploy the frozen output without that independent check.
+
+======================================================================
+3. THE REAL SYSTEMS PROBLEM
+======================================================================
+
+The motivating problem is resource-bounded verification.
+
+Suppose an AI system produces many outputs but can only verify a fraction of
+them.
+
+It faces two distinct questions:
+
+A. COVERAGE / BUDGET
+    How many outputs should receive verification?
+
+B. ALLOCATION
+    Which outputs should receive that verification budget?
+
+These are not the same problem.
+
+A routing controller can be excellent at setting the verification rate while
+poorly targeting the risky cases.
+
+The final paper should be motivated around adaptive systems where confidence
+or uncertainty enters a routing/controller decision, including:
+
+- model cascades;
+- human escalation;
+- adaptive retrieval;
+- test-time compute allocation;
+- safety delegation;
+- tool use;
+- executable testing / code verification.
+
+The paper should NOT claim that ordinary monotonic recalibration changes
+ranking. That is false as a framing target and unnecessary.
+
+The live empirical question is narrower:
+
+    When a confidence-like scalar is inserted into an ADAPTIVE model/controller
+    that can condition on the full item, does changing that scalar merely move
+    the amount of resource use, or does it materially alter which items are
+    prioritized?
+
+That question is not tautological because the LLM can react item-by-item to
+the scalar, the content, difficulty, apparent mismatch with its own judgment,
+or other contextual features.
+
+======================================================================
+4. THE CORE CAUSAL DESIGN
+======================================================================
+
+Natural confidence is confounded with item difficulty.
+
+If hard questions naturally produce:
+- lower confidence;
+- more verification;
+
+then observing a confidence-verification correlation is not enough.
+
+D1 therefore intervenes on displayed confidence while holding the underlying
+output fixed.
+
+For each item:
+
+1. model produces an answer/program;
+2. that output is frozen;
+3. the model has a confidence-style estimate q1;
+4. Stage 3 presents a routing prompt;
+5. only the displayed confidence is manipulated;
+6. the model chooses USE_UNVERIFIED or VERIFY_FIRST.
+
+The question and frozen output do not change across score conditions.
+
+This isolates the displayed scalar as a causal input into routing behavior.
+
+This fixed-output counterfactual intervention is one of the strongest and most
+defensible contributions of the paper.
+
+======================================================================
+5. WHAT IS AND IS NOT NOVEL
+======================================================================
+
+DO NOT CLAIM NOVELTY FOR:
+
+- confidence affecting abstention;
+- confidence affecting escalation;
+- threshold policies;
+- risk-coverage curves;
+- the distinction between coverage and ranking;
+- uncertainty-guided routing in general.
+
+Recent work already occupies much of that space.
+
+The potentially novel package is:
+
+1. FIXED-OUTPUT COUNTERFACTUAL CONFIDENCE INTERVENTION
+
+   Same question/problem.
+   Same frozen output.
+   Different displayed confidence.
+
+2. CONFIDENCE AS AN INPUT TO AN ADAPTIVE ROUTING POLICY
+
+   The scalar is placed inside the model's context before the routing action.
+   The model is not externally thresholded by us.
+
+3. QUANTITY-VERSUS-ALLOCATION QUESTION
+
+   We do not stop at:
+       “does confidence change escalation?”
+
+   We ask:
+       “what part of the routing policy changes when the scalar changes?”
+
+4. PROSPECTIVE EVIDENCE ACROSS TWO VERY DIFFERENT SETTINGS
+
+   - academic QA with idealized independent verification;
+   - executable code with a real hidden-test verifier.
+
+5. MODEL/TASK BOUNDARY CONDITION
+
+   The intervention is powerful in GPT across both settings, powerful in
+   Claude on MMLU, but weak in Claude on hard code because the routing action
+   is near the VERIFY ceiling.
+
+The novelty is therefore the causal behavioral characterization of an
+adaptive verification-routing policy, not the discovery of thresholding.
+
+======================================================================
+6. THE DEVELOPMENT ARC — CLEAN SCIENTIFIC VERSION
+======================================================================
+
+The final manuscript must not read like a diary.
+
+The scientific development is:
+
+A. Observe that confidence visibility strongly changes routing.
+
+B. Isolate displayed confidence causally on the same frozen output.
+
+C. Show the effect is much larger than rerun noise.
+
+D. Show the effect survives removing explicit cost arithmetic.
+
+E. Rule out the strongest “secret correctness knowledge” interpretation with
+   q2 and difficulty controls.
+
+F. Ask whether the giant confidence intervention changes allocation or mainly
+   coverage.
+
+G. Prospectively confirm the large MMLU coverage effect and find essentially
+   no held-out benefit from the preregistered score-specific prioritization
+   alternative.
+
+H. Stress-test that null and learn that the experiment cannot support a strong
+   global invariance claim.
+
+I. Generalize to a real executable verifier:
+   GPT replicates strongly; Claude saturates and does not.
+
+The final manuscript should present this as increasing precision, not as
+repeatedly changing stories.
+
+======================================================================
+7. HISTORICAL V2 — MOTIVATING PHENOMENON
+======================================================================
+
+Historical V2 used:
+- MMLU-Pro;
+- GPT;
+- Claude;
+- Gemini;
+- Grok.
+
+Pipeline:
+Stage 1 — answer.
+Stage 2 — report confidence q.
+Stage 3 — USE_UNVERIFIED vs VERIFY_FIRST.
+
+Factors included:
+- confidence visible/hidden;
+- authority framing;
+- numerical error cost L;
+- verification cost C.
+
+The striking observation:
+making confidence visible strongly changed verification behavior.
+
+GPT in particular followed the explicit numerical policy extremely closely.
+
+Historical purpose in final paper:
+establish the motivating phenomenon.
+
+Do not let historical V2 dominate the main results section.
+
+======================================================================
+8. STUDY 1 / TASKS 003–004 — THE DISPLAYED SCORE IS CAUSAL
+======================================================================
+
+Study 1 fixed:
+- question;
+- frozen answer;
+
+and manipulated only displayed confidence.
+
+Under explicit numerical costs, GPT produced sharp threshold behavior.
+
+Examples:
+
+At L=10:
+- 0.89 -> essentially always VERIFY
+- 0.91 -> essentially always USE
+
+At L=20:
+- 0.94 -> essentially always VERIFY
+- 0.96 -> essentially always USE
+
+Task 004 repeated cells and showed that the intervention effect was vastly
+larger than ordinary rerun noise.
+
+Contribution:
+    the displayed score itself is a causal behavioral control input.
+
+Reviewer objection answered:
+    this is not merely “hard questions naturally have lower confidence.”
+
+Remaining objection:
+    perhaps the model is just doing arithmetic.
+
+That motivates Tasks 006/007.
+
+======================================================================
+9. CHECKPOINT A — CALIBRATION VS COVERAGE VS ALLOCATION
+======================================================================
+
+The original workshop interpretation risked saying:
+
+    showing confidence makes GPT worse at verification.
+
+Checkpoint A showed why that was too strong.
+
+GPT was overconfident.
+
+If the model faithfully follows an overconfident scalar, then visible
+confidence can move it toward a lower-verification operating point.
+
+That can leave more wrong answers unchecked without requiring a claim that
+the model lost useful item-specific information.
+
+This establishes an important three-way distinction:
+
+CALIBRATION
+    Are probability values numerically meaningful?
+
+COVERAGE CONTROL
+    Does the signal change how much verification occurs?
+
+ALLOCATION QUALITY
+    At a matched verification budget, are the right outputs selected?
+
+This conceptual separation remains central to the final paper.
+
+======================================================================
+10. TASKS 005 / 005B / 005C — WHY WE DROP “SECRET SELF-KNOWLEDGE”
+======================================================================
+
+Task 005:
+- elicited q2;
+- showed VERIFY was not trivially equivalent to asking for confidence again.
+
+But later difficulty controls changed the interpretation.
+
+Much of the apparent residual correctness signal was explained by generic item
+difficulty:
+
+    hard questions are more likely to be wrong
+    and more likely to be routed to verification.
+
+Therefore the final paper must NOT claim:
+
+- hidden verification is privileged correctness knowledge;
+- the model secretly knows when it is wrong;
+- confidence suppresses a hidden truth signal;
+- displayed confidence destroys internal evidence.
+
+Safe behavioral statement:
+
+    contextual verification judgments can encode generic item difficulty/risk
+    beyond a scalar confidence report.
+
+Even this should not become the headline because matched-budget routing did not
+show a robust cross-model advantage.
+
+======================================================================
+11. TASKS 006 / 007 — THE EFFECT SURVIVES WITHOUT EXPLICIT ARITHMETIC
+======================================================================
+
+Tasks 006/007 removed:
+
+- numerical error cost;
+- numerical verification cost;
+- explicit expected-value formulas;
+- exact thresholds;
+- wording that recreated the formula.
+
+The score effect remained large.
+
+Exploratory GPT, moderate stakes:
+- 0.70 -> 59% VERIFY
+- 0.90 -> 20%
+- 0.99 -> 7%
+
+GPT, stronger stakes:
+- 0.70 -> 92%
+- 0.90 -> 40%
+- 0.99 -> 16%
+
+Claude also responded strongly/monotonically in the development data.
+
+Contribution:
+
+    displayed confidence can strongly affect verification routing even without
+    a computable numerical policy.
+
+This is a central supporting result because it answers the “GPT just did the
+math” objection.
+
+======================================================================
+12. TASK 008 — DISCOVERING THE COVERAGE-DOMINANT HYPOTHESIS
+======================================================================
+
+Task 008 audited the exploratory qualitative grid and found:
+
+- near-nested VERIFY sets;
+- shared item propensity transferring across score conditions;
+- little held-out gain from richer condition-sensitive models.
+
+This suggested:
+
+    confidence may mainly move the operating point while leaving much of the
+    item prioritization structure shared.
+
+Task 008 was exploratory.
+
+Its role in the final story:
+generate the hypothesis tested prospectively in Task 009.
+
+Do not present Task 008 as confirmatory evidence.
+
+======================================================================
+13. TASK 009 — CORE PROSPECTIVE MMLU RESULT
+======================================================================
+
+Task 009 is the strongest clean prospective result in the paper.
+
+Fresh MMLU-Pro:
+- N=500 primary sample;
+- GPT + Claude primary;
+- prompts/sample/metrics/decision logic frozen before VERIFY-rate inspection.
+
+Primary coverage result:
+
+GPT:
+    displayed 0.70 -> 0.99 shift
+    = 50.2 percentage points
+    95% CI [45.8, 54.6]
+
+Claude:
+    = 35.4 percentage points
+    95% CI [31.2, 39.6]
+
+This establishes:
+
+    displayed confidence can have a very large causal effect on verification
+    coverage for fixed outputs.
+
+This is the main positive causal result.
+
+======================================================================
+14. TASK 009 — SCORE-SPECIFIC PRIORITIZATION RESULT
+======================================================================
+
+Task 009 compared:
+
+SHARED-PRIORITIZATION MODEL
+    condition-specific intercept / operating point
+    + shared item-risk structure
+
+versus
+
+CONDITION-SENSITIVE MODEL
+    additionally allows the displayed score condition to change
+    prioritization.
+
+Held-out improvement from richer model:
+
+GPT:
+    +0.0008
+    95% CI [-0.0011, 0.0026]
+
+Claude:
+    approximately 0
+    95% CI [-0.0009, 0.0008]
+
+This result is important, but it must now be described conservatively.
+
+ALLOWED:
+
+    the preregistered score-specific prioritization model provided essentially
+    no held-out predictive benefit.
+
+    the dominant observed effect was on verification coverage.
+
+NOT ALLOWED:
+
+    ranking is invariant.
+
+    confidence does not affect ranking.
+
+    small/moderate reranking is ruled out.
+
+Task 010 showed why those stronger claims are not justified.
+
+======================================================================
+15. TASK 010 — WHAT IT CHANGED
+======================================================================
+
+Task 010 did NOT overturn the Task-009 coverage result.
+
+It changed the interpretation of the ranking claim.
+
+Key sensitivity result:
+
+- the Task-009 H2 detector had a high detection floor;
+- GPT reached high power only for a large structured ranking rewrite;
+- Claude did not reach 80% power even at the largest tested structured effect;
+- the detector had no useful power for generic item-condition noise.
+
+Therefore:
+
+    Task 009 supports “little held-out gain for the preregistered richer model.”
+
+It does NOT support:
+
+    “the ranking is globally invariant.”
+
+Task 010 also found:
+
+- shared-model AUROC predictions matched the direction, but not fully the
+  magnitude, of observed binary-action AUROC drift;
+- three-repeat latent propensity modeling was too weak/overshrunk to support a
+  strong latent-invariance claim;
+- post-hoc q1/mismatch features predicted VERIFY beyond the frozen baseline;
+- matched-budget routing showed a GPT-specific gain at some budgets but no
+  replicated Claude gain.
+
+The paper-facing consequence:
+
+    retire exact ranking-invariance language.
+
+Task 010 belongs mainly in:
+- limitations;
+- robustness/sensitivity appendix;
+- claim-discipline discussion.
+
+It should not become a main-paper result.
+
+======================================================================
+16. TASK 011 — WHY CODE WAS THE RIGHT FINAL GENERALIZATION
+======================================================================
+
+Task 011 moved the experiment from:
+
+    hypothetical independent verification of academic QA
+
+to:
+
+    actual independent hidden-test execution for frozen generated code.
+
+Benchmark:
+- official LiveCodeBench code_generation_lite release_v6;
+- hard-only confirmatory pool;
+- frozen generated Python programs;
+- official hidden tests executed only after routing was frozen.
+
+This matters because VERIFY_FIRST now corresponds to a real external operation.
+
+The model decides whether to request testing BEFORE test results exist.
+
+This is much closer to a realistic resource-bounded verification system.
+
+======================================================================
+17. TASK 011 — PROTOCOL INTEGRITY AND DOCUMENTED AMENDMENT
+======================================================================
+
+Task 011 used an excluded pilot to choose the predeclared difficulty ladder.
+
+The first pilot had a sampler bug and was burned.
+
+A second excluded mixed pilot showed:
+- GPT code accuracy = 87.5%;
+- Claude = 77.5%.
+
+GPT exceeded the predeclared >80% threshold, triggering HARD-ONLY.
+
+After both pilots were excluded, 286 hard problems remained.
+
+The earlier handoff had said to stop below 300, but before confirmatory
+VERIFY-rate inspection the actual preregistration was frozen with:
+
+- difficulty = hard_only;
+- main N=286;
+- exact sample hash;
+- exact repeat sample;
+- prompts/endpoints/analyses frozen.
+
+Therefore the honest description is:
+
+    prospective study with a documented pre-outcome protocol amendment:
+    after the predeclared hard-only adaptation left 286 eligible problems,
+    the full remaining hard pool was used rather than mixing medium problems
+    back in or discarding the study.
+
+Do NOT claim:
+    “no protocol deviations.”
+
+Do claim:
+    “the amendment was documented and frozen before confirmatory VERIFY-rate
+    inspection.”
+
+======================================================================
+18. TASK 011 — CODE CORRECTNESS / IDENTIFIABILITY
+======================================================================
+
+Frozen-code correctness rates:
+
+GPT:
+    46.5%
+
+Claude:
+    43.0%
+
+This is good for the study.
+
+The benchmark was not correctness-saturated.
+
+There were enough failures to evaluate bug-routing behavior.
+
+The main asymmetry arose in the routing action, not the correctness label.
+
+======================================================================
+19. TASK 011 — COVERAGE GENERALIZATION RESULT
+======================================================================
+
+GPT:
+    displayed 0.70 -> 0.99 VERIFY shift
+    = 38.8 percentage points
+    95% CI [33.2, 44.8]
+
+Claude:
+    = 4.9 percentage points
+    95% CI [2.4, 7.7]
+
+Claude's code routing policy was near-saturated at VERIFY_FIRST (~95–100%).
+
+Final classification:
+
+    MODEL_SPECIFIC_GENERALIZATION
+
+Interpretation:
+
+GPT:
+    the confidence-control effect generalizes strongly from MMLU QA to
+    executable code verification.
+
+Claude:
+    the MMLU responsiveness does not transfer intact because the code routing
+    policy occupies an almost-always-verify regime.
+
+This is a boundary condition, not a failure that needs to be “fixed.”
+
+Do NOT run another benchmark to make Claude move.
+
+======================================================================
+20. HOW TO INTERPRET CLAUDE'S CODE SATURATION
+======================================================================
+
+Because Claude is a closed deployed model, we do not know why its code routing
+policy sits near the VERIFY ceiling.
+
+Possible contributors include:
+- post-training;
+- provider system policies;
+- generic caution;
+- instruction following;
+- code-specific alignment/tuning;
+- latent model behavior.
+
+The paper must remain agnostic.
+
+DO NOT say:
+    “Anthropic guardrails caused this.”
+
+That is plausible but unverified.
+
+Safe statement:
+
+    The deployed Claude policy occupies a near-always-verify operating regime
+    on hard code, leaving little behavioral headroom for the confidence
+    intervention to change coverage.
+
+This is a behavioral observation.
+
+The paper is about deployed-model routing behavior, not internal mechanism.
+
+======================================================================
+21. CLOSED-MODEL LIMITATION
+======================================================================
+
+GPT and Claude are closed models.
+
+Therefore the paper cannot identify:
+
+- internal confidence representations;
+- system prompts;
+- provider-side hidden policies;
+- post-training mechanisms;
+- activation-level causes.
+
+This weakens mechanistic interpretation.
+
+It does NOT invalidate the within-model causal behavioral intervention.
+
+For a fixed deployed model:
+
+    same problem
+    same frozen output
+    different displayed confidence
+    different routing behavior
+
+is still a causal behavioral result.
+
+The paper should explicitly say:
+
+    “Our experiments characterize deployed model behavior and do not identify
+    the internal mechanism producing the routing policy. Provider-side system
+    prompts and post-training may contribute to model-specific operating
+    regimes.”
+
+Do not add an open-weight model merely to chase universality.
+
+The final claim does not require architecture-general behavior.
+
+======================================================================
+22. TASK 011 — ALLOCATION MODEL RESULT
+======================================================================
+
+Held-out richer-model improvement:
+
+GPT:
+    -0.000515
+
+Claude:
+    -0.000502
+
+Both are far below the 0.01 materiality scale used for continuity.
+
+Interpretation:
+
+    the preregistered score-specific prioritization alternative again provided
+    no useful held-out gain.
+
+But Task 010's sensitivity lesson still applies.
+
+Do NOT infer:
+    ranking invariance.
+
+Paper-facing statement:
+
+    despite GPT's large 38.8-point coverage shift, the preregistered richer
+    prioritization model did not improve held-out prediction.
+
+For Claude, action saturation limits what can be learned about allocation
+changes.
+
+======================================================================
+23. TASK 011 — MATCHED-BUDGET ROUTING
+======================================================================
+
+Predeclared routers:
+
+- random;
+- raw q1;
+- calibrated q1;
+- hidden/contextual judgment;
+- q1 + hidden;
+- oracle.
+
+Final code label:
+
+    ROUTING_NULL_OR_SMALL
+
+Therefore D1 does NOT have a robust constructive finding of:
+
+    “another simple signal clearly allocates much better than confidence.”
+
+The final paper should not force such a contribution.
+
+Historical Task-010 MMLU routing had GPT-specific improvements at some budgets
+but not Claude.
+
+Across the complete project:
+
+    no robust cross-model matched-budget routing improvement is established.
+
+This is a limitation, but not fatal.
+
+It keeps the paper as a causal characterization rather than a new routing
+method paper.
+
+======================================================================
+24. THE FINAL EMPIRICAL PICTURE
+======================================================================
+
+MMLU-PRO:
+
+GPT:
+    confidence manipulation strongly moves coverage
+    50.2pp
+
+Claude:
+    strongly moves coverage
+    35.4pp
+
+CODE / LIVECODEBENCH HARD:
+
+GPT:
+    strongly moves coverage
+    38.8pp
+
+Claude:
+    near VERIFY ceiling
+    4.9pp
+
+ALLOCATION MODEL:
+
+MMLU:
+    preregistered richer score-specific model adds essentially zero held-out
+    gain.
+
+Code:
+    same qualitative result for both models, but Claude is action-saturated.
+
+MATCHED-BUDGET ROUTING:
+
+No robust cross-model positive alternative emerges.
+
+Therefore the final paper is NOT:
+
+    “confidence universally moves a fixed ranking.”
+
+It is:
+
+    “counterfactual displayed confidence can be a powerful causal actuator of
+    verification coverage, but its leverage depends strongly on the routing
+    regime, and changing the scalar is not established as a reliable method
+    for improving allocation.”
+
+======================================================================
+25. THE FINAL SCIENTIFIC CLAIM LADDER
+======================================================================
+
+LEVEL 1 — VERY STRONG / DIRECTLY CAUSAL
+
+    On the exact same frozen output, changing only displayed confidence can
+    cause large changes in whether a deployed LLM requests independent
+    verification.
+
+LEVEL 2 — PROSPECTIVE MULTI-TASK EVIDENCE
+
+    This large effect appears in both primary models on MMLU-Pro and again in
+    GPT on executable code.
+
+LEVEL 3 — BOUNDARY CONDITION
+
+    The effect is not universal: Claude on hard code operates near an
+    always-verify ceiling and shows little coverage movement.
+
+LEVEL 4 — ALLOCATION RESULT
+
+    Across both prospective studies, the preregistered score-specific
+    prioritization alternatives provide little held-out predictive gain.
+
+LEVEL 5 — CAREFUL INTERPRETATION
+
+    The dominant observable impact of displayed confidence is often on the
+    amount of verification requested rather than a demonstrated large change
+    in allocation.
+
+LEVEL 6 — SYSTEMS IMPLICATION
+
+    Confidence can be useful as a verification-quantity actuator, but routing
+    quality and resource allocation must be evaluated separately.
+
+Do not go beyond Level 6 into claims about internal mechanisms.
+
+======================================================================
+26. WHAT THE PAPER SHOULD NOT CLAIM
+======================================================================
+
+Do NOT claim:
+
+- ranking invariance;
+- confidence never changes ranking;
+- small reranking is ruled out;
+- confidence universally controls coverage;
+- all models behave the same;
+- code confirms both models;
+- Claude's code behavior is caused by guardrails;
+- the model secretly knows when it is wrong;
+- hidden uncertainty is suppressed;
+- confidence is useless;
+- calibration changes ranking;
+- confidence is universally a bad router;
+- a new routing method was invented;
+- the result is mechanistic;
+- provider post-training is the causal explanation.
+
+======================================================================
+27. WHAT THE PAPER CAN CLAIM
+======================================================================
+
+SUPPORTED:
+
+1. Fixed-output counterfactual displayed confidence causally changes
+   verification routing.
+
+2. The effect is large on fresh MMLU-Pro:
+   GPT 50.2pp, Claude 35.4pp.
+
+3. The effect persists without explicit numerical cost arithmetic.
+
+4. GPT strongly replicates the effect on a real executable verifier:
+   38.8pp on LiveCodeBench.
+
+5. Claude's code policy is near VERIFY saturation and responds only 4.9pp.
+
+6. Therefore confidence responsiveness is model/task/regime dependent.
+
+7. The preregistered score-specific prioritization models add essentially no
+   held-out predictive benefit in MMLU or code.
+
+8. This does not establish exact ranking invariance.
+
+9. Simple matched-budget alternative routers do not show a robust cross-model
+   allocation advantage.
+
+10. Verification quantity and verification allocation should be evaluated as
+    distinct system properties.
+
+======================================================================
+28. WHY THIS RESULT IS STILL INTERESTING
+======================================================================
+
+A hostile selective-prediction reviewer may say:
+
+    “Of course moving a threshold changes coverage.”
+
+The answer:
+
+We do NOT externally move a threshold on a fixed score.
+
+We alter the scalar INSIDE an adaptive LLM's context.
+
+The model can:
+- react to apparent score-content mismatch;
+- condition differently on item difficulty;
+- change which features it attends to;
+- use the score as a reason to reassess routing item-by-item.
+
+Therefore a purely coverage-like response is an empirical behavior, not a
+mathematical necessity.
+
+The code result strengthens this argument because VERIFY_FIRST now requests a
+real operation.
+
+And the Claude code boundary shows the effect is not merely hardwired to
+always appear: when the routing policy is already near the VERIFY ceiling, the
+same manipulation has little leverage.
+
+======================================================================
+29. THE SYSTEMS DESIGN IMPLICATION
+======================================================================
+
+The practical message should be:
+
+    A confidence scalar can be an effective actuator for setting how much
+    independent verification a model requests, but actuator strength depends
+    on the operating regime.
+
+    Controlling the amount of verification is not the same as learning which
+    outputs have the highest value of verification.
+
+Therefore system builders should separately evaluate:
+
+A. RESPONSE / CONTROL
+    Can the signal move verification coverage?
+
+B. ALLOCATION
+    At a matched budget, does the policy target high-value/error-prone cases?
+
+C. SATURATION
+    Is the policy already near always-verify or never-verify, making the signal
+    ineffective?
+
+This three-part framing may now be better than the old
+“coverage vs ranking” framing alone.
+
+======================================================================
+30. FINAL CONTRIBUTIONS — MAXIMUM FOUR
+======================================================================
+
+CONTRIBUTION 1 — FIXED-OUTPUT CAUSAL INTERVENTION
+
+We introduce a black-box intervention that freezes the model's actual output
+and counterfactually changes only displayed confidence before a later
+independent-verification routing decision.
+
+CONTRIBUTION 2 — LARGE PROSPECTIVE COVERAGE CONTROL
+
+On fresh preregistered MMLU-Pro data, the intervention shifts verification
+coverage by 50.2pp for GPT and 35.4pp for Claude, and the effect survives a
+qualitative setup without explicit numerical cost arithmetic.
+
+CONTRIBUTION 3 — REAL-VERIFIER GENERALIZATION + BOUNDARY
+
+On frozen LiveCodeBench programs with actual hidden-test verification, GPT
+again shifts by 38.8pp, while Claude stays near the VERIFY ceiling and moves
+only 4.9pp. Confidence responsiveness is therefore strongly model/task/regime
+dependent rather than universal.
+
+CONTRIBUTION 4 — ALLOCATION IS DISTINCT FROM CONTROL
+
+Across both prospective studies, preregistered score-specific prioritization
+models add little held-out predictive value, while matched-budget alternative
+routers do not yield a robust cross-model allocation improvement. Confidence
+can therefore be a powerful quantity-control signal without establishing a
+better allocation policy.
+
+======================================================================
+31. FINAL INTRODUCTION LOGIC
+======================================================================
+
+Paragraph 1 — REAL SYSTEMS PROBLEM
+
+AI systems cannot independently verify every output. Human review, retrieval,
+stronger-model calls, executable tests, and extra compute all cost resources.
+
+Paragraph 2 — CURRENT DESIGN PATTERN
+
+Confidence/uncertainty is commonly used as a routing/control signal for
+deciding when to spend those resources.
+
+Paragraph 3 — UNRESOLVED QUESTION
+
+When confidence is an input to an adaptive model/controller, what does changing
+that signal actually control?
+
+Does it:
+- alter resource quantity?
+- alter allocation?
+- depend on the routing regime?
+
+Paragraph 4 — WHY OBSERVATIONAL WORK CANNOT ANSWER THIS
+
+Natural confidence is confounded with item difficulty.
+
+Selective-prediction theory on an externally thresholded score is not enough
+because our controller is an adaptive LLM that sees the signal in context.
+
+Paragraph 5 — OUR INTERVENTION
+
+Freeze output.
+Change only displayed confidence.
+Observe the independent-verification routing action.
+
+Paragraph 6 — MMLU RESULT
+
+Large causal coverage shifts:
+- GPT 50.2pp
+- Claude 35.4pp
+
+Little held-out benefit from the preregistered score-specific prioritization
+alternative.
+
+Paragraph 7 — REAL CODE VERIFIER
+
+Repeat with frozen code and actual hidden tests.
+
+- GPT: 38.8pp
+- Claude: 4.9pp, near VERIFY ceiling.
+
+Paragraph 8 — TAKEAWAY
+
+Confidence can strongly control the amount of verification, but control strength
+depends on the routing regime. Allocation quality remains a separate systems
+problem.
+
+======================================================================
+32. ABSTRACT-LEVEL NARRATIVE
+======================================================================
+
+Draft direction, not final wording:
+
+Large language models increasingly decide when their outputs require additional
+scrutiny, yet it is unclear what confidence feedback actually controls inside
+an adaptive verification-routing policy. We isolate this question with a
+fixed-output counterfactual intervention: after a model produces an answer, we
+freeze the output and vary only the confidence value displayed before the model
+chooses whether to request independent verification. On a preregistered study
+of 500 unseen MMLU-Pro questions, this intervention changes verification
+coverage by 50.2 percentage points for GPT and 35.4 points for Claude. A
+preregistered score-specific prioritization model provides essentially no
+additional held-out predictive benefit over the simpler baseline. We then
+generalize the intervention to executable code, where VERIFY_FIRST requests an
+actual hidden test suite. GPT again shows a large 38.8-point coverage shift,
+whereas Claude remains near an always-verify ceiling and moves only 4.9 points.
+These results show that displayed confidence can be a powerful causal actuator
+of verification quantity, but its leverage depends on the routing regime and
+should not be conflated with allocation quality.
+
+======================================================================
+33. TITLE FAMILY
+======================================================================
+
+Do NOT use titles implying exact ranking invariance.
+
+Avoid:
+- Confidence Controls Coverage, Not Ranking
+- Changing Confidence Changes How Much, Not What, LLMs Verify
+- Confidence as a Coverage Control in LLM Self-Verification
+
+Those are now too absolute and “self-verification” is confusing.
+
+Better title families:
+
+1. “Counterfactual Confidence in LLM Verification Routing”
+2. “What Does Confidence Control in LLM Verification Routing?”
+3. “Displayed Confidence as a Behavioral Control Signal for LLM Verification”
+4. “Confidence Feedback and Resource-Bounded Verification in Language Models”
+5. “Causal Effects of Displayed Confidence on LLM Verification Routing”
+
+Do not lock title before the final related-work pass.
+
+======================================================================
+34. MAIN PAPER RESULT STRUCTURE
+======================================================================
+
+RESULT 1 — Fixed-output confidence causally controls routing
+
+Use Study 1 + rerun stability.
+
+RESULT 2 — The effect survives without explicit arithmetic
+
+Use Tasks 006/007 briefly.
+
+RESULT 3 — Prospective MMLU confirmation
+
+Task 009 coverage response:
+- GPT
+- Claude
+
+Main causal figure.
+
+RESULT 4 — Allocation model comparison
+
+Show held-out shared vs score-specific result.
+
+Phrase narrowly.
+
+RESULT 5 — Executable-code generalization
+
+Task 011:
+- real verifier;
+- GPT replication;
+- Claude ceiling/boundary.
+
+RESULT 6 — Matched-budget routing consequence
+
+Present compactly.
+No robust cross-model improvement.
+
+Do not make this a separate “method.”
+
+======================================================================
+35. FIGURE PLAN
+======================================================================
+
+FIGURE 1 — EXPERIMENTAL DESIGN
+
+Two panels:
+
+A. QA:
+question -> frozen answer -> displayed confidence -> routing -> independent verifier
+
+B. Code:
+problem -> frozen code -> displayed confidence -> routing -> hidden test suite
+
+FIGURE 2 — PROSPECTIVE COVERAGE RESPONSE
+
+MMLU:
+- GPT
+- Claude
+
+Code:
+- GPT
+- Claude
+
+Reader should immediately see:
+- large MMLU effects;
+- GPT code replication;
+- Claude code saturation.
+
+FIGURE 3 — HELD-OUT ALLOCATION MODEL COMPARISON
+
+Shared vs score-specific held-out ΔLL.
+
+Be explicit:
+this is not proof of invariance.
+
+FIGURE 4 — REAL VERIFIER RESOURCE CURVE
+
+Code:
+bug catch vs verifier-call budget.
+
+Show:
+- random;
+- q1;
+- contextual judgment;
+- q1+judgment;
+- oracle.
+
+Main point:
+no robust simple routing winner.
+
+Optional appendix figures:
+- historical numerical threshold result;
+- repeat stability;
+- AUROC diagnostics;
+- Task-010 sensitivity;
+- Gemini/Grok.
+
+======================================================================
+36. WHAT GOES IN MAIN TEXT VS APPENDIX
+======================================================================
+
+MAIN TEXT:
+
+- systems motivation;
+- precise routing vocabulary;
+- fixed-output intervention;
+- historical causal manipulation result;
+- no-arithmetic qualitative result;
+- Task-009 prospective MMLU coverage;
+- Task-009 allocation-model comparison;
+- Task-011 code setup/results;
+- model-specific boundary;
+- short matched-budget result;
+- limitations.
+
+APPENDIX:
+
+- q2;
+- difficulty controls;
+- historical owner/authority;
+- Gemini/Grok;
+- Task-008 exploratory analyses;
+- Task-010 sensitivity details;
+- repeat matrices;
+- binary-action AUROC diagnostics;
+- mismatch robustness;
+- complete routing tables;
+- code evaluator details;
+- sampler bug / protocol amendment;
+- provider/runtime logs.
+
+======================================================================
+37. RELATED-WORK POSITIONING
+======================================================================
+
+The final related-work section should separate four literatures:
+
+1. CONFIDENCE / ABSTENTION
+   Prior work already shows confidence can causally affect abstention and
+   threshold-like policy behavior.
+   D1 does not claim this as new.
+
+2. SELECTIVE PREDICTION
+   Prior work already separates score quality, thresholds, coverage, and risk.
+   D1 does not claim the coverage/allocation distinction as new.
+
+3. ADAPTIVE ROUTING / CASCADES / RETRIEVAL / DELEGATION
+   These systems use confidence or uncertainty to allocate expensive resources.
+   D1 asks what a confidence scalar actually controls when consumed by an
+   adaptive model policy.
+
+4. IN-CONTEXT CONFIDENCE / COMMITMENT
+   Prior work studies confidence shown to models or confidence associated with
+   later commitment.
+   D1's distinctive causal move is the same-output confidence overwrite before
+   an independent-verification routing decision.
+
+Important neighboring papers from the research audits should be verified
+against primary sources before final citation, especially:
+- recent causal confidence/abstention work;
+- reported-confidence/commitment work;
+- Act or Escalate;
+- RiskEval;
+- I-CALM;
+- Calibrate-Then-Delegate;
+- adaptive routing/RAG papers.
+
+Do not overstate an “open gap” as proof that no paper exists.
+
+Use:
+    “To our knowledge, we did not find prior work combining...”
+
+======================================================================
+38. HOW TO HANDLE TASK 010 IN THE PAPER
+======================================================================
+
+Task 010 is not a failure to hide.
+
+It is a sensitivity result that improves claim discipline.
+
+Use it to say:
+
+    Our confirmatory model comparison should not be interpreted as evidence of
+    exact invariance. Simulations show that the H2 detector is sensitive only
+    to relatively large forms of the preregistered reranking alternative and
+    has limited power against generic reordering.
+
+This makes the paper more credible.
+
+Do NOT make Task 010 a main contribution.
+
+Do NOT put “weak detection floor” in the abstract.
+
+Do include:
+- a concise limitation sentence in main text;
+- full sensitivity curves in appendix.
+
+======================================================================
+39. HOW TO HANDLE THE CODE PROTOCOL AMENDMENT
+======================================================================
+
+Be transparent.
+
+Recommended wording:
+
+    “The excluded mixed pilot triggered our preregistered hard-only adaptation.
+    After burning both pilot samples, 286 eligible hard problems remained.
+    Before inspecting confirmatory routing outcomes, we amended and froze the
+    confirmatory protocol to use the complete remaining hard pool rather than
+    reintroducing medium problems.”
+
+Do not say:
+    “we exactly followed the original handoff.”
+
+Do say:
+    “the amendment preceded confirmatory outcome inspection.”
+
+Include:
+- preregistration timestamp;
+- sample hash;
+- exact deviation log;
+- no outcome-dependent filtering.
+
+======================================================================
+40. LIMITATIONS
+======================================================================
+
+1. CLOSED MODELS
+   Internal mechanisms, system prompts, and post-training policies are not
+   observable.
+
+2. BEHAVIORAL, NOT MECHANISTIC
+   The intervention identifies the causal effect of displayed confidence on
+   behavior, not the internal path producing it.
+
+3. MODEL/TASK HETEROGENEITY
+   Claude's code behavior differs sharply from its MMLU behavior.
+
+4. ACTION SATURATION
+   Near-always VERIFY policies make responsiveness/allocation hard to identify.
+
+5. NO GLOBAL RANKING-INVARIANCE RESULT
+   The H2 test has limited sensitivity to smaller/generic reranking.
+
+6. SIMPLE ROUTERS DO NOT SHOW A ROBUST CROSS-MODEL WIN
+   D1 characterizes control behavior; it does not solve optimal routing.
+
+7. MANIPULATED DISPLAYED CONFIDENCE IS ARTIFICIAL
+   This is a deliberate causal instrument, not necessarily a deployment
+   distribution.
+
+8. VERIFIER SEMANTICS DIFFER BY TASK
+   MMLU uses an idealized independent verifier;
+   code uses real hidden tests.
+
+9. TEMPORAL MODEL DEPENDENCE
+   Deployed closed-model behavior may change across versions.
+
+======================================================================
+41. WHY THE CLOSED-MODEL ISSUE IS NOT FATAL
+======================================================================
+
+A reviewer may say:
+
+    “Maybe this is just provider guardrails or post-training.”
+
+Correct response:
+
+That may contribute to the behavior, and we do not claim otherwise.
+
+But the paper's causal estimand is behavioral:
+
+    for THIS deployed policy,
+    on THIS fixed output,
+    what happens when displayed confidence changes?
+
+The intervention still identifies that effect.
+
+Provider post-training is part of the deployed model whose behavior is being
+characterized.
+
+The limitation is on mechanism/generalization, not on the within-policy causal
+comparison.
+
+Do not speculate about specific “guardrails” without evidence.
+
+======================================================================
+42. ICLR-LEVEL SELLING POINT
+======================================================================
+
+The strongest high-level framing is now:
+
+    Confidence is widely treated as a routing signal for expensive AI
+    oversight resources.
+
+    D1 causally isolates what happens when that signal is changed inside an
+    adaptive LLM policy while the underlying output is held fixed.
+
+    The intervention can move verification coverage by 35–50 points on QA and
+    nearly 40 points for GPT on executable code, yet the effect is not
+    universal: Claude's code policy is already near the verify-all boundary.
+
+    This shows that confidence should be understood as a behavioral control
+    input whose leverage depends on the routing regime—not as a universally
+    reliable allocation mechanism.
+
+This is more robust than the old:
+    “confidence changes coverage but not ranking.”
+
+======================================================================
+43. ONE-SENTENCE MEMORY VERSION
+======================================================================
+
+For the exact same frozen output, changing only displayed confidence can
+dramatically change whether a deployed LLM requests independent verification,
+but the size of that control effect depends on the model/task routing regime
+and should not be confused with improved allocation quality.
+
+======================================================================
+44. SHORT MEMORY VERSION FOR WRITING
+======================================================================
+
+QUESTION:
+What does displayed confidence actually control in adaptive LLM verification
+routing?
+
+ANSWER:
+It can strongly control verification quantity, but leverage is regime-dependent
+and allocation quality remains separate.
+
+EVIDENCE:
+- MMLU GPT: +50.2pp
+- MMLU Claude: +35.4pp
+- Code GPT: +38.8pp
+- Code Claude: +4.9pp, near VERIFY ceiling
+- richer prioritization ΔLL ~0 in both prospective studies
+- no robust cross-model matched-budget routing win
+
+======================================================================
+45. WHAT EACH MAJOR RESULT CONTRIBUTES
+======================================================================
+
+HISTORICAL V2
+    Finds the original confidence-visibility phenomenon.
+
+STUDY 1 / TASK 004
+    Establishes displayed confidence as a causal control input on fixed outputs
+    and separates it from rerun noise.
+
+CHECKPOINT A
+    Separates calibration, coverage, and routing quality.
+
+TASK 005
+    Shows VERIFY is not merely another confidence sample.
+
+TASKS 005B / 005C
+    Kill the strongest hidden-self-knowledge interpretation.
+
+TASKS 006 / 007
+    Show the score-control effect survives without explicit arithmetic.
+
+TASK 008
+    Generates the coverage-dominant hypothesis.
+
+TASK 009
+    Prospectively confirms large MMLU coverage control and near-zero held-out
+    gain from the preregistered richer prioritization model.
+
+TASK 010
+    Prevents overclaiming ranking invariance; establishes that the H2 null has
+    limited sensitivity.
+
+TASK 011
+    Moves to a real verifier, shows strong GPT cross-domain replication, and
+    reveals Claude's near-saturation boundary.
+
+Together:
+    a causal behavioral characterization of confidence as a routing control
+    input, with explicit limits on universality and mechanism.
+
+======================================================================
+46. FINAL CLAIMS TO USE
+======================================================================
+
+STRONGEST CAUSAL:
+    Counterfactually changing displayed confidence for the exact same frozen
+    output can substantially change whether an LLM requests independent
+    verification.
+
+STRONGEST PROSPECTIVE:
+    The effect is large for GPT and Claude on fresh MMLU-Pro and again for GPT
+    on executable code.
+
+STRONGEST BOUNDARY:
+    Responsiveness is model/task dependent: Claude's hard-code policy is near
+    VERIFY saturation and shows little coverage movement.
+
+STRONGEST ALLOCATION:
+    The preregistered score-specific prioritization models provide little
+    held-out predictive benefit in both prospective studies.
+
+STRONGEST SYSTEMS:
+    Confidence can be a useful control input for verification quantity, but
+    allocation quality and operating-regime saturation must be evaluated
+    separately.
+
+======================================================================
+47. FINAL CLAIMS TO AVOID
+======================================================================
+
+NEVER WRITE:
+
+    “The ranking is invariant.”
+
+    “Confidence only changes coverage.”
+
+    “Confidence never changes which items are verified.”
+
+    “Confidence is a bad routing signal.”
+
+    “Claude has guardrails that caused saturation.”
+
+    “The model secretly knows more than its confidence reveals.”
+
+    “This is a universal property of LLMs.”
+
+    “Code fully replicates the MMLU result across models.”
+
+    “The verifier proves correctness” in settings where only benchmark tests
+    are used; say passes the official hidden test suite.
+
+======================================================================
+47B. TASK 012 — POST-HOC OVERSIGHT SENSITIVITY / ERROR-LEAKAGE
+======================================================================
+
+Label: POST_HOC_SYSTEMS_REANALYSIS. Zero new model calls. Frozen 009+011 only.
+Predeclared paper-impact gate: MATERIAL_UPGRADE.
+
+Primary quantity:
+    LEAKAGE(q) = P(incorrect AND USE_UNVERIFIED | displayed q)
+
+Because frozen outputs and correctness are identical across fixed-score
+conditions, leakage differences are causally attributable to the routing
+intervention under this design.
+
+Material leakage cells (Δ 0.70→0.99 ≥ 5 pp, CI excludes 0):
+- MMLU GPT +11.8 pp [+9.0, +14.6]
+- LiveCodeBench-hard GPT +22.0 pp [+17.5, +26.9]
+
+Non-material but nonzero:
+- MMLU Claude +3.8 pp [+2.2, +5.6] — CI excludes 0, below the 5 pp gate
+- Code Claude +1.4 pp [+0.3, +2.8] — saturation regime
+
+q1 overlap in the material cells: GPT MMLU 92% and GPT code 71% of q1 values
+fall in [0.70, 0.99]. Safe sentence: the intervention probes a numerical
+range that overlaps naturally reported confidence. Do NOT say the overwrite
+simulates ordinary miscalibration or natural q1 drift.
+
+Cost: loss(λ) = leakage_rate + λ * verification_coverage.
+Oracle (unattainable): if λ<1 verify exactly the incorrect items; if λ≥1
+verify nothing. Do not pick one λ after seeing the data.
+
+Allowed headline sentences: see Task 012 report section 18.
+Forbidden: ranking invariance; GPT irrational; Claude rational/safe;
+optimal coverage = error rate; guardrails cause Claude; miscalibration
+causes X; natural drift has the same slope; “zero information” without
+“item-discriminative within condition.”
+
+======================================================================
+48. PAPER SECTION-BY-SECTION OUTLINE
+======================================================================
+
+1. INTRODUCTION
+   Resource-bounded verification.
+   Confidence as routing metadata / oversight lever.
+   Fixed-output intervention.
+   Coverage + error-leakage headline.
+   Model/task boundary.
+   Contributions.
+
+2. RELATED WORK
+   Confidence/abstention.
+   Selective prediction.
+   Adaptive routing/cascades.
+   In-context confidence.
+   Verification/delegation.
+
+3. EXPERIMENTAL FRAMEWORK
+   Frozen output.
+   q1.
+   displayed-confidence intervention.
+   VERIFY_FIRST / USE_UNVERIFIED.
+   Behavioral estimands.
+
+4. FROM CONFIDENCE VISIBILITY TO CAUSAL CONTROL
+   Historical motivation.
+   Study 1.
+   rerun stability.
+   qualitative no-arithmetic replication.
+
+5. PROSPECTIVE MMLU STUDY
+   Task 009 protocol.
+   50.2/35.4 coverage result.
+   shared vs score-specific model.
+   conservative interpretation.
+
+6. REAL-VERIFIER GENERALIZATION
+   LiveCodeBench.
+   hidden tests.
+   protocol amendment disclosure.
+   38.8 GPT / 4.9 Claude.
+   Claude saturation boundary.
+   allocation-model result.
+
+7. ROUTING QUALITY AT MATCHED BUDGET
+   Compact matched-budget comparison.
+   no robust cross-model winner.
+
+7B. OVERSIGHT CONSEQUENCES (TASK 012; LABELED POST-HOC)
+   leakage curves.
+   q1-range overlap.
+   λ cost/regret sweep.
+   Claude-code saturation as a cheap-verify vs expensive-verify tradeoff.
+
+8. DISCUSSION
+   oversight leverage vs allocation quality.
+   operating regime/saturation.
+   closed-model limitation.
+   mechanistic agnosticism.
+   design implications: metadata can move resource use and escaped errors.
+
+9. LIMITATIONS
+   Explicit and short.
+
+10. CONCLUSION
+   displayed confidence is a causal routing actuator,
+   but leverage is regime dependent and does not by itself establish
+   allocation quality.
+
+======================================================================
+49. CURRENT PAPER STATUS
+======================================================================
+
+SCIENTIFIC DATA COLLECTION:
+    COMPLETE.
+
+MMLU:
+    COMPLETE.
+
+CODE GENERALIZATION:
+    COMPLETE.
+
+OPEN-WEIGHT MODEL:
+    NOT REQUIRED.
+
+MORE BENCHMARKS:
+    NOT REQUIRED.
+
+MORE MMLU ANALYSIS:
+    NOT REQUIRED.
+
+TASK 010-STYLE SENSITIVITY:
+    COMPLETE ENOUGH TO SET CLAIM BOUNDARIES.
+
+NEXT WORK:
+
+1. accept or reject this proposed paperDirection;
+2. final related-work verification against primary sources;
+3. final paper figures (coverage + leakage; q1 overlap; cost-regret);
+4. clean reproducibility appendix;
+5. write manuscript;
+6. adversarial internal review;
+7. fix only genuine paper/reproducibility issues.
+
+Do not launch another benchmark, add models, run a q1+delta experiment,
+search for a dramatic λ, or add post-hoc routers.
+
+======================================================================
+50. STOP RULE
+======================================================================
+
+Do NOT launch:
+
+- another math benchmark;
+- another QA benchmark;
+- another retrieval benchmark;
+- an open-weight model campaign;
+- another confidence grid;
+- more post-hoc MMLU interactions;
+- more router searches.
+
+New experiments are justified only if:
+
+- a genuine evaluator bug is found;
+- the preregistration/freeze integrity is invalidated;
+- the paper cannot reproduce a reported number from the frozen artifacts.
+
+Otherwise:
+
+    STOP EXPERIMENTING.
+
+The scientific task is now to tell the complete result accurately.
+
+======================================================================
+51. FINAL SOURCE-OF-TRUTH SUMMARY
+======================================================================
+
+OLD STORY:
+    “Showing confidence crowds out richer hidden uncertainty.”
+STATUS:
+    REJECTED.
+
+TASK-008 STORY:
+    “Confidence moves coverage over a stable ranking.”
+STATUS:
+    USEFUL EXPLORATORY HYPOTHESIS, TOO STRONG AS FINAL UNIVERSAL CLAIM.
+
+TASK-009 STORY:
+    “Large prospective coverage shifts; richer score-specific prioritization
+    adds essentially no held-out gain.”
+STATUS:
+    CORE PROSPECTIVE MMLU RESULT.
+
+TASK-010 LESSON:
+    “The ranking null cannot support exact/global invariance.”
+STATUS:
+    CLAIM-DISCIPLINE BOUNDARY.
+
+TASK-011 STORY:
+    “The effect generalizes strongly to GPT with a real executable verifier,
+    while Claude is near VERIFY saturation.”
+STATUS:
+    FINAL GENERALIZATION + BOUNDARY CONDITION.
+
+TASK-012 STORY:
+    “Those coverage shifts change escaped-error leakage on a frozen output
+    population; the 0.70–0.99 grid overlaps natural q1; downstream cost
+    depends on λ.”
+STATUS:
+    POST_HOC_SYSTEMS_REANALYSIS; MATERIAL_UPGRADE of the headline.
+
+CURRENT FINAL PAPER CLAIM:
+
+    A counterfactual confidence value with no item-discriminative information
+    within a condition can move verification coverage by tens of percentage
+    points while the frozen output population and its correctness remain
+    fixed. Those coverage shifts translate into measurable changes in the
+    number of erroneous outputs that escape independent checking, over a
+    numerical range that overlaps naturally reported confidence. The
+    downstream cost of this sensitivity depends on the relative cost of
+    verification and escaped errors. GPT shows substantially higher
+    confidence-to-oversight gain than Claude’s saturated hard-code policy.
+    Allocation quality remains a separate, weaker claim.
+
+FINAL PRACTICAL MESSAGE:
+
+    Do not confuse the ability to turn verification — and therefore escaped
+    errors — up or down with the ability to route verification to the right
+    outputs. Do not treat a constant confidence overwrite as ordinary
+    calibration or as a simulation of natural q1 drift.
+
+FINAL WRITING RULE:
+
+    one causal intervention,
+    one systems consequence (coverage + leakage),
+    one realistic generalization,
+    one explicit boundary condition,
+    no mechanistic overclaim,
+    Task 012 labeled post-hoc.

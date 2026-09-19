@@ -1,0 +1,13 @@
+{
+  "task": "012_oversight_sensitivity_audit",
+  "label": "POST_HOC_SYSTEMS_REANALYSIS",
+  "finished_at": "2026-09-19T00:49:43.080354+00:00",
+  "decision": "MATERIAL_UPGRADE",
+  "api_calls": 0,
+  "paper_sha_before": "fd8b0a2011f3f6da6196f1de8525eaa13e9e7703da15ed797e3e996ea7b6f444",
+  "paper_sha_after": "fd8b0a2011f3f6da6196f1de8525eaa13e9e7703da15ed797e3e996ea7b6f444",
+  "freeze": "/Users/thomas/Desktop/trustOrCheckMe/to_gpt/012_oversight_sensitivity_audit/task012_analysis_freeze.json",
+  "task009": "/Users/thomas/Desktop/trustOrCheckMe/to_gpt/009_prospective_ranking_invariance_confirmation",
+  "task010": "/Users/thomas/Desktop/trustOrCheckMe/to_gpt/010_final_sensitivity_equivalence_audit",
+  "task011": "/Users/thomas/Desktop/trustOrCheckMe/to_gpt/011_code_executable_verification_generalization"
+}

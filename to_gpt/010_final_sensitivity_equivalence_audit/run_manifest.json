@@ -1,0 +1,9 @@
+{
+  "task_id": "010_final_sensitivity_equivalence_audit",
+  "created_at": "2026-09-18T15:47:40.513280+00:00",
+  "api_calls": 0,
+  "template": "WEAK",
+  "latent_claim": "LATENT_STABILITY_STRONG",
+  "routing_label": "MODEST_ROUTING_GAIN",
+  "paperDirection_sha256": "8546e2e8002d9c96c6be7c946a4d63705068adda133b7a7c0c10bee2b8542b36"
+}

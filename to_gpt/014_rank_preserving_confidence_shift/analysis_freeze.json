@@ -1,0 +1,39 @@
+{
+  "frozen_before_stage3_calls": true,
+  "created_at": "2026-09-19T01:19:17.837539+00:00",
+  "primary_endpoints": [
+    "leakage(+1.5)-leakage(-1.5)",
+    "coverage(+1.5)-coverage(-1.5)",
+    "retention vs constant 0.70-0.99"
+  ],
+  "bootstrap": {
+    "seed": 20260927,
+    "resamples": 5000
+  },
+  "lambda_grid": [
+    0.001,
+    0.002,
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "world_A": {
+    "name": "LEVEL_SENSITIVITY_STRONGLY_GENERALIZES",
+    "gpt_mmlu": "leakage shift >= +5pp, CI lo > 0, |coverage shift| >= 15pp",
+    "gpt_code": "leakage shift >= +10pp, CI lo > 0, |coverage shift| >= 15pp",
+    "retention": "leakage retention >= 0.50 in both GPT tasks OR coverage retention >= 0.50 in both"
+  },
+  "world_B": "LEVEL_SENSITIVITY_PARTIAL",
+  "world_C": "ITEM_INFORMATION_LARGELY_PROTECTS",
+  "world_D": "MIXED_BY_TASK",
+  "world_E": "TECHNICAL_OR_VERSION_FAILURE",
+  "malformed_policy": "one parse repair then fail the item; retry transient up to 3; do not invent actions",
+  "no_delta_tuning": true,
+  "no_repeats": true,
+  "no_pilot": true
+}

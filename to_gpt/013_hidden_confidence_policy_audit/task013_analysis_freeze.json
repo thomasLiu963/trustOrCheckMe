@@ -1,0 +1,67 @@
+{
+  "label": "POST_HOC_POLICY_REANALYSIS",
+  "frozen_before_sections_3_to_12": true,
+  "created_at": "2026-09-19T01:05:00+00:00",
+  "inherits_from_task012": {
+    "lambda_grid": [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0],
+    "loss": "leakage_rate + lambda * verification_coverage",
+    "bootstrap_seed_012": 20260925,
+    "bootstrap_resamples": 5000,
+    "ece_bins": 10
+  },
+  "bootstrap": {
+    "seed": 20260926,
+    "resamples": 5000,
+    "cluster": "question_id within task/model",
+    "note": "Used for hidden vs true_q_visible paired contrasts. Condition-level CIs may reuse Task 012 question-bootstrap intervals after point-estimate match."
+  },
+  "reproduction_tolerance_pp": 0.6,
+  "targets": {
+    "mmlu_hidden_coverage_pct": {"GPT": 39.6, "Claude": 65.4},
+    "mmlu_true_q_coverage_pct": {"GPT": 12.4, "Claude": 79.4},
+    "code_hidden_coverage_pct": {"GPT": 32.5, "Claude": 98.6},
+    "code_true_q_coverage_pct": {"GPT": 27.3, "Claude": 97.9}
+  },
+  "filters": {
+    "task009": "roster=primary, repeat_index=0, GPT+Claude only",
+    "task011": "confirmatory sample_main IDs only, repeat_index=0, exclude all pilots"
+  },
+  "robustness_labels": {
+    "HIDDEN_ROBUST_BOTH_GPT_TASKS": {
+      "in_both_GPT_MMLU_and_GPT_code": [
+        "hidden within 0.02 normalized loss of best observed policy for >= 50% of the frozen lambda grid",
+        "hidden worst-case regret <= 0.10",
+        "hidden leakage - true_q_visible leakage <= 0.10 (not >10pp more leakage than true_q_visible)"
+      ]
+    },
+    "HIDDEN_ROBUST_ONE_TASK": "exactly one GPT task passes the above",
+    "HIDDEN_NOT_ROBUST": "both GPT tasks fail"
+  },
+  "near_best_thresholds": [0.01, 0.02, 0.05],
+  "paper_impact_gate": {
+    "ACTIONABLE_UPGRADE_requires_all_of": {
+      "A": "HIDDEN_ROBUST_BOTH_GPT_TASKS",
+      "B": "hidden on observed Pareto frontier for both GPT MMLU and GPT code",
+      "C": "hidden within 0.02 of best for >=50% of lambda in both GPT tasks",
+      "D": "max hidden regret <= 0.10 in both GPT tasks",
+      "E": "Claude fully reported; no single-lambda cherry-pick"
+    },
+    "ACTIONABLE_BUT_TASK_SPECIFIC": "robust on exactly one GPT task",
+    "DIAGNOSTIC_ONLY": "hidden is not robust",
+    "CONTRADICTS_CURRENT_STORY": "reproduction failure or Task 012 contradiction"
+  },
+  "claude_role": "report fully; secondary for the mitigation gate because code is near VERIFY saturation",
+  "forbidden_claims": [
+    "hidden is optimal",
+    "hiding confidence is always safer",
+    "hiding removes internal confidence",
+    "hidden routing equals item-only reasoning",
+    "visible confidence causes failures",
+    "Claude is more robust in a normative sense",
+    "true_q_visible is bad in general",
+    "confidence should never be shown",
+    "lambda is known in deployment",
+    "hidden policy is preregistered as a mitigation",
+    "Task 013 was confirmatory"
+  ]
+}

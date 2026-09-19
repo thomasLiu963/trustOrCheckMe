@@ -1,0 +1,70 @@
+{
+  "label": "POST_HOC_SYSTEMS_REANALYSIS",
+  "passed": true,
+  "stop_token": null,
+  "tolerance_pp": 0.6,
+  "checks": [
+    {
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "coverage_0.70_0.99",
+      "target": 50.2,
+      "reproduced": 50.2,
+      "n_a": 500,
+      "n_b": 500,
+      "ok": true
+    },
+    {
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "coverage_0.70_0.99",
+      "target": 35.4,
+      "reproduced": 35.4,
+      "n_a": 500,
+      "n_b": 500,
+      "ok": true
+    },
+    {
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "coverage_0.70_0.99",
+      "target": 38.8,
+      "reproduced": 38.811,
+      "n_a": 286,
+      "n_b": 286,
+      "ok": true
+    },
+    {
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "coverage_0.70_0.99",
+      "target": 4.9,
+      "reproduced": 4.895,
+      "n_a": 286,
+      "n_b": 286,
+      "ok": true
+    },
+    {
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "pass_rate",
+      "target": 46.5,
+      "reproduced": 46.503,
+      "n_a": 286,
+      "n_b": 286,
+      "ok": true
+    },
+    {
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "pass_rate",
+      "target": 43.0,
+      "reproduced": 43.007,
+      "n_a": 286,
+      "n_b": 286,
+      "ok": true
+    }
+  ],
+  "n_009": 7000,
+  "n_011": 4004
+}

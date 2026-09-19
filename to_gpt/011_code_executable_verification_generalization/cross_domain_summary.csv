@@ -1,0 +1,3 @@
+model_alias,model_label,mmlu_coverage_0.70_minus_0.99,code_coverage_0.70_minus_0.99,mmlu_dll,code_dll,code_accuracy
+openai_gpt56_sol,GPT,0.502,0.3881118881118881,0.0008,-0.0005151968009201591,0.46503496503496505
+anthropic_sonnet5,Claude,0.354,0.04895104895104895,-0.0,-0.0005023370525949339,0.43006993006993005

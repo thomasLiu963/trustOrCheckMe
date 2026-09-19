@@ -1,0 +1,9 @@
+{
+  "bootstrap_resamples": 5000,
+  "cv_folds": 5,
+  "material_logloss": 0.01,
+  "h1_contrast": [
+    "displayed_0.70",
+    "displayed_0.99"
+  ]
+}

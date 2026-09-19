@@ -1,0 +1,11 @@
+{
+  "label": "POST_HOC_POLICY_REANALYSIS",
+  "decision": "DIAGNOSTIC_ONLY",
+  "robustness_class": "HIDDEN_NOT_ROBUST",
+  "A_both_gpt_robust": false,
+  "B_pareto_both_gpt": true,
+  "C_near_best_both_gpt": false,
+  "D_worst_regret_both_gpt": false,
+  "E_honest_reporting": true,
+  "reproduction_ok": true
+}

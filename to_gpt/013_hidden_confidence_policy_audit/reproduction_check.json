@@ -1,0 +1,602 @@
+{
+  "label": "POST_HOC_POLICY_REANALYSIS",
+  "passed": true,
+  "stop_token": null,
+  "tolerance_pp": 0.6,
+  "checks": [
+    {
+      "source": "published_009_011",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "hidden_coverage",
+      "target": 39.6,
+      "reproduced": 39.6,
+      "ok": true
+    },
+    {
+      "source": "published_009_011",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "true_q_visible_coverage",
+      "target": 12.4,
+      "reproduced": 12.4,
+      "ok": true
+    },
+    {
+      "source": "published_009_011",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "hidden_coverage",
+      "target": 65.4,
+      "reproduced": 65.4,
+      "ok": true
+    },
+    {
+      "source": "published_009_011",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "true_q_visible_coverage",
+      "target": 79.4,
+      "reproduced": 79.4,
+      "ok": true
+    },
+    {
+      "source": "published_009_011",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "hidden_coverage",
+      "target": 32.5,
+      "reproduced": 32.517,
+      "ok": true
+    },
+    {
+      "source": "published_009_011",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "true_q_visible_coverage",
+      "target": 27.3,
+      "reproduced": 27.273,
+      "ok": true
+    },
+    {
+      "source": "published_009_011",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "hidden_coverage",
+      "target": 98.6,
+      "reproduced": 98.601,
+      "ok": true
+    },
+    {
+      "source": "published_009_011",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "true_q_visible_coverage",
+      "target": 97.9,
+      "reproduced": 97.902,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "hidden_leakage",
+      "target": 3.8,
+      "reproduced": 3.8,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "hidden_coverage",
+      "target": 39.6,
+      "reproduced": 39.6,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "true_q_visible_leakage",
+      "target": 12.0,
+      "reproduced": 12.0,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "true_q_visible_coverage",
+      "target": 12.4,
+      "reproduced": 12.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.70_leakage",
+      "target": 2.0,
+      "reproduced": 2.0,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.70_coverage",
+      "target": 58.4,
+      "reproduced": 58.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.85_leakage",
+      "target": 8.4,
+      "reproduced": 8.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.85_coverage",
+      "target": 22.8,
+      "reproduced": 22.8,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.90_leakage",
+      "target": 10.2,
+      "reproduced": 10.2,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.90_coverage",
+      "target": 18.0,
+      "reproduced": 18.0,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.95_leakage",
+      "target": 11.4,
+      "reproduced": 11.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.95_coverage",
+      "target": 14.4,
+      "reproduced": 14.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.99_leakage",
+      "target": 13.8,
+      "reproduced": 13.8,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.99_coverage",
+      "target": 8.2,
+      "reproduced": 8.2,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "hidden_leakage",
+      "target": 2.8,
+      "reproduced": 2.8,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "hidden_coverage",
+      "target": 65.4,
+      "reproduced": 65.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "true_q_visible_leakage",
+      "target": 1.0,
+      "reproduced": 1.0,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "true_q_visible_coverage",
+      "target": 79.4,
+      "reproduced": 79.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.70_leakage",
+      "target": 0.0,
+      "reproduced": 0.0,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.70_coverage",
+      "target": 92.4,
+      "reproduced": 92.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.85_leakage",
+      "target": 1.2,
+      "reproduced": 1.2,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.85_coverage",
+      "target": 80.0,
+      "reproduced": 80.0,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.90_leakage",
+      "target": 1.4,
+      "reproduced": 1.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.90_coverage",
+      "target": 77.6,
+      "reproduced": 77.6,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.95_leakage",
+      "target": 2.4,
+      "reproduced": 2.4,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.95_coverage",
+      "target": 64.6,
+      "reproduced": 64.6,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.99_leakage",
+      "target": 3.8,
+      "reproduced": 3.8,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.99_coverage",
+      "target": 57.0,
+      "reproduced": 57.0,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "hidden_leakage",
+      "target": 25.874,
+      "reproduced": 25.874,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "hidden_coverage",
+      "target": 32.517,
+      "reproduced": 32.517,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "true_q_visible_leakage",
+      "target": 29.72,
+      "reproduced": 29.72,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "true_q_visible_coverage",
+      "target": 27.273,
+      "reproduced": 27.273,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.70_leakage",
+      "target": 10.839,
+      "reproduced": 10.839,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.70_coverage",
+      "target": 62.937,
+      "reproduced": 62.937,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.85_leakage",
+      "target": 18.881,
+      "reproduced": 18.881,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.85_coverage",
+      "target": 44.406,
+      "reproduced": 44.406,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.90_leakage",
+      "target": 21.329,
+      "reproduced": 21.329,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.90_coverage",
+      "target": 37.762,
+      "reproduced": 37.762,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.95_leakage",
+      "target": 27.972,
+      "reproduced": 27.972,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.95_coverage",
+      "target": 29.021,
+      "reproduced": 29.021,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.99_leakage",
+      "target": 32.867,
+      "reproduced": 32.867,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "metric": "displayed_0.99_coverage",
+      "target": 24.126,
+      "reproduced": 24.126,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "hidden_leakage",
+      "target": 0.35,
+      "reproduced": 0.35,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "hidden_coverage",
+      "target": 98.601,
+      "reproduced": 98.601,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "true_q_visible_leakage",
+      "target": 1.399,
+      "reproduced": 1.399,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "true_q_visible_coverage",
+      "target": 97.902,
+      "reproduced": 97.902,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.70_leakage",
+      "target": 0.0,
+      "reproduced": 0.0,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.70_coverage",
+      "target": 99.65,
+      "reproduced": 99.65,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.85_leakage",
+      "target": 0.35,
+      "reproduced": 0.35,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.85_coverage",
+      "target": 99.301,
+      "reproduced": 99.301,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.90_leakage",
+      "target": 1.049,
+      "reproduced": 1.049,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.90_coverage",
+      "target": 98.601,
+      "reproduced": 98.601,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.95_leakage",
+      "target": 1.399,
+      "reproduced": 1.399,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.95_coverage",
+      "target": 97.552,
+      "reproduced": 97.552,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.99_leakage",
+      "target": 1.399,
+      "reproduced": 1.399,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "metric": "displayed_0.99_coverage",
+      "target": 94.755,
+      "reproduced": 94.755,
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "both",
+      "model": "shared",
+      "metric": "lambda_grid",
+      "target": "012_grid",
+      "reproduced": "0.001,0.002,0.005,0.01,0.02,0.05,0.1,0.2,0.5,1.0",
+      "ok": true
+    },
+    {
+      "source": "task012",
+      "task": "both",
+      "model": "shared",
+      "metric": "loss_function",
+      "target": "leakage + lambda * coverage",
+      "reproduced": "leakage + lambda * coverage",
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+task,model_alias,from_delta,to_delta,additional_verify_calls,additional_errors_caught,errors_caught_per_added_verify
+mmlu,openai_gpt56_sol,1.5,-1.5,81,30,0.37037037037037035
+mmlu,anthropic_sonnet5,1.5,-1.5,156,17,0.10897435897435898
+code,openai_gpt56_sol,1.5,-1.5,20,13,0.65
+code,anthropic_sonnet5,1.5,-1.5,15,4,0.26666666666666666

@@ -1,0 +1,111 @@
+{
+  "status": "POOL_OK_SAMPLE_500",
+  "n_release_v6": 1055,
+  "n_eligible_medium_hard": 723,
+  "difficulty_release": {
+    "easy": 322,
+    "medium": 383,
+    "hard": 350
+  },
+  "difficulty_eligible": {
+    "medium": 379,
+    "hard": 344
+  },
+  "platform_eligible": {
+    "leetcode": 309,
+    "atcoder": 409,
+    "codeforces": 5
+  },
+  "date_min": "2023-05-07T00:00:00",
+  "date_max": "2025-04-06T00:00:00",
+  "eligible_id_list_sha256": "c73475ca426c2b30026185a62c5b9b813ebb1bfbd2647946726523bfe8c74e4c",
+  "lcb_repo_url": "https://github.com/LiveCodeBench/LiveCodeBench",
+  "lcb_commit": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+  "lcb_commit_pin": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+  "hf_dataset": "livecodebench/code_generation_lite",
+  "release": "release_v6",
+  "dataset_files": {
+    "test.jsonl": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/.cache/livecodebench_data/test.jsonl",
+      "exists": true,
+      "bytes": 1252609773,
+      "sha256": "2bd02b38beb48e8c46b5b9987095d999ff38cd8efc255ea5d58974317c48f63f"
+    },
+    "test2.jsonl": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/.cache/livecodebench_data/test2.jsonl",
+      "exists": true,
+      "bytes": 713377060,
+      "sha256": "095df7c5daf15f882c51a9deb84085cff1e073495a5dbcf95015a564d485f3a3"
+    },
+    "test3.jsonl": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/.cache/livecodebench_data/test3.jsonl",
+      "exists": true,
+      "bytes": 623360766,
+      "sha256": "28ed26cc83363ce3f1fe2d5fad9f8393077beb1907b167a31bd3b32f80801b79"
+    },
+    "test4.jsonl": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/.cache/livecodebench_data/test4.jsonl",
+      "exists": true,
+      "bytes": 1204644685,
+      "sha256": "d711138ddaebfcf5f8ec6a4283ee677298c0f5c5d374a235af92aaf0584510da"
+    },
+    "test5.jsonl": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/.cache/livecodebench_data/test5.jsonl",
+      "exists": true,
+      "bytes": 557699297,
+      "sha256": "7f77571c2a6df0c2a72a3277650309f67e01e0008e18117e624633df53f81214"
+    },
+    "test6.jsonl": {
+      "path": "/Users/thomas/Desktop/trustOrCheckMe/.cache/livecodebench_data/test6.jsonl",
+      "exists": true,
+      "bytes": 134303240,
+      "sha256": "bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5"
+    }
+  },
+  "harness": {
+    "question_id": "1873_A",
+    "platform": "codeforces",
+    "difficulty": "easy",
+    "echo_public_pass": true,
+    "wrong_public_pass": false,
+    "syntax_public_pass": false,
+    "timeout_public_pass": false,
+    "echo_detail": {
+      "passed": true,
+      "n_tests": 1,
+      "n_passed": 1,
+      "metadata": {
+        "execution time": 0.0010318756103515625
+      },
+      "public_only": true
+    },
+    "harness_ok": true,
+    "isolation": {
+      "process_wrapper": "LiveCodeBench check_correctness multiprocessing.Process + SIGALRM",
+      "env_secrets_stripped": true,
+      "timeout_seconds": 6,
+      "memory_guard": "LCB reliability_guard ~4GB",
+      "network": "not granted; child inherits stripped env without API keys"
+    }
+  },
+  "errata_excluded": [
+    "abc311_c",
+    "abc326_d",
+    "abc327_b",
+    "abc333_e",
+    "abc337_e",
+    "abc343_a",
+    "abc343_e",
+    "abc350_c",
+    "abc355_e",
+    "abc362_c",
+    "apply-operations-to-make-string-empty",
+    "arc185_c",
+    "arc189_a",
+    "find-the-peaks",
+    "find-words-containing-character",
+    "generate-binary-strings-without-adjacent-zeros",
+    "most-frequent-ids"
+  ],
+  "generated_at": "2026-09-18T14:54:49.774343"
+}

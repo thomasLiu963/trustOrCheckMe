@@ -292,7 +292,7 @@ class ModelResponse(StrictModel):
     provider: Literal["openai", "anthropic", "google", "xai"]
     requested_model_id: str = Field(min_length=1)
     provider_model_id: str | None = None
-    stage: Literal["answer", "confidence", "trust", "verification"]
+    stage: Literal["answer", "confidence", "trust", "verification", "code"]
     request_key: str = Field(min_length=1)
     status: Literal["received", "success", "failed"] = "received"
     raw_response: str

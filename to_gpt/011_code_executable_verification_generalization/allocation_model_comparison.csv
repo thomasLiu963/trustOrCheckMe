@@ -1,0 +1,5 @@
+model_alias,model_label,model_name,n_rows,n_questions,cv_logloss,heldout_improvement_vs_shared,bootstrap_lo,bootstrap_hi,material_logloss,material_gain
+openai_gpt56_sol,GPT,shared_prioritization,1430,286,0.5688122683108978,,,,,
+anthropic_sonnet5,Claude,shared_prioritization,1430,286,0.10481830756716272,,,,,
+openai_gpt56_sol,GPT,score_specific_reprioritization,1430,286,0.569327465111818,-0.0005151968009201591,-0.0012044442200471739,0.00016779385798659785,0.01,False
+anthropic_sonnet5,Claude,score_specific_reprioritization,1430,286,0.10532064461975765,-0.0005023370525949339,-0.0013944061998028279,4.825573616079604e-05,0.01,False

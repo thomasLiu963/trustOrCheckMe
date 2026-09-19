@@ -1,0 +1,85 @@
+{
+  "label": "POST_HOC_SYSTEMS_REANALYSIS",
+  "decision": "MATERIAL_UPGRADE",
+  "A_consequence": true,
+  "B_operating_range": true,
+  "C_systems": true,
+  "D_no_contradiction": true,
+  "material_cells": [
+    {
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "delta_leakage": 0.11800000000000001,
+      "ci_lo": 0.09000000000000001,
+      "ci_hi": 0.14600000000000002,
+      "material": true
+    },
+    {
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "delta_leakage": 0.22027972027972026,
+      "ci_lo": 0.17473776223776225,
+      "ci_hi": 0.2692307692307693,
+      "material": true
+    }
+  ],
+  "all_cells": [
+    {
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "delta_leakage": 0.11800000000000001,
+      "ci_lo": 0.09000000000000001,
+      "ci_hi": 0.14600000000000002,
+      "material": true
+    },
+    {
+      "task": "mmlu",
+      "model": "anthropic_sonnet5",
+      "delta_leakage": 0.038,
+      "ci_lo": 0.022,
+      "ci_hi": 0.056,
+      "material": false
+    },
+    {
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "delta_leakage": 0.22027972027972026,
+      "ci_lo": 0.17473776223776225,
+      "ci_hi": 0.2692307692307693,
+      "material": true
+    },
+    {
+      "task": "code",
+      "model": "anthropic_sonnet5",
+      "delta_leakage": 0.013986013986013986,
+      "ci_lo": 0.0034965034965034965,
+      "ci_hi": 0.027972027972027972,
+      "material": false
+    }
+  ],
+  "b_notes": [
+    {
+      "task": "mmlu",
+      "model": "openai_gpt56_sol",
+      "delta_leakage": 0.11800000000000001,
+      "ci_lo": 0.09000000000000001,
+      "ci_hi": 0.14600000000000002,
+      "material": true,
+      "frac_in_range": 0.92,
+      "iqr_intersects": true,
+      "pass": true
+    },
+    {
+      "task": "code",
+      "model": "openai_gpt56_sol",
+      "delta_leakage": 0.22027972027972026,
+      "ci_lo": 0.17473776223776225,
+      "ci_hi": 0.2692307692307693,
+      "material": true,
+      "frac_in_range": 0.7132867132867133,
+      "iqr_intersects": true,
+      "pass": true
+    }
+  ],
+  "max_consecutive_lambda": 8
+}

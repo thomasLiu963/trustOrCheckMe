@@ -1,0 +1,141 @@
+{
+  "created_at": "2026-09-18T19:10:15.603648+00:00",
+  "sample": {
+    "created_at": "2026-09-18T19:08:56.373923+00:00",
+    "seed": 20260924,
+    "n": 40,
+    "label": "pilot_round2",
+    "excluded_prior_ids": [
+      "1899_C",
+      "2784",
+      "2839",
+      "2884",
+      "3024",
+      "3025",
+      "3091",
+      "3184",
+      "3223",
+      "3233",
+      "3298",
+      "3375",
+      "3376",
+      "3411",
+      "3436",
+      "3466",
+      "abc303_e",
+      "abc305_d",
+      "abc311_e",
+      "abc315_e",
+      "abc321_e",
+      "abc323_e",
+      "abc329_f",
+      "abc331_d",
+      "abc338_e",
+      "abc341_e",
+      "abc346_e",
+      "abc348_e",
+      "abc352_e",
+      "abc360_e",
+      "abc361_e",
+      "abc368_g",
+      "abc373_e",
+      "abc374_e",
+      "abc391_g",
+      "arc188_d",
+      "arc189_c",
+      "arc190_d",
+      "arc195_d",
+      "arc196_a"
+    ],
+    "question_ids": [
+      "2757",
+      "2779",
+      "2827",
+      "2854",
+      "2888",
+      "2915",
+      "2921",
+      "3000",
+      "3032",
+      "3047",
+      "3174",
+      "3192",
+      "3231",
+      "3244",
+      "3265",
+      "3360",
+      "3388",
+      "abc301_f",
+      "abc302_b",
+      "abc307_c",
+      "abc307_e",
+      "abc308_e",
+      "abc309_c",
+      "abc314_d",
+      "abc314_f",
+      "abc320_e",
+      "abc322_c",
+      "abc323_c",
+      "abc326_e",
+      "abc329_e",
+      "abc330_c",
+      "abc331_e",
+      "abc334_b",
+      "abc337_d",
+      "abc338_d",
+      "abc340_d",
+      "abc342_c",
+      "abc344_e",
+      "abc349_e",
+      "abc352_d"
+    ],
+    "id_list_sha256": "510f05c4bf7ab0c64e511054f763e685f4e10ad1c0fe771ef10e2de069e87996",
+    "difficulty": {
+      "hard": 18,
+      "medium": 22
+    },
+    "platform": {
+      "leetcode": 17,
+      "atcoder": 23
+    }
+  },
+  "run": {
+    "phase": "pilot",
+    "pairs": 80,
+    "failed": 0,
+    "ok": true,
+    "scientific_used": 800,
+    "provider_attempts": 400,
+    "paperDirection_sha256": "8546e2e8002d9c96c6be7c946a4d63705068adda133b7a7c0c10bee2b8542b36"
+  },
+  "decision": {
+    "go": true,
+    "stop_reason": null,
+    "ladder": "hard_only",
+    "accuracy": {
+      "anthropic_sonnet5": 0.775,
+      "openai_gpt56_sol": 0.875
+    },
+    "coverage_rate": {
+      "openai_gpt56_sol": {
+        "displayed_0.70": 0.225,
+        "displayed_0.90": 0.05,
+        "displayed_0.99": 0.025
+      },
+      "anthropic_sonnet5": {
+        "displayed_0.70": 0.95,
+        "displayed_0.90": 0.95,
+        "displayed_0.99": 0.8
+      }
+    },
+    "identifiable": true
+  },
+  "n_eval": 80,
+  "n_eval_passed": 66,
+  "concurrency": {
+    "code": 24,
+    "route": 24,
+    "per_provider": 12,
+    "eval_workers": 16
+  }
+}

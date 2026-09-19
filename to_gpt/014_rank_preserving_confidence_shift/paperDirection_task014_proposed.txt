@@ -1,0 +1,95 @@
+D1 PAPER DIRECTION — PROPOSED AFTER TASK 014
+Working narrative / scientific source of truth (PROPOSED UPDATE)
+Date: 2026-09-19
+Status: PROPOSED. Task 014 world = LEVEL_SENSITIVITY_PARTIAL / MODERATE_UPGRADE.
+Do not overwrite paperDirection.txt until accepted. The live source of truth
+remains the Task-012 document.
+
+======================================================================
+0. WHAT CHANGES AND WHAT DOES NOT
+======================================================================
+
+KEEP as the core paper result (Task 012):
+
+    A counterfactual confidence value with no item-discriminative information
+    within a condition can move verification coverage and error leakage while
+    the frozen output population stays fixed. For GPT this is large on both
+    MMLU and executable code. Claude-code is near VERIFY saturation.
+
+ADD as main-text supporting validation (Task 014):
+
+    The same direction of coverage and leakage movement appears when the
+    displayed score is an order-preserving logit shift of each item's own q1.
+    Item-level q1 information attenuates the constant-score effect but does
+    not remove level sensitivity.
+
+Do NOT replace the 012 leakage story with a claim that ordinary calibration
+drift has been measured. Task 014 is a rank-preserving level shift, not a
+naturally generated miscalibration process.
+
+No further experiments are justified.
+
+======================================================================
+1. TASK 014 NUMBERS (CONFIRMATORY OFFSET, δ=+1.5 minus δ=−1.5)
+======================================================================
+
+GPT MMLU (N=500):
+    coverage 23.0% -> 6.8%  (Δ −16.2 pp [−19.6, −13.0])
+    leakage  9.0% -> 15.0%  (Δ +6.0 pp [+4.0, +8.2])
+    retention vs constant 0.70→0.99: leakage 0.51, coverage 0.32
+
+GPT LiveCodeBench hard (N=286):
+    coverage 26.2% -> 19.2% (Δ −7.0 pp [−10.1, −3.8])
+    leakage  31.1% -> 35.7% (Δ +4.5 pp [+2.1, +7.3])
+    retention: leakage 0.21, coverage 0.18
+
+Claude MMLU:
+    coverage 91.6% -> 60.4% (Δ −31.2 pp)
+    leakage  0.0% -> 3.4%   (Δ +3.4 pp)
+    high retention of the already-large MMLU coverage response
+
+Claude code:
+    near VERIFY ceiling; small coverage/leakage moves. Do not call this
+    normative robustness or attribute it to guardrails.
+
+δ=0 reused existing true_q_visible responses after byte-identical prompt check.
+Transform: q_delta = sigmoid(logit(q1)+delta); Spearman with q1 = 1.0;
+zero order reversals after .12g rendering.
+
+======================================================================
+2. ALLOWED / FORBIDDEN
+======================================================================
+
+ALLOWED:
+- The high-gain constant-score effect is not solely an artifact of stripping
+  item discrimination, but preserving q1 order substantially attenuates it,
+  especially on GPT code.
+- A rank-preserving optimism/pessimism shift still moves GPT coverage and
+  leakage in the same direction as the constant-score stress test.
+- Task 014 is the deployment-relevant validity check on Task 012.
+
+FORBIDDEN:
+- ordinary production calibration drift necessarily causes identical effects
+- transformed scores are naturally generated
+- ranking is perfectly informative; q1 contains all uncertainty
+- WORLD A wording (strong generalization) — the GPT code cell missed the
+  predeclared 10pp / 15pp materiality floors
+- hide-confidence is the mitigation (Task 013: DIAGNOSTIC_ONLY)
+- further experiments
+
+======================================================================
+3. PAPER STRUCTURE IMPLICATION
+======================================================================
+
+Main text:
+1. fixed-output intervention
+2. Task 012 constant-score coverage + leakage (headline)
+3. Task 014 rank-preserving validation (supporting; WORLD B)
+4. model/task heterogeneity and Claude-code saturation
+5. Task 013: withholding the scalar is not a robust default
+
+Appendix:
+- transform audit / order preservation
+- δ grid, cost sweep, 013 policy audit
+
+STOP. Write the manuscript.

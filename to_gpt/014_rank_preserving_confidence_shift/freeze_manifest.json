@@ -1,0 +1,67 @@
+{
+  "created_at": "2026-09-19T01:19:17.837539+00:00",
+  "code_commit": "f783a230eb5263499cdf2c06ba0a5033d947d9ab",
+  "experiment_version": "study014_offset_v1",
+  "run_id": "study014-offset",
+  "family": "moderate",
+  "delta_grid": [
+    -1.5,
+    -0.75,
+    0.0,
+    0.75,
+    1.5
+  ],
+  "new_deltas": [
+    -1.5,
+    -0.75,
+    0.75,
+    1.5
+  ],
+  "transform": "sigmoid(logit(q1)+delta); delta=0 returns exact q1; q1 in {0,1} stays at endpoint",
+  "display_format": ".12g",
+  "rounding": "python format(number, '.12g')",
+  "transform_code_sha256": "62239942abc6eba590e34505c7bfdf34f7636732c5391b306afb0af1037f4ba5",
+  "data_loader_sha256": "33559600dcac87a2c413f2e0192a5e960c0c05840c7a395a7e79517a1b14cb8e",
+  "endpoints": {
+    "openai_gpt56_sol": "gpt-5.6-sol",
+    "anthropic_sonnet5": "claude-sonnet-5"
+  },
+  "delta0_reuse_decision": "REUSE_TRUE_Q_VISIBLE",
+  "n_frozen_items": 1572,
+  "n_planned_new_calls": 6288,
+  "scientific_cap": 7000,
+  "sqlite": "/Users/thomas/Desktop/trustOrCheckMe/results/study014_offset/offset.sqlite3",
+  "paper_sha256": "cc554e0502c960f2e51252e0fb511892c6c1f04afef43eb1bc9d90946ba3c452",
+  "task009_stage3_sha256": "9a4e9adc6c3a9aabba6015c9695db2dd9a5acb424cf52fbb89e008b2811d842f",
+  "task011_stage3_sha256": "76d775244594f98591386944b16785d6e407bbd1b61dfa8edd74c80f3a5a7c3a",
+  "models": [
+    "openai_gpt56_sol",
+    "anthropic_sonnet5"
+  ],
+  "bootstrap": {
+    "seed": 20260927,
+    "resamples": 5000
+  },
+  "lambda_grid": [
+    0.001,
+    0.002,
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "worlds": [
+    "LEVEL_SENSITIVITY_STRONGLY_GENERALIZES",
+    "LEVEL_SENSITIVITY_PARTIAL",
+    "ITEM_INFORMATION_LARGELY_PROTECTS",
+    "MIXED_BY_TASK",
+    "TECHNICAL_OR_VERSION_FAILURE"
+  ],
+  "audit_n_rows": 20,
+  "endpoint_q1_exact_0": 6,
+  "endpoint_q1_exact_1": 0
+}
